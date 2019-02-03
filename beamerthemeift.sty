@@ -1,0 +1,79 @@
+%
+% Loosely based on Boadilla by Manuel Carro
+%
+% Original:
+% Copyright 2004 by Manuel Carro <mcarro@fi.upm.es>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+\mode<presentation>
+
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+
+\useoutertheme{ift}
+
+%
+% Color definitions
+%
+\definecolor{uibred}{RGB}{170, 0, 0}
+\definecolor{uibblue}{RGB}{0, 84, 115}
+\definecolor{uibgreen}{RGB}{119, 175, 0}
+\definecolor{uiborange}{RGB}{217, 89, 0}
+
+\definecolor{newitem}{RGB}{253,206,2}
+\setbeamercolor{boxl}{fg=black,bg=uibblue!20!white}
+\setbeamercolor{boxu}{fg=white,bg=uibblue}
+
+%
+% Redefinition of beamer colors
+%
+\setbeamercolor{enumerate item}{fg=uibred,bg=uibred!20!white}
+\setbeamercolor{enumerate subitem}{fg=uibred,bg=uibred!20!white}
+\setbeamercolor{enumerate}{fg=uibred,bg=uibred}
+\setbeamercolor{itemize item}{fg=uiborange}
+\setbeamercolor{itemize subitem}{fg=uibgreen}
+\setbeamercolor{frametitle}{fg=uibblue}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{section}{fg=uibblue}
+\setbeamercolor{subsection}{fg=uibblue}
+\setbeamercolor{itemize}{fg=uibblue}
+\setbeamercolor{alerted text}{fg=uibred}
+
+
+% Tills' opinion: should be done in an inner theme, not here.
+
+%\setbeamertemplate{frametitle}[default][right]
+%\setbeamertemplate{frametitle}{\vspace{1.7cm}  \insertframetitle}
+\setbeamertemplate{frametitle}{\vspace{0.4cm} \color{white}  \insertframetitle}
+
+\usesubitemizeitemtemplate{%
+    \tiny\raise1.5pt\hbox{\color{beamerstructure}$\blacktriangleright$}%
+}
+\usesubsubitemizeitemtemplate{%
+    \tiny\raise1.5pt\hbox{\color{beamerstructure}$\bigstar$}%
+}
+
+%\setbeamertemplate{enumerate item}
+%{
+%  %\usebeamerfont*{item projected}%
+%  %\usebeamercolor[bg]{item projected}%
+%  \begin{pgfpicture}{0ex}{0ex}{1.5ex}{0ex}
+%	%\pgfcircle[fill]{\pgfpoint{0pt}{.75ex}}{1.25ex}
+%    \pgfbox[center,base]{\color{uibblue}\insertenumlabel.}
+%  \end{pgfpicture}%
+%}
+
+
+
+\setbeamersize{text margin left=1em,text margin right=1em}
+%\setbeamersize{frametitle=\huge}
+
+\ifbeamer@secheader\else\setbeamertemplate{headline}[default]\fi
+
+\mode
+<all>

@@ -1,0 +1,57 @@
+%====================================================
+%-------------Macro definitions go here--------------
+%====================================================
+
+%
+% Differentials
+%
+\newcommand{\tdiff}[2]{\ensuremath{\frac{\mathrm{d}#2}}{\mathrm{d}{#1}}}
+\newcommand{\tdifforder}[3]{\ensuremath{\frac{\mathrm{d}^{#2}#3}{\mathrm{d}{#1}^{#2}}}}
+\newcommand{\pdiff}[2]{\ensuremath{\frac{\partial#2 }{\partial#1}}}
+\newcommand{\pdifforder}[3]{\ensuremath{\frac{\partial^{#2}#3}{\partial{#1}^{#2}}}}
+
+% bracket
+\newcommand{\bra}[1]{\ensuremath{\left<#1\right|}}
+\newcommand{\ket}[1]{\ensuremath{\left|#1\right>}}
+\newcommand{\bracket}[2]{\ensuremath{ \left\langle #1 | #2 \right\rangle}}
+\newcommand{\matelem}[3]{\ensuremath{ \left\langle #1 | #2 | #3 \right\rangle}}
+\newcommand{\matr}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\vect}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\expectationvalue}[1]{\ensuremath{\left\langle #1 \right\rangle}}
+
+\renewcommand{\imath}{\ensuremath{\mathrm{i}}}
+
+%
+% Linear algebra
+%
+\renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\mat}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tildemat}[1]{\ensuremath{\widetilde{\mat{#1}}}}
+
+% Numerical analysis
+\newcommand{\bigo}{\ensuremath{\mathcal{O}}}
+\renewcommand{\Re}{\ensuremath{\mathrm{Re}}}
+\renewcommand{\Im}{\ensuremath{\mathrm{Im}}}
+\newcommand{\mathcol}[2]{{\color{#1}#2}}
+%\newcommand{\red}[1]{\mathcol{uibred}{#1}}
+%\newcommand{\blue}[1]{\mathcol{uibblue}{#1}}
+%\newcommand{\green}[1]{\mathcol{uibgreen}{#1}}
+\newcommand{\orange}[1]{\mathcol{uiborange}{#1}}
+%
+% Misc macros
+%
+\newcommand{\eref}[1]{~(\ref{#1})}
+\renewcommand{\equiv}[0]{\ensuremath{:=}}
+\newcommand{\etal}{\textit{et al. }}
+\newcommand{\paperheader}[2]{\noindent\textbf{Paper #1}: \textit{#2}\\}
+\newcommand{\paperitem}[3]{\noindent\textbf{Paper #1}: \textit{#2}\vspace{1em}\\\noindent #3\vspace{2em}}
+\newcommand{\tfinal}{\ensuremath{T_{\text{f}}}}
+\newcommand{\papernum}[1]{\textbf{#1}}
+%\newcommand{\note}[1]{\colorbox{yellow}{#1}}
+\newcommand{\paperref}[1]{Paper~\textbf{#1}}
+
+%
+% Code
+%
+\newcommand{\inlinename}[1]{\lstinline[basicstyle=\ttfamily,language=bash]{#1}}
+

@@ -1,0 +1,36 @@
+\beamer@sectionintoc {1}{Spark Basics}{5}{0}{1}
+\beamer@subsectionintoc {1}{1}{Introduction to Spark}{6}{0}{1}
+\beamer@subsectionintoc {1}{2}{Map-Reduce using Spark}{8}{0}{1}
+\beamer@sectionintoc {2}{Spark Programming using RDDs}{10}{0}{2}
+\beamer@subsectionintoc {2}{1}{Spark RDD}{11}{0}{2}
+\beamer@subsectionintoc {2}{2}{Spark Working With Key/Value Pairs}{13}{0}{2}
+\beamer@subsectionintoc {2}{3}{Why we need RDD in Real World Applications}{15}{0}{2}
+\beamer@sectionintoc {3}{Spark Datasets/Dataframe}{17}{0}{3}
+\beamer@subsectionintoc {3}{1}{Introduction to Datasets/Dataframe}{18}{0}{3}
+\beamer@subsectionintoc {3}{2}{Spark SQL}{20}{0}{3}
+\beamer@subsectionintoc {3}{3}{Dataframes/Datasets vs. RDDs}{22}{0}{3}
+\beamer@sectionintoc {4}{Spark on Production}{24}{0}{4}
+\beamer@subsectionintoc {4}{1}{Go Production Part 1}{25}{0}{4}
+\beamer@subsectionintoc {4}{2}{Go Production Part 2}{27}{0}{4}
+\beamer@sectionintoc {5}{Spark For Data Warehouse}{29}{0}{5}
+\beamer@subsectionintoc {5}{1}{ETL pipeline End-to-End into Spark}{30}{0}{5}
+\beamer@sectionintoc {6}{Spark Streaming}{32}{0}{6}
+\beamer@subsectionintoc {6}{1}{Introduction to Spark Streaming}{33}{0}{6}
+\beamer@subsectionintoc {6}{2}{Spark Streaming with Kafka}{35}{0}{6}
+\beamer@subsectionintoc {6}{3}{Spark Structure Streaming}{37}{0}{6}
+\beamer@subsectionintoc {6}{4}{Spark Streaming Applications}{39}{0}{6}
+\beamer@sectionintoc {7}{Spark using other Programming Languages}{41}{0}{7}
+\beamer@subsectionintoc {7}{1}{PySpsark for Python Geeks}{42}{0}{7}
+\beamer@subsectionintoc {7}{2}{PySpsark Utilizing Python Features}{44}{0}{7}
+\beamer@subsectionintoc {7}{3}{RSpark for R Geeks}{46}{0}{7}
+\beamer@sectionintoc {8}{Spark For Data Scientist}{48}{0}{8}
+\beamer@subsectionintoc {8}{1}{Data Analysis using Spark}{49}{0}{8}
+\beamer@subsectionintoc {8}{2}{Machine Leaning using Spark }{51}{0}{8}
+\beamer@subsectionintoc {8}{3}{Deep Learning using Spark}{53}{0}{8}
+\beamer@sectionintoc {9}{Spark Graph Dataframe/Graphx}{55}{0}{9}
+\beamer@subsectionintoc {9}{1}{Introduction to Spark Graph Dataframe/GraphX}{56}{0}{9}
+\beamer@subsectionintoc {9}{2}{Graph Applications using Spark}{58}{0}{9}
+\beamer@sectionintoc {10}{Tuning your Spark Jobs}{60}{0}{10}
+\beamer@subsectionintoc {10}{1}{Tuning Spark Jobs Part 1}{61}{0}{10}
+\beamer@subsectionintoc {10}{2}{Tuning Spark Jobs Part 2}{63}{0}{10}
+\beamer@sectionintoc {11}{Appendix}{65}{0}{11}
