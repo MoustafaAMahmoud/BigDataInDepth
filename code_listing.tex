@@ -1,0 +1,33 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% To define Code Syntax Scala
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Scala
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstdefinestyle{myScalastyle}{
+	frame=tb,
+	language=scala,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it's 1, each line will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},  % choose the background color. You must add 
+	keywordstyle=\color{blue},
+	commentstyle=\color{mygreen},
+	%  stringstyle=\color{mauve},
+	stringstyle=\color{myorange},
+	frame=single,
+	breaklines=true,
+	breakatwhitespace=true,
+	breakindent=20pt,
+	tabsize=3,
+	frameround=tttt,
+	escapeinside={\%*}{*)},        % to add a comment within your code
+	emph={count,take,textFile,filter,first,collect,mkString}, % Scala functions
+	emphstyle={\color{mauve}},
+	morekeywords ={val,sc},        % to add more keywords to the set  
+}
+\renewcommand{\lstlistingname}{\textbf{\underline{Scala Code}}}
+\newcommand{\myhy}[2]{\hyperref[#1]{\color{green}\setulcolor{red}\ul{#2}}}
