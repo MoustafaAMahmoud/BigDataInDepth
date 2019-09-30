@@ -34,9 +34,9 @@
 \frametitle{Audience: Who Should Take This Course?}
 
 \begin{itemize}
-	\item<1-> Data Engineers who needs to get more knowledge in Big Data and Its echo-system. \pause
-	\item<2-> Data Warehouse Engineers who need to know more about big data. \pause
-	\item<3-> Java developers who needs to change to data engineering track.  \pause
+	\item<1-> Data Engineer who needs to get more knowledge in distributed systems and Big Data. \pause
+	\item<2-> Data Warehouse Engineer who needs to know more about big data. \pause
+	\item<3-> Java developer who needs to change to data engineering track.  \pause
 	\item<4-> DevOps engineers who needs to understand the concepts of big data.  \pause
 	\item<5-> Business or entrepreneur who needs to get more information about how to build or manage a data product. \pause
 \end{itemize}
@@ -59,6 +59,52 @@
 	\item<6-> Join the online meeting or discussions. \pause
 \end{itemize}
 \end{block}
+
+\end{frame}
+
+%---------------------------------------------------------
+
+
+\begin{frame}
+\frametitle{Assignments and Labs}
+
+\begin{tikzpicture}[node distance=2cm,
+every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every node/.style={transform shape}]
+% Specification of nodes (position, etc.)
+\node (start)             [activityStarts]              {Intro};
+\node (dataMgmt)     [process, below of=start]          {Data Management};
+\node (dsSystem)      [process, below of=dataMgmt]   {Distributed Systems};
+\node (hadoop)     [process, below of=dsSystem]   {Hadoop and MR};
+\node (FN)      [activityRuns, below of=hadoop] {FN and Scala};
+\node (spark)      [process, below of=FN] {Spark};
+\node (application)       [process, right of=spark, xshift=8cm] {Big Data Application};
+\node (msSystem)    [process, above of=application] {Massging Systems};
+\node (Orchestration)    [process, above of=msSystem] {Data Orchestration};
+\node (noSql)      [startstop, above of=Orchestration] {NoSql};
+\node (Elastic) [startstop, above of=noSql] {Elastic};     
+\node (Appendix) [startstop, above of=Elastic] {Appendix};     
+% Specification of lines between nodes specified above
+% with aditional nodes for description 
+\draw[->]             (start) -- (dataMgmt);
+\draw[->]     (dataMgmt) -- (dsSystem);
+\draw[->]      (dsSystem) -- (hadoop);
+\draw[->]     (hadoop) -- (FN);
+\draw[->]      (FN) -- (spark);
+\draw[->]      (spark) --  (application);
+\draw[->]      (application) --  (msSystem);
+\draw[->]      (msSystem) --  (Orchestration);
+\draw[->]      (Orchestration) --  (noSql);
+\draw[->]      (noSql) --  (Elastic);
+\draw[->]      (Elastic) --  (Appendix);
+%\draw[->]       (application) -- node {The activity is shut down by	user or system} (msSystem);
+%\draw[->]    (msSystem) -- (Orchestration); 
+%\draw[->]       (Orchestration) -| node[yshift=1.25cm, text width=3cm] {The activity comes to the foreground} (noSql);
+%\draw[->]    (noSql) -- (Elastic);
+%\draw[->]      (Elastic) -| node(priorityXMemory) {higher priority $\rightarrow$ more memory} (Appendix);
+%\draw           (onStopBlock) -| (priorityXMemory);
+%\draw[->]     (Appendix)  |- node [yshift=-2cm, text width=3.1cm]  (start);
+%\draw[->] (FN.east) -- ++(2.6,0) -- ++(0,2) -- ++(0,2) --                node[xshift=1.2cm,yshift=-1.5cm, text width=2.5cm] {The activity comes to the foreground}(spark.east);
+\end{tikzpicture}
 
 \end{frame}
 
