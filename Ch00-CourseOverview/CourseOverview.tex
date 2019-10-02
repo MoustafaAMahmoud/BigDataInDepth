@@ -71,31 +71,49 @@
 \begin{tikzpicture}[node distance=2cm,
 every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every node/.style={transform shape}]
 % Specification of nodes (position, etc.)
-\node (start)             [activityStarts]              {Intro};
-\node (dataMgmt)     [process, below of=start]          {Data Management};
-\node (dsSystem)      [process, below of=dataMgmt]   {Distributed Systems};
-\node (hadoop)     [process, below of=dsSystem]   {Hadoop and MR};
-\node (FN)      [activityRuns, below of=hadoop] {FN and Scala};
-\node (spark)      [process, below of=FN] {Spark};
-\node (application)       [process, right of=spark, xshift=8cm] {Big Data Application};
-\node (msSystem)    [process, above of=application] {Massging Systems};
-\node (Orchestration)    [process, above of=msSystem] {Data Orchestration};
-\node (noSql)      [startstop, above of=Orchestration] {NoSql};
-\node (Elastic) [startstop, above of=noSql] {Elastic};     
-\node (Appendix) [startstop, above of=Elastic] {Appendix};     
+\node (start)             [required]              {Ch.01 Introduction};
+\node (pro2a) [flags, left of=start, xshift=-5cm] {\faBug \space You MUST finish the\\ red chapters first};
+\node (pro2a2) [note, right of=start, xshift=5cm] {\faBell \space Finish colors group \\before move to the next.};
+
+\node (dataMgmt)     [required, below of=start, yshift=.5cm]          {Ch.02 Data Management};
+\node (dsSystem)      [required, below of=dataMgmt, yshift=.5cm]   {Ch.03 Distributed Systems};
+\node (hadoop)     [optionalETL,below left of=dsSystem, xshift=-5cm]   {Ch.04 Hadoop and MR};
+\node (FN)      [optionalETL, below of=hadoop] {Ch.05 FN and Scala};
+\node (spark)      [optionalETL, below of=FN] {Ch.06 Spark};
+\node (application)    [optionalETL, below of=spark] {Ch.07 Big Data Application};
+\node (msSystem)       [optionalMS,below right of=dsSystem, xshift=5cm] {Ch.08 Massging Systems};
+\node (Orchestration)    [optionalFlow, below of=msSystem] {Ch.09 Data Orchestration};
+\node (noSql)      [optionalNSQL, below of=Orchestration] {Ch.10 NoSql};
+\node (Elastic) [optionalELK, below of=noSql] {Ch.11 Elastic};     
+\node (Arch) [arch, below left of=Elastic,xshift = -4.5cm] {Ch.12 Data Architecture Design};     
+
+%\node (Appendix) [startstop, above of=Arch] {Ch.13 Appendix};     
 % Specification of lines between nodes specified above
 % with aditional nodes for description 
 \draw[->]             (start) -- (dataMgmt);
 \draw[->]     (dataMgmt) -- (dsSystem);
-\draw[->]      (dsSystem) -- (hadoop);
+\draw[->]      (dsSystem) to[out=180,in=90] (hadoop);
 \draw[->]     (hadoop) -- (FN);
 \draw[->]      (FN) -- (spark);
+%\draw[->,dashed]      (spark) --  (msSystem);
 \draw[->]      (spark) --  (application);
-\draw[->]      (application) --  (msSystem);
+\draw[->]      (application) to[out=0,in=180]  (msSystem);
 \draw[->]      (msSystem) --  (Orchestration);
 \draw[->]      (Orchestration) --  (noSql);
 \draw[->]      (noSql) --  (Elastic);
-\draw[->]      (Elastic) --  (Appendix);
+%\draw[->]      (Elastic) --  (Arch);
+\draw[->] (Elastic) to[out=180,in=90] (Arch);
+%\draw[->,dashed]      (dsSystem) --  (msSystem);
+%\draw[->,dashed]      (dsSystem) --  (FN);
+%\draw[->,dashed]      (hadoop) --  (msSystem);
+%\draw[->,dashed]      (application) --  (Orchestration);
+%\draw[->,dashed]      (application) --  (noSql);
+%\draw[->,dashed]      (application) --  (Elastic);
+%\draw[->,dashed]      (hadoop) --  (Elastic);
+%\draw[->,dashed]      (hadoop) --  (noSql);
+%\draw[->,dashed]      (hadoop) --  (Orchestration);
+%\draw[->]      (Arch) --  (Appendix);
+
 %\draw[->]       (application) -- node {The activity is shut down by	user or system} (msSystem);
 %\draw[->]    (msSystem) -- (Orchestration); 
 %\draw[->]       (Orchestration) -| node[yshift=1.25cm, text width=3cm] {The activity comes to the foreground} (noSql);
@@ -133,6 +151,10 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 		\item<3-> High Performance Spark Best Practices for Scaling and Optimizing Apache Spark By Holden Karau, Rachel Warren.
 		\item<4-> Kafka: The Definitive Guide by Todd Palino, Gwen Shapira, Neha Narkhede.
 		\item<5-> Guide to High Performance Distributed Computing: Case Studies with Hadoop, Scalding and Spark (Computer Communications and Networks) 2015th Edition			
+		\item<6-> Cassandra: The Definitive Guide: Distributed Data at Web Scale 2nd Edition.
+		\item<7-> Category Theory for Programmers Scala Edition By Bartosz Milewski, compiled and edited by	Igal Tabachnik.
+		\item<8-> Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems 1st Edition by Martin Kleppmann			
+		
 	\end{itemize}
 \end{frame}
 
