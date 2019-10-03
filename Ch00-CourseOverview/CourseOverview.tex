@@ -64,10 +64,8 @@
 
 %---------------------------------------------------------
 
-
 \begin{frame}
-\frametitle{Assignments and Labs}
-
+\frametitle{Chapter Dependencies}
 \begin{tikzpicture}[node distance=2cm,
 every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every node/.style={transform shape}]
 % Specification of nodes (position, etc.)
@@ -88,42 +86,77 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 \node (Arch) [arch, below left of=Elastic,xshift = -4.5cm] {Ch.12 Data Architecture Design};     
 
 %\node (Appendix) [startstop, above of=Arch] {Ch.13 Appendix};     
-% Specification of lines between nodes specified above
-% with aditional nodes for description 
+% Normal Path
 \draw[->]             (start) -- (dataMgmt);
 \draw[->]     (dataMgmt) -- (dsSystem);
-\draw[->]      (dsSystem) to[out=180,in=90] (hadoop);
+\draw[->]      (dsSystem) to[out=-90,in=0] (hadoop);
 \draw[->]     (hadoop) -- (FN);
 \draw[->]      (FN) -- (spark);
-%\draw[->,dashed]      (spark) --  (msSystem);
 \draw[->]      (spark) --  (application);
 \draw[->]      (application) to[out=0,in=180]  (msSystem);
 \draw[->]      (msSystem) --  (Orchestration);
 \draw[->]      (Orchestration) --  (noSql);
 \draw[->]      (noSql) --  (Elastic);
-%\draw[->]      (Elastic) --  (Arch);
 \draw[->] (Elastic) to[out=180,in=90] (Arch);
-%\draw[->,dashed]      (dsSystem) --  (msSystem);
-%\draw[->,dashed]      (dsSystem) --  (FN);
-%\draw[->,dashed]      (hadoop) --  (msSystem);
-%\draw[->,dashed]      (application) --  (Orchestration);
-%\draw[->,dashed]      (application) --  (noSql);
-%\draw[->,dashed]      (application) --  (Elastic);
-%\draw[->,dashed]      (hadoop) --  (Elastic);
-%\draw[->,dashed]      (hadoop) --  (noSql);
-%\draw[->,dashed]      (hadoop) --  (Orchestration);
-%\draw[->]      (Arch) --  (Appendix);
 
-%\draw[->]       (application) -- node {The activity is shut down by	user or system} (msSystem);
-%\draw[->]    (msSystem) -- (Orchestration); 
-%\draw[->]       (Orchestration) -| node[yshift=1.25cm, text width=3cm] {The activity comes to the foreground} (noSql);
-%\draw[->]    (noSql) -- (Elastic);
-%\draw[->]      (Elastic) -| node(priorityXMemory) {higher priority $\rightarrow$ more memory} (Appendix);
-%\draw           (onStopBlock) -| (priorityXMemory);
-%\draw[->]     (Appendix)  |- node [yshift=-2cm, text width=3.1cm]  (start);
-%\draw[->] (FN.east) -- ++(2.6,0) -- ++(0,2) -- ++(0,2) --                node[xshift=1.2cm,yshift=-1.5cm, text width=2.5cm] {The activity comes to the foreground}(spark.east);
+
 \end{tikzpicture}
+\end{frame}
 
+%---------------------------------------------------------
+
+%---------------------------------------------------------
+
+\begin{frame}
+	\frametitle{Chapter Dependencies (Jump Out Path)}
+	\begin{tikzpicture}[node distance=2cm,
+	every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every node/.style={transform shape}]
+	% Specification of nodes (position, etc.)
+	\node (start)             [required]              {Ch.01 Introduction};
+	\node (pro2a) [flags, left of=start, xshift=-5cm] {\faBug \space You MUST finish the\\ red chapters first};
+	\node (pro2a2) [note, right of=start, xshift=5cm] {\faBell \space Finish colors group \\before move to the next.};
+	
+	\node (dataMgmt)     [required, below of=start, yshift=.5cm]          {Ch.02 Data Management};
+	\node (dsSystem)      [required, below of=dataMgmt, yshift=.5cm]   {Ch.03 Distributed Systems};
+	\node (hadoop)     [optionalETL,below left of=dsSystem, xshift=-5cm]   {Ch.04 Hadoop and MR};
+	\node (FN)      [optionalETL, below of=hadoop] {Ch.05 FN and Scala};
+	\node (spark)      [optionalETL, below of=FN] {Ch.06 Spark};
+	\node (application)    [optionalETL, below of=spark] {Ch.07 Big Data Application};
+	\node (msSystem)       [optionalMS,below right of=dsSystem, xshift=5cm] {Ch.08 Massging Systems};
+	\node (Orchestration)    [optionalFlow, below of=msSystem] {Ch.09 Data Orchestration};
+	\node (noSql)      [optionalNSQL, below of=Orchestration] {Ch.10 NoSql};
+	\node (Elastic) [optionalELK, below of=noSql] {Ch.11 Elastic};     
+	\node (Arch) [arch, below left of=Elastic,xshift = -4.5cm] {Ch.12 Data Architecture Design};     
+	
+	%\node (Appendix) [startstop, above of=Arch] {Ch.13 Appendix};     
+	% Normal Path
+	\draw[->]             (start) -- (dataMgmt);
+	\draw[->]     (dataMgmt) -- (dsSystem);
+	\draw[->]      (dsSystem) to[out=-90,in=0] (hadoop);
+	\draw[->]     (hadoop) -- (FN);
+	\draw[->]      (FN) -- (spark);
+	\draw[->]      (spark) --  (application);
+	\draw[->]      (application) to[out=0,in=180]  (msSystem);
+	\draw[->]      (msSystem) --  (Orchestration);
+	\draw[->]      (Orchestration) --  (noSql);
+	\draw[->]      (noSql) --  (Elastic);
+	\draw[->] (Elastic) to[out=180,in=90] (Arch);
+	
+	%Jump out path
+	\draw[->,dashed] (dsSystem) -- ++(11.2,0) -- ++(0,-5.4)  --  (noSql.east);
+	\draw[->,dashed] (dsSystem) -- ++(11.2,0) -- ++(0,-7.4)  -- (Elastic.east);
+	\draw[->,dashed] (dsSystem.west) -- ++(-6.2,0) -- ++(0,-3.4)  -- (FN.west);
+	\draw[->,dashed] (dsSystem.east) to[out=0,in=90] (msSystem);
+	
+	\draw[->,dashed] (msSystem.east) to[out=0,in=0] (noSql.east);
+	\draw[->,dashed] (msSystem.east) to[out=0,in=0] (Elastic.east);
+	
+	\draw[->,dashed] (hadoop.east) to[out=0,in=180] (msSystem.west);
+	\draw[->,dashed] (hadoop.east) to[out=0,in=180] (noSql.west);
+	
+	%\draw[->] (dsSystem.west) -- ++(-6.2,0) -- ++(0,-3.4)   --                node[xshift=1.2cm,yshift=-1.5cm, text width=2.5cm] {The activity comes to the foreground}(FN.west);
+	
+	\end{tikzpicture}
 \end{frame}
 
 %---------------------------------------------------------
@@ -185,7 +218,7 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 	\begin{minipage}[c][1\width]{
 			0.3\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{./Figures/chapter-00/learning_spark_front.png}
+		\includegraphics[width=\linewidth]{./Figures/chapter-00/category_theory.png}
 	\end{minipage}
 	\hfill	
 	\begin{minipage}[c][1\width]{
@@ -197,14 +230,43 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 	\begin{minipage}[c][1\width]{
 		0.3\textwidth}
 	\centering
-	\includegraphics[width=\linewidth]{./Figures/chapter-00/kafka-tdg.png}
+	\includegraphics[width=\linewidth]{./Figures/chapter-00/learning_spark_front.png}
 \end{minipage}
 
 	%	\caption{}
 \end{figure}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Textbooks-4}
+	
+	\begin{figure}[ht]
+		\begin{minipage}[c][1\width]{
+				0.3\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{./Figures/chapter-00/kafka-tdg.png}
+		\end{minipage}
+		\hfill	
+		\begin{minipage}[c][1\width]{
+				0.3\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{./Figures/chapter-00/cassandra.png}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c][1\width]{
+				0.3\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{./Figures/chapter-00/ddi.png}
+		\end{minipage}
+		
+		%	\caption{}
+	\end{figure}
+\end{frame}
+
+
 %---------------------------------------------------------
+
+
 
 \begin{frame}
 \frametitle{Ugly but important}
