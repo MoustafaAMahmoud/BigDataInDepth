@@ -18,13 +18,14 @@
 \begin{itemize}
     \item<1-> Understand the data management life-cycle. \pause
     \item<2-> Illustrate the basics of distributed systems concepts \pause
-    \item<3-> Be familiar with ETL for (Batch/Steaming) data over distributed systems ex: Hadoop \& Spark.  \pause
+    \item<3-> Be familiar with ETL for (batch/steaming) data over distributed systems ex: Hadoop \& Spark.  \pause
     \item<4-> Apply QA and testing for the data pipeline cycle.
-    \item<5-> Automate the Data life-cycle process End-to-End. \pause
+    \item<5-> Automate the data life-cycle process end-to-end (e2e). \pause
     \item<6-> Building real-life examples. \pause
-    \item<7-> Applying machine learning over Big Data. \pause
+    \item<7-> Applying machine learning over big data. \pause
     \item<8-> Understanding of the DevOps tools and functions in data life-cycle. \pause
     \item<9-> Build and scale your data product. \pause
+    \item<10-> Simplify the concepts in data management.
 \end{itemize}
 
 \end{frame}
@@ -89,7 +90,7 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 % Normal Path
 \draw[->]             (start) -- (dataMgmt);
 \draw[->]     (dataMgmt) -- (dsSystem);
-\draw[->]      (dsSystem) to[out=-90,in=0] (hadoop);
+\draw[->]      (dsSystem) to[out=-90,in=90] (hadoop);
 \draw[->]     (hadoop) -- (FN);
 \draw[->]      (FN) -- (spark);
 \draw[->]      (spark) --  (application);
@@ -132,7 +133,7 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 	% Normal Path
 	\draw[->]             (start) -- (dataMgmt);
 	\draw[->]     (dataMgmt) -- (dsSystem);
-	\draw[->]      (dsSystem) to[out=-90,in=0] (hadoop);
+	\draw[->]      (dsSystem) to[out=-90,in=90] (hadoop);
 	\draw[->]     (hadoop) -- (FN);
 	\draw[->]      (FN) -- (spark);
 	\draw[->]      (spark) --  (application);
@@ -153,7 +154,11 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 	
 	\draw[->,dashed] (hadoop.east) to[out=0,in=180] (msSystem.west);
 	\draw[->,dashed] (hadoop.east) to[out=0,in=180] (noSql.west);
-	
+	\draw[->,dashed] (hadoop.east) to[out=0,in=180] (Orchestration.west);
+
+	\draw[->,dashed] (application.east) to[out=0,in=180] (Orchestration.west);
+	\draw[->,dashed] (application.east) to[out=0,in=180] (noSql.west);
+		
 	%\draw[->] (dsSystem.west) -- ++(-6.2,0) -- ++(0,-3.4)   --                node[xshift=1.2cm,yshift=-1.5cm, text width=2.5cm] {The activity comes to the foreground}(FN.west);
 	
 	\end{tikzpicture}
@@ -175,26 +180,11 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 
 %---------------------------------------------------------
 
-\subsection{Course Textbooks}
-\begin{frame}
-\frametitle{Textbooks-1}
-	\begin{itemize}
-		\item<1-> Hadoop: The Definitive Guide: Storage and Analysis at Internet Scale 4th Edition by Tom White.
-		\item<2-> Learning Spark by Matei Zaharia, Patrick Wendell, Andy Konwinski, Holden Karau
-		\item<3-> High Performance Spark Best Practices for Scaling and Optimizing Apache Spark By Holden Karau, Rachel Warren.
-		\item<4-> Kafka: The Definitive Guide by Todd Palino, Gwen Shapira, Neha Narkhede.
-		\item<5-> Guide to High Performance Distributed Computing: Case Studies with Hadoop, Scalding and Spark (Computer Communications and Networks) 2015th Edition			
-		\item<6-> Cassandra: The Definitive Guide: Distributed Data at Web Scale 2nd Edition.
-		\item<7-> Category Theory for Programmers Scala Edition By Bartosz Milewski, compiled and edited by	Igal Tabachnik.
-		\item<8-> Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems 1st Edition by Martin Kleppmann			
-		
-	\end{itemize}
-\end{frame}
 
 %---------------------------------------------------------
 
 \begin{frame}
-\frametitle{Textbooks-2}
+\frametitle{Textbooks-1}
 \begin{figure}[ht]
 	\begin{minipage}[c][1\width]{
 				0.4\textwidth}
@@ -212,7 +202,7 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 \end{frame}
 
 \begin{frame}
-\frametitle{Textbooks-3}
+\frametitle{Textbooks-2}
 
 \begin{figure}[ht]
 	\begin{minipage}[c][1\width]{
@@ -238,7 +228,7 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 \end{frame}
 
 \begin{frame}
-	\frametitle{Textbooks-4}
+	\frametitle{Textbooks-3}
 	
 	\begin{figure}[ht]
 		\begin{minipage}[c][1\width]{
@@ -278,6 +268,21 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 \end{frame}
 
 %---------------------------------------------------------
+%\subsection{Course Textbooks}
+%\begin{frame}
+%\frametitle{Textbooks-1}
+%\begin{itemize}
+%	\item<1-> Hadoop: The Definitive Guide: Storage and Analysis at Internet Scale 4th Edition by Tom White.
+%	\item<2-> Learning Spark by Matei Zaharia, Patrick Wendell, Andy Konwinski, Holden Karau
+%	\item<3-> High Performance Spark Best Practices for Scaling and Optimizing Apache Spark By Holden Karau, Rachel Warren.
+%	\item<4-> Kafka: The Definitive Guide by Todd Palino, Gwen Shapira, Neha Narkhede.
+%	\item<5-> Guide to High Performance Distributed Computing: Case Studies with Hadoop, Scalding and Spark (Computer Communications and Networks) 2015th Edition			
+%	\item<6-> Cassandra: The Definitive Guide: Distributed Data at Web Scale 2nd Edition.
+%	\item<7-> Category Theory for Programmers Scala Edition By Bartosz Milewski, compiled and edited by	Igal Tabachnik.
+%	\item<8-> Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems 1st Edition by Martin Kleppmann			
+%	
+%\end{itemize}
+%\end{frame}
 
 %\begin{frame}
 %\frametitle{Sample frame title}
