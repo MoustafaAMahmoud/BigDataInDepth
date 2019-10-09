@@ -372,6 +372,57 @@ The Full picture required a DWH. However, we still need the other operational da
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}
+	\frametitle{DWH Architecture Overview}
+	\begin{figure}[ht]
+		
+		\centering
+		\includegraphics[width=.9\linewidth,height=.8\textheight]{./Figures/chapter-01/Datawarehouse_reference_architecture.jpg}
+		%https://commons.wikimedia.org/wiki/File:Datawarehouse_reference_architecture.jpg
+		%		\includegraphics[width=\linewidth,height=\textheight]{./Figures/chapter-01/baby-02.jpg}
+			\caption{taken from XXXX}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data Abstraction}
+	Database systems are made-up of complex data structures. To ease the user interaction with database, the developers hide internal irrelevant details from users. This process of hiding irrelevant details from user is called data abstraction.
+	\begin{itemize}[<+->]
+		\item There are 3 levels of data abstraction.
+		\begin{itemize}[<+->]
+			\item Physical level
+			\item Logical/ Conceptual level.
+			\item View level.
+		\end{itemize}
+	\end{itemize}		
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data Abstraction}
+	\begin{itemize}[<+->]
+		\item \textbf{Physical level}: This is the lowest level of data abstraction. It describes how data is actually stored in database. You can get the complex data structure details at this level.
+		
+		\item \textbf{Logical level}: This is the middle level of 3-level data abstraction architecture. It describes what data is stored in database.
+		
+		\item \textbf{View level}: Highest level of data abstraction. This level describes the user interaction with database system.
+		
+	\end{itemize}		
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data Abstraction}
+	Example: Let’s say we are storing customer information in a customer table. At physical level these records can be described as blocks of storage (bytes, gigabytes, terabytes etc.) in memory. These details are often hidden from the programmers.
+	
+	At the logical level these records can be described as fields and attributes along with their data types, their relationship among each other can be logically implemented. The programmers generally work at this level because they are aware of such things about database systems.
+	
+	At view level, user just interact with system with the help of GUI and enter the details at the screen, they are not aware of how the data is stored and what data is stored; such details are hidden from them.
+\textbf{	Data Models is the logical level.}
+we will discribte the logical level and how can we propsose the external view for the end users.
+Regarding the physical level we will not dig dive at this level but for the next chapters we will discuss it in Hadoop, Kafka, Cassandra.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Data Models}
 \begin{frame}
@@ -444,21 +495,6 @@ Data model is
 			\item This phase will implement the design but it also include some detail related to the actual way to build the tools and the material. (Physical Design)
 		\end{itemize}		
 	\end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Data Abstraction}
-\begin{itemize}[<+->]
-	\item There are 4 levels of data abstraction.
-	\begin{itemize}[<+->]
-		\item External level.
-		\item Logical/ Conceptual level.
-		\item Internal level.
-		\item Physical level.
-	\end{itemize}esign)
-\end{itemize}		
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
