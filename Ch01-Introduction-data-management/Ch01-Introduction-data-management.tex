@@ -5,15 +5,15 @@
 \begin{frame}
 \frametitle{Chapter Objectives}
 
-\begin{itemize}
-	\item<1-> Be familiar with data management life-cycle. \pause
-	\item<2-> Introduction to data warehouse and its usage. \pause	
-	\item<3-> Motivation to DWH.\pause
-	\item<4-> What is the different types of DWH?\pause
-	\item<5-> Use cases\pause
-	\item<6-> Data Encoding and Formats\pause	
-	\item<6-> Challenges to build a DWH.\pause
-	\item<7-> Data modeling design.\pause
+\begin{itemize}[<+->]
+	\item Be familiar with data management life-cycle. \pause
+	\item Introduction to data warehouse and its usage. \pause	
+	\item Motivation to DWH.\pause
+	\item What is the different types of DWH?\pause
+	\item Use cases\pause
+	\item Data Encoding and Formats\pause	
+	\item Challenges to build a DWH.\pause
+	\item Data modeling design.\pause
 \end{itemize}
 
 \end{frame}
@@ -25,10 +25,10 @@
 \begin{frame}
 \frametitle{Data Management}
 
-\begin{itemize}
+\begin{itemize}[<+->]
 \item Data are a product.
 \item Data product has a life-cycle as following (simplified): 
-\begin{itemize}
+\begin{itemize}[<+->]
 	\item \textbf{Question}, Idea, or service.
 	\item \textbf{Identifying} the source of information and the data type ex: (text, images, videos, audio, or sensors).
 	\item \textbf{Document} all details regarding the data including quality, security, efficiency, and access (consideration during the cycle).
@@ -75,7 +75,7 @@ DevOps,Extraction, Loading, BI, Integration}
 \item It could be decision support for other products or businesses.
 \item Reporting the results after pass the data life-cycle will be from storage (Database).
 \item There are some challenges facing the people who work on data management backend:
-\begin{itemize}
+\begin{itemize}[<+->]
 \item Performance.
 \item Integration.
 \item Applying analytical functions. %Moving average
@@ -87,24 +87,18 @@ DevOps,Extraction, Loading, BI, Integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Motivation to Data Warehouse (DWH)}
-\begin{columns}[T] % align columns
 
-\begin{column}{.58\textwidth}
-\begin{itemize}
+\begin{definition}[What is Data Warehousing?] A DWH is defined as a technique for collecting and managing data from varied sources to \textbf{provide meaningful business insights}. It is a blend of technologies and components which aids the strategic use of data.%\footnotemark
+\end{definition}
+
+\begin{itemize}[<+->]
 \item The DWH is not a product but an environment.
 \item It is a process of transforming data into information and make it available to users in a \textbf{timely manner} to make a difference.
 \item It is an architectural construct of an information system which provides users with current and historical decision support information which is difficult to access or present in the traditional operational data store.
 \item The DWH is the core of the BI system which is built for data analysis and reporting.
 \end{itemize}
 
-\end{column}%
-\hfill%
-\begin{column}{.38\textwidth}
-\begin{definition}[What is Data Warehousing?] A DWH is defined as a technique for collecting and managing data from varied sources to \textbf{provide meaningful business insights}. It is a blend of technologies and components which aids the strategic use of data.%\footnotemark
-\end{definition}
 
-\end{column}%
-\end{columns}
 %\footnotetext{The definition mentioned in this slides copied from  \href{https://www.guru99.com/data-warehousing.html\#2}{guru99.com} }
 
 \end{frame}
@@ -383,11 +377,48 @@ The Full picture required a DWH. However, we still need the other operational da
 			\caption{taken from XXXX}
 	\end{figure}
 \end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Data Abstraction}
-	Database systems are made-up of complex data structures. To ease the user interaction with database, the developers hide internal irrelevant details from users. This process of hiding irrelevant details from user is called data abstraction.
+	\frametitle{Thinking about data as a product}
+
+	\begin{itemize}[<+->]
+		\item How can we think about a data solution?
+			\begin{itemize}[<+->]
+			\item Requirements analysis.
+			\item Identify the problem (challenges)
+			\item Think about how to overcome the challenges.
+			\item Ask your self the following questions:
+			\begin{itemize}[<+->]
+				\item Can we solve the problem using the current data structure with adding new features?
+				\item What if we enhance/change the data structure or modeling?
+				\item Could it help if we change the backend engine (ex: database)?
+			\end{itemize}			
+		\end{itemize}
+	\item To answer these questions you need to understand the \textbf{\underline{data layers}}.
+	\end{itemize}
+		
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data Layers (Abstraction)}
+		\begin{itemize}[<+->]
+			\item Any data product (database) contains multi-layers.
+			\item Each layer responsible for different tasks and operations.
+			\item Each layers interacts with (hardware or software or mixed).
+			\item To eliminate the complexity for data interactions not all internal processes are shared or available for the user.
+			\item The developer for each layer hide internal irrelevant details from developer (users). 
+			\item The process of \textbf{\underline{\blue{hiding}}} irrelevant details from developer (user) is called data \textbf{\underline{\blue{abstraction}}}.
+		\end{itemize}	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data Layers (Abstraction)}
+\begin{definition}
+	\textbf{Data Abstraction and Data Independence}: Database systems comprise of complex data-structures. In order to make the system efficient in terms of retrieval of data, and reduce complexity in terms of usability of users, developers use abstraction i.e. hide irrelevant details from the users. This approach simplifies database design.
+	%https://www.geeksforgeeks.org/data-abstraction-and-data-independence/
+\end{definition}	
+%Capacity of changing in one level without affecting the other levels.
 	\begin{itemize}[<+->]
 		\item There are 3 levels of data abstraction.
 		\begin{itemize}[<+->]
@@ -395,34 +426,79 @@ The Full picture required a DWH. However, we still need the other operational da
 			\item Logical/ Conceptual level.
 			\item View level.
 		\end{itemize}
-	\end{itemize}		
+	\end{itemize}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data Abstraction}
+	\begin{itemize}[<+->]
+		\item \textbf{Physical level}: 
+			\begin{itemize}[<+->]
+				\item Lowest level.
+				\item Describes \textbf{\underline{\blue{how}}} data is stored.
+				\item Describes the data structure.
+
+			\end{itemize}		
+		%https://beginnersbook.com/2015/04/levels-of-abstraction-in-dbms/
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Data Abstraction}
 	\begin{itemize}[<+->]
-		\item \textbf{Physical level}: This is the lowest level of data abstraction. It describes how data is actually stored in database. You can get the complex data structure details at this level.
-		
-		\item \textbf{Logical level}: This is the middle level of 3-level data abstraction architecture. It describes what data is stored in database.
-		
-		\item \textbf{View level}: Highest level of data abstraction. This level describes the user interaction with database system.
-		
-	\end{itemize}		
+		\item \textbf{Physical level (Internal)}: 
+		\begin{itemize}[<+->]
+			\item Lowest level.
+			\item Describes how data is stored (files, indices, etc. on the random access disk system).  
+			\item Describes the data structure.
+			\item Describes the record layout of files and type of files (hash, b-tree, flat).
+			
+		\end{itemize}		
+		%https://beginnersbook.com/2015/04/levels-of-abstraction-in-dbms/
+	\end{itemize}	
+	\begin{example}
+		Database contains product information. Physical layer describes storage mechanism and the blocks (bytes, gigabytes, terabytes etc.) and the amount of memory used. Usually this layer abstracted from the programmers.
+	\end{example}
+	
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Data Abstraction}
-	Example: Let’s say we are storing customer information in a customer table. At physical level these records can be described as blocks of storage (bytes, gigabytes, terabytes etc.) in memory. These details are often hidden from the programmers.
+	\begin{itemize}[<+->]
+		\item \textbf{Logical level (Conceptual)}: 
+		\begin{itemize}[<+->]
+			\item Intermediate level.
+			\item \textbf{\underline{\blue{What}}} is the data stored?  
+			\item Describes \textbf{\underline{\blue{what}}} data is stored.
+			\item Describes what is the relationship between the stored data,
+		\end{itemize}		
+	\end{itemize}	
+		\begin{example}
+		Database contains product information. Logical Layer describes the product fields and their data types. How this product interact with other entities in the database. The programmers design this level based on the business knowledge and the requirements.
+		\end{example}
 	
-	At the logical level these records can be described as fields and attributes along with their data types, their relationship among each other can be logically implemented. The programmers generally work at this level because they are aware of such things about database systems.
-	
-	At view level, user just interact with system with the help of GUI and enter the details at the screen, they are not aware of how the data is stored and what data is stored; such details are hidden from them.
-\textbf{	Data Models is the logical level.}
-we will discribte the logical level and how can we propsose the external view for the end users.
-Regarding the physical level we will not dig dive at this level but for the next chapters we will discuss it in Hadoop, Kafka, Cassandra.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data Abstraction}
+	\begin{itemize}[<+->]
+		\item \textbf{View level (External)}: 
+		\begin{itemize}[<+->]
+			\item Highest level.
+			\item \textbf{\underline{\blue{View}}} of the data stored?  
+			\item Designed for category of users needs.
+			\item Not all the views is extended to all users and there is an authentication based on the category.
+		\end{itemize}		
+	\end{itemize}	
+	\begin{example}
+		Database contains product information. View layer is the final interface for the user. It could be extended or hidden based on users. For example, Some users need to show the sales for their department product but not for other departments.
+	\end{example}
+	
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Data Models}
 \begin{frame}

@@ -1,4 +1,4 @@
-\documentclass[28pt]{beamer}
+\documentclass[28pt,aspectratio=169]{beamer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % To Pass graphics paths
@@ -9,7 +9,11 @@
 %------------------------------------------------------------
 \begin{document}
 %The next statement creates the title page.
-\frame{\titlepage}
+%\frame{\titlepage}
+%\addtobeamertemplate{frametitle}{}{%
+%	\begin{textblock*}{100mm}(.85\textwidth,-1cm)
+%		\includegraphics[height=3cm,width=2cm]{./Figures/chapter-00/logo.png}
+%\end{textblock*}}
 \input{Ch00-CourseOverview/CourseOverview.tex}
 %---------------------------------------------------------
 \begin{frame}[allowframebreaks]

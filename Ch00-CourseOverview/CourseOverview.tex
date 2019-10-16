@@ -3,10 +3,11 @@
 
 \begin{frame}
 \frametitle{Course Target}
-\begin{center}			
+\begin{adjustbox}{max totalsize={.9\textheight},center}
 
-\smartdiagram[bubble diagram]{Goal,Coding,Distributed\\System,Data\\Warehouse,Big Data\\Tools,DevOps,Applications,Databases}
-\end{center}
+\smartdiagramanimated[bubble diagram]{Goal,Data\\Management,Distributed\\System,Big Data\\Tools,Coding,Real world\\applications,Databases, DevOps  }
+
+\end{adjustbox}
 \end{frame}
 
 %---------------------------------------------------------
@@ -16,16 +17,16 @@
 \frametitle{Learning Objectives}
 
 \begin{itemize}
-    \item<1-> Understand the data management life-cycle. \pause
-    \item<2-> Illustrate the basics of distributed systems concepts \pause
-    \item<3-> Be familiar with ETL for (batch/steaming) data over distributed systems ex: Hadoop \& Spark.  \pause
-    \item<4-> Apply QA and testing for the data pipeline cycle.
-    \item<5-> Automate the data life-cycle process end-to-end (e2e). \pause
-    \item<6-> Building real-life examples. \pause
-    \item<7-> Applying machine learning over big data. \pause
-    \item<8-> Understanding of the DevOps tools and functions in data life-cycle. \pause
-    \item<9-> Build and scale your data product. \pause
-    \item<10-> Simplify the concepts in data management.
+    \item<1-> Simplify the concepts in data management.
+    \item<2-> Understand the data management life-cycle. 
+    \item<3-> Illustrate the basics of distributed systems concepts 
+    \item<4-> Be familiar with ETL for (batch/steaming) data over distributed systems ex: Hadoop \& Spark.  
+    \item<5-> Apply QA and testing for the data pipeline cycle.
+    \item<6-> Build and scale your data product. 
+    \item<7-> Building real-life examples.    
+    \item<8-> Applying machine learning over big data. 
+    \item<9-> Automate the data life-cycle process end-to-end (e2e). 
+    \item<10-> Understanding of the DevOps tools and functions in data life-cycle. 
 \end{itemize}
 
 \end{frame}
@@ -35,11 +36,11 @@
 \frametitle{Audience: Who Should Take This Course?}
 
 \begin{itemize}
-	\item<1-> Data Engineer who needs to get more knowledge in distributed systems and Big Data. \pause
-	\item<2-> Data Warehouse Engineer who needs to know more about big data. \pause
-	\item<3-> Java developer who needs to change to data engineering track.  \pause
-	\item<4-> DevOps engineers who needs to understand the concepts of big data.  \pause
-	\item<5-> Business or entrepreneur who needs to get more information about how to build or manage a data product. \pause
+	\item<1-> Data Engineer who needs to get more knowledge in distributed systems and Big Data.
+	\item<2-> Data Warehouse Engineer who needs to know more about big data.
+	\item<3-> Software developer who needs to change to data engineering track. 
+	\item<4-> DevOps engineers who needs to understand the concepts of big data.  
+	\item<5-> Business or entrepreneur who needs to get more information about how to build or manage a data product.
 \end{itemize}
 
 \end{frame}
@@ -189,15 +190,14 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 	\begin{minipage}[c][1\width]{
 				0.4\textwidth}
 			\centering
-		\includegraphics[width=\linewidth]{./Figures/chapter-00/hadoop-tdg.png}
+		\includegraphics[width=.8\linewidth,height=.7\textheight]{./Figures/chapter-00/hadoop-tdg.png}
 	\end{minipage}
-	\hfill 	
+	\hfill
 	\begin{minipage}[c][1\width]{
 				0.4\textwidth}
 			\centering
-		\includegraphics[width=\linewidth,height=.7\textheight]{./Figures/chapter-00/high-performance-computing.png}
+		\includegraphics[width=.8\linewidth,height=.7\textheight]{./Figures/chapter-00/high-performance-computing.png}
 	\end{minipage}
-%	\caption{}
 \end{figure}
 \end{frame}
 
@@ -205,22 +205,19 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 \frametitle{Textbooks-2}
 
 \begin{figure}[ht]
-	\begin{minipage}[c][1\width]{
-			0.3\textwidth}
+	\begin{minipage}[c][1\width]{0.3\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{./Figures/chapter-00/category_theory.png}
+		\includegraphics[width=.9\linewidth,height=.7\textheight]{./Figures/chapter-00/bjarnason.png}
 	\end{minipage}
-	\hfill	
-	\begin{minipage}[c][1\width]{
-			0.3\textwidth}
+	\hfill
+	\begin{minipage}[c][1\width]{0.3\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{./Figures/chapter-00/spark-high-performance.png}
+		\includegraphics[width=.9\linewidth,height=.7\textheight]{./Figures/chapter-00/spark-high-performance.png}
 	\end{minipage}
 \hfill
-	\begin{minipage}[c][1\width]{
-		0.3\textwidth}
+	\begin{minipage}[c][1\width]{0.3\textwidth}
 	\centering
-	\includegraphics[width=\linewidth]{./Figures/chapter-00/learning_spark_front.png}
+	\includegraphics[width=.9\linewidth,height=.7\textheight]{./Figures/chapter-00/learning_spark_front.png}
 \end{minipage}
 
 	%	\caption{}
@@ -231,22 +228,19 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 	\frametitle{Textbooks-3}
 	
 	\begin{figure}[ht]
-		\begin{minipage}[c][1\width]{
-				0.3\textwidth}
+		\begin{minipage}[c][1\width]{0.3\textwidth}
 			\centering
-			\includegraphics[width=\linewidth]{./Figures/chapter-00/kafka-tdg.png}
+			\includegraphics[width=.9\linewidth,height=.7\textheight]{./Figures/chapter-00/kafka-tdg.png}
 		\end{minipage}
 		\hfill	
-		\begin{minipage}[c][1\width]{
-				0.3\textwidth}
+		\begin{minipage}[c][1\width]{0.3\textwidth}
 			\centering
-			\includegraphics[width=\linewidth]{./Figures/chapter-00/cassandra.png}
+			\includegraphics[width=.9\linewidth,height=.7\textheight]{./Figures/chapter-00/cassandra.png}
 		\end{minipage}
 		\hfill
-		\begin{minipage}[c][1\width]{
-				0.3\textwidth}
+		\begin{minipage}[c][1\width]{0.3\textwidth}
 			\centering
-			\includegraphics[width=\linewidth]{./Figures/chapter-00/ddi.png}
+			\includegraphics[width=.9\linewidth,height=.7\textheight]{./Figures/chapter-00/ddi.png}
 		\end{minipage}
 		
 		%	\caption{}
