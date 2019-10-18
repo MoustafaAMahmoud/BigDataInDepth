@@ -18,37 +18,13 @@
 \usepackage{fontawesome}
 \usepackage{caption}
 \usepackage{subcaption}
-\setbeamersize{text margin left=5pt,text margin right=1mm} 
+\setbeamersize{text margin left=5pt,text margin right=4.2cm} 
+%\usepackage[top=2cm, bottom=1.3cm, left=5cm, right=0.5cm, heightrounded,marginparwidth=4.6cm, marginparsep=3mm]{geometry}
 \usepackage{gensymb}
 \usepackage{adjustbox}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\usepackage{lmodern}        % Latin Modern family of fonts. Very much like Computer Modern, but with many more glyphs 
-%% (e.g., for characters with accents, glyphs, cedillas, etc)
-%\usepackage[T1]{fontenc}    % fontenc is oriented to output, that is, what fonts to use for printing characters. 
-%% https://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc 
-%% https://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
-%\usepackage[utf8]{inputenc} % inputenc allows the user to input accented characters directly from the keyboard; 
-%% utf8x : much broader but less compatible ; latin1 : old?
-%% https://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc
-%\usepackage{lipsum}         % to fill in with arbitrary text
-%\widowpenalty = 4000        % help suppress widows,  default = 4,000 (?), from 0 to 10 000 (from 300 to 1 000 recommended, 10 000 not recommended)
-%\clubpenalty  = 4000        % help suppress orphans, default = 4,000 (?), from 0 to 10 000 (from 300 to 1 000 recommended, 10 000 not recommended)
-%\usepackage[final, babel]{microtype} % many good lay-out/justification effects, see:
-%% texblog.net/latex-archive/layout/pdflatex-microtype/
-
-%\usepackage[p,osf]{cochineal}
-%\usepackage[scale=.95,type1]{cabin}
-%\usepackage[cochineal,bigdelims,cmintegrals,vvarbb]{newtxmath}
-%\usepackage[zerostyle=c,scaled=.94]{newtxtt}
-%\usepackage[cal=boondoxo]{mathalfa}
-
-%
-%\usepackage{mathptmx}
-%\usepackage[scaled=0.9]{helvet}
-%\usepackage{courier}
-
+\usepackage{marginnote}
+\usepackage{textpos}
 \usepackage[default]{lato}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{smartdiagram}
 \usesmartdiagramlibrary{additions}
@@ -57,6 +33,7 @@
 \usetikzlibrary{shapes.geometric} % required in the preamble
 \usepackage{venndiagram}
 \usepackage{graphics}
+\usetikzlibrary{arrows,automata}
 \usetikzlibrary{arrows.meta}
 \tikzset{%
 	>={Latex[width=2mm,length=2mm]},
@@ -64,15 +41,18 @@
 	base/.style = {rectangle, rounded corners, draw=black,
 		minimum width=4cm, minimum height=1cm,
 		text centered, font=\sffamily},
-	optionalFlow/.style = {base, fill=blue!20,font=\ttfamily},
-	required/.style = {base, fill=red!30,font=\ttfamily},
-	optionalMS/.style = {base, fill=olive!40,font=\ttfamily},
-	optionalNSQL/.style = {base, fill=magenta!40,font=\ttfamily},
-	optionalELK/.style = {base, fill=cyan!40,font=\ttfamily},
-	arch/.style = {base, fill=green!30,font=\ttfamily},
+	optionalFlow/.style = {base, fill=blue!20,font=\bfseries},
+	required/.style = {base, fill=Maroon,text=white,font=\bfseries},
+	optionalMS/.style = {base, fill=Violet,text=white,font=\bfseries,},
+	optionalNSQL/.style = {base, fill=magenta!40,font=\bfseries},
+	optionalELK/.style = {base, fill=OliveGreen,text=white,font=\bfseries},
+	arch/.style = {base, fill=green!30,font=\bfseries},
 	flags/.style = {base, fill=gray!30,font=\ttfamily},
 	note/.style = {base, fill=brown!30,font=\ttfamily},
-	optionalETL/.style = {base, fill=orange!30,font=\ttfamily},
+	optionalETL/.style = {base, fill=NavyBlue,text=white,font=\bfseries},
+	LowerLayer/.style = {base, fill=Fuchsia,text=white,font=\bfseries}
+	
+	
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -88,6 +68,9 @@
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \beamertemplatenavigationsymbolsempty
 \include{macros}
 %\Includeonlyframes{current}
@@ -97,7 +80,7 @@
 	\begin{frame}
 	\vfill
 	\centering
-	\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+	\begin{beamercolorbox}[sep=8pt,center,shadow=false,rounded=true]{title}
 		\usebeamerfont{title}\secname\par%
 	\end{beamercolorbox}
 	\vfill
@@ -113,7 +96,12 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%remove logo for publishing
+\logo{%
+	\includegraphics[width=4cm,height=3.5cm]{./Figures/chapter-00/logos.png}%
+}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../main"
