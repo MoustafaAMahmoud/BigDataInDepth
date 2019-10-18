@@ -65,15 +65,291 @@ DevOps,Extraction, Loading, BI, Integration}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\subsection{From DWH to Big Data}
+\subsection{Data Abstraction}
 \begin{frame}
-\frametitle{Motivation to Data Warehouse}
+	\frametitle{Motivation to Data Layers (Use Case)}	
+%	\begin{itemize}[<+->]
+%		\item You hired at a company which doesn’t have any system.
+%		\item You started to collect all the data from files into CSV file format.
+%		\item You built a system which read the data from CSV files.
+%		\item Your manager asked you to create some report which required to combine different component.
+%		\item After successfully generate this reports your manager asked you to create 100+ reports to support other departments.
+%		\item For optimization purpose you changed the files from CSV into Json and update the searching mechanism into the files.         
+%	\end{itemize}
+%	
+\smartdiagramset{
+	%descriptive items y sep = 3em,
+	description font = \scriptsize\sffamily,
+	description title font=\scriptsize\sffamily,
+}
+\smartdiagram[descriptive diagram]{
+	{App, Application UI},
+	{FS, CSV Data}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Motivation to Data Layers (Use Case)}
+	\smartdiagramset{
+	%descriptive items y sep = 3em,
+	description font = \scriptsize\sffamily,
+	description title font=\scriptsize\sffamily,
+	}
+	\smartdiagram[descriptive diagram]{
+		{App, Application UI},
+		{BL, CSV Data Loader (Reporting)},
+		{FS, CSV Data}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Motivation to Data Layers (Use Case)}
+	\smartdiagramset{
+		%descriptive items y sep = 3em,
+		description font = \scriptsize\sffamily,
+		description title font=\scriptsize\sffamily,
+	}
+	\smartdiagram[descriptive diagram]{
+		{App, Application UI},
+		{BL, (JSON/CSV) Data Loader (Reporting)},
+		{FS, JSON Data}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Motivation to Data Layers (Use Case)}	
+		\smartdiagramset{
+			%descriptive items y sep = 3em,
+			description font = \scriptsize\sffamily,
+			description title font=\scriptsize\sffamily,
+		}
+		\smartdiagram[descriptive diagram]{
+			{App, Application UI},
+			{DBMS-H, Ready prepared layer for each department (Reporting)},
+			{DBMS-M, Logical part to prepare for the data structure and the relation between the data},
+			{DBMS-L, Storage and Data format related stuff + Data indexing and searching algorithms}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Motivation to Data Layers (Solution Thinking)}
+	
+	\begin{itemize}[<+->]
+		\item How can we think about a data solution or challenges in the data products?
+		\begin{itemize}[<+->]
+			\item Requirements analysis.
+			\item Identify the problem (challenges).
+			\item Think about how to overcome the challenges.
+			\item Ask your self the following questions:
+			\begin{itemize}[<+->]
+				\item Can we solve the problem using the current data structure with adding new features?
+				\item What if we enhance/change the data structure or modeling?
+				\item Could it help if we change the backend engine (ex: DBMS system)?
+			\end{itemize}			
+		\end{itemize}
+		\item To answer these questions you need to understand the \textbf{\underline{data layers}}.
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data Layers (Abstraction)}
+	\begin{itemize}[<+->]
+		\item Any data product (database) contains multi-layers.
+		\item Each layer responsible for different tasks and operations.
+		\item Each layers interacts with (hardware or software or mixed).
+		\item To eliminate the complexity for data interactions not all internal processes are shared or available for the user.
+		\item The developer for each layer hide internal irrelevant details from developer (users). 
+		\item The process of \textbf{\underline{\blue{hiding}}} irrelevant details from developer (user) is called data \textbf{\underline{\blue{abstraction}}}.
+	\end{itemize}	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data Layers (Abstraction)}
+	\begin{definition}
+		\textbf{Data Abstraction and Data Independence}: DBMS comprise of complex data-structures. In order to make the system efficient in terms of retrieval of data, and reduce complexity in terms of usability of users, developers use abstraction i.e. hide irrelevant details from the users. This approach simplifies database design.
+		%https://www.geeksforgeeks.org/data-abstraction-and-data-independence/
+	\end{definition}	
+	%Capacity of changing in one level without affecting the other levels. Copied but forget from where!!!
+	\begin{itemize}[<+->]
+		\item There are 3 levels of data abstraction.
+		\begin{itemize}[<+->]
+			\item Physical Level
+			\item Logical/ Conceptual Level.
+			\item View Level.
+		\end{itemize}
+	\end{itemize}	
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data Layers (Abstraction)}
+\begin{tikzpicture}[node distance=2cm,
+					every node/.style={fill=white, font=\sffamily}, align=center,
+					scale=0.6, 
+					every node/.style={transform shape}]
+
+% Specification of nodes (position, etc.)
+\node (view2)             [optionalETL]              {report 2 (view)};
+\node (view1)     [optionalETL, right of=view2, xshift=3cm]          {report 1 (view)};
+\node (view3)      [optionalETL, right of=view1, xshift=3cm]   {report 3 (view)};
+\node (concept)     [required,below of=view1, yshift=-1.5cm]   {Conceptual Layer};
+\node (physical)      [optionalELK, below of=concept, yshift=-1.5cm] {Physical Interaction};
+\node (fs)      [optionalELK, below of=physical, yshift=-1cm] {FS};
+
+%\node (Appendix) [startstop, above of=Arch] {Ch.13 Appendix};     
+% Normal Path
+\draw[<->]     (view2) -- (concept);
+\draw[<->]     (view3) -- (concept);
+\draw[<->]     (view1) -- (concept);
+\draw[<->]     (concept) -- (physical);
+\draw[<->]     (fs) -- (physical);
+\draw[-]      (12,-1.5) to[out=0,in=180] (13,0)  node[right]{View Level (User View) } to[out=180,in=0] (12,1.5);
+\draw[-]      (12,-5) to[out=0,in=180] (13,-3.5) node[right]{Logical/ Conceptual Level } to[out=180,in=0]  (12,-2);
+\draw[-]      (12,-11) to[out=0,in=180] (13,-8.5) node[right]{Physical Level } to[out=180,in=0]  (12,-6);
+\end{tikzpicture}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Physical level}
+	\begin{itemize}[<+->]
+		\item \textbf{Physical level (Internal)}: 
+		\begin{itemize}[<+->]
+			\item Lowest level.
+			\item Describes \textbf{\underline{\blue{how}}} data is stored.
+			\item Describes the data structure.
+			\item It allows you to modify the lowest level (Physical part) without any change in the logical schema. These change could be
+				\begin{itemize}[<+->]
+				\item Using a new storage device.
+				\item Change the structure of the data used for storage.
+				\item Change the files type or used different storage strcuture.
+				\item Changing the access method.
+				\item Modifying indexes.
+				\item Change the compression algorithm or hashing technique.
+			\end{itemize}									
+		\end{itemize}		
+		%https://beginnersbook.com/2015/04/levels-of-abstraction-in-dbms/		
+		%https://www.guru99.com/dbms-data-independence.html
+	\end{itemize}	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Physical level}
+	\begin{example}		
+		\begin{itemize}[<+->]
+			\item Database contains product information.
+			\item Physical layer describes
+			\begin{itemize}[<+->]
+				\item Storage mechanism and the blocks (bytes, gigabytes, terabytes etc.).
+				\item The amount of memory used.
+				\item Usually this layer abstracted from the programmers.
+			\end{itemize}
+		\end{itemize}
+	\end{example}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Logical level}
+	\begin{itemize}[<+->]
+		\item \textbf{Logical level (Conceptual)}: 
+		\begin{itemize}[<+->]
+			\item Intermediate level.
+			\item Describes \textbf{\underline{\blue{what}}} data is stored.
+			\item Describes what is the relationship between the stored data.
+			\item It allows you to change the logical view without altering the external view, API, or programs. These change could be
+			\begin{itemize}[<+->]
+				\item Add new table.
+				\item Change the records merge or delete without affecting the running applications.
+				\item Change attribute (Add,delete) to existing table.
+			\end{itemize}									
+		\end{itemize}		
+	\end{itemize}	 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Logical level}
+	\begin{example}
+		\begin{itemize}[<+->]
+			\item Database contains product information.
+			\item Logical Layer describes
+			\begin{itemize}[<+->]
+				\item The product fields and their data types.
+				\item How this product interact with other entities in the database.
+				\item The programmers design this level based on the business knowledge and the requirements.
+			\end{itemize}
+		\end{itemize}
+	\end{example}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{View level}
+	\begin{itemize}[<+->]
+		\item \textbf{View level (External)}: 
+		\begin{itemize}[<+->]
+			\item Highest level.
+			\item \textbf{\underline{\blue{View}}} of the data stored?  
+			\item Designed for category of users needs.
+			\item It is the final interface for the user.
+			\item It could be extended or hidden based on user's role.
+			\item Not all the views is extended to all users and there is an authentication based on the category.
+		\end{itemize}		
+	\end{itemize}	
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{View level}
+	\begin{example}
+		\begin{itemize}[<+->]
+			\item Database contains product information.
+			\item It could be designed to show the sales of product in specific region.
+			\item We might hide information about some products based on the teams or users.
+		\end{itemize}
+	\end{example}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Data solution thinking (Summary) }
+	%!!!!!!!!!!!!!! We need to mention that this slide is just an overview there will be a detailed one later
+	\begin{itemize}[<+->]
+		\item Let's answer our previous the question, What do we need to solve data challenges?
+		\item Let's split the problem based on the data layers
+		\begin{itemize}[<+->]
+			\item View layer
+					\begin{itemize}[<+->]
+						\item When we need to add/remove/create new reports it is usually view layer.
+						\item We don't need to change the logical or physical layer to support the view layer.
+					\end{itemize}
+			\item Logical Layer
+					\begin{itemize}[<+->]
+						\item When you have missing sources into your logical layer and you need to add this source and its structure.
+						\item There is a performance issue in the existing reports and you need to change to model. For example, reduce the join by creating new join table (\textit{materialized view}).
+						\item Update the data type or the existing relation which could help to fix some data or performance issues.
+					\end{itemize}
+			\item Physical Layer
+					\begin{itemize}[<+->]
+						\item When our problem is hardly or impossible to be fix by obtimize the query (view)/ logical layer it is time for physical change.
+						\item Assume you need to change your storage/compression/structure/access technique.
+					
+					\end{itemize}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{From Operational DB to DWH}
+\begin{frame}
+\frametitle{From Operational DB to DWH}
 \begin{itemize}[<+->]
 \item Data could be a product for some companies.
 \item It could be decision support for other products or businesses.
-\item Reporting the results after pass the data life-cycle will be from storage (Database).
+\item Reporting the results after passing the data life-cycle will be from storage (Database).
 \item There are some challenges facing the people who work on data management backend:
 \begin{itemize}[<+->]
 \item Performance.
@@ -124,6 +400,42 @@ The real concept was given by Inmon Bill. He was considered as a father of the D
 
 \end{frame}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{DWH vs Operational databases}
+	
+	
+	\begin{table}[t]
+		\centering	
+		\resizebox{\columnwidth}{!}{%
+			
+			%		\centering
+			\begin{tabular}{|c | c | c|}
+				\hline
+				\textbf{Metric}  & \textbf{Transactions DB}& \textbf{DWH} \\
+				\hline
+				Volume & GB/TB & TB/PB \\
+				Historical  & Short-term & Long-Term\\
+				rows & <1000M &  1000M>\\
+				Orientation & Product & Subject or multi products\\
+				Business Units & Product team & Multi organizational units\\
+				Normalization & Normalized %due to storage and performance limitation and its design
+				&  Not required (De-normalized in many use cases)\\
+				Data Model & Relational & Star Schema or Multi-dim\\
+				Intelligence&Reporting & Advanced reporting and Machine Learning\\
+				Use cases& Online transactions \& operations & Centeralized storage (360\textdegree)\\
+				\hline
+			\end{tabular}
+			%		\caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
+		}
+	\end{table}
+\end{frame}
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Motivation to Data Warehouse}
@@ -137,8 +449,6 @@ Types of Data Warehouse
 \end{description}
 
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -168,38 +478,6 @@ Business Units & Multi organizational units & Product team & Business team \\
 \end{table}
 \end{frame}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{DWH vs Operational databases}
-
-
-\begin{table}[t]
-\centering	
-\resizebox{\columnwidth}{!}{%
-
-%		\centering
-\begin{tabular}{|c | c | c|}
-\hline
-\textbf{Metric}  & \textbf{Transactions DB}& \textbf{DWH} \\
-\hline
-Volume & GB/TB & TB/PB \\
-Historical  & Short-term & Long-Term\\
-rows & <1000M &  1000M>\\
-Orientation & Product & Subject or multi products\\
-Business Units & Product team & Multi organizational units\\
-Normalization & Normalized %due to storage and performance limitation and its design
-&  Not required (De-normalized in many use cases)\\
-Data Model & Relational & Star Schema or Multi-dim\\
-Intelligence&Reporting & Advanced reporting and Machine Learning\\
-Use cases& Online transactions \& operations & Centeralized storage (360\textdegree)\\
-\hline
-\end{tabular}
-%		\caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
-}
-\end{table}
-\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -283,7 +561,6 @@ Use cases& Online transactions \& operations & Centeralized storage (360\textdeg
 \end{itemize}
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -354,8 +631,6 @@ The Full picture required a DWH. However, we still need the other operational da
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
 \frametitle{Use case (ODS)}
 
@@ -376,128 +651,6 @@ The Full picture required a DWH. However, we still need the other operational da
 		%		\includegraphics[width=\linewidth,height=\textheight]{./Figures/chapter-01/baby-02.jpg}
 			\caption{taken from XXXX}
 	\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Thinking about data as a product}
-
-	\begin{itemize}[<+->]
-		\item How can we think about a data solution?
-			\begin{itemize}[<+->]
-			\item Requirements analysis.
-			\item Identify the problem (challenges)
-			\item Think about how to overcome the challenges.
-			\item Ask your self the following questions:
-			\begin{itemize}[<+->]
-				\item Can we solve the problem using the current data structure with adding new features?
-				\item What if we enhance/change the data structure or modeling?
-				\item Could it help if we change the backend engine (ex: database)?
-			\end{itemize}			
-		\end{itemize}
-	\item To answer these questions you need to understand the \textbf{\underline{data layers}}.
-	\end{itemize}
-		
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Data Layers (Abstraction)}
-		\begin{itemize}[<+->]
-			\item Any data product (database) contains multi-layers.
-			\item Each layer responsible for different tasks and operations.
-			\item Each layers interacts with (hardware or software or mixed).
-			\item To eliminate the complexity for data interactions not all internal processes are shared or available for the user.
-			\item The developer for each layer hide internal irrelevant details from developer (users). 
-			\item The process of \textbf{\underline{\blue{hiding}}} irrelevant details from developer (user) is called data \textbf{\underline{\blue{abstraction}}}.
-		\end{itemize}	
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Data Layers (Abstraction)}
-\begin{definition}
-	\textbf{Data Abstraction and Data Independence}: Database systems comprise of complex data-structures. In order to make the system efficient in terms of retrieval of data, and reduce complexity in terms of usability of users, developers use abstraction i.e. hide irrelevant details from the users. This approach simplifies database design.
-	%https://www.geeksforgeeks.org/data-abstraction-and-data-independence/
-\end{definition}	
-%Capacity of changing in one level without affecting the other levels.
-	\begin{itemize}[<+->]
-		\item There are 3 levels of data abstraction.
-		\begin{itemize}[<+->]
-			\item Physical level
-			\item Logical/ Conceptual level.
-			\item View level.
-		\end{itemize}
-	\end{itemize}	
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Data Abstraction}
-	\begin{itemize}[<+->]
-		\item \textbf{Physical level}: 
-			\begin{itemize}[<+->]
-				\item Lowest level.
-				\item Describes \textbf{\underline{\blue{how}}} data is stored.
-				\item Describes the data structure.
-
-			\end{itemize}		
-		%https://beginnersbook.com/2015/04/levels-of-abstraction-in-dbms/		
-	\end{itemize}	
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Data Abstraction}
-	\begin{itemize}[<+->]
-		\item \textbf{Physical level (Internal)}: 
-		\begin{itemize}[<+->]
-			\item Lowest level.
-			\item Describes how data is stored (files, indices, etc. on the random access disk system).  
-			\item Describes the data structure.
-			\item Describes the record layout of files and type of files (hash, b-tree, flat).
-			
-		\end{itemize}		
-		%https://beginnersbook.com/2015/04/levels-of-abstraction-in-dbms/
-	\end{itemize}	
-	\begin{example}
-		Database contains product information. Physical layer describes storage mechanism and the blocks (bytes, gigabytes, terabytes etc.) and the amount of memory used. Usually this layer abstracted from the programmers.
-	\end{example}
-	
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Data Abstraction}
-	\begin{itemize}[<+->]
-		\item \textbf{Logical level (Conceptual)}: 
-		\begin{itemize}[<+->]
-			\item Intermediate level.
-			\item \textbf{\underline{\blue{What}}} is the data stored?  
-			\item Describes \textbf{\underline{\blue{what}}} data is stored.
-			\item Describes what is the relationship between the stored data,
-		\end{itemize}		
-	\end{itemize}	
-		\begin{example}
-		Database contains product information. Logical Layer describes the product fields and their data types. How this product interact with other entities in the database. The programmers design this level based on the business knowledge and the requirements.
-		\end{example}
-	
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Data Abstraction}
-	\begin{itemize}[<+->]
-		\item \textbf{View level (External)}: 
-		\begin{itemize}[<+->]
-			\item Highest level.
-			\item \textbf{\underline{\blue{View}}} of the data stored?  
-			\item Designed for category of users needs.
-			\item Not all the views is extended to all users and there is an authentication based on the category.
-		\end{itemize}		
-	\end{itemize}	
-	\begin{example}
-		Database contains product information. View layer is the final interface for the user. It could be extended or hidden based on users. For example, Some users need to show the sales for their department product but not for other departments.
-	\end{example}
-	
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
