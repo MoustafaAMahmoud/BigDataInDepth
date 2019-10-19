@@ -77,7 +77,7 @@
 %\newcommand{\ShowGraphics}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \AtBeginSection[]{
-	\begin{frame}
+	\begin{frame}[c]
 	\vfill
 	\centering
 	\begin{beamercolorbox}[sep=8pt,center,shadow=false,rounded=true]{title}
@@ -86,6 +86,50 @@
 	\vfill
 \end{frame}
 }
+
+\AtBeginSubsection[]{
+	\begin{frame}[c]
+	\vfill
+	\centering
+	\begin{beamercolorbox}[sep=8pt,center,shadow=false,rounded=true]{title}
+		\usebeamerfont{title}\subsecname\par%
+	\end{beamercolorbox}
+	\vfill
+\end{frame}
+}
+\AtBeginSubsubsection[]{
+	\begin{frame}[c]
+	\vfill
+	\centering
+	\begin{beamercolorbox}[sep=8pt,center,shadow=false,rounded=true]{title}
+		\usebeamerfont{title}\subsubsecname\par%
+	\end{beamercolorbox}
+	\vfill
+\end{frame}
+}
+%
+%% Add support for \subsubsectionpage
+%\def\subsubsectionname{\translate{Subsubsection}}
+%\def\insertsubsubsectionnumber{\arabic{subsubsection}}
+%\setbeamertemplate{subsubsection page}
+%{
+%	\begin{centering}
+%%		{\usebeamerfont{subsubsection name}\usebeamercolor[fg]{subsubsection name}\subsubsectionname~\insertsubsubsectionnumber}
+%%		\vskip1em\par
+%		\vfill
+%		\centering
+%
+%		\begin{beamercolorbox}[sep=8pt,center,shadow=false,rounded=true]{title}
+%			\usebeamerfont{subsubsection title}\insertsubsubsection\par
+%		\end{beamercolorbox}
+%	\end{centering}
+%}
+%\def\subsubsectionpage{\usebeamertemplate*{subsubsection page}}
+%
+%\AtBeginSection{\frame{\sectionpage}}
+%\AtBeginSubsection{\frame{\subsectionpage}}
+%\AtBeginSubsubsection{\frame{\subsubsectionpage}}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\Wider[2][3em]{%
 	\makebox[\linewidth][c]{%
