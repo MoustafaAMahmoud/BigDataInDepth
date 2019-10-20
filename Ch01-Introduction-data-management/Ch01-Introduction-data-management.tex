@@ -388,23 +388,24 @@ DevOps,Extraction, Loading, BI, Integration}
  \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{From Operational DB to DWH}
-\begin{frame}
-\frametitle{From Operational DB to DWH}
-\begin{itemize}[<+->]
-\item Data could be a product for some companies.
-\item It could be decision support for other products or businesses.
-\item Reporting the results after passing the data life-cycle will be from storage (Database).
-\item There are some challenges facing the people who work on data management backend:
-\begin{itemize}[<+->]
-\item Performance.
-\item Integration.
-\item Applying analytical functions. %Moving average
-\end{itemize}
-\item Vendors who are working to solve the above challenges creating their own product of DWH and their ultimate work is to optimize the above points.
-\end{itemize}
-\end{frame}
+\subsection{Introduction to DWH}
 
+\subsubsection{Motivation to Data Warehouse (DWH)}
+\begin{frame}
+\frametitle{Motivation to Data Warehouse (DWH)}
+	\begin{itemize}[<+->]
+		\item Data could be a product for some companies.
+		\item It could be decision support for other products or businesses.
+		\item Reporting the results after passing the data life-cycle will be from storage (Database).
+		\item There are some challenges facing the people who work on data management backend:
+			\begin{itemize}[<+->]
+				\item Performance.
+				\item Integration.
+				\item Applying analytical functions. %Moving average
+			\end{itemize}
+		\item Vendors who are working to solve the above challenges creating their own product of DWH and their ultimate work is to optimize the above points.
+	\end{itemize}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[c]
 \frametitle{Motivation to Data Warehouse (DWH)}
@@ -700,19 +701,47 @@ The Full picture required a DWH. However, we still need the other operational da
 \subsection{DWH Characteristics}
 \begin{frame}
 \frametitle{DWH Characteristics}
+%these is not a definitions, we just show the meaning and the understanding.
+\begin{wideitemize}
+\item The characteristics of DWH:
+	\begin{wideitemize}
+		\item Integrated: \textit{DWH is an integrated environment which allows us to integrate different source systems. Data are modeled (organized) into a unified manner.} %regardless of the original source
+	
+		\item Time-Variant: \textit{Data modeled (organized) based on time periods (hourly, daily, weekly, monthly, quarterly, yearly, etc.)}
+	
+		\item Subject-oriented: \textit{DWH main target is to support business needs for the whole organization including (decision makers, departments, and specific user requirements)}.
+	
+		\item Non-Volatile: \textit{It refers to the data will not erased or deleted (It could be archived and retrieved when needed). Data can be accumulated daily the new snapshots (refreshed at based on the source system interval. For example, It could be updated daily, weekly, and monthly).}
+	\end{wideitemize}	
+\end{wideitemize}
 %https://www.guru99.com/data-warehouse-architecture.html
 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Data Warehouse Architecture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{DWH Architecture Overview}
 
-some details about hot vs cold storage,
 
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Datawarehouse Components}
+\begin{frame}
+\frametitle{DWH Architecture Overview}
+\begin{figure}[ht]
+	
+	\centering
+	\includegraphics[width=.9\linewidth,height=.8\textheight]{./Figures/chapter-01/Datawarehouse_reference_architecture.jpg}
+	%https://commons.wikimedia.org/wiki/File:Datawarehouse_reference_architecture.jpg
+	%		\includegraphics[width=\linewidth,height=\textheight]{./Figures/chapter-01/baby-02.jpg}
+	\caption{taken from XXXX}
+\end{figure}
+\end{frame}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{ETL Process}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{ETL vs ELT When? Why?}
@@ -784,20 +813,6 @@ Data model is
 \end{itemize}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{DWH Architecture Overview}
-
-\begin{frame}
-	\frametitle{DWH Architecture Overview}
-	\begin{figure}[ht]
-		
-		\centering
-		\includegraphics[width=.9\linewidth,height=.8\textheight]{./Figures/chapter-01/Datawarehouse_reference_architecture.jpg}
-		%https://commons.wikimedia.org/wiki/File:Datawarehouse_reference_architecture.jpg
-		%		\includegraphics[width=\linewidth,height=\textheight]{./Figures/chapter-01/baby-02.jpg}
-			\caption{taken from XXXX}
-	\end{figure}
-\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -810,16 +825,51 @@ There are mainly three types of Datawarehouse Architectures: -
 	\item Three-tier architecture.
 \end{wideitemize}
 
-
-
-
-
-
-
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{File Formats}
 
+\begin{frame}
+\frametitle{\subsecname}
+\begin{itemize}[<+->]
+	\item Any Big Data solution working based distributed systems.
+	\item What is distributed systems in brief?
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Data Encoding and Formats}
+
+\begin{frame}
+\frametitle{\subsecname}
+\begin{itemize}[<+->]
+	\item Any Big Data solution working based distributed systems.
+	\item What is distributed systems in brief?
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Data Compression Technique}
+
+\begin{frame}
+\frametitle{\subsecname}
+\begin{itemize}[<+->]
+\item Any Big Data solution working based distributed systems.
+\item What is distributed systems in brief?
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Data Archiving and Retention}
+\begin{frame}
+\frametitle{\subsecname}
+\begin{itemize}[<+->]
+	\item some details about hot vs cold storage,
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Different Types of Storage}
 \begin{frame}
 
 \frametitle{Cold storage vs Hot storage}
@@ -829,15 +879,9 @@ some details about hot vs cold storage,
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Data Encoding and Formats}
-\begin{frame}
-\frametitle{\subsecname}
-\begin{itemize}[<+->]
-\item Any Big Data solution working based distributed systems.
-\item What is distributed systems in brief?
-\end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{DWH On Cloud}
+
+
 
 \subsection{Further Readings and Assignment}
 
