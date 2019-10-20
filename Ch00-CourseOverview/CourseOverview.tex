@@ -1,32 +1,32 @@
 \section{Course Introduction}
 
-
 \begin{frame}
 \frametitle{Course Target}
-\begin{adjustbox}{max totalsize={.9\textheight},center}
-
-\smartdiagramanimated[bubble diagram]{Goal,Data\\Management,Distributed\\System,Big Data\\Tools,Coding,Real world\\applications,Databases, DevOps  }
-
-\end{adjustbox}
+\scalebox{0.9}
+{
+	\begin{adjustbox}{max totalsize={.9\textheight},center}
+	\smartdiagramanimated[bubble diagram]{Goal,Data\\Management,Distributed\\System,Big Data\\Tools,Coding,Real world\\applications,Databases, DevOps  }
+	\end{adjustbox}
+}
 \end{frame}
 
 %---------------------------------------------------------
-%Example of the \pause command
-\subsection{Learning Objectives}
+%Example of the  command
+\subsection{Learning Objectives and Audience}
 \begin{frame}
 \frametitle{Learning Objectives}
 
-\begin{itemize}
-    \item<1-> Simplify the concepts in data management.
-    \item<2-> Understand the data management life-cycle. 
-    \item<3-> Illustrate the basics of distributed systems concepts 
-    \item<4-> Be familiar with ETL for (batch/steaming) data over distributed systems ex: Hadoop \& Spark.  
-    \item<5-> Apply QA and testing for the data pipeline cycle.
-    \item<6-> Build and scale your data product. 
-    \item<7-> Building real-life examples.    
-    \item<8-> Applying machine learning over big data. 
-    \item<9-> Automate the data life-cycle process end-to-end (e2e). 
-    \item<10-> Understanding of the DevOps tools and functions in data life-cycle. 
+\begin{itemize}[<+->]
+	\item Simplify the concepts in data management.
+	\item Understand the data management life-cycle. 
+	\item Illustrate the basics of distributed systems concepts 
+	\item Be familiar with ETL for (batch/steaming) data over distributed systems ex: Hadoop \& Spark.  
+	\item Apply QA and testing for the data pipeline cycle.
+	\item Build and scale your data product. 
+	\item Building real-life examples.    
+	\item Applying machine learning over big data. 
+	\item Automate the data life-cycle process end-to-end (e2e). 
+	\item Understanding of the DevOps tools and functions in data life-cycle. 
 \end{itemize}
 
 \end{frame}
@@ -35,12 +35,12 @@
 \begin{frame}
 \frametitle{Audience: Who Should Take This Course?}
 
-\begin{itemize}
-	\item<1-> Data Engineer who needs to get more knowledge in distributed systems and Big Data.
-	\item<2-> Data Warehouse Engineer who needs to know more about big data.
-	\item<3-> Software developer who needs to change to data engineering track. 
-	\item<4-> DevOps engineers who needs to understand the concepts of big data.  
-	\item<5-> Business or entrepreneur who needs to get more information about how to build or manage a data product.
+\begin{itemize}[<+->]
+	\item Data Engineer who needs to get more knowledge in distributed systems and Big Data.
+	\item Data Warehouse Engineer who needs to know more about big data.
+	\item Software developer who needs to change to data engineering track. 
+	\item DevOps engineers who needs to understand the concepts of big data.  
+	\item Business or entrepreneur who needs to get more information about how to build or manage a data product.
 \end{itemize}
 
 \end{frame}
@@ -52,24 +52,24 @@
 \begin{frame}
 \frametitle{Getting max benefit from this course}
 \begin{block}{Take the course advantage}
-\begin{itemize}
-	\item<1-> Follow the videos order as described. \pause
-	\item<2-> Read the references for each section (including the implementation of the examples if exists). \pause
-	\item<3-> Repeat the lecture code with your own.  \pause
-	\item<4-> Do the assignments.\pause
-	\item<5-> Ask your questions. \pause
-	\item<6-> Join the online meeting or discussions. \pause
-\end{itemize}
+	\begin{itemize}[<+->]
+		\item Follow the videos order as described.
+		\item Read the references for each section (including the implementation of the examples if exists). 
+		\item Repeat the lecture code with your own.  
+		\item Do the assignments.
+		\item Ask your questions. 
+		\item Join the online meeting or discussions. 
+	\end{itemize}
 \end{block}
 
 \end{frame}
 
 %---------------------------------------------------------
 
-\begin{frame}
+\begin{frame}[t]
 \frametitle{Chapter Dependencies}
 \begin{tikzpicture}[node distance=2cm,
-every node/.style={fill=white, font=\sffamily}, align=center,scale=0.58, every node/.style={transform shape}]
+every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every node/.style={transform shape}]
 % Specification of nodes (position, etc.)
 \node (start)             [required]              {Ch.01 Introduction};
 \node (pro2a) [flags, left of=start, xshift=-5cm] {\faBug \space You MUST finish the\\ red chapters first};
@@ -77,15 +77,15 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.58, every n
 
 \node (dataMgmt)     [required, below of=start, yshift=.5cm]          {Ch.02 Data Management};
 \node (dsSystem)      [required, below of=dataMgmt, yshift=.5cm]   {Ch.03 Distributed Systems};
-\node (hadoop)     [optionalETL,below left of=dsSystem, xshift=-5cm]   {Ch.04 Hadoop and MR};
+\node (hadoop)     [optionalETL,below left of=dsSystem, xshift=-6cm]   {Ch.04 Hadoop and MR};
 \node (FN)      [optionalETL, below of=hadoop] {Ch.05 FN and Scala};
 \node (spark)      [optionalETL, below of=FN] {Ch.06 Spark};
 \node (application)    [optionalETL, below of=spark] {Ch.07 Big Data Application};
-\node (msSystem)       [optionalMS,below right of=dsSystem, xshift=5cm] {Ch.08 Massging Systems};
+\node (msSystem)       [optionalMS,below right of=dsSystem, xshift=4cm] {Ch.08 Massging Systems};
 \node (Orchestration)    [optionalFlow, below of=msSystem] {Ch.09 Data Orchestration};
 \node (noSql)      [optionalNSQL, below of=Orchestration] {Ch.10 NoSql};
 \node (Elastic) [optionalELK, below of=noSql] {Ch.11 Elastic};     
-\node (Arch) [arch, below left of=Elastic,xshift = -4.5cm] {Ch.12 Data Architecture Design};     
+\node (Arch) [arch, below left of=Elastic,xshift = -4.5cm,yshift = .7cm] {Ch.12 Data Architecture Design};     
 
 %\node (Appendix) [startstop, above of=Arch] {Ch.13 Appendix};     
 % Normal Path
@@ -112,7 +112,7 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.58, every n
 \begin{frame}
 	\frametitle{Chapter Dependencies (Jump Out Path)}
 	\begin{tikzpicture}[node distance=2cm,
-	every node/.style={fill=white, font=\sffamily}, align=center,scale=0.58, every node/.style={transform shape}]
+	every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every node/.style={transform shape}]
 	% Specification of nodes (position, etc.)
 	\node (start)             [required]              {Ch.01 Introduction};
 	\node (pro2a) [flags, left of=start, xshift=-5cm] {\faBug \space You MUST finish the\\ red chapters first};
@@ -120,15 +120,15 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.58, every n
 	
 	\node (dataMgmt)     [required, below of=start, yshift=.5cm]          {Ch.02 Data Management};
 	\node (dsSystem)      [required, below of=dataMgmt, yshift=.5cm]   {Ch.03 Distributed Systems};
-	\node (hadoop)     [optionalETL,below left of=dsSystem, xshift=-5cm]   {Ch.04 Hadoop and MR};
+	\node (hadoop)     [optionalETL,below left of=dsSystem, xshift=-6cm]   {Ch.04 Hadoop and MR};
 	\node (FN)      [optionalETL, below of=hadoop] {Ch.05 FN and Scala};
 	\node (spark)      [optionalETL, below of=FN] {Ch.06 Spark};
 	\node (application)    [optionalETL, below of=spark] {Ch.07 Big Data Application};
-	\node (msSystem)       [optionalMS,below right of=dsSystem, xshift=5cm] {Ch.08 Massging Systems};
+	\node (msSystem)       [optionalMS,below right of=dsSystem, xshift=4cm] {Ch.08 Massging Systems};
 	\node (Orchestration)    [optionalFlow, below of=msSystem] {Ch.09 Data Orchestration};
 	\node (noSql)      [optionalNSQL, below of=Orchestration] {Ch.10 NoSql};
 	\node (Elastic) [optionalELK, below of=noSql] {Ch.11 Elastic};     
-	\node (Arch) [arch, below left of=Elastic,xshift = -4.5cm] {Ch.12 Data Architecture Design};     
+	\node (Arch) [arch, below left of=Elastic,xshift = -4.5cm,yshift = .7cm] {Ch.12 Data Architecture Design};     
 	
 	%\node (Appendix) [startstop, above of=Arch] {Ch.13 Appendix};     
 	% Normal Path
@@ -145,9 +145,9 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.58, every n
 	\draw[->] (Elastic) to[out=180,in=90] (Arch);
 	
 	%Jump out path
-	\draw[->,dashed] (dsSystem) -- ++(11.2,0) -- ++(0,-5.4)  --  (noSql.east);
-	\draw[->,dashed] (dsSystem) -- ++(11.2,0) -- ++(0,-7.4)  -- (Elastic.east);
-	\draw[->,dashed] (dsSystem.west) -- ++(-6.2,0) -- ++(0,-3.4)  -- (FN.west);
+	\draw[->,dashed] (dsSystem) -- ++(9.5,0) -- ++(0,-5.4)  --  (noSql.east);
+	\draw[->,dashed] (dsSystem) -- ++(9.5,0) -- ++(0,-7.4)  -- (Elastic.east);
+	\draw[->,dashed] (dsSystem.west) -- ++(-7.4,0) -- ++(0,-3.4)  -- (FN.west);
 	\draw[->,dashed] (dsSystem.east) to[out=0,in=90] (msSystem);
 	
 	\draw[->,dashed] (msSystem.east) to[out=0,in=0] (noSql.east);
@@ -171,10 +171,10 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.58, every n
 \begin{frame}
 \frametitle{Assignments and Labs}
 \begin{block}{Remark}
-\begin{itemize}
-	\item<1-> Full project code.
-	\item<2-> Notebooks (Jupyter or Zeppelin).
-	\item<3-> Read the reference.
+\begin{itemize}[<+->]
+	\item Full project code.
+	\item Notebooks (Jupyter or Zeppelin).
+	\item Read the reference.
 \end{itemize}
 \end{block}
 \end{frame}
@@ -255,7 +255,7 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.58, every n
 \begin{frame}
 \frametitle{Ugly but important}
 
-\begin{itemize}
+\begin{itemize}[<+->]
 	\item User stories or technical discussions are not related to any of my current work or my previous companies.
 	\item I am working at EPAM Systems. My company approved me for doing this online course public but the materials are not reviewed or assessed by my company. It is on my own responsibilities.
 \end{itemize}
@@ -291,11 +291,11 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.58, every n
 %\end{frame}
 
 %%---------------------------------------------------------
-%%Example of the \pause command
+%%Example of the  command
 %\begin{frame}
-%In this slide \pause
+%In this slide 
 %
-%the text will be partially visible \pause
+%the text will be partially visible 
 %
 %And finally everything will be there
 %\end{frame}

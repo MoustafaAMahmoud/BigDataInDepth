@@ -46,9 +46,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[c]
+\begin{frame}
 \frametitle{Data Management Life-Cycle}
-\begin{center}			
+\scalebox{0.9}{
+
 \smartdiagramset{circular distance=3.5cm,
 font=\scriptsize,
 %				text width=1cm,
@@ -58,10 +59,7 @@ module minimum height=.1cm,
 arrow tip=to}
 \smartdiagram[circular diagram]{Archiving,Idea, Identify, Document, 				
 DevOps,Extraction, Loading, BI, Integration}
-
-
-\end{center}
-
+}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -77,54 +75,74 @@ DevOps,Extraction, Loading, BI, Integration}
 %		\item For optimization purpose you changed the files from CSV into Json and update the searching mechanism into the files.         
 %	\end{itemize}
 %	
-\smartdiagramset{
-	%descriptive items y sep = 3em,
-	description font = \scriptsize\sffamily,
-	description title font=\scriptsize\sffamily,
-}
-\smartdiagram[descriptive diagram]{
-	{App, Application UI},
-	{FS, CSV Data}}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Motivation to Data Layers (Use Case)}
-	\smartdiagramset{
-	%descriptive items y sep = 3em,
-	description font = \scriptsize\sffamily,
-	description title font=\scriptsize\sffamily,
-	}
-	\smartdiagram[descriptive diagram]{
-		{App, Application UI},
-		{BL, CSV Data Loader (Reporting)},
-		{FS, CSV Data}}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Motivation to Data Layers (Use Case)}
-	\smartdiagramset{
-		%descriptive items y sep = 3em,
-		description font = \scriptsize\sffamily,
-		description title font=\scriptsize\sffamily,
-	}
-	\smartdiagram[descriptive diagram]{
-		{App, Application UI},
-		{BL, (JSON/CSV) Data Loader (Reporting)},
-		{FS, JSON Data}}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Motivation to Data Layers (Use Case)}	
-		\smartdiagramset{
-			%descriptive items y sep = 3em,
-			description font = \scriptsize\sffamily,
-			description title font=\scriptsize\sffamily,
-		}
+	
+    \begin{figure}[H]
+    	\smartdiagramset{
+    		%descriptive items y sep = 3em,
+    		description font = \scriptsize\sffamily,
+    		description title font=\scriptsize\sffamily,
+    	}
+%	\centering
+	\begin{subfigure}[t]{0.475\textwidth}
+%		\centering
+		\scalebox{0.5}{
 		\smartdiagram[descriptive diagram]{
 			{App, Application UI},
-			{DBMS-H, Ready prepared layer for each department (Reporting)},
-			{DBMS-M, Logical part to prepare for the data structure and the relation between the data},
-			{DBMS-L, Storage and Data format related stuff + Data indexing and searching algorithms}}
+			{FS, CSV Data}}
+		}
+		\vspace{-.6\baselineskip}
+		\caption[Network2]{{\tiny Network 1}}    
+		\label{fig:mean and std of net14}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.475\textwidth}
+%		\centering 
+		\scalebox{0.5}{
+			\smartdiagram[descriptive diagram]{
+				{App, Application UI},
+				{BL, CSV Data Loader (Reporting)},
+				{FS, CSV Data}}
+			}
+		\vspace{-.6\baselineskip}
+		\caption[]{{\tiny Network 2}}    
+		\label{fig:mean and std of net24}
+	\end{subfigure}
+%	\vskip\baselineskip
+	\begin{subfigure}[t]{0.475\textwidth}   
+%		\centering 
+		\scalebox{0.5}
+		{
+			\smartdiagram[descriptive diagram]{
+			{App, Application UI},
+			{BL, (JSON/CSV) Data Loader (Reporting)},
+			{FS, JSON Data}}
+		}
+		\vspace{-.6\baselineskip}
+		\caption[]{{\tiny Network 3}}    
+		\label{fig:mean and std of net34}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.475\textwidth}   
+%		\centering 
+		\scalebox{0.5}
+		{
+			\smartdiagram[descriptive diagram]{
+				{App, Application UI},
+				{DBMS-H, Ready prepared layer for each department (Reporting)},
+				{DBMS-M, Logical part to prepare for the data structure and the relation between the data},
+				{DBMS-L, Storage and Data format related stuff + Data indexing and searching algorithms}}
+		}
+		\vspace{-.6\baselineskip}
+		\caption[]{{\tiny Network 4}}    
+		\label{fig:mean and std of net44}
+	\end{subfigure}
+	\vspace{-.6\baselineskip}
+	\caption[ The average and standard deviation of critical parameters ]
+	{\tiny The average and standard deviation of critical parameters: Region R4} 
+	\label{fig:mean and std of nets}
+	\end{figure}
+	
+
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

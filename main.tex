@@ -3,26 +3,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % To Pass graphics paths
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{{./Figures/}}
 \input{./preamble.tex}
-\input{./front_page.tex}
-\graphicspath{{./Ch00-CourseOverview/}}
+\input{./front_page.tex}	
 %------------------------------------------------------------
 \begin{document}
+
+
+%---------------------------------------------------------
 %The next statement creates the title page.
-%\frame{\titlepage}
-%\addtobeamertemplate{frametitle}{}{%
-%	\begin{textblock*}{100mm}(.85\textwidth,-1cm)
-%		\includegraphics[height=3cm,width=2cm]{./Figures/chapter-00/logo.png}
-%\end{textblock*}}
+\frame{\titlepage}
+%---------------------------------------------------------
 \input{Ch00-CourseOverview/CourseOverview.tex}
 %---------------------------------------------------------
+%TOC
 \begin{frame}[allowframebreaks]
 \frametitle{Table of Contents}
 \tableofcontents
 \end{frame}
-
-
-
 %---------------------------------------------------------
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
