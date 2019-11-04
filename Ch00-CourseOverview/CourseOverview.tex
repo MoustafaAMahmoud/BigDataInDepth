@@ -30,6 +30,31 @@
 \end{itemize}
 
 \end{frame}
+%---------------------------------------------------------
+\begin{frame}
+\frametitle{Videos classification}
+
+\begin{table}[t]
+	\centering	
+	%		\resizebox{\columnwidth}{!}{%
+	
+	%		\centering
+	\begin{tabular}{|c |c | c | c|}
+		\hline
+		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
+		\hline
+		\thead{Developer} & \redcircled  &   & \\
+		\hline
+		\thead{DevOps}  &  &  & \bluecircled \\
+		\hline
+		\thead{Business} &  & \greencircled & \\
+		\hline%Watching Method \newline Audience
+	\end{tabular}
+	\centering
+	\vspace{.6\baselineskip}
+	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
+\end{table}
+\end{frame}
 
 %---------------------------------------------------------
 \begin{frame}
@@ -115,7 +140,7 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 	% Specification of nodes (position, etc.)
 	\node (start)             [required]              {Ch.01 Introduction};
 	\node (pro2a) [flags, left of=start, xshift=-5cm] {\faBug \space You MUST finish the\\ red chapters first};
-	\node (pro2a2) [note, right of=start, xshift=5cm] {\faBell \space Finish colors group \\before move to the next.};
+	\node (pro2a2) [note, right of=start, xshift=5cm] {\faBell \space Finish colors group \\before moving to the next.};
 	
 	\node (dataMgmt)     [required, below of=start, yshift=.5cm]          {Ch.02 Data Management};
 	\node (dsSystem)      [required, below of=dataMgmt, yshift=.5cm]   {Ch.03 Distributed Systems};
