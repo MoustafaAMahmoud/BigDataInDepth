@@ -91,8 +91,8 @@ DevOps,Extraction, Loading, BI, Integration}
 			{FS, CSV Data}}
 		}
 		\vspace{-.6\baselineskip}
-		\caption[Network2]{{\tiny Network 1}}    
-		\label{fig:mean and std of net14}
+		\caption{{\tiny Two layers Arch. (Data \& UI)}}
+		\label{fig:ch_1_data_abstraction_1}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.475\textwidth}
@@ -104,8 +104,8 @@ DevOps,Extraction, Loading, BI, Integration}
 				{FS, CSV Data}}
 			}
 		\vspace{-.6\baselineskip}
-		\caption[]{{\tiny Network 2}}    
-		\label{fig:mean and std of net24}
+		\caption{{\tiny Three layers Arch. (Data \& BL \& UI)}}
+		\label{fig:ch_1_data_abstraction_2}
 	\end{subfigure}
 %	\vskip\baselineskip
 	\begin{subfigure}[t]{0.475\textwidth}   
@@ -118,8 +118,8 @@ DevOps,Extraction, Loading, BI, Integration}
 			{FS, JSON Data}}
 		}
 		\vspace{-.6\baselineskip}
-		\caption[]{{\tiny Network 3}}    
-		\label{fig:mean and std of net34}
+		\caption{{\tiny Three layers Arch. (Data (multi-sources) \& BL \& UI)}}
+		\label{fig:ch_1_data_abstraction_3}
 	\end{subfigure}
 	\quad
 	\begin{subfigure}[t]{0.475\textwidth}   
@@ -133,13 +133,12 @@ DevOps,Extraction, Loading, BI, Integration}
 				{DBMS-L, Storage and Data format related stuff + Data indexing and searching algorithms}}
 		}
 		\vspace{-.6\baselineskip}
-		\caption[]{{\tiny Network 4}}    
-		\label{fig:mean and std of net44}
+		\caption{{\tiny Four layers Arch. (DB (L, M, H) \& UI)}}
+		\label{fig:ch_1_data_abstraction_4}
 	\end{subfigure}
 	\vspace{-.6\baselineskip}
-	\caption[ The average and standard deviation of critical parameters ]
-	{\tiny The average and standard deviation of critical parameters: Region R4} 
-	\label{fig:mean and std of nets}
+	\caption {\tiny Data Abstraction Journey} 
+	\label{fig:ch_1_data_abstraction}
 	\end{figure}
 	
 
@@ -194,7 +193,7 @@ DevOps,Extraction, Loading, BI, Integration}
 			\item View Level.
 		\end{itemize}
 	\end{itemize}	
-	
+	%TOP TIER, MIDDLE TIER, BOTTOM TIER
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -748,13 +747,37 @@ The Full picture required a DWH. However, we still need the other operational da
 	\includegraphics[width=.9\linewidth,height=.8\textheight]{./Figures/chapter-01/Datawarehouse_reference_architecture.jpg}
 	%https://commons.wikimedia.org/wiki/File:Datawarehouse_reference_architecture.jpg
 	%		\includegraphics[width=\linewidth,height=\textheight]{./Figures/chapter-01/baby-02.jpg}
-	\caption{taken from XXXX}
+	\caption{taken from https://commons.wikimedia.org/wiki/File:Datawarehouse\_reference\_architecture.jpg}
 \end{figure}
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Source System Integration Process}
+\begin{itemize}
+	
+
+\item  We have requirements or business case (It could be DWH unification)
+\item  Identify the stakeholders (Data owner(s))
+\item  Before we start, ALL communications from start to the end should be documented into any format.
+	\begin{itemize}
+		\item  Conflounce page, Word, Sheet.(The best option to be query format!!)
+		\item  Make the discussion online and put comments to make the history available always (we need to stop the one man show).
+		\item  All tasks should be clear what is the expected output for example (analysis means document what is the column names, structure format).
+	\end{itemize}
+\item  Source System Data Analysis.
+\item  Check The data structure
+\item  Check for the data latency
+\item  Check for connectivity and security analysis (assessment).
+\item  Technical discussion about the best way to ingest the data (push/pull).
+\item  Data Ingestion format (file, database, api, etc..)
+\item  Sign or confirmation for every point from the stakeholders.
+\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{ETL Process}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{ETL vs ELT When? Why?}
 
