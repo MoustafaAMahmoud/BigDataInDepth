@@ -15,7 +15,7 @@
 	\item Show what is the challenges to build a DWH?
 	\item What is the data modeling and its design?
 \end{itemize}
-
+%https://opentextbc.ca/dbdesign01/chapter/chapter-5-data-modelling/
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -750,7 +750,7 @@ SOME DETAILS HERE
 \begin{frame}
 \frametitle{DWH Architecture Overview}
 \begin{figure}[ht]
-	
+	%@@@ TODO: add the link to resources
 	\centering
 	\includegraphics[width=.9\linewidth,height=.8\textheight]{./Figures/chapter-01/Datawarehouse_reference_architecture.jpg}
 	%https://commons.wikimedia.org/wiki/File:Datawarehouse_reference_architecture.jpg
@@ -763,11 +763,11 @@ SOME DETAILS HERE
 \subsubsection{Source System Integration Process}
 \begin{frame}
 \frametitle{Source System Integration Process}
-\begin{itemize}
-\item In some companies they hire or dedicate team for this part (business analyst, system analyst, data analyst, or demand team).
+\begin{itemize}[<+->]
+\item In some companies they hire or dedicate a team for this part (business analyst, system analyst, data analyst, or demand team).
 \item Before we start, ALL communications from start till the end should be documented into any format.
 	\begin{itemize}
-		\item  Conflounce page, Word, Sheet.
+		\item  Conflounce page, Word, or Excel sheet.
 		\item  Make the discussion online and put comments to make the history available always.
 		\item  All tasks should be clear what is the expected output for example (analysis means to document data structure, format, column names, etc..).
 	\end{itemize}
@@ -778,12 +778,10 @@ SOME DETAILS HERE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Source System Integration Process}
-\begin{itemize}
-	
-	\item  Requirements. % or business need (It could be DWH unification).
+\begin{itemize}[<+->]
+	\item  Requirements gathering. % or business need (It could be DWH unification).
 	\item  Identify the stakeholders (Data owner(s)).
-	\item  Data Analysis.
-	\item  Analyze data latency.
+	\item  Data Analysis includes but not only (format, latency, and column definitions).
 	\item  Connectivity analysis and security (assessment).
 	\item  Technical discussion about the best way to ingest the data.
 	\item  Data Ingestion method and format.
@@ -800,9 +798,9 @@ SOME DETAILS HERE
 
 \begin{frame}
 \frametitle{Extraction Layer}
-\begin{itemize}
-	\item In some companies they hire or dedicate team for this part (extraction or ingestion team) but in other companies it is part of the data engineering team.
-	\item This layer take the output analysis and decisions from the previous layer (source system analysis) and do the implementation (output quality from the previous team highly affect this team).
+\begin{itemize}[<+->]
+	\item In some companies they hire or dedicate a team for this part (extraction or ingestion team) but in other companies it is part of the data engineering team.
+	\item This layer take the output analysis and decisions from the previous layer (source system analysis) and implement the extraction \blue{(quality from the previous team output highly affect this team)}.
 	\item There are many consideration this team need to take care about or deal with but we can summarize it in the following:
 		\begin{itemize}			
 			\item  Data latency will affect the tool and the methodology (stream or batch).
@@ -821,9 +819,9 @@ SOME DETAILS HERE
 
 \begin{frame}
 \frametitle{Staging Layer}
-\begin{itemize}
+\begin{itemize}[<+->]
 	\item This layer handled by the same team who own the \blue{storage part} in most of the organizations. 
-	\item Segregation of this layer if it uses different storage type or multi-teams access this layer for different purpose \blue{(ex: Kafka as landing layer)} \red{NEED TO CLARIFY THIS EXAMPLE AS KAFKA IS NOT STORAGE BUT COULD BE LANDING LAYER}.
+	\item Segregation of this layer if it uses different storage type or multi-teams access this layer for a different purpose (ex: Kafka)\\ \red{\textit{\faBullhorn Kafka is not a storage layer but it could be landing layer}}.
 	\item All the ETL layers are working on top of this layer.
 	\item The decision of the storage type is based on the use case and the data.
 	
@@ -837,7 +835,7 @@ SOME DETAILS HERE
 
 \begin{frame}
 \frametitle{Data Modeling Objective}
-\begin{itemize}
+\begin{itemize}[<+->]
 	\item Understanding the data modeling and its roles.
 	\item Be aware about its importance.
 	\item Explore different types of data modeling.
@@ -870,7 +868,7 @@ Data model is
 
 \column{0.4\textwidth}
 Data model is not	
-\begin{itemize}
+\begin{itemize}[<+->]
 	\item a science.
 	\item a static design for each organization.
 	\item a type of database.
@@ -880,7 +878,7 @@ Data model is not
 
 \column{0.4\textwidth}
 Data model is		
-\begin{itemize}
+\begin{itemize}[<+->]
 	\item a general concepts which lead to build full architecture.
 	\item an engineering design practices.
 	\item different based on the use case and the database type.
@@ -888,6 +886,7 @@ Data model is
 	\item affecting the information reporting performance and ways.
 \end{itemize}
 
+\column{0.2\textwidth}
 \end{columns}
 
 \end{frame}
@@ -940,7 +939,18 @@ Data model is
 
 \begin{frame}
 \frametitle{Data Model Design Principle }
-\red{Decide what is the limitation of this part what is in and what is out to be part of the appendix}
+\red{Decide what is the limitation of this part what is in and what is out to be part of the appendix}\\
+%http://infogoal.com/datawarehousing/data_modeling_basics.htm
+%https://www.guru99.com/star-snowflake-data-warehousing.html#3
+- facts, start schema, dimensional modeling techniques.\\
+- Fact Tables and Dimension Tables. \\
+- Multidimensional Model(Star, Snowflake, and Galaxy Schema).\\
+- Support Roll Up, Drill Down, and Pivot Analysis\\
+- Time Phased / Temporal Data \\
+- Operational Logical and Physical Data Models\\
+- Normalization and Denormalization\\
+- Model Granularity : Level of Detail\\
+
 
 \end{frame}
 
@@ -949,8 +959,187 @@ Data model is
 
 \begin{frame}
 \frametitle{What is ETL?}
+
+\begin{itemize}[<+->]
+	\item The ETL (Extraction, Transformation, Loading) is main core function for any data engineering (DWH) team.
+	\item This team takes the delivered output from the previous stage (data modeling) and start to implement the mapping.
+	\item The implementation of the ETL preferred to be unified across the team members and the organization unless there is a special case of license of capacity.
+	
+\end{itemize}		
+
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{ETL Characteristics}
+%%https://www.timmitchell.net/etl-best-practices/
+\begin{itemize}[<+->]
+	\item Successful ETL design have the following characteristics:
+		\begin{itemize}[<+->]
+			\item [\faCheckSquareO] Maintainable.
+			\item [\faCheckSquareO] Reusable.
+			\item [\faCheckSquareO] Well-Performed.
+			\item [\faCheckSquareO] Reliable.
+			\item [\faCheckSquareO] Resilient.
+			\item [\faCheckSquareO] Secure.
+		\end{itemize}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{ETL Best Practice}
+%%https://www.timmitchell.net/etl-best-practices/
+\begin{itemize}[<+->]
+	\item To implement the previous characteristics you need to have the following:
+	\begin{itemize}[<+->]
+		\item [\faCheckSquareO] Logging.
+		
+		\item [\faCheckSquareO] Auditing.
+		
+		\item [\faCheckSquareO] Data Lineage.
+		
+		\item [\faCheckSquareO] Modularity.
+		
+		\item [\faCheckSquareO] Atomicity.
+		
+		\item [\faCheckSquareO] Error Handling.
+		
+		\item [\faCheckSquareO] Managing Bad Data (Rejection Handling).		
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{ETL Logging}
+%%https://www.timmitchell.net/etl-best-practices/
+\begin{itemize}[<+->]
+	\item Logging
+	\begin{itemize}[<+->]
+		\item  Logging.
+		\item  Logging.
+		\item  Logging.
+		
+
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{ETL Auditing}
+%%https://www.timmitchell.net/etl-best-practices/
+\begin{itemize}[<+->]
+	\item Logging
+	\begin{itemize}[<+->]
+		\item  Logging.
+		\item  Logging.
+		\item  Logging.
+		
+		
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{ETL Data Lineage}
+%%https://www.timmitchell.net/etl-best-practices/
+\begin{itemize}[<+->]
+	\item Logging
+	\begin{itemize}[<+->]
+		\item  Logging.
+		\item  Logging.
+		\item  Logging.
+		
+		
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{ETL Modularity}
+%%https://www.timmitchell.net/etl-best-practices/
+\begin{itemize}[<+->]
+	\item Logging
+	\begin{itemize}[<+->]
+		\item  Logging.
+		\item  Logging.
+		\item  Logging.
+		
+		
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{ETL Atomicity}
+%%https://www.timmitchell.net/etl-best-practices/
+\begin{itemize}[<+->]
+	\item Logging
+	\begin{itemize}[<+->]
+		\item  Logging.
+		\item  Logging.
+		\item  Logging.
+		
+		
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{ETL Error Handling}
+%%https://www.timmitchell.net/etl-best-practices/
+\begin{itemize}[<+->]
+	\item Logging
+	\begin{itemize}[<+->]
+		\item  Logging.
+		\item  Logging.
+		\item  Logging.
+		
+		
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{ETL Rejection Handling}
+%%https://www.timmitchell.net/etl-best-practices/
+\begin{itemize}[<+->]
+	\item Logging
+	\begin{itemize}[<+->]
+		\item  Logging.
+		\item  Logging.
+		\item  Logging.
+		
+		
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 \frametitle{ETL vs ELT When? Why?}
 \end{frame}
@@ -960,7 +1149,7 @@ Data model is
 \subsubsection{Storage layer}
 
 \begin{frame}
-\frametitle{What is ETL?}
+\frametitle{Storage layer}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

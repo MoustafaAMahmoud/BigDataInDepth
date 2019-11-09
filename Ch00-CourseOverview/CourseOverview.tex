@@ -9,26 +9,51 @@
 	\end{adjustbox}
 }
 \end{frame}
-
 %---------------------------------------------------------
 %Example of the  command
 \subsection{Learning Objectives and Audience}
-\begin{frame}
+\begin{frame}[t]
 \frametitle{Learning Objectives}
+   	\smartdiagramset{
+	%descriptive items y sep = 3em,
+	module minimum width=5cm,
+	description text width={9cm},
+%	description font = \scriptsize\sffamily,
+%	description title font=\scriptsize\sffamily,
+%	module minimum height={.7cm},
+%	description title text width={.5cm},
+	}
+	\begin{adjustbox}{max totalsize={\textheight},center}
+			\smartdiagramanimated[descriptive diagram]{
+			{Ch.2 ,Simplify the concepts in data management. Understand the data management life-cycle},
+			{Ch.3, {Illustrate the basics of distributed systems concepts.}},
+			{Ch.4/6, Be familiar with ETL for (batch/steaming) data over distributed systems ex: Hadoop \& Spark.},
+			{Ch.6/7, {Apply QA and testing the data.}},
+			{Ch.7, {Building real-life examples.}},
+		}
+		
+	\end{adjustbox}
+%}
 
-\begin{itemize}[<+->]
-	\item Simplify the concepts in data management \blue{(Ch.2)}.
-	\item Understand the data management life-cycle \blue{(Ch.2)}. 
-	\item Illustrate the basics of distributed systems concepts \blue{(Ch.3)}.
-	\item Be familiar with ETL for (batch/steaming) data over distributed systems ex: Hadoop \& Spark \blue{(Ch.2,3,4,6)}.  
-	\item Apply QA and testing the data \blue{(Ch.6,7)}.
-	\item Building real-life examples \blue{(Ch.7)}. 
-	\item Build and scale your data product \blue{(Ch.7,8,9)}.    
-	\item Applying machine learning over big data \blue{(Ch.6,7)}. 
-	\item Automate the data life-cycle process end-to-end (e2e) \blue{(Appx. H)}. 
-	\item Understanding of the DevOps tools and functions in data life-cycle \blue{(Appx. H)}.
-\end{itemize}
+%\resizebox{.8\textwidth}{!}{% <------ Don't forget this %
 
+%}
+\end{frame}
+%---------------------------------------------------------
+\begin{frame}[t]
+\frametitle{Learning Objectives}
+	\smartdiagramset{
+		module minimum width=5cm,
+		description text width={9cm},
+		description title font=\scriptsize\sffamily,
+		}
+	\begin{adjustbox}{max totalsize={\textheight},center}	
+		\smartdiagramanimated[descriptive diagram]{
+			{Ch.6/7, {Applying machine learning over big data.}},
+			{Ch.9/12, {Build and scale your data product.}},
+			{Appx. H, {Understanding of the DevOps tools and its functions in data life-cycle and development automation (e2e). }},
+		}
+	\end{adjustbox}
 \end{frame}
 %---------------------------------------------------------
 \begin{frame}
@@ -36,18 +61,15 @@
 
 \begin{table}[t]
 	\centering	
-	%		\resizebox{\columnwidth}{!}{%
-	
-	%		\centering
 	\begin{tabular}{|c |c | c | c|}
 		\hline
 		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
 		\hline
 		\thead{Developer} & \redcircled  &   & \\
 		\hline
-		\thead{DevOps}  &  &  & \bluecircled \\
+		\thead{DevOps}  &  & \bluecircled &  \\
 		\hline
-		\thead{Business} &  & \greencircled & \\
+		\thead{Business} &  &  & \greencircled \\
 		\hline%Watching Method \newline Audience
 	\end{tabular}
 	\centering
@@ -58,18 +80,25 @@
 
 %---------------------------------------------------------
 \begin{frame}
-\frametitle{Audience: Who Should Take This Course?}
+\frametitle{Who Should Take This Course?}
 
-\begin{itemize}[<+->]
-	\item Data Engineer who needs to get more knowledge in distributed systems and Big Data.
-	\item Data Warehouse Engineer who needs to know more about big data.
-	\item A software developer who needs to change to the data engineering track. 
-	\item DevOps engineer who needs to understand the concepts of big data.  
-	\item Business or entrepreneur who needs to get more information about how to build or manage a data product.
-\end{itemize}
-
+%\begin{itemize}[<+->]
+%	\item Data Engineer who needs to get more knowledge in distributed systems and Big Data.
+%	\item Data Warehouse Engineer who needs to know more about big data.
+%	\item Software Engineer who needs to change to the data engineering track. 
+%	\item DevOps engineer who needs to understand the concepts of big data.  
+%	\item Business or entrepreneur who needs to get more information about how to build or manage a data product.
+%\end{itemize}
+%\resizebox{.6\textwidth}{!}{% <------ Don't forget this %
+	\scalebox{0.9}
+	{
+		\begin{adjustbox}{max totalsize={.9\textheight},center}		
+			\smartdiagramanimated[bubble diagram]{
+				Audience,Big Data\\ Engineer,DWH\\ Engineer,Software\\ Engineer,DevOps\\ Engineer,Business /\\Entrepreneur 
+			}
+		\end{adjustbox}
+	}
 \end{frame}
-
 %---------------------------------------------------------
 \subsection{Getting max benefit from this course}
 
@@ -140,7 +169,7 @@ every node/.style={fill=white, font=\sffamily}, align=center,scale=0.6, every no
 	% Specification of nodes (position, etc.)
 	\node (start)             [required]              {Ch.01 Introduction};
 	\node (pro2a) [flags, left of=start, xshift=-5cm] {\faBug \space You MUST finish the\\ red chapters first};
-	\node (pro2a2) [note, right of=start, xshift=5cm] {\faBell \space Finish colors group \\before moving to the next.};
+	\node (pro2a2) [note, right of=start, xshift=5cm] {\faBell \space Finish colored groups \\ before moving to the next group.};
 	
 	\node (dataMgmt)     [required, below of=start, yshift=.5cm]          {Ch.02 Data Management};
 	\node (dsSystem)      [required, below of=dataMgmt, yshift=.5cm]   {Ch.03 Distributed Systems};
