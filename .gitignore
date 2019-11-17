@@ -352,3 +352,8 @@ TSWLatexianTemp*
 # standalone packages
 *.sta
 
+.idea
+.idea/*
+.idea/workspace.xml
+
+
