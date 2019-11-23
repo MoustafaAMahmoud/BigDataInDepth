@@ -16,3 +16,11 @@ jobs:
         root_file: main.tex
         compiler: xelatex
         args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode
+    - name: Check pdf files
+      run: |
+        file main.pdf | grep -q ' PDF '
+    - name: Upload
+      uses: actions/upload-artifact@master
+      with:
+        name: main
+        path: main
