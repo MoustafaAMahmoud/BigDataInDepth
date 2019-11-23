@@ -22,5 +22,5 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@master
       with:
-        name: main
-        path: main
+        name: main.pdf
+        path: main.pdf
