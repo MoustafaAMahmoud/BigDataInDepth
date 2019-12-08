@@ -1,0 +1,70 @@
+\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.75, every node/.style={scale=0.75}]
+%https://tex.stackexchange.com/questions/133754/creating-crows-foot-style-e-r-diagrams-rather-than-chen-style-ones
+\matrix  [entity=Usage, entity anchor=Usage-id]  {
+	\properties{
+		id,
+		cust-id (FK),
+		cal-id (FK), 
+		loc-id (FK),
+		promo-id (FK),
+		TotalInCalls (agg),
+		TotalOutCalls (agg),
+		TotalAmount (agg)
+	}
+};
+
+
+\matrix  [entity=CellLookup, above left=of Usage-id, entity anchor=CellLookup-id]  {
+	\properties{
+		id,
+		celltype,
+		vendorname,
+		street,
+		city,
+		state,
+		zip
+	}
+};
+\matrix  [entity=Promotion, below left=of Usage-id,yshift=10ex, entity anchor=Promotion-id]  {
+	\properties{
+		id,
+		promotype,
+		promodesc,
+		value,
+		startdate,
+		enddate
+	}
+};
+
+\matrix [entity=CustomerProfile, below right=of Usage-id,yshift=10ex, entity anchor=CustomerProfile-id]  {
+	\properties{
+		id, 
+		gender, 
+		age, 
+		nationality,
+		firstname,
+		lastname
+	}
+};
+
+
+\matrix  [entity=Calendar, above right=of Usage-id, entity anchor=Calendar-id]  {
+	\properties{
+		id,
+		date,
+		day,
+		week,
+		month,
+		qtr,
+		year
+	}
+};
+
+\draw [one to many] (Usage-id)  to (CustomerProfile-id);
+\draw [one to many] (Usage-id)  to (Calendar-id);
+\draw [one to many] (Usage-id)  to (CellLookup-id);
+\draw [one to many] (Usage-id)  to (Promotion-id);
+
+
+
+\end{tikzpicture}

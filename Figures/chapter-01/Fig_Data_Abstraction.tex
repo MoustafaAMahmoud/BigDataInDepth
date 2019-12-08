@@ -1,0 +1,26 @@
+	\scalebox{0.9}{
+\begin{tikzpicture}[node distance=2cm,
+					every node/.style={fill=white, font=\sffamily}, align=center,
+					scale=0.6, 
+					every node/.style={transform shape}]
+
+% Specification of nodes (position, etc.)
+\node (view2)             [optionalETL]              {report 2 (view)};
+\node (view1)     [optionalETL, right of=view2, xshift=3cm]          {report 1 (view)};
+\node (view3)      [optionalETL, right of=view1, xshift=3cm]   {report 3 (view)};
+\node (concept)     [required,below of=view1, yshift=-1.5cm]   {Conceptual Layer};
+\node (physical)      [optionalELK, below of=concept, yshift=-1.5cm] {Physical Interaction};
+\node (fs)      [optionalELK, below of=physical, yshift=-1cm] {FS};
+
+%\node (Appendix) [startstop, above of=Arch] {Ch.13 Appendix};     
+% Normal Path
+\draw[<->]     (view2) -- (concept);
+\draw[<->]     (view3) -- (concept);
+\draw[<->]     (view1) -- (concept);
+\draw[<->]     (concept) -- (physical);
+\draw[<->]     (fs) -- (physical);
+\draw[-]      (12,-1.5) to[out=0,in=180] (13,0)  node[right]{View Level (User View) } to[out=180,in=0] (12,1.5);
+\draw[-]      (12,-5) to[out=0,in=180] (13,-3.5) node[right]{Logical/ Conceptual Level } to[out=180,in=0]  (12,-2);
+\draw[-]      (12,-11) to[out=0,in=180] (13,-8.5) node[right]{Physical Level } to[out=180,in=0]  (12,-6);
+\end{tikzpicture}
+}

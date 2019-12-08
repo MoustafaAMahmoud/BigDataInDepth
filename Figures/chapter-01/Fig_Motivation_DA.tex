@@ -1,0 +1,65 @@
+    \begin{figure}[H]
+    	\smartdiagramset{
+    		%descriptive items y sep = 3em,
+    		description font = \scriptsize\sffamily,
+    		description title font=\scriptsize\sffamily,
+    	}
+%	\centering
+	\begin{subfigure}[t]{0.475\textwidth}
+%		\centering
+		\scalebox{0.5}{
+		\smartdiagram[descriptive diagram]{
+			{App, Application UI},
+			{FS, CSV Data}}
+		}
+		\vspace{-.6\baselineskip}
+		\caption{{\tiny Two layers Arch. (Data \& UI)}}
+		\label{fig:ch_1_data_abstraction_1}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.475\textwidth}
+%		\centering 
+		\scalebox{0.5}{
+			\smartdiagram[descriptive diagram]{
+				{App, Application UI},
+				{BL, CSV Data Loader (Reporting)},
+				{FS, CSV Data}}
+			}
+		\vspace{-.6\baselineskip}
+		\caption{{\tiny Three layers Arch. (Data \& BL \& UI)}}
+		\label{fig:ch_1_data_abstraction_2}
+	\end{subfigure}
+%	\vskip\baselineskip
+	\begin{subfigure}[t]{0.475\textwidth}   
+%		\centering 
+		\scalebox{0.5}
+		{
+			\smartdiagram[descriptive diagram]{
+			{App, Application UI},
+			{BL, (JSON/CSV) Data Loader (Reporting)},
+			{FS, JSON Data}}
+		}
+		\vspace{-.6\baselineskip}
+		\caption{{\tiny Three layers Arch. (Data (multi-sources) \& BL \& UI)}}
+		\label{fig:ch_1_data_abstraction_3}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.475\textwidth}   
+%		\centering 
+		\scalebox{0.5}
+		{
+			\smartdiagram[descriptive diagram]{
+				{App, Application UI},
+				{DBMS-H, Ready prepared layer for each department (Reporting)},
+				{DBMS-M, Logical part to prepare for the data structure and the relation between the data},
+				{DBMS-L, Storage and Data format related stuff + Data indexing and searching algorithms}}
+		}
+		\vspace{-.6\baselineskip}
+		\caption{{\tiny Four layers Arch. (DB (L, M, H) \& UI)}}
+		\label{fig:ch_1_data_abstraction_4}
+	\end{subfigure}
+	\vspace{-.6\baselineskip}
+	\caption {\tiny Data Abstraction Journey} 
+	\label{fig:ch_1_data_abstraction}
+	\end{figure}
+	

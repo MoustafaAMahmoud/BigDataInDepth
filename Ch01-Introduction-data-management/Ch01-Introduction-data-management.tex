@@ -114,82 +114,7 @@ DevOps, Arch.,ETL, BI, Integration}
 \subsection{Data Abstraction}
 \begin{frame}
 	\frametitle{Motivation to Data Layers (Use Case)}	
-%	\begin{itemize}[<+->]
-%		\item You hired at a company which doesn’t have any system.
-%		\item You started to collect all the data from files into CSV file format.
-%		\item You built a system which read the data from CSV files.
-%		\item Your manager asked you to create some report which required to combine different component.
-%		\item After successfully generate this reports your manager asked you to create 100+ reports to support other departments.
-%		\item For optimization purpose you changed the files from CSV into Json and update the searching mechanism into the files.         
-%	\end{itemize}
-%	
-	
-    \begin{figure}[H]
-    	\smartdiagramset{
-    		%descriptive items y sep = 3em,
-    		description font = \scriptsize\sffamily,
-    		description title font=\scriptsize\sffamily,
-    	}
-%	\centering
-	\begin{subfigure}[t]{0.475\textwidth}
-%		\centering
-		\scalebox{0.5}{
-		\smartdiagram[descriptive diagram]{
-			{App, Application UI},
-			{FS, CSV Data}}
-		}
-		\vspace{-.6\baselineskip}
-		\caption{{\tiny Two layers Arch. (Data \& UI)}}
-		\label{fig:ch_1_data_abstraction_1}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[t]{0.475\textwidth}
-%		\centering 
-		\scalebox{0.5}{
-			\smartdiagram[descriptive diagram]{
-				{App, Application UI},
-				{BL, CSV Data Loader (Reporting)},
-				{FS, CSV Data}}
-			}
-		\vspace{-.6\baselineskip}
-		\caption{{\tiny Three layers Arch. (Data \& BL \& UI)}}
-		\label{fig:ch_1_data_abstraction_2}
-	\end{subfigure}
-%	\vskip\baselineskip
-	\begin{subfigure}[t]{0.475\textwidth}   
-%		\centering 
-		\scalebox{0.5}
-		{
-			\smartdiagram[descriptive diagram]{
-			{App, Application UI},
-			{BL, (JSON/CSV) Data Loader (Reporting)},
-			{FS, JSON Data}}
-		}
-		\vspace{-.6\baselineskip}
-		\caption{{\tiny Three layers Arch. (Data (multi-sources) \& BL \& UI)}}
-		\label{fig:ch_1_data_abstraction_3}
-	\end{subfigure}
-	\quad
-	\begin{subfigure}[t]{0.475\textwidth}   
-%		\centering 
-		\scalebox{0.5}
-		{
-			\smartdiagram[descriptive diagram]{
-				{App, Application UI},
-				{DBMS-H, Ready prepared layer for each department (Reporting)},
-				{DBMS-M, Logical part to prepare for the data structure and the relation between the data},
-				{DBMS-L, Storage and Data format related stuff + Data indexing and searching algorithms}}
-		}
-		\vspace{-.6\baselineskip}
-		\caption{{\tiny Four layers Arch. (DB (L, M, H) \& UI)}}
-		\label{fig:ch_1_data_abstraction_4}
-	\end{subfigure}
-	\vspace{-.6\baselineskip}
-	\caption {\tiny Data Abstraction Journey} 
-	\label{fig:ch_1_data_abstraction}
-	\end{figure}
-	
-
+	\input{./Figures/chapter-01/Fig_Motivation_DA.tex}	
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -246,32 +171,9 @@ DevOps, Arch.,ETL, BI, Integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Data Layers (Abstraction)}
-	\scalebox{0.9}{
-\begin{tikzpicture}[node distance=2cm,
-					every node/.style={fill=white, font=\sffamily}, align=center,
-					scale=0.6, 
-					every node/.style={transform shape}]
+	
+\input{./Figures/chapter-01/Fig_Data_Abstraction.tex}
 
-% Specification of nodes (position, etc.)
-\node (view2)             [optionalETL]              {report 2 (view)};
-\node (view1)     [optionalETL, right of=view2, xshift=3cm]          {report 1 (view)};
-\node (view3)      [optionalETL, right of=view1, xshift=3cm]   {report 3 (view)};
-\node (concept)     [required,below of=view1, yshift=-1.5cm]   {Conceptual Layer};
-\node (physical)      [optionalELK, below of=concept, yshift=-1.5cm] {Physical Interaction};
-\node (fs)      [optionalELK, below of=physical, yshift=-1cm] {FS};
-
-%\node (Appendix) [startstop, above of=Arch] {Ch.13 Appendix};     
-% Normal Path
-\draw[<->]     (view2) -- (concept);
-\draw[<->]     (view3) -- (concept);
-\draw[<->]     (view1) -- (concept);
-\draw[<->]     (concept) -- (physical);
-\draw[<->]     (fs) -- (physical);
-\draw[-]      (12,-1.5) to[out=0,in=180] (13,0)  node[right]{View Level (User View) } to[out=180,in=0] (12,1.5);
-\draw[-]      (12,-5) to[out=0,in=180] (13,-3.5) node[right]{Logical/ Conceptual Level } to[out=180,in=0]  (12,-2);
-\draw[-]      (12,-11) to[out=0,in=180] (13,-8.5) node[right]{Physical Level } to[out=180,in=0]  (12,-6);
-\end{tikzpicture}
-}
 \end{frame}
 
 %---------------------------------------------------------
@@ -1040,7 +942,7 @@ The Full picture required a DWH. However, we still need the other operational da
 \begin{wideitemize}
 	\item Why do we need the multi-temperature data management model?
 	\begin{itemize}[<+->]
-		\item Cost reduction\$\$\$\$\$\$\$ 
+		\item Cost reduction \blue{\faDollar \faDollar \faDollar \faDollar}
 		\item Performance.
 	\end{itemize}
 \end{wideitemize}
@@ -1235,13 +1137,16 @@ The Full picture required a DWH. However, we still need the other operational da
 \frametitle{Staging Layer}
 \begin{itemize}[<+->]
 	\item This layer handled by the same team who own the \blue{storage part} in most of the organizations. 
-	\item Segregation of this layer if it uses different storage type or multi-teams access this layer for a different purpose (ex: Kafka)\\ \red{\textit{\faBullhorn Kafka is not a storage layer but it could be landing layer}}.
+	\item Segregation of this layer if it uses different storage type or multi-teams access this layer for a different purpose (ex: Kafka)\\ \red{\textit{\faBullhorn Kafka is not a storage layer but it could be used as landing layer or data persistence layer}}.
 	\item All the ETL layers are working on top of this layer.
 	\item The decision of the storage type is based on the use case and the data.
 	
 \end{itemize}
 
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Data Modeling}
@@ -1333,41 +1238,159 @@ Data model is
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Data Model Design vs Implementation}
-\red{REVIEW THIS EXAMPLE}
-\begin{itemize}[<+->]
-\item You need to build a home. So, how do we design this home?
-\begin{itemize}[<+->]
-\item Determine if the home is one level or multi-level and decide man bedrooms and bathrooms for each floor. (User needs)
-\item Hire an architect to put the architecture in more detailed way for example, the size for each room, the distribution of the wireds, where the plumbing fixtures will be placed, etc. (Architecture phase)
-\item Decide the decorations, colors for each room, carpets, etc. 
-\end{itemize}
-\item What do we do for the implementation?
-\begin{itemize}[<+->]
-\item Hire a contractor to build (implement the design) the home. 
-\item This phase will implement the design but it also include some detail related to the actual way to build the tools and the material. (Physical Design)
-\end{itemize}		
-\end{itemize}
+	\begin{itemize}[<+->]
+	\item You need to build a home. So, how do we design this home?
+		\begin{itemize}[<+->]
+		\item Determine if the home is one level or multi-level and decide man bedrooms and bathrooms for each floor. (User needs)
+		\item Hire an architect to put the architecture in more detailed way for example, the size for each room, the distribution of the wireds, where the plumbing fixtures will be placed, etc. (Architecture phase)
+		\item Decide the decorations, colors for each room, carpets, etc. 
+		\end{itemize}
+	\item What do we do for the implementation?
+		\begin{itemize}[<+->]
+		\item Hire a contractor to build (implement the design) the home. 
+		\item This phase will implement the design but it also include some detail related to the actual way to build the tools and the material. (Physical Design)
+		\end{itemize}		
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Elements of Data Model}
+%https://www.guru99.com/dimensional-model-data-warehouse.html
+\begin{description}[<+->]
+	\item[Facts] are the measurements/metrics or facts from business process Ex: (Telecom industry, a measurement would be count of daily/hourly usage per customer). We could consider facts as the source of reporting for business.
+	%measure and ids when,where
+	\item[Dimensions] provide the context surrounding a business process event. In simple terms, they give who, what, where of a fact. Ex: (Telecom industry, for the fact daily usage, dimensions would be Who – (Customer id), Where (Location), What (counts of activities incoming/outgoing call) ) 
+
+	\item[Attributes] are the various characteristics of the dimension.	In the previous examples the attributes can be customer details (from customer id get the gender, age, nationality, etc..).
+	%Attributes are used to search, filter, or classify facts. Dimension Tables contain Attributes
+%	Facts include dimensions, dimensions include attributes
+\end{description}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Elements of Dimensional Data Model}
+%https://www.guru99.com/dimensional-model-data-warehouse.html
+	\begin{description}[<+->]
+		\item[Fact Table] is a primary table in a dimensional model. A Fact Table contains (Measurements/facts and	Foreign key to \textit{dimension table}). It located at the center of a star or snowflake schema and surrounded by dimensions.	
+	%	contains only ids customer, date, location ids  to get this ids go to the diem
+	%granuality for levels / agg up down
+		\item[Dimension table] contains dimensions of a fact and business reference data. They are joined to fact table via a foreign key. Dimension tables are de-normalized tables. It connected to the fact table and located at the edges of the star or snowflake schema.
+			
+	\end{description}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example of Data Model}
+
+\input{./Figures/chapter-01/Fig_FCT_DIM_Ex.tex}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Dimensions Types}
+%https://www.guru99.com/dimensional-model-data-warehouse.html
+%The dimension can also contain one or more hierarchical relationships
+%Conformed dimension موجود في أكتر من تابل 
+%customer, time, location
+
+%junk assume we have multi flags we will collect them as one id
+
+	\begin{description}[<+->]
+		\item[Conformed Dimensions]	Conformed dimensions is the very fact to which it relates. This dimension is used in more than one-star schema or Datamart.
+		\item[Outrigger Dimensions]	A dimension may have a reference to another dimension table. These secondary dimensions called outrigger dimensions. This kind of Dimensions should be used carefully.
+		\item[Shrunken Rollup Dimensions]	Shrunken Rollup dimensions are a subdivision of rows and columns of a base dimension. These kinds of dimensions are useful for developing aggregated fact tables.
+		\item[Dimension-to-Dimension] Table Joins	Dimensions may have references to other dimensions. However, these relationships can be modeled with outrigger dimensions.
+	\end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Dimensions Types}
+%https://www.guru99.com/dimensional-model-data-warehouse.html
+\begin{description}[<+->]
+	\item[Role-Playing Dimensions]	A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
+	\item[Junk Dimensions]	It a collection of random transactional codes, flags or text attributes. It may not logically belong to any specific dimension.
+	\item[Degenerate Dimensions]	Degenerate dimension is without corresponding dimension. It is used in the transaction and collecting snapshot fact tables. This kind of dimension does not have its dimension as it is derived from the fact table.
+	\item[Swappable Dimensions]	They are used when the same fact table is paired with different versions of the same dimension.
+	\item[Step Dimensions]	Sequential processes, like web page events, mostly have a separate row in a fact table for every step in a process. It tells where the specific step should be used in the overall session.
+
+\end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Dimensions Types}
+%https://www.guru99.com/dimensional-model-data-warehouse.html
+\begin{description}[<+->]
+	\item[Slowly changing Dimensions]	A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
+			%slowly changing dim assume customer was located in dubai then he changed his location
+	% We don't care about the change. just update the latest
+	% we can have two version new, old.
+	% we can have sergeate key. 
+	%with start and end data.
+	%start and end is null
+	%join with sergate key
+	
+\end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Data Model Design Principle }
-\red{Decide what is the limitation of this part what is in and what is out to be part of the appendix}\\
-%http://infogoal.com/datawarehousing/data_modeling_basics.htm
-%https://www.guru99.com/star-snowflake-data-warehousing.html#3
-- facts, start schema, dimensional modeling techniques.\\
-- Fact Tables and Dimension Tables. \\
+\frametitle{Schema Types (Star vs Snowflake)}
 - Multidimensional Model(Star, Snowflake, and Galaxy Schema).\\
-- Support Roll Up, Drill Down, and Pivot Analysis\\
-- Time Phased / Temporal Data \\
-- Operational Logical and Physical Data Models\\
-- Normalization and Denormalization\\
-- Model Granularity : Level of Detail\\
-
+	%	  primary dim & secondary 2 level only
+%snawflake multi dim nationality for example egypt
+%it will scan the nationality first and it will be fortign key with forign key inner join
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Roll Up, Drill Down, and Pivot Analysis}
+
+- Support Roll Up, Drill Down, and Pivot Analysis\\
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Normalization and De-normalization}
+
+- Normalization and De-normalization\\
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Model Granularity}
+
+- Model Granularity : Level of Detail\\
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Inmon vs Kimball Design Approach }
+
+Inmon vs Kimball Design Approach
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{ETL Process}
 
