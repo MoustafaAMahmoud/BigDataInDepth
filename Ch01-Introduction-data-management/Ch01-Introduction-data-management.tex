@@ -991,13 +991,151 @@ The Full picture required a DWH. However, we still need the other operational da
 \end{table}
 \end{frame}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Hot vs Cold Storage}
-\begin{frame}
+\begin{frame}[c]
 \frametitle{Hot vs Cold Storage}
-SOME DETAILS HERE
+
+%\begin{center}
+\includegraphics[width=\textheight]{./Figures/chapter-01/WWH-Thumb.png}
+
+%\end{center}
+
+
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{What is multi-temperature Storage?}
+
+\begin{wideitemize}
+	\item (Most of) DWH solution design has multi-temperature data management model.
+	\item What is \textbf{multi-temperature} data management model?
+	\begin{itemize}[<+->]
+		\item It is a data classification design which allows us to have the following characteristics 
+			\begin{itemize}[<+->] 
+				\item Fast (high performance) access on the frequently data (Hot data).%(data change rate or with action needed)
+				\item good performance access on less-frequently data (warm data).
+				\item Availability to access rarely accessed data (cold data).
+			\end{itemize}
+ 		\item Who classify the data temperature? 
+ 		\begin{itemize}[<+->] 
+ 			\item Based on the business needs.
+ 			\item Demand team, product owners, or data architect.
+ 		\end{itemize}
+ 		
+	\end{itemize}
+
+\end{wideitemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Why do we need it?}
+
+\begin{wideitemize}
+	\item Why do we need the multi-temperature data management model?
+	\begin{itemize}[<+->]
+		\item Cost reduction\$\$\$\$\$\$\$ 
+		\item Performance.
+	\end{itemize}
+\end{wideitemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{How to implement?}
+
+\begin{wideitemize}
+	\item How to implement the multi-temperature data management model?
+	\begin{itemize}[<+->]
+		\item Before implementation we need to know the following:
+			\begin{itemize}[<+->]
+				\item Frequency of access
+				\item data change rate.
+			\end{itemize}
+		\item Identify which storage type will be suitable for our project
+			\begin{itemize}[<+->]
+				\item Hot data stored on fast storage.
+				\item warm data (usual) stored on slightly slower storage.
+				\item cold data stored on the slowest storage.
+			\end{itemize}
+		\item Design consideration to make the retention easily
+		\begin{itemize}[<+->]
+			\item Table partitions need to be split based on the retention policy plan ex: (date). 
+			\item Summary tables (agg) need to be maintained to reduce the need for access the cold storage.
+			\item Backup, Recovery, and Rollback plans need to be automated and prepared/tested before moving the data.
+		\end{itemize}
+	\end{itemize}
+\end{wideitemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{How to implement? Cont.}
+\begin{wideitemize}
+		\item Implementation (summary):
+		\begin{itemize}[<+->]
+			\item There are lots of tools for this purpose as follows:
+			\item Enterprise examples:
+			\begin{itemize}
+				\item IBM InfoSphere
+				\item Informatica PowerCenter
+				\item Oracle Data Service Integrator
+				\item Talend Data Integration				
+				\item Microsoft SQL				
+			\end{itemize}
+		\end{itemize}
+		%Cost,Security
+\end{wideitemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{How to implement? Cont.}
+\begin{wideitemize}
+	\item Implementation (summary):
+	\begin{itemize}[<+->]
+		\item There are lots of tools for this purpose as follows:
+		\item Open source examples:
+		\begin{itemize}
+			\item Apache NiFi*
+			\item CloverETL
+			\item Pentaho
+			\item Talend Open Studio*
+		\end{itemize}			
+	\end{itemize}
+	%Cost,Security
+\end{wideitemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{How to implement? Cont.}
+\begin{wideitemize}
+	\item Implementation (summary):
+	\begin{itemize}[<+->]
+		\item There are lots of tools for this purpose as follows:
+		\item Cloud tools examples:
+		\begin{itemize}
+			\item AWS Migration Services.
+			\item Azure Migration Tools.
+			\item Google Migration Services/Velostrata.
+		\end{itemize}			
+		\item Some cloud provider offers physical data movement services.
+		\item How to choose the most suitable storage type for your project/organization?
+	\end{itemize}
+	%Cost,Security
+\end{wideitemize}
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{DWH Architecture}
