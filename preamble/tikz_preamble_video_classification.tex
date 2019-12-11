@@ -1,0 +1,48 @@
+\pgfkeys{/Videos/.is family, /Videos,
+  bus/.initial=1,% by default the business row has a marker
+  dev/.initial=1,% by default the developer row has a marker
+  devops/.initial=1,% by default the developerOps row has a marker
+  colour/.initial=green,% the colour of the marker
+  column/.initial=3,% the column of the marker
+  mark/.code 2 args={% place a marker ONLY if #1=column and \VIDEO{#2}=1
+    \ifnum#1=\VIDEO{column}%
+      \ifnum1=\VIDEO{#2}%
+        \tikz\draw[\VIDEO{colour},fill=\VIDEO{colour}] (0,0) circle (.5ex);%
+      \fi%
+    \fi%
+  },
+  nobus/.style={bus=0},% turn off marker for business
+  nodev/.style={dev=0},% turn off marker for developer
+  nodevops/.style={devops=0},% turn off marker for devoperOps
+}
+% shortcut to access key values
+\newcommand\VIDEO[1]{\pgfkeysvalueof{/Videos/#1}}
+
+% Usage: \VideoClassification[optional key values]
+\newcommand\VideoClassification[1][]{%
+	\begin{frame}
+		\frametitle{Videos classification}
+		
+  \begin{table}[t]
+    \pgfkeys{/Videos, #1}% key changes local to group (and macro)
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just listening} \\
+        \hline
+        \thead{Developer}& \pgfkeys{/Videos/mark={1}{dev}}   & \pgfkeys{/Videos/mark={2}{dev}}   & \pgfkeys{/Videos/mark={3}{dev}} \\
+        \hline
+        \thead{DevOps}   & \pgfkeys{/Videos/mark={1}{devops}}& \pgfkeys{/Videos/mark={2}{devops}}& \pgfkeys{/Videos/mark={3}{devops}} \\
+        \hline
+        \thead{Business} & \pgfkeys{/Videos/mark={1}{bus}}   & \pgfkeys{/Videos/mark={2}{bus}}   & \pgfkeys{/Videos/mark={3}{bus}} \\
+        \hline
+    \end{tabular}
+	\centering
+	\vspace{.6\baselineskip}
+	\caption{Video classification\\ The green circle \greencircled \space means short video. \\
+		The blue circle \bluecircled \space  means medium video.\\ 
+		The red circle \redcircled \space  means long video
+	}
+  \end{table}
+\end{frame}
+}

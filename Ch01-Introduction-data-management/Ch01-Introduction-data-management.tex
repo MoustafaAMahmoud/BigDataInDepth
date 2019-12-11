@@ -1,25 +1,9 @@
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
+%\VideoClassification[column=3,colour=blue,nodev, nodevops,nobus]
+%\VideoClassification[column=3,colour=blue,nodev, nodevops,nobus]
+%\VideoClassification[nodev, column=2]
 
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &   &   & \bluecircled\\
-		\hline
-		\thead{DevOps}  &  &  &  \bluecircled\\
-		\hline
-		\thead{Business} &  &  & \bluecircled \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
+\VideoClassification[column=3, colour=blue]
 
 %---------------------------------------------------------
 
@@ -88,28 +72,7 @@ DevOps, Arch.,ETL, BI, Integration}
 \end{frame}
 
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &   &  \bluecircled & \\
-		\hline
-		\thead{DevOps}  &  & \bluecircled &  \\
-		\hline
-		\thead{Business} &  & \bluecircled & \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
-
+\VideoClassification[column=2, colour=blue]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Data Abstraction}
 \begin{frame}
@@ -170,34 +133,11 @@ DevOps, Arch.,ETL, BI, Integration}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Data Layers (Abstraction)}
-	
+\frametitle{Data Layers (Abstraction)}
 \input{./Figures/chapter-01/Fig_Data_Abstraction.tex}
-
 \end{frame}
-
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &   &   & \greencircled \\
-		\hline
-		\thead{DevOps}  &  &  & \greencircled  \\
-		\hline
-		\thead{Business} &  &  & \greencircled \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
+\VideoClassification
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Physical level}
@@ -238,27 +178,8 @@ DevOps, Arch.,ETL, BI, Integration}
 	
 \end{frame}
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &   &   & \greencircled \\
-		\hline
-		\thead{DevOps}  &  &  & \greencircled  \\
-		\hline
-		\thead{Business} &  &  & \greencircled \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
-
+%---------------------------------------------------------
+\VideoClassification
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Logical level}
@@ -296,27 +217,8 @@ DevOps, Arch.,ETL, BI, Integration}
 
 
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &   &   & \greencircled \\
-		\hline
-		\thead{DevOps}  &  &  & \greencircled  \\
-		\hline
-		\thead{Business} &  &  & \greencircled \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
+%---------------------------------------------------------
+\VideoClassification
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{View level}
@@ -347,27 +249,8 @@ DevOps, Arch.,ETL, BI, Integration}
 \end{frame}
 
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &   & \bluecircled  &  \\
-		\hline
-		\thead{DevOps}  &  & \bluecircled &   \\
-		\hline
-		\thead{Business} &  &\bluecircled  &  \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
+%---------------------------------------------------------
+\VideoClassification[column=2, colour=blue]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[c]
 	\frametitle{Data solution thinking (Summary) }
@@ -427,27 +310,7 @@ DevOps, Arch.,ETL, BI, Integration}
   \end{itemize}
  \end{frame}
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &   &   & \greencircled \\
-		\hline
-		\thead{DevOps}  &  &  & \greencircled  \\
-		\hline
-		\thead{Business} &  &  & \greencircled \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
-
+\VideoClassification[column=2, colour=blue]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Introduction to DWH}
 
@@ -517,27 +380,7 @@ Other names for the Data warehouse system:
 \end{frame}
 
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &  & \greencircled &  \\
-		\hline
-		\thead{DevOps}    &  & \greencircled &  \\
-		\hline
-		\thead{Business}  &  & \greencircled &  \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
-
+\VideoClassification[column=2]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Differences Between DWH and Operational DB}
 \begin{frame}
@@ -571,28 +414,7 @@ Other names for the Data warehouse system:
 \end{frame}
 
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &  & \bluecircled &  \\
-		\hline
-		\thead{DevOps}    &  & \bluecircled &  \\
-		\hline
-		\thead{Business}  &  & \bluecircled &  \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
-
-
+\VideoClassification[column=2, colour=blue]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -655,30 +477,7 @@ Other names for the Data warehouse system:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &  & \bluecircled &  \\
-		\hline
-		\thead{DevOps}    &  & \bluecircled &  \\
-		\hline
-		\thead{Business}  &  & \bluecircled &  \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
-
-
-
-
+\VideoClassification[column=2, colour=blue]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Types of DWH}
 \begin{frame}
@@ -827,29 +626,7 @@ The Full picture required a DWH. However, we still need the other operational da
 
 
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &  & \bluecircled &  \\
-		\hline
-		\thead{DevOps}    &  & \bluecircled &  \\
-		\hline
-		\thead{Business}  &  & \bluecircled &  \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
-
-
-
+\VideoClassification[column=2, colour=blue]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{DWH Characteristics}
 \begin{frame}
@@ -872,28 +649,7 @@ The Full picture required a DWH. However, we still need the other operational da
 \end{frame}
 
 %---------------------------------------------------------
-\begin{frame}
-\frametitle{Videos classification}
-\begin{table}[t]
-	\centering	
-	\begin{tabular}{|c |c | c | c|}
-		\hline
-		\thead{Watching Method \\ / Audience}  & \thead{Computer} & \thead{Mobile/Tablet} &  \thead{Just 	listening} \\
-		\hline
-		\thead{Developer} &  & \bluecircled &  \\
-		\hline
-		\thead{DevOps}    &  & \bluecircled &  \\
-		\hline
-		\thead{Business}  &  & \bluecircled &  \\
-		\hline%Watching Method \newline Audience
-	\end{tabular}
-	\centering
-	\vspace{.6\baselineskip}
-	\caption{Video classification\\ The green circle \greencircled \space means short video. \\The blue circle \bluecircled \space  means medium video.\\ The red circle \redcircled \space  means long video}\label{Tab:Data_Representation_Matrix}
-\end{table}
-\end{frame}
-
-
+\VideoClassification[column=2, colour=blue]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Hot vs Cold Storage}
@@ -1283,8 +1039,6 @@ Data model is
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Example of Data Model}
 
@@ -1297,13 +1051,15 @@ Data model is
 \frametitle{Dimensions Types}
 %https://www.guru99.com/dimensional-model-data-warehouse.html
 %The dimension can also contain one or more hierarchical relationships
-%Conformed dimension موجود في أكتر من تابل 
+
 %customer, time, location
 
 %junk assume we have multi flags we will collect them as one id
 
 	\begin{description}[<+->]
-		\item[Conformed Dimensions]	Conformed dimensions is the very fact to which it relates. This dimension is used in more than one-star schema or Datamart.
+		%Conformed dimension موجود في أكتر من تابل 
+		\item[Conformed Dimensions]	the dimension which is identical and has the same meaning across many fact tables which it relates and used in different areas of the warehouse. Ex: if we have date column across many facts we could use date as key in all table. So, it will be unified format. Another example if we have product name which same product could vary between systems ex: (upper/lower) we can create dimension table for the product details and use product id unified across fact tables. 
+		
 		\item[Outrigger Dimensions]	A dimension may have a reference to another dimension table. These secondary dimensions called outrigger dimensions. This kind of Dimensions should be used carefully.
 		\item[Shrunken Rollup Dimensions]	Shrunken Rollup dimensions are a subdivision of rows and columns of a base dimension. These kinds of dimensions are useful for developing aggregated fact tables.
 		\item[Dimension-to-Dimension] Table Joins	Dimensions may have references to other dimensions. However, these relationships can be modeled with outrigger dimensions.

@@ -1,3 +1,5 @@
+
+\resizebox{\columnwidth}{!}{%
 \begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.75, every node/.style={scale=0.75}]
 %https://tex.stackexchange.com/questions/133754/creating-crows-foot-style-e-r-diagrams-rather-than-chen-style-ones
 \matrix  [entity=Usage, entity anchor=Usage-id]  {
@@ -7,6 +9,7 @@
 		cal-id (FK), 
 		loc-id (FK),
 		promo-id (FK),
+		date-id (FK),
 		TotalInCalls (agg),
 		TotalOutCalls (agg),
 		TotalAmount (agg)
@@ -60,11 +63,10 @@
 	}
 };
 
-\draw [one to many] (Usage-id)  to (CustomerProfile-id);
-\draw [one to many] (Usage-id)  to (Calendar-id);
-\draw [one to many] (Usage-id)  to (CellLookup-id);
-\draw [one to many] (Usage-id)  to (Promotion-id);
-
-
+\draw [one to one] (Usage-id)  to (CustomerProfile-id);
+\draw [one to one] (Usage-id)  to (Calendar-id);
+\draw [one to one] (Usage-id)  to (CellLookup-id);
+\draw [one to one] (Usage-id)  to (Promotion-id);
 
 \end{tikzpicture}
+}
