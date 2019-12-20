@@ -3,626 +3,626 @@
 %\VideoClassification[column=3,colour=blue,nodev, nodevops,nobus]
 %\VideoClassification[nodev, column=2]
 
-\VideoClassification[column=3, colour=blue]
-
-%---------------------------------------------------------
-
-
-\section{Introduction To Data Management and Data Warehouse}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Chapter Objectives}
-
-\begin{itemize}[<+->]
-	\item Be familiar with data management life-cycle.
-	\item Understand the data abstraction and the data layer.
-	\item Motivation to DWH.
-	\item What are the different types of DWH?
-	\item Usecases for DWH. How is it different from the operational DB?
-	\item Explain the data Encoding and Formats.
-	\item Show what the challenges of building a DWH are?
-	\item What are the data modeling and its design?
-\end{itemize}
-%https://opentextbc.ca/dbdesign01/chapter/chapter-5-data-modelling/
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Data Management}
-
-\begin{frame}
-\frametitle{Data Management}
-
-\begin{itemize}[<+->]
-\item Data are a product.
-\item Data product has a life-cycle as following (simplified):
-\begin{itemize}[<+->]
-	\item \textbf{Question}, Idea, or service.
-	\item \textbf{Identify} the source of information and the data type.
-	\item \textbf{Document} all details regarding the data including quality, security, efficiency, and access (consideration during the cycle).
-	\item Delivery automation (Tools and Process). AKA \textbf{DevOps} cycle.
-	\item Data Architecture (model design and rules).
-	\item \textbf{Extraction}, \textbf{Transformation}, and \textbf{Loading} Process.
-	\item Business Intelligence (\textbf{BI}) or data discovery (continues process).
-	\item \textbf{Integration} and publishing.
-	\item Data retention or \textbf{archiving} process ex: (Hot or Cold storage).
-\end{itemize}
-\end{itemize}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Data Management Life-Cycle}
-\scalebox{0.9}{
-
-\smartdiagramset{circular distance=3.5cm,
-font=\scriptsize,
-%				text width=1cm,
-module minimum width=2cm,
-circular distance =3.4cm,
-module minimum height=.1cm,
-arrow tip=to}
-\smartdiagram[circular diagram]{Archiving,Idea, Identify, Document, 				
-DevOps, Arch.,ETL, BI, Integration}
-}
-\end{frame}
-
-%---------------------------------------------------------
-\VideoClassification[column=2, colour=blue]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Data Abstraction}
-\begin{frame}
-	\frametitle{Motivation to Data Layers (Use Case)}	
-	\input{./Figures/chapter-01/Fig_Motivation_DA.tex}	
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Motivation to Data Layers (Solution Thinking)}
-	
-	\begin{itemize}[<+->]
-		\item How can we think about a data solution or challenges in the data products?
-		\begin{itemize}[<+->]
-			\item Requirements analysis.
-			\item Identify the problem (challenges).
-			\item Think about how to overcome the challenges.
-			\item Ask your self the following questions:
-			\begin{itemize}[<+->]
-				\item Can we solve the problem using the current data structure by adding new features?
-				\item What if we enhance/change the data structure or modeling?
-				\item Could it help if we change the backend engine (ex: DBMS system)?
-			\end{itemize}			
-		\end{itemize}
-		\item To answer these questions you need to understand the \textbf{\underline{data layers}}.
-	\end{itemize}
-	
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Data Layers (Abstraction)}
-	\begin{itemize}[<+->]
-		\item Any data product (database) contains multi-layers.
-		\item Each layer responsible for different tasks and operations.
-		\item Each layer interacts with (hardware or software or mixed).
-		\item Eliminate the complexity of data interactions; not all internal processes are shared or available for the user.
-		\item The developer for each layer hides irrelevant internal details from the developer (users). 
-		\item The process of \textbf{\underline{\blue{hiding}}} irrelevant details from the developer (user) is called data \textbf{\underline{\blue{abstraction}}}.
-	\end{itemize}	
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Data Layers (Abstraction)}
-	\begin{definition}
-		\textbf{Data Abstraction and Data Independence}: DBMS comprises complex data-structures. To make the system efficient in terms of retrieval of data and reduce complexity in terms of usability of users, developers use abstraction i.e., hide irrelevant details from the users. This approach simplifies database design.
-		%https://www.geeksforgeeks.org/data-abstraction-and-data-independence/
-	\end{definition}	
-	%Capacity of changing in one level without affecting the other levels. Copied but forget from where!!!
-	\begin{itemize}[<+->]
-		\item There are 3 levels of data abstraction.
-		\begin{itemize}[<+->]
-			\item Physical Level
-			\item Logical/Conceptual Level.
-			\item View Level.
-		\end{itemize}
-	\end{itemize}	
-	%TOP TIER, MIDDLE TIER, BOTTOM TIER
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Data Layers (Abstraction)}
-\input{./Figures/chapter-01/Fig_Data_Abstraction.tex}
-\end{frame}
-%---------------------------------------------------------
-\VideoClassification
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Physical level}
-	\begin{itemize}[<+->]
-		\item \textbf{Physical level (Internal)}: 
-		\begin{itemize}[<+->]
-			\item Lowest level.
-			\item Describes \textbf{\underline{\blue{how}}} data is stored.
-			\item Describes the data structure.
-			\item It allows you to modify the lowest level (Physical part) without any change in the logical schema. These change could be
-				\begin{itemize}[<+->]				
-					\item Using a new storage device
-					\item Change the structure of the data used for storage
-					\item Change the file type or use a different storage structure
-					\item Chang the access method
-					\item Modify indexes
-					\item Change the compression algorithm or hashing technique.
-			\end{itemize}									
-		\end{itemize}		
-		%https://beginnersbook.com/2015/04/levels-of-abstraction-in-dbms/		
-		%https://www.guru99.com/dbms-data-independence.html
-	\end{itemize}	
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Physical level}
-	\begin{example}		
-		\begin{itemize}[<+->]
-			\item Database contains product information.
-			\item Physical layer describes
-			\begin{itemize}[<+->]
-				\item Storage mechanism and the blocks (bytes, gigabytes, terabytes, etc.).
-				\item The amount of memory used.
-				\item Usually this layer abstracted from the programmers.
-			\end{itemize}
-		\end{itemize}
-	\end{example}
-	
-\end{frame}
-%---------------------------------------------------------
-%---------------------------------------------------------
-\VideoClassification
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Logical level}
-	\begin{itemize}[<+->]
-		\item \textbf{Logical level (Conceptual)}: 
-		\begin{itemize}[<+->]
-			\item Intermediate level
-			\item Describes \textbf{\underline{\blue{what}}} data is stored
-			\item Describes what the relationship between the stored data is?
-			\item It allows you to change the logical view without altering the external view, API, or programs. These change could be
-			\begin{itemize}[<+->]
-				\item Add a new table
-				\item Change the records merge or delete without affecting the running applications
-				\item Change attribute (Add,delete) to the existing table
-			\end{itemize}									
-		\end{itemize}		
-	\end{itemize}	 
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Logical level}
-	\begin{example}
-		\begin{itemize}[<+->]
-			\item Database contains product information.
-			\item Logical Layer describes
-			\begin{itemize}[<+->]
-				\item The product fields and their data types
-				\item How this product interact with other entities in the database
-				\item The programmers' design this level based on business knowledge and the requirements
-			\end{itemize}
-		\end{itemize}
-	\end{example}
-	
-\end{frame}
-
-
-%---------------------------------------------------------
-%---------------------------------------------------------
-\VideoClassification
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{View level}
-	\begin{itemize}[<+->]
-		\item \textbf{View level (External)}: 
-		\begin{itemize}[<+->]
-			\item Highest level.
-			\item \textbf{\underline{\blue{View}}} of the data stored? 
-			\item Designed for a category of users
-			\item The final interface for the user
-			\item Extended or hidden based on the user's role
-			\item Not all the views is extended to all users, and there is authentication based on the category
-		\end{itemize}		
-	\end{itemize}	
-	
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{View level}
-	\begin{example}
-		\begin{itemize}[<+->]
-			\item The database contains product information
-			\item It could be designed to show the sales of the product in a specific region
-			\item We might hide information about some products based on the teams or users
-		\end{itemize}
-	\end{example}
-	
-\end{frame}
-
-%---------------------------------------------------------
-%---------------------------------------------------------
-\VideoClassification[column=2, colour=blue]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[c]
-	\frametitle{Data solution thinking (Summary) }
-	% !!!!!!!!!!!!!! We need to mention that this slide is just an overview there will be a detailed one later
-        \begin{center}
-			Let's answer our previous question. How can we solve data challenges?
-        \end{center}
-    \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\begin{frame}
-	\frametitle{Data solution thinking (Summary) }
-	\begin{itemize}[<+->]
-        \item Let's split the problem based on the data layers.
-          \begin{itemize}[<+->]
-          \item View layer
-            \begin{itemize}[<+->]
-            \item When we need to add/remove/create new reports, it is usually a view layer.
-            \item We don't need to change the logical or physical layer to support the view layer.
-          \end{itemize}
-        \end{itemize}
-       \end{itemize}
- \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\begin{frame}
-\frametitle{Data solution thinking (Summary) }
-	\begin{itemize}[<+->]
-        \item Let's split the problem based on the data layers.
-          \begin{itemize}[<+->]
-           \item Logical Layer
-           \begin{itemize}[<+->]
-             \item When you have missing sources into your logical layer, and you need to add this source and its structure.
-             \item There is a performance issue in the existing reports, and you need to change the model. For example, reduce the join by creating a new join table (\textit{materialized view}).
-             \item Update the data type or the existing relation, which could help to fix some data or performance issues.
-            \end{itemize}
-           \end{itemize}
-        \end{itemize}
- \end{frame}
-
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\begin{frame}
-  \frametitle{Data solution thinking (Summary) }
-  \begin{itemize}[<+->]
-  \item Let's split the problem based on the data layers.
-    \begin{itemize}[<+->]
-    \item Physical Layer
-      \begin{itemize}[<+->]
-      \item When our problem is hard or impossible to fix by optimizing the query (view)/ logical layer, it is time for physical change.
-      \item If we need to change your storage/compression/structure/access technique.
-      \item If we need to change the data orientation structure from row to column or key-value storage, It is time to change the physical layer.
-      \end{itemize}
-    \end{itemize}
-  \end{itemize}
- \end{frame}
-%---------------------------------------------------------
-\VideoClassification[column=2, colour=blue]
+%\VideoClassification[column=3, colour=blue]
+%
+%%---------------------------------------------------------
+%
+%
+%\section{Introduction To Data Management and Data Warehouse}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Chapter Objectives}
+%
+%\begin{itemize}[<+->]
+%	\item Be familiar with data management life-cycle.
+%	\item Understand the data abstraction and the data layer.
+%	\item Motivation to DWH.
+%	\item What are the different types of DWH?
+%	\item Usecases for DWH. How is it different from the operational DB?
+%	\item Explain the data Encoding and Formats.
+%	\item Show what the challenges of building a DWH are?
+%	\item What are the data modeling and its design?
+%\end{itemize}
+%%https://opentextbc.ca/dbdesign01/chapter/chapter-5-data-modelling/
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\subsection{Data Management}
+%
+%\begin{frame}
+%\frametitle{Data Management}
+%
+%\begin{itemize}[<+->]
+%\item Data are a product.
+%\item Data product has a life-cycle as following (simplified):
+%\begin{itemize}[<+->]
+%	\item \textbf{Question}, Idea, or service.
+%	\item \textbf{Identify} the source of information and the data type.
+%	\item \textbf{Document} all details regarding the data including quality, security, efficiency, and access (consideration during the cycle).
+%	\item Delivery automation (Tools and Process). AKA \textbf{DevOps} cycle.
+%	\item Data Architecture (model design and rules).
+%	\item \textbf{Extraction}, \textbf{Transformation}, and \textbf{Loading} Process.
+%	\item Business Intelligence (\textbf{BI}) or data discovery (continues process).
+%	\item \textbf{Integration} and publishing.
+%	\item Data retention or \textbf{archiving} process ex: (Hot or Cold storage).
+%\end{itemize}
+%\end{itemize}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Data Management Life-Cycle}
+%\scalebox{0.9}{
+%
+%\smartdiagramset{circular distance=3.5cm,
+%font=\scriptsize,
+%%				text width=1cm,
+%module minimum width=2cm,
+%circular distance =3.4cm,
+%module minimum height=.1cm,
+%arrow tip=to}
+%\smartdiagram[circular diagram]{Archiving,Idea, Identify, Document, 				
+%DevOps, Arch.,ETL, BI, Integration}
+%}
+%\end{frame}
+%
+%%---------------------------------------------------------
+%\VideoClassification[column=2, colour=blue]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Introduction to DWH}
-
-\subsubsection{Motivation to the Data Warehouse (DWH)}
-\begin{frame}
-\frametitle{Motivation to the Data Warehouse (DWH)}
-	\begin{itemize}[<+->]
-		\item Data could be a product for some companies.
-		\item It could be decision support for other products or businesses.
-		\item It could be reporting the results after passing the data life-cycle from storage (Database).
-		\item Some challenges are facing the people who work on data management backend:
-			\begin{itemize}[<+->]
-				\item Performance,
-				\item Integration,
-				\item and Applying analytical functions. %Moving average
-			\end{itemize}
-		\item Vendors who are working on solving the above challenges are creating their product of DWH. Their ultimate goal is to optimize the above points.
-	\end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[c]
-\frametitle{Motivation to the Data Warehouse (DWH)}
-
-\begin{definition}[What is Data Warehousing?] A DWH is a technique for collecting and managing data from varied sources to \textbf{provide meaningful business insights}. It is a blend of technologies and components which aids the strategic use of data.%\footnotemark
-\end{definition}
-
-%REF
-Inmon Bill gave the real concept. He is considered the father of the DWH. He had written about a variety of topics for building, usage, and maintenance of the warehouse \& the Corporate Information Factory
-
-%\footnotetext{The definition mentioned in this slides copied from  \href{https://www.guru99.com/data-warehousing.html\#2}{guru99.com} }
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Motivation to the Data Warehouse (DWH)}
-
-\begin{itemize}[<+->]
-	\item The DWH is not a product but an environment.
-	\item It is a process of transforming data into information and make it available to users in a \textbf{timely manner} to make a difference.
-	\item It is an architectural construct of an information system that provides users with current and historical decision support information which is difficult to access or present in the traditional operational data store.
-	\item The DWH is the core of the BI system built for data analysis and reporting.
-\end{itemize}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Motivation to the Data Warehouse}
-
-Other names for the Data warehouse system:
-
-\begin{wideitemize}
-\item Decision Support System (DSS).
-\item Business Intelligence Solution.
-\item Executive Information System.
-\item Management Information System.
-\item Analytic Application.
-\item Data Warehouse.
-
-\end{wideitemize}
-
-
-\end{frame}
-
-%---------------------------------------------------------
-\VideoClassification[column=2]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Differences Between DWH and Operational DB}
-\begin{frame}
-	\frametitle{DWH vs Operational databases}
-	
-	
-	\begin{table}[t]
-		\centering	
-		\resizebox{\columnwidth}{!}{%
-			
-			%		\centering
-			\begin{tabular}{|c | c | c|}
-				\hline
-				\textbf{Metric}  & \textbf{Transactions DB}& \textbf{DWH} \\
-				\hline
-				Volume & GB/TB & TB/PB \\
-				Historical  & Short-term & Long-Term\\
-				rows & <1000M &  1000M>\\
-				Orientation & Product & Subject or multi products\\
-				Business Units & Product team & Multi organizational units\\
-				Normalization & Normalized %due to storage and performance limitation and its design
-				&  Not required (De-normalized in many use cases)\\
-				Data Model & Relational & Star Schema or Multi-dim\\
-				Intelligence&Reporting & Advanced reporting and Machine Learning\\
-				Use cases& Online transactions \& operations & Centeralized storage (360\textdegree)\\
-				\hline
-			\end{tabular}
-			%		\caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
-		}
-	\end{table}
-\end{frame}
-
-%---------------------------------------------------------
-\VideoClassification[column=2, colour=blue]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Transactional DB Use cases}
-\begin{figure}[ht]
-	
-	\centering
-	\includegraphics[width=\linewidth]{./Figures/chapter-01/baby-01.jpg}
-	%		\includegraphics[width=\linewidth,height=\textheight]{./Figures/chapter-01/baby-02.jpg}
-	%	\caption{}
-\end{figure}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Transactional DB Use cases}
-\begin{figure}[ht]
-
-\centering
+%\subsection{Data Abstraction}
+%\begin{frame}
+%	\frametitle{Motivation to Data Layers (Use Case)}	
+%	\input{./Figures/chapter-01/Fig_Motivation_DA.tex}	
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{Motivation to Data Layers (Solution Thinking)}
+%	
+%	\begin{itemize}[<+->]
+%		\item How can we think about a data solution or challenges in the data products?
+%		\begin{itemize}[<+->]
+%			\item Requirements analysis.
+%			\item Identify the problem (challenges).
+%			\item Think about how to overcome the challenges.
+%			\item Ask your self the following questions:
+%			\begin{itemize}[<+->]
+%				\item Can we solve the problem using the current data structure by adding new features?
+%				\item What if we enhance/change the data structure or modeling?
+%				\item Could it help if we change the backend engine (ex: DBMS system)?
+%			\end{itemize}			
+%		\end{itemize}
+%		\item To answer these questions you need to understand the \textbf{\underline{data layers}}.
+%	\end{itemize}
+%	
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{Data Layers (Abstraction)}
+%	\begin{itemize}[<+->]
+%		\item Any data product (database) contains multi-layers.
+%		\item Each layer responsible for different tasks and operations.
+%		\item Each layer interacts with (hardware or software or mixed).
+%		\item Eliminate the complexity of data interactions; not all internal processes are shared or available for the user.
+%		\item The developer for each layer hides irrelevant internal details from the developer (users). 
+%		\item The process of \textbf{\underline{\blue{hiding}}} irrelevant details from the developer (user) is called data \textbf{\underline{\blue{abstraction}}}.
+%	\end{itemize}	
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{Data Layers (Abstraction)}
+%	\begin{definition}
+%		\textbf{Data Abstraction and Data Independence}: DBMS comprises complex data-structures. To make the system efficient in terms of retrieval of data and reduce complexity in terms of usability of users, developers use abstraction i.e., hide irrelevant details from the users. This approach simplifies database design.
+%		%https://www.geeksforgeeks.org/data-abstraction-and-data-independence/
+%	\end{definition}	
+%	%Capacity of changing in one level without affecting the other levels. Copied but forget from where!!!
+%	\begin{itemize}[<+->]
+%		\item There are 3 levels of data abstraction.
+%		\begin{itemize}[<+->]
+%			\item Physical Level
+%			\item Logical/Conceptual Level.
+%			\item View Level.
+%		\end{itemize}
+%	\end{itemize}	
+%	%TOP TIER, MIDDLE TIER, BOTTOM TIER
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Data Layers (Abstraction)}
+%\input{./Figures/chapter-01/Fig_Data_Abstraction.tex}
+%\end{frame}
+%%---------------------------------------------------------
+%\VideoClassification
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{Physical level}
+%	\begin{itemize}[<+->]
+%		\item \textbf{Physical level (Internal)}: 
+%		\begin{itemize}[<+->]
+%			\item Lowest level.
+%			\item Describes \textbf{\underline{\blue{how}}} data is stored.
+%			\item Describes the data structure.
+%			\item It allows you to modify the lowest level (Physical part) without any change in the logical schema. These change could be
+%				\begin{itemize}[<+->]				
+%					\item Using a new storage device
+%					\item Change the structure of the data used for storage
+%					\item Change the file type or use a different storage structure
+%					\item Chang the access method
+%					\item Modify indexes
+%					\item Change the compression algorithm or hashing technique.
+%			\end{itemize}									
+%		\end{itemize}		
+%		%https://beginnersbook.com/2015/04/levels-of-abstraction-in-dbms/		
+%		%https://www.guru99.com/dbms-data-independence.html
+%	\end{itemize}	
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{Physical level}
+%	\begin{example}		
+%		\begin{itemize}[<+->]
+%			\item Database contains product information.
+%			\item Physical layer describes
+%			\begin{itemize}[<+->]
+%				\item Storage mechanism and the blocks (bytes, gigabytes, terabytes, etc.).
+%				\item The amount of memory used.
+%				\item Usually this layer abstracted from the programmers.
+%			\end{itemize}
+%		\end{itemize}
+%	\end{example}
+%	
+%\end{frame}
+%%---------------------------------------------------------
+%%---------------------------------------------------------
+%\VideoClassification
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{Logical level}
+%	\begin{itemize}[<+->]
+%		\item \textbf{Logical level (Conceptual)}: 
+%		\begin{itemize}[<+->]
+%			\item Intermediate level
+%			\item Describes \textbf{\underline{\blue{what}}} data is stored
+%			\item Describes what the relationship between the stored data is?
+%			\item It allows you to change the logical view without altering the external view, API, or programs. These change could be
+%			\begin{itemize}[<+->]
+%				\item Add a new table
+%				\item Change the records merge or delete without affecting the running applications
+%				\item Change attribute (Add,delete) to the existing table
+%			\end{itemize}									
+%		\end{itemize}		
+%	\end{itemize}	 
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{Logical level}
+%	\begin{example}
+%		\begin{itemize}[<+->]
+%			\item Database contains product information.
+%			\item Logical Layer describes
+%			\begin{itemize}[<+->]
+%				\item The product fields and their data types
+%				\item How this product interact with other entities in the database
+%				\item The programmers' design this level based on business knowledge and the requirements
+%			\end{itemize}
+%		\end{itemize}
+%	\end{example}
+%	
+%\end{frame}
+%
+%
+%%---------------------------------------------------------
+%%---------------------------------------------------------
+%\VideoClassification
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{View level}
+%	\begin{itemize}[<+->]
+%		\item \textbf{View level (External)}: 
+%		\begin{itemize}[<+->]
+%			\item Highest level.
+%			\item \textbf{\underline{\blue{View}}} of the data stored? 
+%			\item Designed for a category of users
+%			\item The final interface for the user
+%			\item Extended or hidden based on the user's role
+%			\item Not all the views is extended to all users, and there is authentication based on the category
+%		\end{itemize}		
+%	\end{itemize}	
+%	
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{View level}
+%	\begin{example}
+%		\begin{itemize}[<+->]
+%			\item The database contains product information
+%			\item It could be designed to show the sales of the product in a specific region
+%			\item We might hide information about some products based on the teams or users
+%		\end{itemize}
+%	\end{example}
+%	
+%\end{frame}
+%
+%%---------------------------------------------------------
+%%---------------------------------------------------------
+%\VideoClassification[column=2, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[c]
+%	\frametitle{Data solution thinking (Summary) }
+%	% !!!!!!!!!!!!!! We need to mention that this slide is just an overview there will be a detailed one later
+%        \begin{center}
+%			Let's answer our previous question. How can we solve data challenges?
+%        \end{center}
+%    \end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%\begin{frame}
+%	\frametitle{Data solution thinking (Summary) }
+%	\begin{itemize}[<+->]
+%        \item Let's split the problem based on the data layers.
+%          \begin{itemize}[<+->]
+%          \item View layer
+%            \begin{itemize}[<+->]
+%            \item When we need to add/remove/create new reports, it is usually a view layer.
+%            \item We don't need to change the logical or physical layer to support the view layer.
+%          \end{itemize}
+%        \end{itemize}
+%       \end{itemize}
+% \end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%\begin{frame}
+%\frametitle{Data solution thinking (Summary) }
+%	\begin{itemize}[<+->]
+%        \item Let's split the problem based on the data layers.
+%          \begin{itemize}[<+->]
+%           \item Logical Layer
+%           \begin{itemize}[<+->]
+%             \item When you have missing sources into your logical layer, and you need to add this source and its structure.
+%             \item There is a performance issue in the existing reports, and you need to change the model. For example, reduce the join by creating a new join table (\textit{materialized view}).
+%             \item Update the data type or the existing relation, which could help to fix some data or performance issues.
+%            \end{itemize}
+%           \end{itemize}
+%        \end{itemize}
+% \end{frame}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%\begin{frame}
+%  \frametitle{Data solution thinking (Summary) }
+%  \begin{itemize}[<+->]
+%  \item Let's split the problem based on the data layers.
+%    \begin{itemize}[<+->]
+%    \item Physical Layer
+%      \begin{itemize}[<+->]
+%      \item When our problem is hard or impossible to fix by optimizing the query (view)/ logical layer, it is time for physical change.
+%      \item If we need to change your storage/compression/structure/access technique.
+%      \item If we need to change the data orientation structure from row to column or key-value storage, It is time to change the physical layer.
+%      \end{itemize}
+%    \end{itemize}
+%  \end{itemize}
+% \end{frame}
+%%---------------------------------------------------------
+%\VideoClassification[column=2, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Introduction to DWH}
+%
+%\subsubsection{Motivation to the Data Warehouse (DWH)}
+%\begin{frame}
+%\frametitle{Motivation to the Data Warehouse (DWH)}
+%	\begin{itemize}[<+->]
+%		\item Data could be a product for some companies.
+%		\item It could be decision support for other products or businesses.
+%		\item It could be reporting the results after passing the data life-cycle from storage (Database).
+%		\item Some challenges are facing the people who work on data management backend:
+%			\begin{itemize}[<+->]
+%				\item Performance,
+%				\item Integration,
+%				\item and Applying analytical functions. %Moving average
+%			\end{itemize}
+%		\item Vendors who are working on solving the above challenges are creating their product of DWH. Their ultimate goal is to optimize the above points.
+%	\end{itemize}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[c]
+%\frametitle{Motivation to the Data Warehouse (DWH)}
+%
+%\begin{definition}[What is Data Warehousing?] A DWH is a technique for collecting and managing data from varied sources to \textbf{provide meaningful business insights}. It is a blend of technologies and components which aids the strategic use of data.%\footnotemark
+%\end{definition}
+%
+%%REF
+%Inmon Bill gave the real concept. He is considered the father of the DWH. He had written about a variety of topics for building, usage, and maintenance of the warehouse \& the Corporate Information Factory
+%
+%%\footnotetext{The definition mentioned in this slides copied from  \href{https://www.guru99.com/data-warehousing.html\#2}{guru99.com} }
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Motivation to the Data Warehouse (DWH)}
+%
+%\begin{itemize}[<+->]
+%	\item The DWH is not a product but an environment.
+%	\item It is a process of transforming data into information and make it available to users in a \textbf{timely manner} to make a difference.
+%	\item It is an architectural construct of an information system that provides users with current and historical decision support information which is difficult to access or present in the traditional operational data store.
+%	\item The DWH is the core of the BI system built for data analysis and reporting.
+%\end{itemize}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Motivation to the Data Warehouse}
+%
+%Other names for the Data warehouse system:
+%
+%\begin{wideitemize}
+%\item Decision Support System (DSS).
+%\item Business Intelligence Solution.
+%\item Executive Information System.
+%\item Management Information System.
+%\item Analytic Application.
+%\item Data Warehouse.
+%
+%\end{wideitemize}
+%
+%
+%\end{frame}
+%
+%%---------------------------------------------------------
+%\VideoClassification[column=2]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsubsection{Differences Between DWH and Operational DB}
+%\begin{frame}
+%	\frametitle{DWH vs Operational databases}
+%	
+%	
+%	\begin{table}[t]
+%		\centering	
+%		\resizebox{\columnwidth}{!}{%
+%			
+%			%		\centering
+%			\begin{tabular}{|c | c | c|}
+%				\hline
+%				\textbf{Metric}  & \textbf{Transactions DB}& \textbf{DWH} \\
+%				\hline
+%				Volume & GB/TB & TB/PB \\
+%				Historical  & Short-term & Long-Term\\
+%				rows & <1000M &  1000M>\\
+%				Orientation & Product & Subject or multi products\\
+%				Business Units & Product team & Multi organizational units\\
+%				Normalization & Normalized %due to storage and performance limitation and its design
+%				&  Not required (De-normalized in many use cases)\\
+%				Data Model & Relational & Star Schema or Multi-dim\\
+%				Intelligence&Reporting & Advanced reporting and Machine Learning\\
+%				Use cases& Online transactions \& operations & Centeralized storage (360\textdegree)\\
+%				\hline
+%			\end{tabular}
+%			%		\caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
+%		}
+%	\end{table}
+%\end{frame}
+%
+%%---------------------------------------------------------
+%\VideoClassification[column=2, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Transactional DB Use cases}
+%\begin{figure}[ht]
+%	
+%	\centering
 %	\includegraphics[width=\linewidth]{./Figures/chapter-01/baby-01.jpg}
-\includegraphics[width=\linewidth]{./Figures/chapter-01/baby-02.jpg}
-%	\caption{}
-\end{figure}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{DWH Use cases}
-\begin{figure}[ht]
-
-\centering
-\includegraphics[width=\linewidth,height=.8\textheight]{./Figures/chapter-01/Marvel-03.jpg}
-%	\caption{}
-\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{DWH Use cases}
-\begin{figure}[ht]
-
-\centering
-\includegraphics[width=\linewidth,height=.8\textheight]{./Figures/chapter-01/Marvel-02.jpg}
-%	\caption{}
-\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{DWH Use cases}
-\begin{figure}[ht]
-
-\centering
-\includegraphics[width=\linewidth,height=.8\textheight]{./Figures/chapter-01/Marvel-01.jpg}
-%	\caption{}
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%---------------------------------------------------------
-\VideoClassification[column=2, colour=blue]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Types of DWH}
-\begin{frame}
-\frametitle{Motivation to Data Warehouse}
-Types of Data Warehouse
-\begin{description}
-\item [\textbf{Enterprise Data Warehouse (EDWH)}] It provides decision support service across the enterprise. It offers a unified approach for organizing and representing data (DWH Model). It offers data classifications according to the subject with privileges policy.
-\item [\textbf{Operational Data Store (ODS):}] is a central database that provides an up-to-date (real-time) data from multiple transnational systems for operational reporting into a single DWH.
-
-%% for real time questions and answers. call ODS using intermidiate data store. DWH is day -1 (billing & subscribtions). Oracle (Loading or headache) && CDC capture change interest column not row
-\item [\textbf{Data Mart:}] A data mart is a subset of the data warehouse. It specially designed for a particular line of business, such as sales, finance, sales or finance. In an independent data mart, data can collect directly from sources.
-\end{description}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{DWH vs ODS vs Data Mart}
-
-
-\begin{table}[t]
-\centering	
-\resizebox{\columnwidth}{!}{%
-
-%		\centering
-\begin{tabular}{|c | c | c| c |}
-\hline
-\textbf{Metric}  & \textbf{DWH}& \textbf{ODS} & \textbf{Data Mart} \\
-\hline
-Latency & Day -1  & Real-time & Day -1 \\			
-Data level  & Transnational & Transnational & Summary \\
-Historical  & Long-term & Snapshot & Aggregated Long-Term \\
-Size & TB/PB & GB & GB/TB\\
-Orientation & Multi sources & Multi sources & Product\\
-Business Units & Multi organizational units & Product team & Business team \\
-\hline
-\end{tabular}
-%		\caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
-}
-\end{table}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Use Cases of Operational DB vs DWH}
-
-\begin{frame}
-\frametitle{Use case (Operational DB)}
-
-\begin{itemize}[<+->]
-
-\item A telecommunication company named \textbf{XTec}.
-\newline
-\item They have lots of systems. One of this systems is a CRM system as example of operational DB.
-\begin{itemize}[<+->]
-
-\item The CRM system handles the customer activities with the company including (sales, change in customer plans, and other activities).
-\item This system has a backend database (MySQL).
-\item CRM team can report their sales and customer activities from their database.
-\item Product owner can take a decision based on their system backend reports.
-
-\end{itemize}
-
-\end{itemize}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Use case (DWH)}
-
-\begin{itemize}[<+->]
-
-\item What is the need for DWH?		
-\begin{itemize}[<+->]
-\item This company has other systems for example: billing, charging, signaling.	
-\item They need to report information related to the CRM, billing, and signaling source systems in one report.
-\item So, they need to ingest (transfer) the data from the source systems to one single database.
-\item The decision from the DHW is a \textbf{global and strategical decision.}
-\item If the company needs to build a machine learning model which needs data from different sources. They need to load the data from a centralized database rather than read each source alone.
-\end{itemize}
-
-\end{itemize}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\frametitle{Use case (DWH)}
-\centering
-The Full picture required a DWH. However, we still need the other operational databases for product development perspective.
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Use case (ODS)}
-\centering
-
-\begin{itemize}[<+->]
-\item Why do we need the ODS?
-\item 	How does it fit in our system?
-\end{itemize}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Use case (ODS)}
-\centering
-\textbf{XTec} has a call center system which handles the customer inquiries. This system requires the some data related to usage, customer information, billing details to be calculated and accumulated in \textbf{real-time} to be able to give the customer the right answer for his inquires.
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Use case (ODS)}
-
-	\begin{itemize}[<+->]
-		\item So, What is the challenge for this system?
-			\begin{itemize}[<+->]		
-				\item It needs specific information from different source systems.
-				\item It requires to track the source system database changes or update in real-time.
-				\item It's functionality is based on the aggregate data not the transactions for example (It needs the total outgoing calls till time or it needs the total charging amounts from prepaid or the available limits from billing if it is postpaid).
-			\end{itemize}
-	\end{itemize}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Use case (ODS)}
-
-	\begin{itemize}[<+->]
-		\item ODS is based on change data capture (CDC). This approach used to determine the data change and apply action based on this change.
-		\item ODS uses the real-time aggregations to support the online systems from different source systems.
-	\end{itemize}
-\end{frame}
+%	%		\includegraphics[width=\linewidth,height=\textheight]{./Figures/chapter-01/baby-02.jpg}
+%	%	\caption{}
+%\end{figure}
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Transactional DB Use cases}
+%\begin{figure}[ht]
+%
+%\centering
+%%	\includegraphics[width=\linewidth]{./Figures/chapter-01/baby-01.jpg}
+%\includegraphics[width=\linewidth]{./Figures/chapter-01/baby-02.jpg}
+%%	\caption{}
+%\end{figure}
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{DWH Use cases}
+%\begin{figure}[ht]
+%
+%\centering
+%\includegraphics[width=\linewidth,height=.8\textheight]{./Figures/chapter-01/Marvel-03.jpg}
+%%	\caption{}
+%\end{figure}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{DWH Use cases}
+%\begin{figure}[ht]
+%
+%\centering
+%\includegraphics[width=\linewidth,height=.8\textheight]{./Figures/chapter-01/Marvel-02.jpg}
+%%	\caption{}
+%\end{figure}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{DWH Use cases}
+%\begin{figure}[ht]
+%
+%\centering
+%\includegraphics[width=\linewidth,height=.8\textheight]{./Figures/chapter-01/Marvel-01.jpg}
+%%	\caption{}
+%\end{figure}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%---------------------------------------------------------
+%\VideoClassification[column=2, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsubsection{Types of DWH}
+%\begin{frame}
+%\frametitle{Motivation to Data Warehouse}
+%Types of Data Warehouse
+%\begin{description}
+%\item [\textbf{Enterprise Data Warehouse (EDWH)}] It provides decision support service across the enterprise. It offers a unified approach for organizing and representing data (DWH Model). It offers data classifications according to the subject with privileges policy.
+%\item [\textbf{Operational Data Store (ODS):}] is a central database that provides an up-to-date (real-time) data from multiple transnational systems for operational reporting into a single DWH.
+%
+%%% for real time questions and answers. call ODS using intermidiate data store. DWH is day -1 (billing & subscribtions). Oracle (Loading or headache) && CDC capture change interest column not row
+%\item [\textbf{Data Mart:}] A data mart is a subset of the data warehouse. It specially designed for a particular line of business, such as sales, finance, sales or finance. In an independent data mart, data can collect directly from sources.
+%\end{description}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{DWH vs ODS vs Data Mart}
+%
+%
+%\begin{table}[t]
+%\centering	
+%\resizebox{\columnwidth}{!}{%
+%
+%%		\centering
+%\begin{tabular}{|c | c | c| c |}
+%\hline
+%\textbf{Metric}  & \textbf{DWH}& \textbf{ODS} & \textbf{Data Mart} \\
+%\hline
+%Latency & Day -1  & Real-time & Day -1 \\			
+%Data level  & Transnational & Transnational & Summary \\
+%Historical  & Long-term & Snapshot & Aggregated Long-Term \\
+%Size & TB/PB & GB & GB/TB\\
+%Orientation & Multi sources & Multi sources & Product\\
+%Business Units & Multi organizational units & Product team & Business team \\
+%\hline
+%\end{tabular}
+%%		\caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
+%}
+%\end{table}
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsubsection{Use Cases of Operational DB vs DWH}
+%
+%\begin{frame}
+%\frametitle{Use case (Operational DB)}
+%
+%\begin{itemize}[<+->]
+%
+%\item A telecommunication company named \textbf{XTec}.
+%\newline
+%\item They have lots of systems. One of this systems is a CRM system as example of operational DB.
+%\begin{itemize}[<+->]
+%
+%\item The CRM system handles the customer activities with the company including (sales, change in customer plans, and other activities).
+%\item This system has a backend database (MySQL).
+%\item CRM team can report their sales and customer activities from their database.
+%\item Product owner can take a decision based on their system backend reports.
+%
+%\end{itemize}
+%
+%\end{itemize}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Use case (DWH)}
+%
+%\begin{itemize}[<+->]
+%
+%\item What is the need for DWH?		
+%\begin{itemize}[<+->]
+%\item This company has other systems for example: billing, charging, signaling.	
+%\item They need to report information related to the CRM, billing, and signaling source systems in one report.
+%\item So, they need to ingest (transfer) the data from the source systems to one single database.
+%\item The decision from the DHW is a \textbf{global and strategical decision.}
+%\item If the company needs to build a machine learning model which needs data from different sources. They need to load the data from a centralized database rather than read each source alone.
+%\end{itemize}
+%
+%\end{itemize}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}
+%\frametitle{Use case (DWH)}
+%\centering
+%The Full picture required a DWH. However, we still need the other operational databases for product development perspective.
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Use case (ODS)}
+%\centering
+%
+%\begin{itemize}[<+->]
+%\item Why do we need the ODS?
+%\item 	How does it fit in our system?
+%\end{itemize}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Use case (ODS)}
+%\centering
+%\textbf{XTec} has a call center system which handles the customer inquiries. This system requires the some data related to usage, customer information, billing details to be calculated and accumulated in \textbf{real-time} to be able to give the customer the right answer for his inquires.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Use case (ODS)}
+%
+%	\begin{itemize}[<+->]
+%		\item So, What is the challenge for this system?
+%			\begin{itemize}[<+->]		
+%				\item It needs specific information from different source systems.
+%				\item It requires to track the source system database changes or update in real-time.
+%				\item It's functionality is based on the aggregate data not the transactions for example (It needs the total outgoing calls till time or it needs the total charging amounts from prepaid or the available limits from billing if it is postpaid).
+%			\end{itemize}
+%	\end{itemize}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Use case (ODS)}
+%
+%	\begin{itemize}[<+->]
+%		\item ODS is based on change data capture (CDC). This approach used to determine the data change and apply action based on this change.
+%		\item ODS uses the real-time aggregations to support the online systems from different source systems.
+%	\end{itemize}
+%\end{frame}
 
 
 %---------------------------------------------------------
@@ -809,7 +809,6 @@ The Full picture required a DWH. However, we still need the other operational da
 		\item Data Modeling.
 		\item ETL layer.
 		\item Storage layer.
-		\item Logical layer.
 		\item Reporting (UI) layer.
 		\item Metadata layer.
 		\item System operations layer.
@@ -994,6 +993,7 @@ Data model is
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Data Model Design vs Implementation}
+%Replace it by photo
 	\begin{itemize}[<+->]
 	\item You need to build a home. So, how do we design this home?
 		\begin{itemize}[<+->]
@@ -1058,22 +1058,54 @@ Data model is
 
 	\begin{description}[<+->]
 		%Conformed dimension موجود في أكتر من تابل 
-		\item[Conformed Dimensions]	the dimension which is identical and has the same meaning across many fact tables which it relates and used in different areas of the warehouse. Ex: if we have date column across many facts we could use date as key in all table. So, it will be unified format. Another example if we have product name which same product could vary between systems ex: (upper/lower) we can create dimension table for the product details and use product id unified across fact tables. 
-		
-		\item[Outrigger Dimensions]	A dimension may have a reference to another dimension table. These secondary dimensions called outrigger dimensions. This kind of Dimensions should be used carefully.
-		\item[Shrunken Rollup Dimensions]	Shrunken Rollup dimensions are a subdivision of rows and columns of a base dimension. These kinds of dimensions are useful for developing aggregated fact tables.
-		\item[Dimension-to-Dimension] Table Joins	Dimensions may have references to other dimensions. However, these relationships can be modeled with outrigger dimensions.
-	\end{description}
+		\item[Conformed Dimensions]	the dimension which is \underline{\textit{identical}} and has the \underline{\textit{same meaning}} across many fact tables which it relates and used in different areas of the warehouse.
+			\begin{example}		
+				\begin{itemize}[<+->]
+					\item \underline{\textbf{(Date as a Key)}}: if we have date column across many facts we could use date as key in all table. So, it will be unified format
+					\item \underline{\textbf{(Product-Id as a Key)}}: if we have a product name which could vary between systems ex: (upper/lower) we can create dimension table for the product details and use product id unified across fact tables. 
+				\end{itemize}
+			\end{example}
+		\end{description}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+	\frametitle{Dimensions Types}
+	\begin{description}[<+->]
+		\item[Junk Dimension] is used to reduce the number of dimensions in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
+	\end{description}
+\input{./Figures/chapter-01/Fig_Junk_DIM_Ex.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Dimensions Types}
+	\begin{description}[<+->]
+		%You shouldn’t design a dimension to grow in proportion with the fact table because it makes the analysis of the fact more difficult because of the size of the dimension.
+		\item[Degenerate Dimensions]	Degenerate dimension is without corresponding dimension. It is used in the transaction and collecting snapshot fact tables. This kind of dimension does not have its dimension as it is derived from the fact table.
+		
+		\item[Outrigger Dimensions]	A dimension may have a reference to another dimension table. These secondary dimensions called outrigger dimensions. This kind of dimensions should be used carefully.		
+		\item[Shrunken Rollup Dimensions]	Shrunken Rollup dimensions are a subdivision of rows and columns of a base dimension. These kinds of dimensions are useful for developing aggregated fact tables.
+		
+		\item[Dimension-to-Dimension] Table Joins	Dimensions may have references to other dimensions. However, these relationships can be modeled with outrigger dimensions.
+	\end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Dimensions Types}
+	%https://www.guru99.com/dimensional-model-data-warehouse.html
+	\begin{description}[<+->]
+			\item[Swappable Dimensions]	They are used when the same fact table is paired with different versions of the same dimension.
+		\item[Step Dimensions]	Sequential processes, like web page events, mostly have a separate row in a fact table for every step in a process. It tells where the specific step should be used in the overall session.
+		
+	\end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Dimensions Types}
 %https://www.guru99.com/dimensional-model-data-warehouse.html
 \begin{description}[<+->]
-	\item[Role-Playing Dimensions]	A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
-	\item[Junk Dimensions]	It a collection of random transactional codes, flags or text attributes. It may not logically belong to any specific dimension.
 	\item[Degenerate Dimensions]	Degenerate dimension is without corresponding dimension. It is used in the transaction and collecting snapshot fact tables. This kind of dimension does not have its dimension as it is derived from the fact table.
 	\item[Swappable Dimensions]	They are used when the same fact table is paired with different versions of the same dimension.
 	\item[Step Dimensions]	Sequential processes, like web page events, mostly have a separate row in a fact table for every step in a process. It tells where the specific step should be used in the overall session.
@@ -1088,13 +1120,14 @@ Data model is
 %https://www.guru99.com/dimensional-model-data-warehouse.html
 \begin{description}[<+->]
 	\item[Slowly changing Dimensions]	A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
-			%slowly changing dim assume customer was located in dubai then he changed his location
+	%slowly changing dim assume customer was located in dubai then he changed his location
 	% We don't care about the change. just update the latest
 	% we can have two version new, old.
 	% we can have sergeate key. 
 	%with start and end data.
 	%start and end is null
 	%join with sergate key
+	\item[Role-Playing Dimensions]	A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
 	
 \end{description}
 \end{frame}
