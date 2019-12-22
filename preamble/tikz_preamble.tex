@@ -1,7 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pgfkeys}
 \usepackage{smartdiagram}
-\usesmartdiagramlibrary{additions}
+\usepackage{venndiagram}
+\usepackage{graphics}
 \usepackage{tikz}
+\usesmartdiagramlibrary{additions}
 \usetikzlibrary{shapes.multipart}
 \usetikzlibrary{matrix}
 \usetikzlibrary{positioning}
@@ -9,101 +12,14 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes,arrows}
 \usetikzlibrary{shapes.geometric} % required in the preamble
-\usepackage{venndiagram}
-\usepackage{graphics}
 \usetikzlibrary{arrows,automata}
 \usetikzlibrary{arrows.meta}
-
-\tikzset{%
-	>={Latex[width=2mm,length=2mm]},
-	% Specifications for style of nodes:
-	base/.style = {rectangle, rounded corners, draw=black,
-		minimum width=4cm, minimum height=1cm,
-		text centered, font=\sffamily},
-	optionalFlow/.style = {base, fill=blue!20,font=\bfseries},
-	required/.style = {base, fill=Maroon,text=white,font=\bfseries},
-	optionalMS/.style = {base, fill=Violet,text=white,font=\bfseries,},
-	optionalNSQL/.style = {base, fill=magenta!40,font=\bfseries},
-	optionalELK/.style = {base, fill=OliveGreen,text=white,font=\bfseries},
-	arch/.style = {base, fill=green!30,font=\bfseries},
-	flags/.style = {base, fill=gray!30,font=\ttfamily},
-	note/.style = {base, fill=brown!30,font=\ttfamily},
-	optionalETL/.style = {base, fill=NavyBlue,text=white,font=\bfseries},
-	LowerLayer/.style = {base, fill=Fuchsia,text=white,font=\bfseries}
-	
-	
-}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble/tikz_preamble_flow_design.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Database
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\makeatletter
-\pgfarrowsdeclare{crow's foot}{crow's foot}
-{
-	\pgfarrowsleftextend{+-.5\pgflinewidth}%
-	\pgfarrowsrightextend{+.5\pgflinewidth}%
-}
-{
-	\pgfutil@tempdima=0.5pt%
-	\advance\pgfutil@tempdima by.25\pgflinewidth%
-	\pgfsetdash{}{+0pt}%
-	\pgfsetmiterjoin%
-	\pgfpathmoveto{\pgfqpoint{0pt}{-6\pgfutil@tempdima}}%
-	\pgfpathlineto{\pgfqpoint{-6\pgfutil@tempdima}{0pt}}%
-	\pgfpathlineto{\pgfqpoint{0pt}{6\pgfutil@tempdima}}%
-	\pgfusepathqstroke%
-}
-
-
-\tikzset{
-	entity/.code={
-		\tikzset{
-			label=above:#1,
-			name=#1,
-			inner sep=0pt,
-			every entity/.try,
-			fill=white,
-			general shadow={
-				shadow xshift=0.0625in,
-				shadow yshift=-0.0625in,
-				opacity=0.5,
-				fill=black!50
-			}
-		}%
-		\def\entityname{#1}%
-	},
-	entity anchor/.style={matrix anchor=#1.center},
-	every entity/.style={
-		draw,
-	},
-	every property/.style={
-		inner xsep=0.25cm, inner ysep=0.125cm, anchor=west, text width=1.5in
-	},
-	zig zag to/.style={
-		to path={(\tikztostart) -| ($(\tikztostart)!#1!(\tikztotarget)$) |- (\tikztotarget)}
-	},
-	zig zag to/.default=0.5,
-	one to many/.style={
-		-crow's foot, zig zag to
-	},
-	many to one/.style={
-		crow's foot-, zig zag to
-	},
-	many to many/.style={
-		crow's foot-crow's foot, zig zag to
-	}
-}
-\def\property#1{\node[name=\entityname-#1, every property/.try]{#1};}
-\def\properties{\begingroup\catcode`\_=11\relax\processproperties}
-\def\processproperties#1{\endgroup%
-	\def\propertycode{}%
-	\foreach \p in {#1}{%
-		\expandafter\expandafter\expandafter\gdef\expandafter\expandafter\expandafter\propertycode%
-		\expandafter\expandafter\expandafter{\expandafter\propertycode\expandafter\property\expandafter{\p}\\}%
-	}%
-	\propertycode%
-}
-
-
+\input{preamble/tikz_preamble_db_design.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % To define sime custom colors
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,9 +34,9 @@
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 %circle inside table
 \newcommand*\redcircled{\tikz\draw[red,fill=red] (0,0) circle (.5ex);}
 \newcommand*\bluecircled{\tikz\draw[blue,fill=blue] (0,0) circle (.5ex);}
 \newcommand*\greencircled{\tikz\draw[green,fill=green] (0,0) circle (.5ex);}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble/tikz_preamble_video_classification.tex}

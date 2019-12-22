@@ -1,0 +1,61 @@
+\makeatletter
+\pgfarrowsdeclare{crow's foot}{crow's foot}
+{
+	\pgfarrowsleftextend{+-.25\pgflinewidth}%
+	\pgfarrowsrightextend{+.25\pgflinewidth}%
+}
+{
+	\pgfutil@tempdima=0.5pt%
+	\advance\pgfutil@tempdima by.25\pgflinewidth%
+	\pgfsetdash{}{+0pt}%
+	\pgfsetmiterjoin%
+	\pgfpathmoveto{\pgfqpoint{0pt}{-6\pgfutil@tempdima}}%
+	\pgfpathlineto{\pgfqpoint{-6\pgfutil@tempdima}{0pt}}%
+	\pgfpathlineto{\pgfqpoint{0pt}{6\pgfutil@tempdima}}%
+	\pgfusepathqstroke%
+}
+\tikzset{
+	entity/.code={
+		\tikzset{
+			label=above:#1,
+			name=#1,
+			inner sep=0pt,
+			every entity/.try,
+			fill=white
+		}%
+		\def\entityname{#1}%
+	},
+	entity anchor/.style={matrix anchor=#1.center},
+	every entity/.style={
+		draw,
+	},
+	every property/.style={
+		inner xsep=0.25cm, inner ysep=0.125cm, anchor=west, text width=1.5in
+	},
+	zig zag to/.style={
+		to path={(\tikztostart) -| ($(\tikztostart)!#1!(\tikztotarget)$) |- (\tikztotarget)}
+	},
+	zig zag to/.default=0.5,
+	one to many/.style={
+		-crow's foot, zig zag to
+	},
+	many to one/.style={
+		crow's foot-, zig zag to
+	},
+	many to many/.style={
+		crow's foot-crow's foot, zig zag to
+	},
+	one to one/.style={
+		zig zag to
+	}
+}
+\def\property#1{\node[name=\entityname-#1, every property/.try]{#1};}
+\def\properties{\begingroup\catcode`\_=11\relax\processproperties}
+\def\processproperties#1{\endgroup%
+	\def\propertycode{}%
+	\foreach \p in {#1}{%
+		\expandafter\expandafter\expandafter\gdef\expandafter\expandafter\expandafter\propertycode%
+		\expandafter\expandafter\expandafter{\expandafter\propertycode\expandafter\property\expandafter{\p}\\}%
+	}%
+	\propertycode%
+}

@@ -1,0 +1,50 @@
+%\resizebox{\columnwidth}{!}{%
+\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.6, every node/.style={scale=0.6}]
+\matrix  [entity=Car, entity anchor=Car-id]  {
+	\properties{
+		id,
+		colour-id (FK),
+		body-id (FK)
+	}
+};
+
+
+\matrix  [entity=Colour, left=of Car-id, entity anchor=Colour-id]  {
+	\properties{
+		id,
+		colourname
+	}
+};
+\matrix  [entity=Body, right=of Car-id,xshift=-15ex,entity anchor=Body-id]  {
+	\properties{
+		id,
+		bodyname
+	}
+};
+\draw (-10,1) -- (8,1) node[blue,draw=red, ultra thin, minimum size=1cm] [above,pos=0.5] {Design without junk DIM};
+\draw [one to one] (Car-id)  to (Colour-id);
+\draw [one to one] (Car-id)  to (Body-id);
+\end{tikzpicture}
+%}
+
+%\resizebox{\columnwidth}{!}{%
+	\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.6, every node/.style={scale=0.6}]
+	
+	\matrix  [entity=Car, entity anchor=Car-id]  {
+		\properties{
+			id,
+			car-attirbute-id (FK),
+		}
+	};	
+
+	\matrix  [entity=Car-Attributes, left=of Car-id, entity anchor=Car-Attributes-id]  {
+		\properties{
+			id,
+			colourname,
+			bodyname
+		}
+	};
+	\draw (-10,1) -- (8,1) node[blue,draw=red, ultra thin, minimum size=1cm] [above,pos=0.49] {Design with junk DIM};
+	\draw [one to one] (Car-id)  to (Car-Attributes-id);
+	\end{tikzpicture}
+%}
