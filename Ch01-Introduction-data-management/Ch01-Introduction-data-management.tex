@@ -630,21 +630,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{DWH Characteristics}
 \begin{frame}
-\frametitle{DWH Characteristics}
-%these is not a definitions, we just show the meaning and the understanding.
-\begin{wideitemize}
-\item The characteristics of DWH:
-	\begin{wideitemize}
-		\item Integrated: \textit{DWH is an integrated environment which allows us to integrate different source systems. Data are modeled (organized) into a unified manner.} %regardless of the original source
-	
-		\item Time-Variant: \textit{Data modeled (organized) based on time periods (hourly, daily, weekly, monthly, quarterly, yearly, etc.)}
-	
-		\item Subject-oriented: \textit{DWH main target is to support business needs for the whole organization including (decision makers, departments, and specific user requirements)}.
-	
-		\item Non-Volatile: \textit{It refers to the data will not erased or deleted (It could be archived and retrieved when needed). Data can be accumulated daily the new snapshots (refreshed at based on the source system interval. For example, It could be updated daily, weekly, and monthly).}
-	\end{wideitemize}	
-\end{wideitemize}
-%https://www.guru99.com/data-warehouse-architecture.html
+    \frametitle{DWH Characteristics}
+    %these is not a definitions, we just show the meaning and the understanding.
+    \begin{wideitemize}
+        \item The characteristics of DWH:
+        \begin{wideitemize}
+            \item Integrated: \textit{DWH is an integrated environment which allows us to integrate different source systems. Data are modeled (organized) into a unified manner.} %regardless of the original source
+
+            \item Time-Variant: \textit{Data modeled (organized) based on time periods (hourly, daily, weekly, monthly, quarterly, yearly, etc.)}
+
+            \item Subject-oriented: \textit{DWH main target is to support business needs for the whole organization including (decision makers, departments, and specific user requirements)}.
+
+            \item Non-Volatile: \textit{It refers to the data will not erased or deleted (It could be archived and retrieved when needed). Data can be accumulated daily the new snapshots (refreshed at based on the source system interval. For example, It could be updated daily, weekly, and monthly).}
+        \end{wideitemize}
+    \end{wideitemize}
+    %https://www.guru99.com/data-warehouse-architecture.html
 
 \end{frame}
 
@@ -654,12 +654,12 @@
 
 \subsection{Hot vs Cold Storage}
 \begin{frame}[c]
-\frametitle{Hot vs Cold Storage}
+    \frametitle{Hot vs Cold Storage}
 
-%\begin{center}
-\includegraphics[width=\textheight]{./Figures/chapter-01/WWH-Thumb.png}
+    %\begin{center}
+    \includegraphics[width=\textheight]{./Figures/chapter-01/WWH-Thumb.png}
 
-%\end{center}
+    %\end{center}
 
 
 \end{frame}
@@ -667,198 +667,198 @@
 
 
 \begin{frame}
-\frametitle{What is multi-temperature Storage?}
+    \frametitle{What is multi-temperature Storage?}
 
-\begin{wideitemize}
-	\item (Most of) DWH solution design has multi-temperature data management model.
-	\item What is \textbf{multi-temperature} data management model?
-	\begin{itemize}[<+->]
-		\item It is a data classification design which allows us to have the following characteristics 
-			\begin{itemize}[<+->] 
-				\item Fast (high performance) access on the frequently data (Hot data).%(data change rate or with action needed)
-				\item good performance access on less-frequently data (warm data).
-				\item Availability to access rarely accessed data (cold data).
-			\end{itemize}
- 		\item Who classify the data temperature? 
- 		\begin{itemize}[<+->] 
- 			\item Based on the business needs.
- 			\item Demand team, product owners, or data architect.
- 		\end{itemize}
- 		
-	\end{itemize}
+    \begin{wideitemize}
+        \item (Most of) DWH solution design has multi-temperature data management model.
+        \item What is \textbf{multi-temperature} data management model?
+        \begin{itemize}[<+->]
+            \item It is a data classification design which allows us to have the following characteristics
+            \begin{itemize}[<+->]
+                \item Fast (high performance) access on the frequently data (Hot data).%(data change rate or with action needed)
+                \item good performance access on less-frequently data (warm data).
+                \item Availability to access rarely accessed data (cold data).
+            \end{itemize}
+            \item Who classify the data temperature?
+            \begin{itemize}[<+->]
+                \item Based on the business needs.
+                \item Demand team, product owners, or data architect.
+            \end{itemize}
 
-\end{wideitemize}
+        \end{itemize}
+
+    \end{wideitemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Why do we need it?}
+    \frametitle{Why do we need it?}
 
-\begin{wideitemize}
-	\item Why do we need the multi-temperature data management model?
-	\begin{itemize}[<+->]
-		\item Cost reduction \blue{\faDollar \faDollar \faDollar \faDollar}
-		\item Performance.
-	\end{itemize}
-\end{wideitemize}
+    \begin{wideitemize}
+        \item Why do we need the multi-temperature data management model?
+        \begin{itemize}[<+->]
+            \item Cost reduction \blue{\faDollar \faDollar \faDollar \faDollar}
+            \item Performance.
+        \end{itemize}
+    \end{wideitemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{How to implement?}
+    \frametitle{How to implement?}
 
-\begin{wideitemize}
-	\item How to implement the multi-temperature data management model?
-	\begin{itemize}[<+->]
-		\item Before implementation we need to know the following:
-			\begin{itemize}[<+->]
-				\item Frequency of access
-				\item data change rate.
-			\end{itemize}
-		\item Identify which storage type will be suitable for our project
-			\begin{itemize}[<+->]
-				\item Hot data stored on fast storage.
-				\item warm data (usual) stored on slightly slower storage.
-				\item cold data stored on the slowest storage.
-			\end{itemize}
-		\item Design consideration to make the retention easily
-		\begin{itemize}[<+->]
-			\item Table partitions need to be split based on the retention policy plan ex: (date). 
-			\item Summary tables (agg) need to be maintained to reduce the need for access the cold storage.
-			\item Backup, Recovery, and Rollback plans need to be automated and prepared/tested before moving the data.
-		\end{itemize}
-	\end{itemize}
-\end{wideitemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{How to implement? Cont.}
-\begin{wideitemize}
-		\item Implementation (summary):
-		\begin{itemize}[<+->]
-			\item There are lots of tools for this purpose as follows:
-			\item Enterprise examples:
-			\begin{itemize}
-				\item IBM InfoSphere
-				\item Informatica PowerCenter
-				\item Oracle Data Service Integrator
-				\item Talend Data Integration				
-				\item Microsoft SQL				
-			\end{itemize}
-		\end{itemize}
-		%Cost,Security
-\end{wideitemize}
+    \begin{wideitemize}
+        \item How to implement the multi-temperature data management model?
+        \begin{itemize}[<+->]
+            \item Before implementation we need to know the following:
+            \begin{itemize}[<+->]
+                \item Frequency of access
+                \item data change rate.
+            \end{itemize}
+            \item Identify which storage type will be suitable for our project
+            \begin{itemize}[<+->]
+                \item Hot data stored on fast storage.
+                \item warm data (usual) stored on slightly slower storage.
+                \item cold data stored on the slowest storage.
+            \end{itemize}
+            \item Design consideration to make the retention easily
+            \begin{itemize}[<+->]
+                \item Table partitions need to be split based on the retention policy plan ex: (date).
+                \item Summary tables (agg) need to be maintained to reduce the need for access the cold storage.
+                \item Backup, Recovery, and Rollback plans need to be automated and prepared/tested before moving the data.
+            \end{itemize}
+        \end{itemize}
+    \end{wideitemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{How to implement? Cont.}
-\begin{wideitemize}
-	\item Implementation (summary):
-	\begin{itemize}[<+->]
-		\item There are lots of tools for this purpose as follows:
-		\item Open source examples:
-		\begin{itemize}
-			\item Apache NiFi*
-			\item CloverETL
-			\item Pentaho
-			\item Talend Open Studio*
-		\end{itemize}			
-	\end{itemize}
-	%Cost,Security
-\end{wideitemize}
+    \frametitle{How to implement? Cont.}
+    \begin{wideitemize}
+        \item Implementation (summary):
+        \begin{itemize}[<+->]
+            \item There are lots of tools for this purpose as follows:
+            \item Enterprise examples:
+            \begin{itemize}
+                \item IBM InfoSphere
+                \item Informatica PowerCenter
+                \item Oracle Data Service Integrator
+                \item Talend Data Integration
+                \item Microsoft SQL
+            \end{itemize}
+        \end{itemize}
+        %Cost,Security
+    \end{wideitemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{How to implement? Cont.}
-\begin{wideitemize}
-	\item Implementation (summary):
-	\begin{itemize}[<+->]
-		\item There are lots of tools for this purpose as follows:
-		\item Cloud tools examples:
-		\begin{itemize}
-			\item AWS Migration Services.
-			\item Azure Migration Tools.
-			\item Google Migration Services/Velostrata.
-		\end{itemize}			
-		\item Some cloud provider offers physical data movement services.
-		\item How to choose the most suitable storage type for your project/organization?
-	\end{itemize}
-	%Cost,Security
-\end{wideitemize}
+    \frametitle{How to implement? Cont.}
+    \begin{wideitemize}
+        \item Implementation (summary):
+        \begin{itemize}[<+->]
+            \item There are lots of tools for this purpose as follows:
+            \item Open source examples:
+            \begin{itemize}
+                \item Apache NiFi*
+                \item CloverETL
+                \item Pentaho
+                \item Talend Open Studio*
+            \end{itemize}
+        \end{itemize}
+        %Cost,Security
+    \end{wideitemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \frametitle{How to implement? Cont.}
+    \begin{wideitemize}
+        \item Implementation (summary):
+        \begin{itemize}[<+->]
+            \item There are lots of tools for this purpose as follows:
+            \item Cloud tools examples:
+            \begin{itemize}
+                \item AWS Migration Services.
+                \item Azure Migration Tools.
+                \item Google Migration Services/Velostrata.
+            \end{itemize}
+            \item Some cloud provider offers physical data movement services.
+            \item How to choose the most suitable storage type for your project/organization?
+        \end{itemize}
+        %Cost,Security
+    \end{wideitemize}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{DWH Architecture}
 \begin{frame}
-\frametitle{DWH Architecture Layers}
+    \frametitle{DWH Architecture Layers}
 
-\begin{wideitemize}
-	\item DWH Architecture contains the following layers:
-	\begin{itemize}[<+->]
-		\item Source system layer.
-		\item Extraction layer.
-		\item Staging Area.
-		\item Data Modeling.
-		\item ETL layer.
-		\item Storage layer.
-		\item Reporting (UI) layer.
-		\item Metadata layer.
-		\item System operations layer.
-	\end{itemize}	
-\end{wideitemize}
+    \begin{wideitemize}
+        \item DWH Architecture contains the following layers:
+        \begin{itemize}[<+->]
+            \item Source system layer.
+            \item Extraction layer.
+            \item Staging Area.
+            \item Data Modeling.
+            \item ETL layer.
+            \item Storage layer.
+            \item Reporting (UI) layer.
+            \item Metadata layer.
+            \item System operations layer.
+        \end{itemize}
+    \end{wideitemize}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{DWH Architecture Overview}
-\begin{figure}[ht]
-	%@@@ TODO: add the link to resources
-	\centering
-	\includegraphics[width=.9\linewidth,height=.8\textheight]{./Figures/chapter-01/Datawarehouse_reference_architecture.jpg}
-	%https://commons.wikimedia.org/wiki/File:Datawarehouse_reference_architecture.jpg
-	%		\includegraphics[width=\linewidth,height=\textheight]{./Figures/chapter-01/baby-02.jpg}
-	\caption{taken from https://commons.wikimedia.org/wiki/File:Datawarehouse\_reference\_architecture.jpg}
-\end{figure}
+    \frametitle{DWH Architecture Overview}
+    \begin{figure}[ht]
+        %@@@ TODO: add the link to resources
+        \centering
+        \includegraphics[width=.9\linewidth,height=.8\textheight]{./Figures/chapter-01/Datawarehouse_reference_architecture.jpg}
+        %https://commons.wikimedia.org/wiki/File:Datawarehouse_reference_architecture.jpg
+        %		\includegraphics[width=\linewidth,height=\textheight]{./Figures/chapter-01/baby-02.jpg}
+        \caption{taken from https://commons.wikimedia.org/wiki/File:Datawarehouse\_reference\_architecture.jpg}
+    \end{figure}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Source System Integration Process}
 \begin{frame}
-\frametitle{Source System Integration Process}
-\begin{itemize}[<+->]
-\item In some companies they hire or dedicate a team for this part (business analyst, system analyst, data analyst, or demand team).
-\item Before we start, ALL communications from start till the end should be documented into any format.
-	\begin{itemize}
-		\item  Conflounce page, Word, or Excel sheet.
-		\item  Make the discussion online and put comments to make the history available always.
-		\item  All tasks should be clear what is the expected output for example (analysis means to document data structure, format, column names, etc..).
-	\end{itemize}
-\end{itemize}
+    \frametitle{Source System Integration Process}
+    \begin{itemize}[<+->]
+        \item In some companies they hire or dedicate a team for this part (business analyst, system analyst, data analyst, or demand team).
+        \item Before we start, ALL communications from start till the end should be documented into any format.
+        \begin{itemize}
+            \item  Conflounce page, Word, or Excel sheet.
+            \item  Make the discussion online and put comments to make the history available always.
+            \item  All tasks should be clear what is the expected output for example (analysis means to document data structure, format, column names, etc..).
+        \end{itemize}
+    \end{itemize}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Source System Integration Process}
-\begin{itemize}[<+->]
-	\item  Requirements gathering. % or business need (It could be DWH unification).
-	\item  Identify the stakeholders (Data owner(s)).
-	\item  Data Analysis includes but not only (format, latency, and column definitions).
-	\item  Connectivity analysis and security (assessment).
-	\item  Technical discussion about the best way to ingest the data.
-	\item  Data Ingestion method and format.
-	\item  Sign or confirmation for every point between the stakeholders.
-	\item  \blue{This layer deliver a data analysis (Source system interface ) document}.
-\end{itemize}
+    \frametitle{Source System Integration Process}
+    \begin{itemize}[<+->]
+        \item  Requirements gathering. % or business need (It could be DWH unification).
+        \item  Identify the stakeholders (Data owner(s)).
+        \item  Data Analysis includes but not only (format, latency, and column definitions).
+        \item  Connectivity analysis and security (assessment).
+        \item  Technical discussion about the best way to ingest the data.
+        \item  Data Ingestion method and format.
+        \item  Sign or confirmation for every point between the stakeholders.
+        \item  \blue{This layer deliver a data analysis (Source system interface ) document}.
+    \end{itemize}
 
 \end{frame}
 
@@ -868,35 +868,34 @@
 \subsubsection{Extraction Layer}
 
 \begin{frame}
-\frametitle{Extraction Layer}
-\begin{itemize}[<+->]
-	\item In some companies they hire or dedicate a team for this part (extraction or ingestion team) but in other companies it is part of the data engineering team.
-	\item This layer take the output analysis and decisions from the previous layer (source system analysis) and implement the extraction \blue{(quality from the previous team output highly affect this team)}.
-	\item There are many consideration this team need to take care about or deal with but we can summarize it in the following:
-		\begin{itemize}			
-			\item  Data latency will affect the tool and the methodology (stream or batch).
-			\item  Data extraction method (push or pull).
-			\item  Data size and format compared with the available resources for this project.
-		\end{itemize}
-	\item \blue{This layer output is a minimal data cleansing (no transformation) into the staging/landing layer}.
+    \frametitle{Extraction Layer}
+    \begin{itemize}[<+->]
+        \item In some companies they hire or dedicate a team for this part (extraction or ingestion team) but in other companies it is part of the data engineering team.
+        \item This layer take the output analysis and decisions from the previous layer (source system analysis) and implement the extraction \blue{(quality from the previous team output highly affect this team)}.
+        \item There are many consideration this team need to take care about or deal with but we can summarize it in the following:
+        \begin{itemize}
+            \item  Data latency will affect the tool and the methodology (stream or batch).
+            \item  Data extraction method (push or pull).
+            \item  Data size and format compared with the available resources for this project.
+        \end{itemize}
+        \item \blue{This layer output is a minimal data cleansing (no transformation) into the staging/landing layer}.
 
-\end{itemize}
+    \end{itemize}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Staging Layer}
-
 \begin{frame}
-\frametitle{Staging Layer}
-\begin{itemize}[<+->]
-	\item This layer handled by the same team who own the \blue{storage part} in most of the organizations. 
-	\item Segregation of this layer if it uses different storage type or multi-teams access this layer for a different purpose (ex: Kafka)\\ \red{\textit{\faBullhorn Kafka is not a storage layer but it could be used as landing layer or data persistence layer}}.
-	\item All the ETL layers are working on top of this layer.
-	\item The decision of the storage type is based on the use case and the data.
-	
-\end{itemize}
+    \frametitle{Staging Layer}
+    \begin{itemize}[<+->]
+        \item This layer handled by the same team who own the \blue{storage part} in most of the organizations.
+        \item Segregation of this layer if it uses different storage type or multi-teams access this layer for a different purpose (ex: Kafka)\\ \red{\textit{\faBullhorn Kafka is not a storage layer but it could be used as landing layer or data persistence layer}}.
+        \item All the ETL layers are working on top of this layer.
+        \item The decision of the storage type is based on the use case and the data.
+
+    \end{itemize}
 
 \end{frame}
 
@@ -908,263 +907,377 @@
 
 
 \begin{frame}
-\frametitle{Data Modeling Objective}
-\begin{itemize}[<+->]
-	\item Understanding the data modeling and its roles.
-	\item Be aware about its importance.
-	\item Explore different types of data modeling.
-	\item \blue{We will not go in details about how to design in this part (we will explain it later and in the appendix)}.
+    \frametitle{Data Modeling Objective}
+    \begin{itemize}[<+->]
+        \item Understanding the data modeling and its roles.
+        \item Be aware about its importance.
+        \item Explore different types of data modeling.
+        \item \blue{We will not go in details about how to design in this part (we will explain it later and in the appendix)}.
 
-\end{itemize}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{What is data model?}
-Data model is
-\begin{itemize}[<+->]
-	\item An abstract model that organizes elements of data.
-	\item It describes the objects, entities and data structure properties, semantic, and constraint.
-	\item It formalizes the relationship between entities.
-	\item It describes how application (report) API data manipulation.
-	\item It describes the conceptual design of a business or an application with its flow, logic, semantic information (rules), and how things are done.
-	\item It refers to a set of concepts used in defining such as entities, attributes, relations, or tables.
-\end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What is data model?}
-
-\begin{columns}
-
-\column{0.4\textwidth}
-Data model is not	
-\begin{itemize}[<+->]
-	\item a science.
-	\item a static design for each organization.
-	\item a type of database.
-	\item a new invention which needs to be done for each project. %ex: sldm teradata model
-\end{itemize}
-
-
-\column{0.4\textwidth}
-Data model is		
-\begin{itemize}[<+->]
-	\item a general concepts which lead to build full architecture.
-	\item an engineering design practices.
-	\item different based on the use case and the database type.
-	\item customizable and we can utilize some of ready built architecture.
-	\item affecting the information reporting performance and ways.
-\end{itemize}
-
-\column{0.2\textwidth}
-\end{columns}
+    \end{itemize}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{What is data model?}
-Data model is
-\begin{itemize}[<+->]
-	\item The initial part before starting integration with any new source system.
-	\item It the connection layer between the business requirements and the technical design.
-	\item It is also the translation between logical and physical layer.
-	\item It is unified across the all systems and has the same patterns and practices.
-	\item It could be engage with any source systems integration from early stages.
-	\item \blue{This stage output is data model design document or mapping sheet}.
-\end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Why does data models are important?}
-\begin{wideitemize}	
-\item Data models are currently affecting software design. 
-\item It decides how engineers will think about the problem they are solving.
-\end{wideitemize}
+    \frametitle{What is data model?}
+    Data model is
+    \begin{itemize}[<+->]
+        \item An abstract model that organizes elements of data.
+        \item It describes the objects, entities and data structure properties, semantic, and constraint.
+        \item It formalizes the relationship between entities.
+        \item It describes how application (report) API data manipulation.
+        \item It describes the conceptual design of a business or an application with its flow, logic, semantic information (rules), and how things are done.
+        \item It refers to a set of concepts used in defining such as entities, attributes, relations, or tables.
+    \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Data Model Design vs Implementation}
-%Replace it by photo
-	\begin{itemize}[<+->]
-	\item You need to build a home. So, how do we design this home?
-		\begin{itemize}[<+->]
-		\item Determine if the home is one level or multi-level and decide man bedrooms and bathrooms for each floor. (User needs)
-		\item Hire an architect to put the architecture in more detailed way for example, the size for each room, the distribution of the wireds, where the plumbing fixtures will be placed, etc. (Architecture phase)
-		\item Decide the decorations, colors for each room, carpets, etc. 
-		\end{itemize}
-	\item What do we do for the implementation?
-		\begin{itemize}[<+->]
-		\item Hire a contractor to build (implement the design) the home. 
-		\item This phase will implement the design but it also include some detail related to the actual way to build the tools and the material. (Physical Design)
-		\end{itemize}		
-	\end{itemize}
-\end{frame}
+    \frametitle{What is data model?}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Elements of Data Model}
-%https://www.guru99.com/dimensional-model-data-warehouse.html
-\begin{description}[<+->]
-	\item[Facts] are the measurements/metrics or facts from business process Ex: (Telecom industry, a measurement would be count of daily/hourly usage per customer). We could consider facts as the source of reporting for business.
-	%measure and ids when,where
-	\item[Dimensions] provide the context surrounding a business process event. In simple terms, they give who, what, where of a fact. Ex: (Telecom industry, for the fact daily usage, dimensions would be Who – (Customer id), Where (Location), What (counts of activities incoming/outgoing call) ) 
+    \begin{columns}
 
-	\item[Attributes] are the various characteristics of the dimension.	In the previous examples the attributes can be customer details (from customer id get the gender, age, nationality, etc..).
-	%Attributes are used to search, filter, or classify facts. Dimension Tables contain Attributes
-%	Facts include dimensions, dimensions include attributes
-\end{description}
-\end{frame}
+        \column{0.4\textwidth}
+        Data model is not
+        \begin{itemize}[<+->]
+            \item a science.
+            \item a static design for each organization.
+            \item a type of database.
+            \item a new invention which needs to be done for each project.
+            %ex: sldm teradata model
+        \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\frametitle{Elements of Dimensional Data Model}
-%https://www.guru99.com/dimensional-model-data-warehouse.html
-	\begin{description}[<+->]
-		\item[Fact Table] is a primary table in a dimensional model. A Fact Table contains (Measurements/facts and	Foreign key to \textit{dimension table}). It located at the center of a star or snowflake schema and surrounded by dimensions.	
-	%	contains only ids customer, date, location ids  to get this ids go to the diem
-	%granuality for levels / agg up down
-		\item[Dimension table] contains dimensions of a fact and business reference data. They are joined to fact table via a foreign key. Dimension tables are de-normalized tables. It connected to the fact table and located at the edges of the star or snowflake schema.
-			
-	\end{description}
-\end{frame}
+        \column{0.45\textwidth}
+        Data model is
+        \begin{itemize}[<+->]
+            \item a general concepts which lead to build full architecture.
+            \item an engineering design practices.
+            \item different based on the use case and the database type.
+            \item customizable and we can utilize some of ready built architecture.
+            \item affecting the information reporting performance.
+        \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example of Data Model}
-
-\input{./Figures/chapter-01/Fig_FCT_DIM_Ex.tex}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Dimensions Types}
-%https://www.guru99.com/dimensional-model-data-warehouse.html
-%The dimension can also contain one or more hierarchical relationships
-
-%customer, time, location
-
-%junk assume we have multi flags we will collect them as one id
-
-	\begin{description}[<+->]
-		%Conformed dimension موجود في أكتر من تابل 
-		\item[Conformed Dimensions]	the dimension which is \underline{\textit{identical}} and has the \underline{\textit{same meaning}} across many fact tables which it relates and used in different areas of the warehouse.
-			\begin{example}		
-				\begin{itemize}[<+->]
-					\item \underline{\textbf{(Date as a Key)}}: if we have date column across many facts we could use date as key in all table. So, it will be unified format
-					\item \underline{\textbf{(Product-Id as a Key)}}: if we have a product name which could vary between systems ex: (upper/lower) we can create dimension table for the product details and use product id unified across fact tables. 
-				\end{itemize}
-			\end{example}
-		\end{description}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Dimensions Types}
-	\begin{description}[<+->]
-		\item[Junk Dimension] is used to reduce the number of dimensions in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
-	\end{description}
-\input{./Figures/chapter-01/Fig_Junk_DIM_Ex.tex}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Dimensions Types}
-	\begin{description}[<+->]
-		%You shouldn’t design a dimension to grow in proportion with the fact table because it makes the analysis of the fact more difficult because of the size of the dimension.
-		\item[Degenerate Dimensions]	Degenerate dimension is without corresponding dimension. It is used in the transaction and collecting snapshot fact tables. This kind of dimension does not have its dimension as it is derived from the fact table.
-		
-		\item[Outrigger Dimensions]	A dimension may have a reference to another dimension table. These secondary dimensions called outrigger dimensions. This kind of dimensions should be used carefully.		
-		\item[Shrunken Rollup Dimensions]	Shrunken Rollup dimensions are a subdivision of rows and columns of a base dimension. These kinds of dimensions are useful for developing aggregated fact tables.
-		
-		\item[Dimension-to-Dimension] Table Joins	Dimensions may have references to other dimensions. However, these relationships can be modeled with outrigger dimensions.
-	\end{description}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Dimensions Types}
-	%https://www.guru99.com/dimensional-model-data-warehouse.html
-	\begin{description}[<+->]
-			\item[Swappable Dimensions]	They are used when the same fact table is paired with different versions of the same dimension.
-		\item[Step Dimensions]	Sequential processes, like web page events, mostly have a separate row in a fact table for every step in a process. It tells where the specific step should be used in the overall session.
-		
-	\end{description}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Dimensions Types}
-%https://www.guru99.com/dimensional-model-data-warehouse.html
-\begin{description}[<+->]
-	\item[Degenerate Dimensions]	Degenerate dimension is without corresponding dimension. It is used in the transaction and collecting snapshot fact tables. This kind of dimension does not have its dimension as it is derived from the fact table.
-	\item[Swappable Dimensions]	They are used when the same fact table is paired with different versions of the same dimension.
-	\item[Step Dimensions]	Sequential processes, like web page events, mostly have a separate row in a fact table for every step in a process. It tells where the specific step should be used in the overall session.
-
-\end{description}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Dimensions Types}
-%https://www.guru99.com/dimensional-model-data-warehouse.html
-\begin{description}[<+->]
-	\item[Slowly changing Dimensions]	A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
-	%slowly changing dim assume customer was located in dubai then he changed his location
-	% We don't care about the change. just update the latest
-	% we can have two version new, old.
-	% we can have sergeate key. 
-	%with start and end data.
-	%start and end is null
-	%join with sergate key
-	\item[Role-Playing Dimensions]	A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
-	
-\end{description}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Schema Types (Star vs Snowflake)}
-- Multidimensional Model(Star, Snowflake, and Galaxy Schema).\\
-	%	  primary dim & secondary 2 level only
-%snawflake multi dim nationality for example egypt
-%it will scan the nationality first and it will be fortign key with forign key inner join
+        \column{0.2\textwidth}
+    \end{columns}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Roll Up, Drill Down, and Pivot Analysis}
+    \frametitle{What is data model?}
+    Data model is
+    \begin{itemize}[<+->]
+        \item The initial part before starting integration with any new source system.
+        \item It the connection layer between the business requirements and the technical design.
+        \item It is also the translation between logical and physical layer.
+        \item It is unified across the all systems and has the same patterns and practices.
+        \item It could be engage with any source systems integration from early stages.
+        \item \blue{This stage output is data model design document or mapping sheet}.
+    \end{itemize}
+\end{frame}
 
-- Support Roll Up, Drill Down, and Pivot Analysis\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \frametitle{Why does data models are important?}
+    \begin{wideitemize}
+        \item Data models are currently affecting software design.
+        \item It decides how engineers will think about the problem they are solving.
+    \end{wideitemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Data Model Design vs Implementation}
+    %Replace it by photo
+    \begin{itemize}[<+->]
+        \item You need to build a home. So, how do we design this home?
+        \begin{itemize}[<+->]
+            \item Determine if the home is one level or multi-level and decide man bedrooms and bathrooms for each floor. (User needs)
+            \item Hire an architect to put the architecture in more detailed way for example, the size for each room, the distribution of the wireds, where the plumbing fixtures will be placed, etc. (Architecture phase)
+            \item Decide the decorations, colors for each room, carpets, etc.
+        \end{itemize}
+        \item What do we do for the implementation?
+        \begin{itemize}[<+->]
+            \item Hire a contractor to build (implement the design) the home.
+            \item This phase will implement the design but it also include some detail related to the actual way to build the tools and the material. (Physical Design)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Data Model: Elements of Data Model}
+\begin{frame}
+    \frametitle{Elements of Data Model}
+    %https://www.guru99.com/dimensional-model-data-warehouse.html
+    \begin{description}[<+->]
+        \item[Facts] are the measurements/metrics or facts from business process Ex: (Telecom industry, a measurement would be count of daily/hourly usage per customer). We could consider facts as the source of reporting for business.
+        %measure and ids when,where
+        \item[Dimensions] provide the context surrounding a business process event. In simple terms, they give who, what, where of a fact. Ex: (Telecom industry, for the fact daily usage, dimensions would be Who – (Customer id), Where (Location), What (counts of activities incoming/outgoing call) )
+
+        \item[Attributes] are the various characteristics of the dimension. In the previous examples the attributes can be customer details (from customer id get the gender, age, nationality, etc..).
+        %Attributes are used to search, filter, or classify facts. Dimension Tables contain Attributes
+        %	Facts include dimensions, dimensions include attributes
+    \end{description}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Data Model: Elements of Data Model}
+\begin{frame}
+    \frametitle{Elements of Dimensional Data Model}
+    %https://www.guru99.com/dimensional-model-data-warehouse.html
+    \begin{description}[<+->]
+        \item[Fact Table] is a primary table in a dimensional model. A Fact Table contains (Measurements/facts and Foreign key to \textit{dimension table}). It located at the center of a star or snowflake schema and surrounded by dimensions.
+        %	contains only ids customer, date, location ids  to get this ids go to the diem
+        %granuality for levels / agg up down
+        \item[Dimension table] contains dimensions of a fact and business reference data. They are joined to fact table via a foreign key. Dimension tables are de-normalized tables. It connected to the fact table and located at the edges of the star or snowflake schema.
+
+    \end{description}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Example of Data Model}
+
+    \input{./Figures/chapter-01/Fig_FCT_DIM_Ex.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Conformed Dimension}
+\begin{frame}
+    \frametitle{Conformed Dimensions}
+    %https://www.guru99.com/dimensional-model-data-warehouse.html
+    %The dimension can also contain one or more hierarchical relationships
+    \begin{description}[<+->]
+        \item[Conformed Dimensions]    the dimension which is \underline{\textit{identical}} and has the \underline{\textit{same meaning}} across many fact tables which it relates and used in different areas of the warehouse.
+        \begin{example}
+            \begin{itemize}[<+->]
+                \item \underline{\textbf{(Date as a Key)}}: if we have date column across many facts we could use date as key in all table.
+                So, it will be unified format
+                \item \underline{\textbf{(Product-Id as a Key)}}: if we have a product name which could vary between systems
+                ex: (upper/lower) we can create dimension table for the product details and use product id unified across fact tables.
+            \end{itemize}
+        \end{example}
+    \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Junk Dimension}
+\begin{frame}
+    \frametitle{Junk Dimension}
+    \begin{description}
+        %junk assume we have multi flags we will collect them as one id
+        \item[Junk Dimension] is used to reduce the number of dimensions in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
+    \end{description}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%TODO: Remove before production
+\midTitle{Dimensions Types: Junk Dimension}
+\begin{frame}
+    \frametitle{Junk Dimension}
+    \begin{description}
+        %junk assume we have multi flags we will collect them as one id
+        \item[Junk Dimension] is used to reduce the number of dimensions in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
+    \end{description}
+    \input{./Figures/chapter-01/Fig_Junk_DIM_Ex.tex}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Degenerate Dimensions}
+    %https://www.guru99.com/dimensional-model-data-warehouse.html
+    \begin{itemize}[<+->]
+        \item Degenerate Dimensions
+        \begin{itemize}[<+->]
+            \item Dimension Key without corresponding dimension table.% (Not a fact and not an attribute)
+            \item Stored in Fact table.
+            %This kind of dimension does not have its dimension as it is derived from the fact table.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Degenerate Dimension}
+\begin{frame}
+    \frametitle{Degenerate Dimension}
+    %https://www.guru99.com/dimensional-model-data-warehouse.html
+    \begin{itemize}
+        \item Degenerate Dimensions
+        \begin{itemize}
+            \item Dimension Key without corresponding dimension table.% (Not a fact and not an attribute)
+            \item Stored in Fact table.
+            \item It used to provide a grouping for business cases.
+            %This kind of dimension does not have its dimension as it is derived from the fact table.
+        \end{itemize}
+    \end{itemize}
+    \centering
+    \input{./Figures/chapter-01/Fig_DD_DIM_Ex.tex}
+
+    \begin{table}[t]
+        \centering
+        \sffamily
+        \begin{tabular}{|a | l | l | l | l|}
+            \hline
+            OrderID  & OrderDate & ProductID & Quantity & Amount\\
+            \hline
+            \hline
+            %\rowcolor{LightCyan}
+            123 & 123456789 & 111 & 2 & 120.45\\
+            123 & 123456789 & 222 & 5 & 10.45\\
+            %\rowcolor{myorange}
+            \hline
+            \hline
+            431 & 98765122 & 333 & 1 & 15.45\\
+            431 & 98765122 & 555 & 6 & 4.45\\
+            \hline
+        \end{tabular}
+    \end{table}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Role-Playing Dimension}
+\begin{frame}
+    \frametitle{Role-Playing Dimension}
+    \begin{description}
+        \item [Role-Playing Dimensions] A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
+    \end{description}
+    \centering
+    \input{./Figures/chapter-01/Fig_RP_DIM_Ex.tex}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Conformed vs Role-Playing Dimension}
+
+    \begin{block}{Conformed vs Role-Playing}
+        \begin{itemize}
+            \item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning}} ex: CustomerID.
+            \item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings}} ex: Date.
+        \end{itemize}
+
+    \end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Outrigger Dimensions}
+\begin{frame}
+    \frametitle{Outrigger Dimensions}
+    \begin{itemize}[<+->]
+        \item A dimension which has a reference to another dimension table. The secondary dimension called outrigger dimension.
+        \item \blue{\textit{\faBullhorn This dimensions design should be used carefully without limited cases}}.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Outrigger Dimensions}
+    \begin{itemize}
+        \item A dimension which has a reference to another dimension table. The secondary dimension called outrigger dimension.\\
+        \item \blue{\textit{\faBullhorn This dimension design should be used carefully without limited cases}}.
+    \end{itemize}
+    \centering
+    \input{./Figures/chapter-01/Fig_FCT_OR_Ex.tex}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Snowflake Dimensions}
+\begin{frame}
+    \frametitle{Snowflake Dimensions}
+    \begin{itemize}[<+->]
+        \item A dimension which has a hierarchy of arributes this attributes has been normalized and each dimension has a relationship with another hirarcy dimension table.\\
+        \item \red{\textit{\faBug This dimensions design is not recommended as it has a lot of complexity to the model and query performance. Also, it complicates the ETL process and make too much dimensions without needs}}.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Snowflake Dimensions}
+    \begin{itemize}
+        \item A dimension which has a hierarchy of arributes this attributes has been normalized and each
+        dimension has a relationship with another hirarcy dimension table.\\
+        \item \red{\textit{\faBug This dimensions design is not recommended as it has a lot of complexity
+        to the model and query performance. Also, it complicates the ETL process and make too much dimensions without needs}}.
+    \end{itemize}
+    \centering
+    \input{./Figures/chapter-01/Fig_SF_Ex.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Step Dimensions}
+\begin{frame}
+    \frametitle{Dimensions Types}
+    \begin{description}[<+->]
+        \item[Shrunken Rollup Dimensions] Shrunken Rollup dimensions are a subdivision of rows and columns
+        of a base dimension. These kinds of dimensions are useful for developing aggregated fact tables.
+
+        \item[Dimension-to-Dimension] Table Joins Dimensions may have references to other dimensions.
+        However, these relationships can be modeled with outrigger dimensions.
+    \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Dimensions Types}
+    %https://www.guru99.com/dimensional-model-data-warehouse.html
+    \begin{description}[<+->]
+        \item[Swappable Dimensions]    They are used when the same fact table is paired with different versions of the same dimension.
+
+    \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Dimensions Types}
+    %https://www.guru99.com/dimensional-model-data-warehouse.html
+    \begin{description}[<+->]
+        \item[Slowly changing Dimensions]    A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
+        %slowly changing dim assume customer was located in dubai then he changed his location
+        % We don't care about the change. just update the latest
+        % we can have two version new, old.
+        % we can have sergeate key.
+        %with start and end data.
+        %start and end is null
+        %join with sergate key
+    \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \frametitle{Schema Types (Star vs Snowflake)}
+    - Multidimensional Model(Star, Snowflake, and Galaxy Schema).\\
+    %	  primary dim & secondary 2 level only
+    %snawflake multi dim nationality for example egypt
+    %it will scan the nationality first and it will be fortign key with forign key inner join
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Normalization and De-normalization}
+    \frametitle{Roll Up, Drill Down, and Pivot Analysis}
 
-- Normalization and De-normalization\\
+    - Support Roll Up, Drill Down, and Pivot Analysis\\
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Model Granularity}
+    \frametitle{Normalization and De-normalization}
 
-- Model Granularity : Level of Detail\\
+    - Normalization and De-normalization\\
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \frametitle{Model Granularity}
+
+    - Model Granularity : Level of Detail\\
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1172,9 +1285,9 @@ Data model is
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Inmon vs Kimball Design Approach }
+    \frametitle{Inmon vs Kimball Design Approach }
 
-Inmon vs Kimball Design Approach
+    Inmon vs Kimball Design Approach
 
 \end{frame}
 
@@ -1184,190 +1297,190 @@ Inmon vs Kimball Design Approach
 \subsubsection{ETL Process}
 
 \begin{frame}
-\frametitle{What is ETL?}
+    \frametitle{What is ETL?}
 
-\begin{itemize}[<+->]
-	\item The ETL (Extraction, Transformation, Loading) is main core function for any data engineering (DWH) team.
-	\item This team takes the delivered output from the previous stage (data modeling) and start to implement the mapping.
-	\item The implementation of the ETL preferred to be unified across the team members and the organization unless there is a special case of license of capacity.
-	
-\end{itemize}		
+    \begin{itemize}[<+->]
+        \item The ETL (Extraction, Transformation, Loading) is main core function for any data engineering (DWH) team.
+        \item This team takes the delivered output from the previous stage (data modeling) and start to implement the mapping.
+        \item The implementation of the ETL preferred to be unified across the team members and the organization unless there is a special case of license of capacity.
+
+    \end{itemize}
 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{ETL Characteristics}
-%%https://www.timmitchell.net/etl-best-practices/
-\begin{itemize}[<+->]
-	\item Successful ETL design have the following characteristics:
-		\begin{itemize}[<+->]
-			\item [\faCheckSquareO] Maintainable.
-			\item [\faCheckSquareO] Reusable.
-			\item [\faCheckSquareO] Well-Performed.
-			\item [\faCheckSquareO] Reliable.
-			\item [\faCheckSquareO] Resilient.
-			\item [\faCheckSquareO] Secure.
-		\end{itemize}
-\end{itemize}
+    \frametitle{ETL Characteristics}
+    %%https://www.timmitchell.net/etl-best-practices/
+    \begin{itemize}[<+->]
+        \item Successful ETL design have the following characteristics:
+        \begin{itemize}[<+->]
+            \item [\faCheckSquareO] Maintainable.
+            \item [\faCheckSquareO] Reusable.
+            \item [\faCheckSquareO] Well-Performed.
+            \item [\faCheckSquareO] Reliable.
+            \item [\faCheckSquareO] Resilient.
+            \item [\faCheckSquareO] Secure.
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{ETL Best Practice}
-%%https://www.timmitchell.net/etl-best-practices/
-\begin{itemize}[<+->]
-	\item To implement the previous characteristics you need to have the following:
-	\begin{itemize}[<+->]
-		\item [\faCheckSquareO] Logging.
-		
-		\item [\faCheckSquareO] Auditing.
-		
-		\item [\faCheckSquareO] Data Lineage.
-		
-		\item [\faCheckSquareO] Modularity.
-		
-		\item [\faCheckSquareO] Atomicity.
-		
-		\item [\faCheckSquareO] Error Handling.
-		
-		\item [\faCheckSquareO] Managing Bad Data (Rejection Handling).		
-	\end{itemize}
-\end{itemize}
-\end{frame}
+    \frametitle{ETL Best Practice}
+    %%https://www.timmitchell.net/etl-best-practices/
+    \begin{itemize}[<+->]
+        \item To implement the previous characteristics you need to have the following:
+        \begin{itemize}[<+->]
+            \item [\faCheckSquareO] Logging.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            \item [\faCheckSquareO] Auditing.
 
-\begin{frame}
-\frametitle{ETL Logging}
-%%https://www.timmitchell.net/etl-best-practices/
-\begin{itemize}[<+->]
-	\item Logging
-	\begin{itemize}[<+->]
-		\item  Logging.
-		\item  Logging.
-		\item  Logging.
-		
+            \item [\faCheckSquareO] Data Lineage.
 
-	\end{itemize}
-\end{itemize}
+            \item [\faCheckSquareO] Modularity.
+
+            \item [\faCheckSquareO] Atomicity.
+
+            \item [\faCheckSquareO] Error Handling.
+
+            \item [\faCheckSquareO] Managing Bad Data (Rejection Handling).
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{ETL Auditing}
-%%https://www.timmitchell.net/etl-best-practices/
-\begin{itemize}[<+->]
-	\item Logging
-	\begin{itemize}[<+->]
-		\item  Logging.
-		\item  Logging.
-		\item  Logging.
-		
-		
-	\end{itemize}
-\end{itemize}
+    \frametitle{ETL Logging}
+    %%https://www.timmitchell.net/etl-best-practices/
+    \begin{itemize}[<+->]
+        \item Logging
+        \begin{itemize}[<+->]
+            \item  Logging.
+            \item  Logging.
+            \item  Logging.
+
+
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{ETL Data Lineage}
-%%https://www.timmitchell.net/etl-best-practices/
-\begin{itemize}[<+->]
-	\item Logging
-	\begin{itemize}[<+->]
-		\item  Logging.
-		\item  Logging.
-		\item  Logging.
-		
-		
-	\end{itemize}
-\end{itemize}
+    \frametitle{ETL Auditing}
+    %%https://www.timmitchell.net/etl-best-practices/
+    \begin{itemize}[<+->]
+        \item Logging
+        \begin{itemize}[<+->]
+            \item  Logging.
+            \item  Logging.
+            \item  Logging.
+
+
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{ETL Modularity}
-%%https://www.timmitchell.net/etl-best-practices/
-\begin{itemize}[<+->]
-	\item Logging
-	\begin{itemize}[<+->]
-		\item  Logging.
-		\item  Logging.
-		\item  Logging.
-		
-		
-	\end{itemize}
-\end{itemize}
+    \frametitle{ETL Data Lineage}
+    %%https://www.timmitchell.net/etl-best-practices/
+    \begin{itemize}[<+->]
+        \item Logging
+        \begin{itemize}[<+->]
+            \item  Logging.
+            \item  Logging.
+            \item  Logging.
+
+
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{ETL Atomicity}
-%%https://www.timmitchell.net/etl-best-practices/
-\begin{itemize}[<+->]
-	\item Logging
-	\begin{itemize}[<+->]
-		\item  Logging.
-		\item  Logging.
-		\item  Logging.
-		
-		
-	\end{itemize}
-\end{itemize}
+    \frametitle{ETL Modularity}
+    %%https://www.timmitchell.net/etl-best-practices/
+    \begin{itemize}[<+->]
+        \item Logging
+        \begin{itemize}[<+->]
+            \item  Logging.
+            \item  Logging.
+            \item  Logging.
+
+
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{ETL Error Handling}
-%%https://www.timmitchell.net/etl-best-practices/
-\begin{itemize}[<+->]
-	\item Logging
-	\begin{itemize}[<+->]
-		\item  Logging.
-		\item  Logging.
-		\item  Logging.
-		
-		
-	\end{itemize}
-\end{itemize}
+    \frametitle{ETL Atomicity}
+    %%https://www.timmitchell.net/etl-best-practices/
+    \begin{itemize}[<+->]
+        \item Logging
+        \begin{itemize}[<+->]
+            \item  Logging.
+            \item  Logging.
+            \item  Logging.
+
+
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{ETL Rejection Handling}
-%%https://www.timmitchell.net/etl-best-practices/
-\begin{itemize}[<+->]
-	\item Logging
-	\begin{itemize}[<+->]
-		\item  Logging.
-		\item  Logging.
-		\item  Logging.
-		
-		
-	\end{itemize}
-\end{itemize}
+    \frametitle{ETL Error Handling}
+    %%https://www.timmitchell.net/etl-best-practices/
+    \begin{itemize}[<+->]
+        \item Logging
+        \begin{itemize}[<+->]
+            \item  Logging.
+            \item  Logging.
+            \item  Logging.
+
+
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \frametitle{ETL Rejection Handling}
+    %%https://www.timmitchell.net/etl-best-practices/
+    \begin{itemize}[<+->]
+        \item Logging
+        \begin{itemize}[<+->]
+            \item  Logging.
+            \item  Logging.
+            \item  Logging.
+
+
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{ETL vs ELT When? Why?}
+    \frametitle{ETL vs ELT When? Why?}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1375,14 +1488,14 @@ Inmon vs Kimball Design Approach
 \subsubsection{Storage layer}
 
 \begin{frame}
-\frametitle{Storage layer}
+    \frametitle{Storage layer}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Logical layer}
 
 \begin{frame}
-\frametitle{Logical layer}
+    \frametitle{Logical layer}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1390,7 +1503,7 @@ Inmon vs Kimball Design Approach
 \subsubsection{Reporting (UI) layer}
 
 \begin{frame}
-\frametitle{Reporting (UI) layer}
+    \frametitle{Reporting (UI) layer}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1398,7 +1511,7 @@ Inmon vs Kimball Design Approach
 \subsubsection{Metadata layer}
 
 \begin{frame}
-\frametitle{Metadata layer}
+    \frametitle{Metadata layer}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1406,7 +1519,7 @@ Inmon vs Kimball Design Approach
 \subsubsection{System operations layer}
 
 \begin{frame}
-\frametitle{System operations layer}
+    \frametitle{System operations layer}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1414,14 +1527,14 @@ Inmon vs Kimball Design Approach
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{DWH Architecture Overview}
-There are mainly three types of Datawarehouse Architectures: -
-%https://www.guru99.com/data-warehouse-architecture.html
-\begin{wideitemize}
-	\item Single-tier architecture.
-	\item Two-tier architecture.
-	\item Three-tier architecture.
-\end{wideitemize}
+    \frametitle{DWH Architecture Overview}
+    There are mainly three types of Datawarehouse Architectures: -
+    %https://www.guru99.com/data-warehouse-architecture.html
+    \begin{wideitemize}
+        \item Single-tier architecture.
+        \item Two-tier architecture.
+        \item Three-tier architecture.
+    \end{wideitemize}
 
 \end{frame}
 
@@ -1431,40 +1544,40 @@ There are mainly three types of Datawarehouse Architectures: -
 \subsection{File Formats}
 
 \begin{frame}
-\frametitle{\subsecname}
-\begin{itemize}[<+->]
-	\item Any Big Data solution working based distributed systems.
-	\item What is distributed systems in brief?
-\end{itemize}
+    \frametitle{\subsecname}
+    \begin{itemize}[<+->]
+        \item Any Big Data solution working based distributed systems.
+        \item What is distributed systems in brief?
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Data Encoding and Formats}
 
 \begin{frame}
-\frametitle{\subsecname}
-\begin{itemize}[<+->]
-	\item Any Big Data solution working based distributed systems.
-	\item What is distributed systems in brief?
-\end{itemize}
+    \frametitle{\subsecname}
+    \begin{itemize}[<+->]
+        \item Any Big Data solution working based distributed systems.
+        \item What is distributed systems in brief?
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Data Compression Technique}
 
 \begin{frame}
-\frametitle{\subsecname}
-\begin{itemize}[<+->]
-\item Any Big Data solution working based distributed systems.
-\item What is distributed systems in brief?
-\end{itemize}
+    \frametitle{\subsecname}
+    \begin{itemize}[<+->]
+        \item Any Big Data solution working based distributed systems.
+        \item What is distributed systems in brief?
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Data Archiving and Retention}
 \begin{frame}
-\frametitle{\subsecname}
-\begin{itemize}[<+->]
-	\item some details about hot vs cold storage,
-\end{itemize}
+    \frametitle{\subsecname}
+    \begin{itemize}[<+->]
+        \item some details about hot vs cold storage,
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

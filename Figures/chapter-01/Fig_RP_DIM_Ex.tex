@@ -1,0 +1,28 @@
+\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.6, every node/.style={scale=0.6}]
+
+    \matrix  [entity=OrderDetail, entity anchor=OrdersDetail-OrderID]  {
+        \properties{
+        OrderID,
+        OrderDate (FK),
+        ShippedDate (FK),
+        DeliveryDate (FK),
+        ExpiryDate (FK)
+        }
+    };
+    \matrix  [entity=Calendar, right=of OrderDetail-OrderID, entity anchor=Calendar-id] {
+        \properties{
+        id,
+        date,
+        day,
+        week,
+        month,
+        qtr,
+        year
+        }
+    };
+    %\draw [one to one] (OrderDetail-OrderID)  to (Calendar-id);
+    \draw[densely dotted] (4.3,1.9) -- (8.1,1.9);
+    \draw[densely dotted] (4.3,1.2) -- (8.1,1.2);
+    \draw[densely dotted] (4.3,.6) -- (8.1,.6);
+    \draw[densely dotted] (4.3,0) -- (8.1,0);
+\end{tikzpicture}

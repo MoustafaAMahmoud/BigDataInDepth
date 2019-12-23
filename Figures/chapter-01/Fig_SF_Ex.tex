@@ -1,0 +1,39 @@
+\resizebox{.9\columnwidth}{!}{%
+\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.75, every node/.style={scale=0.75}]
+    \matrix  [entity=Usage, entity anchor=Usage-id]  {
+        \properties{
+        id,
+        cust-id (FK),
+        promo-id (FK),
+        usgdate-id (FK)
+        }
+    };
+    \matrix  [entity=Promotion, below left=of Usage-id,yshift=10ex, entity anchor=Promotion-id]  {
+        \properties{
+        id,
+        promotype,
+        promodesc,
+        subcategory-id (FK),
+        value
+        }
+    };
+    \matrix  [entity=PromoSubCategory, below left=of Promotion-id,yshift=10ex, entity anchor=PromoSubCategory-id]  {
+        \properties{
+        id,
+        subcategory,
+        category-id (FK),
+        }
+    };
+    \matrix  [entity=PromoCategory, below left=of PromoSubCategory-id,yshift=10ex, entity anchor=PromoCategory-id]  {
+        \properties{
+        id,
+        category,
+        }
+    };
+
+
+    \draw [one to one] (Usage-id)  to (Promotion-id);
+    \draw [one to one] (Promotion-id)  to (PromoSubCategory-id);
+    \draw [one to one] (PromoSubCategory-id) to (PromoCategory-id);
+\end{tikzpicture}
+}

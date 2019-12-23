@@ -1,0 +1,41 @@
+\resizebox{.9\columnwidth}{!}{%
+\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.75, every node/.style={scale=0.75}]
+
+    \matrix  [entity=Usage, entity anchor=Usage-id]  {
+        \properties{
+        id,
+        cust-id (FK),
+        promo-id (FK),
+        usgdate-id (FK)
+        }
+    };
+
+    \matrix  [entity=Promotion, below left=of Usage-id, entity anchor=Promotion-id]  {
+        \properties{
+        id,
+        promotype,
+        promodesc,
+        promocategory,
+        promosubcategory,
+        value,
+        startdate-id (FK),
+        enddate-id (FK)
+        }
+    };
+    \matrix  [entity=Calendar, above left=of Promotion-id, entity anchor=Calendar-id]  {
+        \properties{
+        id,
+        date,
+        day,
+        week,
+        month,
+        qtr,
+        year
+        }
+    };
+
+    \draw [one to one] (Usage-id)  to (Promotion-id);
+    \draw [one to one] (Promotion-id)  to (Calendar-id);
+    \draw [one to one] (Usage-id)  to (Calendar-id);
+\end{tikzpicture}
+}
