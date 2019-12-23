@@ -1046,8 +1046,6 @@
     \input{./Figures/chapter-01/Fig_FCT_DIM_Ex.tex}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \midTitle{Dimensions Types: Conformed Dimension}
 \begin{frame}
     \frametitle{Conformed Dimensions}
@@ -1066,8 +1064,6 @@
     \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \midTitle{Dimensions Types: Junk Dimension}
 \begin{frame}
     \frametitle{Junk Dimension}
@@ -1075,13 +1071,9 @@
         %junk assume we have multi flags we will collect them as one id
         \item[Junk Dimension] is used to reduce the number of dimensions in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
     \end{description}
-
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%TODO: Remove before production
-\midTitle{Dimensions Types: Junk Dimension}
 \begin{frame}
     \frametitle{Junk Dimension}
     \begin{description}
@@ -1089,10 +1081,9 @@
         \item[Junk Dimension] is used to reduce the number of dimensions in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
     \end{description}
     \input{./Figures/chapter-01/Fig_Junk_DIM_Ex.tex}
-
 \end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Degenerate Dimension}
 \begin{frame}
     \frametitle{Degenerate Dimensions}
     %https://www.guru99.com/dimensional-model-data-warehouse.html
@@ -1106,7 +1097,6 @@
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\midTitle{Dimensions Types: Degenerate Dimension}
 \begin{frame}
     \frametitle{Degenerate Dimension}
     %https://www.guru99.com/dimensional-model-data-warehouse.html
@@ -1141,7 +1131,6 @@
             \hline
         \end{tabular}
     \end{table}
-
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \midTitle{Dimensions Types: Role-Playing Dimension}
@@ -1152,20 +1141,16 @@
     \end{description}
     \centering
     \input{./Figures/chapter-01/Fig_RP_DIM_Ex.tex}
-
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
     \frametitle{Conformed vs Role-Playing Dimension}
-
     \begin{block}{Conformed vs Role-Playing}
         \begin{itemize}
             \item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning}} ex: CustomerID.
             \item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings}} ex: Date.
         \end{itemize}
-
     \end{block}
-
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \midTitle{Dimensions Types: Outrigger Dimensions}
@@ -1185,7 +1170,6 @@
     \end{itemize}
     \centering
     \input{./Figures/chapter-01/Fig_FCT_OR_Ex.tex}
-
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \midTitle{Dimensions Types: Snowflake Dimensions}
@@ -1209,16 +1193,80 @@
     \input{./Figures/chapter-01/Fig_SF_Ex.tex}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\midTitle{Dimensions Types: Step Dimensions}
+\midTitle{Dimensions Types: Shrunken Rollup Dimensions}
 \begin{frame}
-    \frametitle{Dimensions Types}
-    \begin{description}[<+->]
-        \item[Shrunken Rollup Dimensions] Shrunken Rollup dimensions are a subdivision of rows and columns
-        of a base dimension. These kinds of dimensions are useful for developing aggregated fact tables.
+    \frametitle{Shrunken Rollup Dimensions}%منكمش
+    \begin{itemize}[<+->]    	
+		\item Shrunken Rollup dimension is used for developing aggregate (higher level of summary) fact tables. 
+		\item It required that the data model has the lower level granularity.
+	\end{itemize}
+		\begin{example}
+		    \begin{itemize}[<+->]    	
+			\item We have a daily usage fact table and we need to have a higher level monthly usage. So, we use the monthly dimension to get a summary of the daily.
+			\item We have a daily usage fact table aggregated on area id and we need to create another summary table aggregated based on city id. So, the new grain level here is the new dimension for city.
+			\end{itemize}
+		\end{example}
 
-        \item[Dimension-to-Dimension] Table Joins Dimensions may have references to other dimensions.
-        However, these relationships can be modeled with outrigger dimensions.
-    \end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Shrunken Rollup Dimensions Cont.}
+
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | a | l |}
+			\hline
+			OrderDate & AreaID & TotalOrders\\
+			\hline
+			\hline
+			123456789 & 123  & 20\\
+			123456789 & 123  & 30\\
+			\hline
+			\hline
+			123456789 & 678  & 10\\
+			123456789 & 678  & 12\\
+			\hline
+		\end{tabular}
+
+	\end{table}
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|a | l | l |}
+			\hline
+			AreaID & AreaName & CityID\\
+			\hline
+			\hline			
+			123 & Al-Matareya  & 1\\
+			678 & Ain shams    & 1\\
+			\hline
+		\end{tabular}
+		\quad
+		\begin{tabular}{|a | l|}
+			\hline
+			CityID & CityName\\
+			\hline
+			\hline			
+			1 & Cairo \\
+			\hline
+		\end{tabular}
+	\end{table}
+
+	\begin{table}[t]
+	\centering
+	\sffamily
+		\begin{tabular}{|l | a | l |}
+			\hline
+			OrderDate & CityID & TotalOrders\\
+			\hline
+			\hline		
+			123456789 & 1  & 72\\
+			\hline
+		\end{tabular}
+	\end{table}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -1226,7 +1274,7 @@
     %https://www.guru99.com/dimensional-model-data-warehouse.html
     \begin{description}[<+->]
         \item[Swappable Dimensions]    They are used when the same fact table is paired with different versions of the same dimension.
-
+		  \item[Dimension-to-Dimension] Table Joins Dimensions may have references to other dimensions. However, these relationships can be modeled with outrigger dimensions.
     \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
