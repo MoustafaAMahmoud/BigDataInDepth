@@ -1206,7 +1206,7 @@
 			\item We have a daily usage fact table aggregated on area id and we need to create another summary table aggregated based on city id. So, the new grain level here is the new dimension for city.
 			\end{itemize}
 		\end{example}
-
+%https://www.kimballgroup.com/2011/08/design-tip-137-creating-and-managing-shrunken-dimensions/
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -1266,20 +1266,11 @@
 			\hline
 		\end{tabular}
 	\end{table}
-
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Slowly changing Dimensions}
 \begin{frame}
-    \frametitle{Dimensions Types}
-    %https://www.guru99.com/dimensional-model-data-warehouse.html
-    \begin{description}[<+->]
-        \item[Swappable Dimensions]    They are used when the same fact table is paired with different versions of the same dimension.
-		  \item[Dimension-to-Dimension] Table Joins Dimensions may have references to other dimensions. However, these relationships can be modeled with outrigger dimensions.
-    \end{description}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-    \frametitle{Dimensions Types}
+    \frametitle{Slowly changing Dimensions}
     %https://www.guru99.com/dimensional-model-data-warehouse.html
     \begin{description}[<+->]
         \item[Slowly changing Dimensions]    A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
@@ -1293,7 +1284,14 @@
     \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\midTitle{Dimensions Types: Swappable Dimensions}
+\begin{frame}
+	\frametitle{Dimensions Types}
+	\begin{description}[<+->]
+		\item[Swappable Dimensions] They are used when the same fact table is paired with different versions of the same dimension.
+	\end{description}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
     \frametitle{Schema Types (Star vs Snowflake)}
     - Multidimensional Model(Star, Snowflake, and Galaxy Schema).\\
