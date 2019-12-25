@@ -286,7 +286,7 @@
 %           \item Logical Layer
 %           \begin{itemize}[<+->]
 %             \item When you have missing sources into your logical layer, and you need to add this source and its structure.
-%             \item There is a performance issue in the existing reports, and you need to change the model. For example, reduce the join by creating a new join table (\textit{materialized view}).
+%             \item There is a performance issue in the existing reports, and you need to change the model. \faEdit reduce the join by creating a new join table (\textit{materialized view}).
 %             \item Update the data type or the existing relation, which could help to fix some data or performance issues.
 %            \end{itemize}
 %           \end{itemize}
@@ -555,7 +555,7 @@
 %
 %\item What is the need for DWH?		
 %\begin{itemize}[<+->]
-%\item This company has other systems for example: billing, charging, signaling.	
+%\item This company has other systems \faEdit billing, charging, signaling.	
 %\item They need to report information related to the CRM, billing, and signaling source systems in one report.
 %\item So, they need to ingest (transfer) the data from the source systems to one single database.
 %\item The decision from the DHW is a \textbf{global and strategical decision.}
@@ -609,7 +609,7 @@
 %			\begin{itemize}[<+->]		
 %				\item It needs specific information from different source systems.
 %				\item It requires to track the source system database changes or update in real-time.
-%				\item It's functionality is based on the aggregate data not the transactions for example (It needs the total outgoing calls till time or it needs the total charging amounts from prepaid or the available limits from billing if it is postpaid).
+%				\item It's functionality is based on the aggregate data not the transactions \faEdit (It needs the total outgoing calls till time or it needs the total charging amounts from prepaid or the available limits from billing if it is postpaid).
 %			\end{itemize}
 %	\end{itemize}
 %
@@ -641,7 +641,7 @@
 
             \item Subject-oriented: \textit{DWH main target is to support business needs for the whole organization including (decision makers, departments, and specific user requirements)}.
 
-            \item Non-Volatile: \textit{It refers to the data will not erased or deleted (It could be archived and retrieved when needed). Data can be accumulated daily the new snapshots (refreshed at based on the source system interval. For example, It could be updated daily, weekly, and monthly).}
+            \item Non-Volatile: \textit{It refers to the data will not erased or deleted (It could be archived and retrieved when needed). Data can be accumulated daily the new snapshots (refreshed at based on the source system interval. \faEdit It could be updated daily, weekly, and monthly).}
         \end{wideitemize}
     \end{wideitemize}
     %https://www.guru99.com/data-warehouse-architecture.html
@@ -740,7 +740,7 @@
         \item Implementation (summary):
         \begin{itemize}[<+->]
             \item There are lots of tools for this purpose as follows:
-            \item Enterprise examples:
+            \item Enterprise \faEdit:
             \begin{itemize}
                 \item IBM InfoSphere
                 \item Informatica PowerCenter
@@ -761,7 +761,7 @@
         \item Implementation (summary):
         \begin{itemize}[<+->]
             \item There are lots of tools for this purpose as follows:
-            \item Open source examples:
+            \item Open source \faEdit:
             \begin{itemize}
                 \item Apache NiFi*
                 \item CloverETL
@@ -781,7 +781,7 @@
         \item Implementation (summary):
         \begin{itemize}[<+->]
             \item There are lots of tools for this purpose as follows:
-            \item Cloud tools examples:
+            \item Cloud tools \faEdit:
             \begin{itemize}
                 \item AWS Migration Services.
                 \item Azure Migration Tools.
@@ -840,7 +840,7 @@
         \begin{itemize}
             \item  Conflounce page, Word, or Excel sheet.
             \item  Make the discussion online and put comments to make the history available always.
-            \item  All tasks should be clear what is the expected output for example (analysis means to document data structure, format, column names, etc..).
+            \item  All tasks should be clear what is the expected output \faEdit (analysis means to document data structure, format, column names, etc..).
         \end{itemize}
     \end{itemize}
 
@@ -998,7 +998,7 @@
         \item You need to build a home. So, how do we design this home?
         \begin{itemize}[<+->]
             \item Determine if the home is one level or multi-level and decide man bedrooms and bathrooms for each floor. (User needs)
-            \item Hire an architect to put the architecture in more detailed way for example, the size for each room, the distribution of the wireds, where the plumbing fixtures will be placed, etc. (Architecture phase)
+            \item Hire an architect to put the architecture in more detailed way \faEdit the size for each room, the distribution of the wireds, where the plumbing fixtures will be placed, etc. (Architecture phase)
             \item Decide the decorations, colors for each room, carpets, etc.
         \end{itemize}
         \item What do we do for the implementation?
@@ -1045,6 +1045,29 @@
 
     \input{./Figures/chapter-01/Fig_FCT_DIM_Ex.tex}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Dimensions Types}
+	\begin{itemize}[<+->]
+		\item Conformed Dimension
+		\item Junk Dimension.
+		\item Degenerate Dimension.
+		\item Role-Playing Dimension.
+		\item Outrigger Dimension.
+		\item Snowflake Dimension.
+		\item Shrunken Rollup Dimension.
+		\item Swappable Dimension.
+		\item Slowly changing Dimension.
+		\item Fast Changing Dimension (Mini Dimension).
+		\item Garbage Dimension.
+		\item Heterogenous Dimensions
+		\item Multi-valued dimensions
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \midTitle{Dimensions Types: Conformed Dimension}
 \begin{frame}
@@ -1137,7 +1160,7 @@
 \begin{frame}
     \frametitle{Role-Playing Dimension}
     \begin{description}
-        \item [Role-Playing Dimensions] A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
+        \item [Role-Playing Dimensions (Re-usable Dimension)] A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
     \end{description}
     \centering
     \input{./Figures/chapter-01/Fig_RP_DIM_Ex.tex}
@@ -1267,6 +1290,57 @@
 		\end{tabular}
 	\end{table}
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Swappable Dimensions}
+\begin{frame}
+\frametitle{Swappable Dimensions}
+	\begin{itemize}[<+->]
+		\item A dimension that has multiple alternate versions of itself that can be \textbf{swapped at query time}.
+		\item Each version of the hot swappable dimension (sub-types)
+			\begin{itemize}[<+->]
+				\item Has different meaning
+				\item Has different structures.
+				\item Has less data compared to the primary dimension (less rows and columns).
+				\item Has different output based on the input version and its alternatives.
+				\item Multi versions could be used together in the same fact with different types.
+				\item Can act as the primary dimension and join to the same fact table.
+				\item Has different target users and sometimes we restrict the users to access the primary dimension and only access the swapped version to restrict the data without needs to show the whole primary attributes.
+
+			\end{itemize}.
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Swappable Dimensions}
+\centering
+\input{./Figures/chapter-01/Fig_SW_DIM_Ex.tex}
+\begin{block}{Implementation}
+	\begin{itemize}
+		\item Physical tables (sub-types).
+		\begin{itemize}
+			\item Pros: Performance.
+			\item Cons: Data redundancy, increase in data size, and ETL headache.
+		\end{itemize}
+		\item Logical views (with index or re partition based on the key).% Now, we can join the view with the fact and we will let the fact has only permission for this view.
+		\begin{itemize}
+			\item Pros: Easy for (managing, implementation) with consistent views.
+			\item Cons: Performance and manage the authorization per view.
+		\end{itemize}		
+	\end{itemize}
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Attention: Conformed vs Role-Playing Dimension vs Swappable}
+	\begin{itemize}[<+->]
+		\item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning and value}} \faEdit CustomerID 123 can be represented into the whole model using the same value and same meaning.
+		\item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings and same value}} \faEdit Date Dimension 20191012 can be used for different purpose order delivery date, expire date but different meanings.
+		\item \textbf{Swappable} different version from the primary dimension each version has its own attributes and meanings based on the use case \textit{\underline{(different meaning based on the category)}}. \faEdit party id dimension has different version sales, agent, employee and all of them sub-types of the party but used for different purpose in different facts.
+	\end{itemize}
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \midTitle{Dimensions Types: Slowly changing Dimensions}
 \begin{frame}
@@ -1282,14 +1356,6 @@
         %start and end is null
         %join with sergate key
     \end{description}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\midTitle{Dimensions Types: Swappable Dimensions}
-\begin{frame}
-	\frametitle{Dimensions Types}
-	\begin{description}[<+->]
-		\item[Swappable Dimensions] They are used when the same fact table is paired with different versions of the same dimension.
-	\end{description}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -1640,5 +1706,6 @@
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../main"
+% !TeX root = ../main.tex
 %%% TeX-engine: xetex
 %%% End:

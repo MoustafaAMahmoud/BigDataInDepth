@@ -1,0 +1,41 @@
+\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.7, every node/.style={scale=0.7}]
+    \matrix  [entity=Party, entity anchor=Party-id]  {
+	    \properties{
+	    id,
+	    PartyName,
+	    PartyAddress,
+	    PartyContactNumber,
+	    PartyDepartment,
+	    PartyPosition
+	    }
+    };
+    \matrix  [entity=SalesDetails, left=of Party-id,xshift=9ex, entity anchor=SalesDetails-id]  {
+		\properties{
+			id,
+			SalesID (PartyId (FK)),
+			AgentID (PartyId (FK)),
+			TransactionDate (FK),
+			TotalAmount
+		}
+	};
+
+	\matrix  [entity=EmployeesDetails, right=of Party-id,xshift=-9ex, entity anchor=EmployeesDetails-id]  {
+		\properties{
+			id,
+			EmployeeId (PartyId (FK)),
+			SalaryDetails
+		}
+	};
+
+\draw [one to one] (Party-id)  to (SalesDetails-id);
+\draw [one to one] (Party-id)  to (EmployeesDetails-id);
+
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main.tex"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:
