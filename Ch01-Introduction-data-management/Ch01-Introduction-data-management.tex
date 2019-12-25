@@ -47,7 +47,7 @@
 %	\item \textbf{Extraction}, \textbf{Transformation}, and \textbf{Loading} Process.
 %	\item Business Intelligence (\textbf{BI}) or data discovery (continues process).
 %	\item \textbf{Integration} and publishing.
-%	\item Data retention or \textbf{archiving} process ex: (Hot or Cold storage).
+%	\item Data retention or \textbf{archiving} process \faEdit \space \faArrowCircleORight \space (Hot or Cold storage).
 %\end{itemize}
 %\end{itemize}
 %
@@ -94,7 +94,7 @@
 %			\begin{itemize}[<+->]
 %				\item Can we solve the problem using the current data structure by adding new features?
 %				\item What if we enhance/change the data structure or modeling?
-%				\item Could it help if we change the backend engine (ex: DBMS system)?
+%				\item Could it help if we change the backend engine \faEdit \space \faArrowCircleORight \space (DBMS system)?
 %			\end{itemize}			
 %		\end{itemize}
 %		\item To answer these questions you need to understand the \textbf{\underline{data layers}}.
@@ -286,7 +286,7 @@
 %           \item Logical Layer
 %           \begin{itemize}[<+->]
 %             \item When you have missing sources into your logical layer, and you need to add this source and its structure.
-%             \item There is a performance issue in the existing reports, and you need to change the model. \faEdit reduce the join by creating a new join table (\textit{materialized view}).
+%             \item There is a performance issue in the existing reports, and you need to change the model. \faEdit \space \faArrowCircleORight \space reduce the join by creating a new join table (\textit{materialized view}).
 %             \item Update the data type or the existing relation, which could help to fix some data or performance issues.
 %            \end{itemize}
 %           \end{itemize}
@@ -555,7 +555,7 @@
 %
 %\item What is the need for DWH?		
 %\begin{itemize}[<+->]
-%\item This company has other systems \faEdit billing, charging, signaling.	
+%\item This company has other systems \faEdit \space \faArrowCircleORight \space billing, charging, signaling.	
 %\item They need to report information related to the CRM, billing, and signaling source systems in one report.
 %\item So, they need to ingest (transfer) the data from the source systems to one single database.
 %\item The decision from the DHW is a \textbf{global and strategical decision.}
@@ -609,7 +609,7 @@
 %			\begin{itemize}[<+->]		
 %				\item It needs specific information from different source systems.
 %				\item It requires to track the source system database changes or update in real-time.
-%				\item It's functionality is based on the aggregate data not the transactions \faEdit (It needs the total outgoing calls till time or it needs the total charging amounts from prepaid or the available limits from billing if it is postpaid).
+%				\item It's functionality is based on the aggregate data not the transactions \faEdit \space \faArrowCircleORight \space (It needs the total outgoing calls till time or it needs the total charging amounts from prepaid or the available limits from billing if it is postpaid).
 %			\end{itemize}
 %	\end{itemize}
 %
@@ -641,7 +641,7 @@
 
             \item Subject-oriented: \textit{DWH main target is to support business needs for the whole organization including (decision makers, departments, and specific user requirements)}.
 
-            \item Non-Volatile: \textit{It refers to the data will not erased or deleted (It could be archived and retrieved when needed). Data can be accumulated daily the new snapshots (refreshed at based on the source system interval. \faEdit It could be updated daily, weekly, and monthly).}
+            \item Non-Volatile: \textit{It refers to the data will not erased or deleted (It could be archived and retrieved when needed). Data can be accumulated daily the new snapshots (refreshed at based on the source system interval. \faEdit \space \faArrowCircleORight \space It could be updated daily, weekly, and monthly).}
         \end{wideitemize}
     \end{wideitemize}
     %https://www.guru99.com/data-warehouse-architecture.html
@@ -724,7 +724,7 @@
             \end{itemize}
             \item Design consideration to make the retention easily
             \begin{itemize}[<+->]
-                \item Table partitions need to be split based on the retention policy plan ex: (date).
+                \item Table partitions need to be split based on the retention policy plan \faEdit \space \faArrowCircleORight \space (date).
                 \item Summary tables (agg) need to be maintained to reduce the need for access the cold storage.
                 \item Backup, Recovery, and Rollback plans need to be automated and prepared/tested before moving the data.
             \end{itemize}
@@ -740,7 +740,7 @@
         \item Implementation (summary):
         \begin{itemize}[<+->]
             \item There are lots of tools for this purpose as follows:
-            \item Enterprise \faEdit:
+            \item Enterprise \faEdit \space \faArrowCircleORight \space:
             \begin{itemize}
                 \item IBM InfoSphere
                 \item Informatica PowerCenter
@@ -761,7 +761,7 @@
         \item Implementation (summary):
         \begin{itemize}[<+->]
             \item There are lots of tools for this purpose as follows:
-            \item Open source \faEdit:
+            \item Open source \faEdit \space \faArrowCircleORight \space:
             \begin{itemize}
                 \item Apache NiFi*
                 \item CloverETL
@@ -781,7 +781,7 @@
         \item Implementation (summary):
         \begin{itemize}[<+->]
             \item There are lots of tools for this purpose as follows:
-            \item Cloud tools \faEdit:
+            \item Cloud tools \faEdit \space \faArrowCircleORight \space:
             \begin{itemize}
                 \item AWS Migration Services.
                 \item Azure Migration Tools.
@@ -840,7 +840,7 @@
         \begin{itemize}
             \item  Conflounce page, Word, or Excel sheet.
             \item  Make the discussion online and put comments to make the history available always.
-            \item  All tasks should be clear what is the expected output \faEdit (analysis means to document data structure, format, column names, etc..).
+            \item  All tasks should be clear what is the expected output \faEdit \space \faArrowCircleORight \space (analysis means to document data structure, format, column names, etc..).
         \end{itemize}
     \end{itemize}
 
@@ -891,7 +891,7 @@
     \frametitle{Staging Layer}
     \begin{itemize}[<+->]
         \item This layer handled by the same team who own the \blue{storage part} in most of the organizations.
-        \item Segregation of this layer if it uses different storage type or multi-teams access this layer for a different purpose (ex: Kafka)\\ \red{\textit{\faBullhorn Kafka is not a storage layer but it could be used as landing layer or data persistence layer}}.
+        \item Segregation of this layer if it uses different storage type or multi-teams access this layer for a different purpose \faEdit \space \faArrowCircleORight \space (Kafka)\\ \red{\textit{\faBullhorn Kafka is not a storage layer but it could be used as landing layer or data persistence layer}}.
         \item All the ETL layers are working on top of this layer.
         \item The decision of the storage type is based on the use case and the data.
 
@@ -998,7 +998,7 @@
         \item You need to build a home. So, how do we design this home?
         \begin{itemize}[<+->]
             \item Determine if the home is one level or multi-level and decide man bedrooms and bathrooms for each floor. (User needs)
-            \item Hire an architect to put the architecture in more detailed way \faEdit the size for each room, the distribution of the wireds, where the plumbing fixtures will be placed, etc. (Architecture phase)
+            \item Hire an architect to put the architecture in more detailed way \faEdit \space \faArrowCircleORight \space the size for each room, the distribution of the wireds, where the plumbing fixtures will be placed, etc. (Architecture phase)
             \item Decide the decorations, colors for each room, carpets, etc.
         \end{itemize}
         \item What do we do for the implementation?
@@ -1015,9 +1015,9 @@
     \frametitle{Elements of Data Model}
     %https://www.guru99.com/dimensional-model-data-warehouse.html
     \begin{description}[<+->]
-        \item[Facts] are the measurements/metrics or facts from business process Ex: (Telecom industry, a measurement would be count of daily/hourly usage per customer). We could consider facts as the source of reporting for business.
+        \item[Facts] are the measurements/metrics or facts from business process \faEdit \space \faArrowCircleORight \space (Telecom industry, a measurement would be count of daily/hourly usage per customer). We could consider facts as the source of reporting for business.
         %measure and ids when,where
-        \item[Dimensions] provide the context surrounding a business process event. In simple terms, they give who, what, where of a fact. Ex: (Telecom industry, for the fact daily usage, dimensions would be Who – (Customer id), Where (Location), What (counts of activities incoming/outgoing call) )
+        \item[Dimensions] provide the context surrounding a business process event. In simple terms, they give who, what, where of a fact. \faEdit \space \faArrowCircleORight \space (Telecom industry, for the fact daily usage, dimensions would be Who – (Customer id), Where (Location), What (counts of activities incoming/outgoing call) )
 
         \item[Attributes] are the various characteristics of the dimension. In the previous examples the attributes can be customer details (from customer id get the gender, age, nationality, etc..).
         %Attributes are used to search, filter, or classify facts. Dimension Tables contain Attributes
@@ -1081,7 +1081,7 @@
                 \item \underline{\textbf{(Date as a Key)}}: if we have date column across many facts we could use date as key in all table.
                 So, it will be unified format
                 \item \underline{\textbf{(Product-Id as a Key)}}: if we have a product name which could vary between systems
-                ex: (upper/lower) we can create dimension table for the product details and use product id unified across fact tables.
+                \faEdit \space \faArrowCircleORight \space (upper/lower) we can create dimension table for the product details and use product id unified across fact tables.
             \end{itemize}
         \end{example}
     \end{description}
@@ -1170,8 +1170,8 @@
     \frametitle{Conformed vs Role-Playing Dimension}
     \begin{block}{Conformed vs Role-Playing}
         \begin{itemize}
-            \item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning}} ex: CustomerID.
-            \item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings}} ex: Date.
+            \item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning}} \faEdit \space \faArrowCircleORight \space CustomerID.
+            \item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings}} \faEdit \space \faArrowCircleORight \space Date.
         \end{itemize}
     \end{block}
 \end{frame}
@@ -1335,9 +1335,9 @@
 \begin{frame}
 \frametitle{Attention: Conformed vs Role-Playing Dimension vs Swappable}
 	\begin{itemize}[<+->]
-		\item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning and value}} \faEdit CustomerID 123 can be represented into the whole model using the same value and same meaning.
-		\item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings and same value}} \faEdit Date Dimension 20191012 can be used for different purpose order delivery date, expire date but different meanings.
-		\item \textbf{Swappable} different version from the primary dimension each version has its own attributes and meanings based on the use case \textit{\underline{(different meaning based on the category)}}. \faEdit party id dimension has different version sales, agent, employee and all of them sub-types of the party but used for different purpose in different facts.
+		\item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning and value}} \faEdit \space \faArrowCircleORight \space CustomerID 123 can be represented into the whole model using the same value and same meaning.
+		\item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings and same value}} \faEdit \space \faArrowCircleORight \space Date Dimension 20191012 can be used for different purpose order delivery date, expire date but different meanings.
+		\item \textbf{Swappable} different version from the primary dimension each version has its own attributes and meanings based on the use case \textit{\underline{(different meaning based on the category)}}. \faEdit \space \faArrowCircleORight \space party id dimension has different version sales, agent, employee and all of them sub-types of the party but used for different purpose in different facts.
 	\end{itemize}
 
 \end{frame}
