@@ -1,0 +1,39 @@
+\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.7, every node/.style={scale=0.7}]
+  
+    \matrix  [entity=Patient, entity anchor=Patient-ID]  {
+	    \properties{
+	    ID,
+	    Name,
+	    Gender,
+	    BirthDate
+	    }
+    };
+    \matrix  [entity=PatientRelationDim, left=of Patient-ID,xshift=9ex,entity anchor=PatientRelationDim-PatientID]  {
+		\properties{
+			PatientID,
+			PatientKey,
+			StartDate,
+			EndDate
+		}
+	};
+%
+	\matrix  [entity=PatientMeasureDetails, left=of PatientRelationDim-PatientID,xshift=6ex, entity anchor=PatientMeasureDetails-PatientKey]  {
+		\properties{
+			PatientKey,
+			Weight,
+			BPresure
+		}
+	};
+
+\draw [one to one] (Patient-ID)  to (PatientRelationDim-PatientID);
+\draw [one to one] (PatientRelationDim-PatientID)  to (PatientMeasureDetails-PatientKey);
+
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main.tex"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

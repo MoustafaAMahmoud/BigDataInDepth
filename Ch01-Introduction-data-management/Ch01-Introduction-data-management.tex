@@ -1051,9 +1051,9 @@
 \begin{frame}
 \frametitle{Dimensions Types}
 	\begin{itemize}[<+->]
-		\item Conformed Dimension
-		\item Junk Dimension.
+		\item Conformed Dimension.
 		\item Degenerate Dimension.
+		\item Junk Dimension (Garbage Dimension).
 		\item Role-Playing Dimension.
 		\item Outrigger Dimension.
 		\item Snowflake Dimension.
@@ -1061,7 +1061,6 @@
 		\item Swappable Dimension.
 		\item Slowly changing Dimension.
 		\item Fast Changing Dimension (Mini Dimension).
-		\item Garbage Dimension.
 		\item Heterogenous Dimensions
 		\item Multi-valued dimensions
 	\end{itemize}
@@ -1087,73 +1086,87 @@
     \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\midTitle{Dimensions Types: Junk Dimension}
+\midTitle{Dimensions Types: Degenerate Dimension}
 \begin{frame}
-    \frametitle{Junk Dimension}
-    \begin{description}
-        %junk assume we have multi flags we will collect them as one id
-        \item[Junk Dimension] is used to reduce the number of dimensions in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
-    \end{description}
+	\frametitle{Degenerate Dimensions}
+	%https://www.guru99.com/dimensional-model-data-warehouse.html
+	\begin{itemize}[<+->]
+		\item Degenerate Dimensions
+		\begin{itemize}[<+->]
+			\item Dimension Key without corresponding dimension table.% (Not a fact and not an attribute)
+			\item Stored in Fact table.
+			%This kind of dimension does not have its dimension as it is derived from the fact table.
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%TODO: Remove before production
+\begin{frame}
+	\frametitle{Degenerate Dimension}
+	%https://www.guru99.com/dimensional-model-data-warehouse.html
+	\begin{itemize}
+		\item Degenerate Dimensions
+		\begin{itemize}
+			\item Dimension Key without corresponding dimension table.% (Not a fact and not an attribute)
+			\item Stored in Fact table.
+			\item It used to provide a grouping for business cases.
+			%This kind of dimension does not have its dimension as it is derived from the fact table.
+		\end{itemize}
+	\end{itemize}
+	\centering
+	\input{./Figures/chapter-01/Fig_DD_DIM_Ex.tex}
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|a | l | l | l | l|}
+			\hline
+			OrderID  & OrderDate & ProductID & Quantity & Amount\\
+			\hline
+			\hline
+			%\rowcolor{LightCyan}
+			123 & 123456789 & 111 & 2 & 120.45\\
+			123 & 123456789 & 222 & 5 & 10.45\\
+			%\rowcolor{myorange}
+			\hline
+			\hline
+			431 & 98765122 & 333 & 1 & 15.45\\
+			431 & 98765122 & 555 & 6 & 4.45\\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Junk Dimension (Garbage Dimension)}
 \begin{frame}
     \frametitle{Junk Dimension}
-    \begin{description}
+    \begin{itemize}[<+->]
         %junk assume we have multi flags we will collect them as one id
-        \item[Junk Dimension] is used to reduce the number of dimensions in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
-    \end{description}
+        \item It used to reduce the number of dimensions (low-cardinality columns) in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
+        \item It optimizes space as fact tables should not include low-cardinality or text fields. It mainly includes measures, foreign keys, and degenerate dimension keys.
+                     
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Junk Dimension}
+	\begin{itemize}[<+->]
+		%junk assume we have multi flags we will collect them as one id
+		\item It used to reduce the number of dimensions (low-cardinality columns) in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
+		\item It optimizes space as fact tables should not include low-cardinality or text fields. It mainly includes measures, foreign keys, and degenerate dimension keys.		
+	\end{itemize}
     \input{./Figures/chapter-01/Fig_Junk_DIM_Ex.tex}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\midTitle{Dimensions Types: Degenerate Dimension}
 \begin{frame}
-    \frametitle{Degenerate Dimensions}
-    %https://www.guru99.com/dimensional-model-data-warehouse.html
-    \begin{itemize}[<+->]
-        \item Degenerate Dimensions
-        \begin{itemize}[<+->]
-            \item Dimension Key without corresponding dimension table.% (Not a fact and not an attribute)
-            \item Stored in Fact table.
-            %This kind of dimension does not have its dimension as it is derived from the fact table.
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-    \frametitle{Degenerate Dimension}
-    %https://www.guru99.com/dimensional-model-data-warehouse.html
-    \begin{itemize}
-        \item Degenerate Dimensions
-        \begin{itemize}
-            \item Dimension Key without corresponding dimension table.% (Not a fact and not an attribute)
-            \item Stored in Fact table.
-            \item It used to provide a grouping for business cases.
-            %This kind of dimension does not have its dimension as it is derived from the fact table.
-        \end{itemize}
-    \end{itemize}
-    \centering
-    \input{./Figures/chapter-01/Fig_DD_DIM_Ex.tex}
+	\frametitle{Junk Dimension}
 
-    \begin{table}[t]
-        \centering
-        \sffamily
-        \begin{tabular}{|a | l | l | l | l|}
-            \hline
-            OrderID  & OrderDate & ProductID & Quantity & Amount\\
-            \hline
-            \hline
-            %\rowcolor{LightCyan}
-            123 & 123456789 & 111 & 2 & 120.45\\
-            123 & 123456789 & 222 & 5 & 10.45\\
-            %\rowcolor{myorange}
-            \hline
-            \hline
-            431 & 98765122 & 333 & 1 & 15.45\\
-            431 & 98765122 & 555 & 6 & 4.45\\
-            \hline
-        \end{tabular}
-    \end{table}
+	\begin{block}{Junk Dimension Table Size}
+		\begin{itemize}
+			\item We must split Junk dimension into more dimensions in case the size grows by the time.
+			\item It is easy to calculate the expected number of rows as it is the total number of combinations between the low-cardinality attributes \\ \faEdit \space \faArrowCircleORight \space 3 columns each has 3 values total = 3 * 3 = 9.
+		\end{itemize}
+	\end{block}
+	
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \midTitle{Dimensions Types: Role-Playing Dimension}
@@ -1346,8 +1359,18 @@
 \begin{frame}
     \frametitle{Slowly changing Dimensions}
     %https://www.guru99.com/dimensional-model-data-warehouse.html
-    \begin{description}[<+->]
-        \item[Slowly changing Dimensions]    A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
+    \begin{itemize}[<+->]
+		\item It the dimension which changes over time. So, for a specific date we have different value.
+		\item It has different types as following
+		    \begin{itemize}[<+->]
+        \item Type 0 (Fixed Dimension): We don't change the current even the source changes. 
+        \item Type 1 (No History): No history is maintained only the latest replace the current.
+        \item Type 2 (History): Series of history of records are maintained.
+        \item Type 3 (Hybrid): Only the last Change and the Current new change is stored
+        \item Type 4 : We split the data into two tables, first the current record and second is the historical (most common usage).
+    \end{itemize}   
+
+
         %slowly changing dim assume customer was located in dubai then he changed his location
         % We don't care about the change. just update the latest
         % we can have two version new, old.
@@ -1355,8 +1378,388 @@
         %with start and end data.
         %start and end is null
         %join with sergate key
-    \end{description}
+    \end{itemize}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+\begin{block}{Note}
+	\textit{There are some other types which is a combination between the above similar than type 3 combined between 1 \& 2. \\ You can check the chapter resources for more information about the other types.}
+\end{block}
+%https://www.kimballgroup.com/2013/02/design-tip-152-slowly-changing-dimension-types-0-4-5-6-7/     
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+	
+	\begin{itemize}
+		\item Type 0.
+	\end{itemize}
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | a |}
+			\hline
+			CustomerID & Name & City\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Madrid\\
+			\hline
+		\end{tabular}
+		\quad
+		\begin{tabular}{|l | l| a|}
+			\hline
+			CustomerID & Name & City\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Turin\\
+			\hline
+		\end{tabular}
+		\caption{Source System Old vs New}
+	\end{table}
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | l |a|}
+			\hline
+			ID & CustomerID & Name & City\\
+			\hline
+			\hline		
+			1 & 123456789 & Ronaldo  & Madrid\\
+			\hline
+		\end{tabular}
+		\caption{Customer Profile Dimension}
+	\end{table}
+		
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+	
+	\begin{itemize}
+		\item Type 1.
+	\end{itemize}
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | a |}
+			\hline
+			CustomerID & Name & City\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Madrid\\
+			\hline
+		\end{tabular}
+		\quad
+		\begin{tabular}{|l | l| a|}
+			\hline
+			CustomerID & Name & City\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Turin\\
+			\hline
+		\end{tabular}
+		\caption{Source System Old vs New}
+	\end{table}
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | l |a|}
+			\hline
+			ID & CustomerID & Name & City\\
+			\hline
+			\hline		
+			1 & 123456789 & Ronaldo  & Turin\\
+			\hline
+		\end{tabular}
+		\caption{Customer Profile Dimension}
+	\end{table}	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+	\begin{itemize}
+		\item Type 2.
+	\end{itemize}
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | a |l|}
+			\hline
+			CustomerID & Name & City & UpdatedDt \\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Madrid & 2018-12-12\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Turin & 2019-06-12\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & London & 2019-08-12\\
+			\hline
+			\hline						
+			123456789 & Ronaldo  & Porto & 2019-12-12\\		
+			\hline
+		\end{tabular}	
+		\caption{Source System Old vs New}
+	\end{table}%
+	\vspace{-.8cm}
+
+	\begin{table}[t]
+		\centering
+		\sffamily
+		  \begin{adjustbox}{max width=\textwidth}			
+		\begin{tabular}{|l | l | l | a | l | l |a|}
+			\hline
+			ID & CustomerID & Name & City & effectiveDt & TerminationDt & isCurrent\\
+			\hline
+			\hline		
+			1 & 123456789 & Ronaldo  & Madrid & 2018-12-12 & 2019-06-12 & false\\
+			2 & 123456789 & Ronaldo  & Madrid & 2019-06-12 & 2019-08-12 & false\\
+			3 & 123456789 & Ronaldo  & London & 2019-08-12 & 2019-12-12 & false\\
+			4 & 123456789 & Ronaldo  & Porto  & 2019-12-12 & null & true\\
+			\hline
+		\end{tabular}
+		\end{adjustbox}
+
+		\caption{Customer Profile Dimension {\scriptsize We can replace null with a finite date (9999-12-31) but it needs to be consistent}}
+	\end{table}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+	\begin{itemize}
+		\item Type 3.
+	\end{itemize}
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | a |l|}
+			\hline
+			CustomerID & Name & City & UpdatedDt \\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Madrid & 2018-12-12\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Turin & 2019-06-12\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & London & 2019-08-12\\
+			\hline
+			\hline						
+			123456789 & Ronaldo  & Porto & 2019-12-12\\		
+			\hline
+		\end{tabular}	
+		\caption{Source System Old vs New}
+		
+	\end{table}
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | l | a | l | l |}
+			\hline
+			ID & CustomerID & Name & City & UpdatedDate  & previousCity\\
+			\hline
+			\hline		
+			1 & 123456789 & Ronaldo  & Porto  & 2019-12-12 & London\\
+			\hline
+		\end{tabular}
+		\caption{Customer Profile Dimension}
+	\end{table}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+	\begin{itemize}
+		\item Type 4 (Split current and Historical).
+	\end{itemize}
+
+	\begin{table}[t]
+	\centering
+	\sffamily
+	\begin{tabular}{|l | l | l | a | l | l |a|}
+		\hline
+		ID & CustomerID & Name & City & effectiveDt & TerminationDt\\
+		\hline
+		\hline		
+		1 & 123456789 & Ronaldo  & Madrid & 2018-12-12 & 2019-06-12\\
+		2 & 123456789 & Ronaldo  & Madrid & 2019-06-12 & 2019-08-12\\
+		3 & 123456789 & Ronaldo  & London & 2019-08-12 & 2019-12-12\\
+		4 & 123456789 & Ronaldo  & Porto  & 2019-12-12 & null\\
+		\hline
+	\end{tabular}
+	\caption{Customer Profile Dimension Hist}
+\end{table}
+
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | l | a | l |}
+			\hline
+			ID & CustomerID & Name & City & UpdatedDate\\
+			\hline
+			\hline		
+			1 & 123456789 & Ronaldo  & Porto  & 2019-12-12\\
+			\hline
+		\end{tabular}
+		\caption{Customer Profile Dimension}
+	\end{table}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{Slowly changing Dimensions}
+	\begin{itemize}
+		\item How does the Facts join SCD? We have two scenarios as following:
+		\begin{itemize}
+			\item Getting the current customer information (Join with the latest).
+			\item Getting the historical customer information (Join with the historical table based on \textbf{\textit{cust id \& date}}).
+		\end{itemize}
+	\end{itemize}
+
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | a | l | l |}
+			\hline
+			ID & CustomerID & TotalCalls & CallDate \\
+			\hline
+			\hline		
+			1 & 123456789 & 30 & 2018-12-12 \\
+			2 & 123456789 & 30 & 2019-12-12 \\
+			\hline
+		\end{tabular}
+		\caption{Customer Usage}
+	\end{table}
+
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{Slowly changing Dimensions}
+	
+	\lstinputlisting[language=sql,caption={Example to show how to use SCD}]{./Ch01-Introduction-data-management/Code/SCD_Examply.sql}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Fast (Rapidly) Changing Dimension (Mini Dimension) }
+\begin{frame}
+	\frametitle{Fast Changing Dimension (Mini Dimension)}
+	\begin{itemize}[<+->]
+		\item When we have a dimension with one or more of its attributes changing very fast. 
+		
+		\item \blue{\textit{\faBullhorn \space It causes a performance issue if we tried to handle this case similar SCD Type 2 because of the rapidly changing  in this dimension and the table will includes a lot of rows for this dimension}}.
+
+		\item We solve this case by separation the attributes into one or more dimensions. This technique also called \textit{\textbf{mini-dimensions}}.		
+	
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Fast Changing Dimension (Mini Dimension)}
+	\begin{itemize}[<+->]
+		\item How to implement FCD (Mini Dimension)? \underline{{\footnotesize \textit{Hint: Search for the mini-dimension  relation table.}}}
+	\end{itemize}
+
+\begin{table}
+	\begin{adjustbox}{max width=.95\textwidth}			
+		\begin{tabular}{| l | l | l | l | a | a | l|}
+			\hline
+			Patient\_id & Name & Gender & BirthDate & Weight & B\_Presaure & UpdateDt\\
+			\hline
+			\hline		
+			123 & Anna   & F & 1968-01-12 & 50 & 110.0 &2019-01-01\\
+			123 & Anna   & F & 1968-01-12 & 55 & 130.0 &2019-01-07\\
+			123 & Anna   & F & 1968-01-12 & 59 & 115.0 &2019-01-14\\
+			123 & Anna   & F & 1968-01-12 & 65 & 120.0 &2019-01-21\\
+			\hline
+		\end{tabular}
+	\end{adjustbox}
+	\caption{Patient Profile Dimension}
+\end{table}
+
+\begin{table}
+	\resizebox{.97\columnwidth}{!}{%
+		
+		\begin{tabular}{| l | l | l | l |}
+			\hline
+			Patient\_id & Name & Gender & BirthDate \\
+			\hline 
+			\hline		
+			123 & Anna   & F & 1968-01-12 \\
+			\hline
+		\end{tabular}
+
+\quad
+
+		\begin{tabular}{| l | l | l | l |}
+			\hline
+			Patient\_Key & Weight & B\_Presure \\
+			\hline
+			\hline		
+			1 & 50 & 110.0\\
+			2 & 55 & 130.0\\
+			3 & 59 & 115.0\\
+			4 & 65 & 120.0\\
+			\hline
+		\end{tabular}
+	}
+	\caption{Patient Profile Dimension After Removing FCD and Split it into Junk-Dimension table}
+\end{table}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Fast Changing Dimension (Mini Dimension)}
+
+\begin{table}
+	\begin{adjustbox}{max width=.7\textwidth}
+		\begin{tabular}{| l | l | l | l |}
+			\hline
+			Patient\_id & Patient\_Key & Start\_Date & End\_Date\\
+			\hline
+			\hline		
+			123 & 1   & 2019-01-01 & 2019-01-07\\
+			123 & 2   & 2019-01-07 & 2019-01-14\\
+			123 & 3   & 2019-01-14 & 2019-01-14\\
+			123 & 4   & 2019-01-21 & null\\
+			\hline
+		\end{tabular}
+	\end{adjustbox}
+	\caption{Patient Mini Dimension}
+\end{table}
+\input{./Figures/chapter-01/Fig_Mini_DIM_Ex.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Heterogenous Dimensions}
+\begin{frame}
+	\frametitle{Heterogenous Dimensions}
+	\begin{description}[<+->]
+		\item[Heterogenous Dimensions]   
+	\end{description}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Multi-valued dimensions}
+\begin{frame}
+	\frametitle{Multi-valued dimensions}
+	\begin{description}[<+->]
+		\item[Multi-valued dimensions]   
+	\end{description}
+\end{frame}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
     \frametitle{Schema Types (Star vs Snowflake)}
