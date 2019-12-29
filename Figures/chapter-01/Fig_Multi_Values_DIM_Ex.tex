@@ -1,0 +1,58 @@
+\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.7, every node/.style={scale=0.7}]
+  
+    \matrix  [entity=Author, entity anchor=Author-ID]  {
+	    \properties{
+	    ID,
+	    Name,
+	    Email,
+	    Bio
+	    }
+    };
+    \matrix  [entity=AuthorGroupRelation, left=of Author-ID,xshift=9ex,entity anchor=AuthorGroupRelation-ID]  {
+		\properties{
+			ID,
+			AuthorKey,
+			WieghtingFactor
+		}
+	};
+%
+	\matrix  [entity=AuthorGroup, left=of AuthorGroupRelation-ID,xshift=6ex, entity anchor=AuthorGroup-ID]  {
+		\properties{
+			ID
+		}
+	};
+
+	\matrix  [entity=ArticleSales, below right =of AuthorGroup-ID,yshift=7ex,xshift=-6ex, entity anchor=ArticleSales-ID]  {
+	\properties{
+		ID,
+		AuthorGroupID,
+		SalesDt,
+		Quantity,
+		UnitPrice
+	}
+	};
+
+	\matrix  [entity=Article,  right =of ArticleSales-ID, entity anchor=Article-ID]  {
+	\properties{
+		ID,
+		Title,
+		Journal,
+		Volume,
+		Price
+	}
+};
+
+
+\draw [one to many] (Author-ID)  to (AuthorGroupRelation-ID);
+\draw [many to one] (AuthorGroupRelation-ID) to (AuthorGroup-ID);
+\draw [many to one] (ArticleSales-ID)  to (AuthorGroup-ID);
+\draw [many to one] (ArticleSales-ID)  to (Article-ID);
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main.tex"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

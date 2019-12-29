@@ -1743,23 +1743,60 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \midTitle{Dimensions Types: Heterogenous Dimensions}
 \begin{frame}
-	\frametitle{Heterogenous Dimensions}
-	\begin{description}[<+->]
-		\item[Heterogenous Dimensions]   
-	\end{description}
+\frametitle{Heterogeneous Dimensions}
+\begin{itemize}[<+->]
+	
+	\item This type works when we have a case that a company selling different product to the same base of customer. Every product has it different attributes. 
+	\item One famous example of this type assume an insurance company has two types of product like health and car. In this case Car insurance has different attributes than the health insurance.
+	\item If we tried to model this two different products this type name Heterogeneous dimensions. 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Heterogeneous Dimensions}
+	\begin{itemize}[<+->]		
+		\item There are different scenario to implement this type
+		\begin{description}
+			\item [Separate Dimensions] Split each one in separate dimensions and facts. It will be less data and business will do this analysis from two separate facts.
+			\item [Merge Attributes] We will merge all the attributes in one single table and we will add the common attributes and null for un related attributes. Implementing this scenarios when we have less different of attributes. However, this implementation is not recommended because of the table size, performance, and maintenance.
+			\item [Generic Design] In this approach we will create a single fact table and single dimension with the common attributes. The problem of this design we will report or care about the common attributes only.
+		\end{description}		
+\end{itemize}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\midTitle{Dimensions Types: Multi-valued dimensions}
+\midTitle{Dimensions Types: Multi-valued dimensions (Many-To-Many Dimension)}
+\begin{frame}
+\frametitle{Multi-valued dimensions}
+\begin{itemize}[<+->]
+	\item When the relationships between the dimension member and the fact are many to many which means the dimension members are lower granularity than the facts. 
+	\item Fact table should contains one-to-one relationship with the dimension. So, we introduce the \textbf{\textit{Bridge table}} when we need to related multiple dimensions values with one record.
+\end{itemize}
+
+\begin{example}
+	\begin{itemize}[<+->]
+		\item Patients can have multiple diagnoses.
+		\item Students can have multiple majors.
+		\item customers can have multiple account.
+		\item Authors can have multiple publications.
+	\end{itemize}
+\end{example}		
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Multi-valued dimensions}
-	\begin{description}[<+->]
-		\item[Multi-valued dimensions]   
-	\end{description}
+	\begin{example}[Sales of Articles]
+		\begin{itemize}[<+->]
+			\item Assume we need to report the sales of article and we have some articles has more than one author.
+			\item According to the report we need to check each author and associate with the articles they have authored. How can we model this case?
+		\end{itemize}
+	\end{example}
+\input{./Figures/chapter-01/Fig_Multi_Values_DIM_Ex.tex}
 \end{frame}
 
-
+%multi-valued attributes is to create a relationship between the dimension table and a secondary dimensional table (outrigger table).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
     \frametitle{Schema Types (Star vs Snowflake)}
