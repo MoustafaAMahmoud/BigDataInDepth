@@ -47,7 +47,7 @@
 %	\item \textbf{Extraction}, \textbf{Transformation}, and \textbf{Loading} Process.
 %	\item Business Intelligence (\textbf{BI}) or data discovery (continues process).
 %	\item \textbf{Integration} and publishing.
-%	\item Data retention or \textbf{archiving} process \faEdit \space \faArrowCircleORight \space (Hot or Cold storage).
+%	\item Data retention or \textbf{archiving} process \forexample (Hot or Cold storage).
 %\end{itemize}
 %\end{itemize}
 %
@@ -94,7 +94,7 @@
 %			\begin{itemize}[<+->]
 %				\item Can we solve the problem using the current data structure by adding new features?
 %				\item What if we enhance/change the data structure or modeling?
-%				\item Could it help if we change the backend engine \faEdit \space \faArrowCircleORight \space (DBMS system)?
+%				\item Could it help if we change the backend engine \forexample (DBMS system)?
 %			\end{itemize}			
 %		\end{itemize}
 %		\item To answer these questions you need to understand the \textbf{\underline{data layers}}.
@@ -286,7 +286,7 @@
 %           \item Logical Layer
 %           \begin{itemize}[<+->]
 %             \item When you have missing sources into your logical layer, and you need to add this source and its structure.
-%             \item There is a performance issue in the existing reports, and you need to change the model. \faEdit \space \faArrowCircleORight \space reduce the join by creating a new join table (\textit{materialized view}).
+%             \item There is a performance issue in the existing reports, and you need to change the model. \forexample reduce the join by creating a new join table (\textit{materialized view}).
 %             \item Update the data type or the existing relation, which could help to fix some data or performance issues.
 %            \end{itemize}
 %           \end{itemize}
@@ -555,7 +555,7 @@
 %
 %\item What is the need for DWH?		
 %\begin{itemize}[<+->]
-%\item This company has other systems \faEdit \space \faArrowCircleORight \space billing, charging, signaling.	
+%\item This company has other systems \forexample billing, charging, signaling.	
 %\item They need to report information related to the CRM, billing, and signaling source systems in one report.
 %\item So, they need to ingest (transfer) the data from the source systems to one single database.
 %\item The decision from the DHW is a \textbf{global and strategical decision.}
@@ -609,7 +609,7 @@
 %			\begin{itemize}[<+->]		
 %				\item It needs specific information from different source systems.
 %				\item It requires to track the source system database changes or update in real-time.
-%				\item It's functionality is based on the aggregate data not the transactions \faEdit \space \faArrowCircleORight \space (It needs the total outgoing calls till time or it needs the total charging amounts from prepaid or the available limits from billing if it is postpaid).
+%				\item It's functionality is based on the aggregate data not the transactions \forexample (It needs the total outgoing calls till time or it needs the total charging amounts from prepaid or the available limits from billing if it is postpaid).
 %			\end{itemize}
 %	\end{itemize}
 %
@@ -635,17 +635,19 @@
     \begin{wideitemize}
         \item The characteristics of DWH:
         \begin{wideitemize}
-            \item Integrated: \textit{DWH is an integrated environment which allows us to integrate different source systems. Data are modeled (organized) into a unified manner.} %regardless of the original source
-
-            \item Time-Variant: \textit{Data modeled (organized) based on time periods (hourly, daily, weekly, monthly, quarterly, yearly, etc.)}
-
-            \item Subject-oriented: \textit{DWH main target is to support business needs for the whole organization including (decision makers, departments, and specific user requirements)}.
-
-            \item Non-Volatile: \textit{It refers to the data will not erased or deleted (It could be archived and retrieved when needed). Data can be accumulated daily the new snapshots (refreshed at based on the source system interval. \faEdit \space \faArrowCircleORight \space It could be updated daily, weekly, and monthly).}
+        	\item Integrated: \textit{DWH is an integrated environment which allows us to
+        	integrate different source systems. Data are modeled (organized) in a unified manner}.%regardless of the original source
+        	
+        	\item Time-Variant: \textit{Data modeled (organized) based on periods
+        	(hourly, daily, weekly, monthly, quarterly, yearly)}.
+        	
+        	\item Subject-oriented: \textit{DWH main target is to support business needs for
+        	the whole organization including (decision-makers, departments, and
+        	specific user requirements)}.
+        	
+        	\item Non-Volatile: \textit{It refers to the data that erased or deleted (It could be archived and retrieved when needed). Data can be accumulated daily the new snapshots (refreshed at based on the source system interval.  \faArrowCircleORight \space It could be updated daily, weekly, and monthly)}.
         \end{wideitemize}
     \end{wideitemize}
-    %https://www.guru99.com/data-warehouse-architecture.html
-
 \end{frame}
 
 %---------------------------------------------------------
@@ -670,23 +672,20 @@
     \frametitle{What is multi-temperature Storage?}
 
     \begin{wideitemize}
-        \item (Most of) DWH solution design has multi-temperature data management model.
-        \item What is \textbf{multi-temperature} data management model?
+		\item (Most of) DWH solution design has multi-temperature data management model.
+		\item What is the multi-temperature data management model?
         \begin{itemize}[<+->]
-            \item It is a data classification design which allows us to have the following characteristics
+			\item It is a data classification design which allows us to have the following characteristics
             \begin{itemize}[<+->]
-                \item Fast (high performance) access on the frequently data (Hot data).%(data change rate or with action needed)
-                \item good performance access on less-frequently data (warm data).
-                \item Availability to access rarely accessed data (cold data).
-            \end{itemize}
-            \item Who classify the data temperature?
+				\item Fast (high performance) access on the frequent data (Hot data).
+				\item Good (average performance) access to less-frequently data (warm data).
+				\item Availability to access rarely accessed data (cold data).
+	        \end{itemize}
+			\item Who is responsible for data temperature classifications?
             \begin{itemize}[<+->]
-                \item Based on the business needs.
-                \item Demand team, product owners, or data architect.
-            \end{itemize}
-
-        \end{itemize}
-
+			\item Demand team, product owner, or data architect (Based on the business needs).
+	        \end{itemize}
+		\end{itemize}
     \end{wideitemize}
 \end{frame}
 
@@ -706,27 +705,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-    \frametitle{How to implement?}
+    \frametitle{How to implement a multi-temperature storage system? }
 
     \begin{wideitemize}
         \item How to implement the multi-temperature data management model?
         \begin{itemize}[<+->]
-            \item Before implementation we need to know the following:
+            \item Before implementation, we need to know the following:
             \begin{itemize}[<+->]
                 \item Frequency of access
-                \item data change rate.
+                \item Data change rate.
             \end{itemize}
-            \item Identify which storage type will be suitable for our project
+            \item Identify which storage type is suitable for the project
             \begin{itemize}[<+->]
-                \item Hot data stored on fast storage.
-                \item warm data (usual) stored on slightly slower storage.
-                \item cold data stored on the slowest storage.
-            \end{itemize}
-            \item Design consideration to make the retention easily
-            \begin{itemize}[<+->]
-                \item Table partitions need to be split based on the retention policy plan \faEdit \space \faArrowCircleORight \space (date).
-                \item Summary tables (agg) need to be maintained to reduce the need for access the cold storage.
-                \item Backup, Recovery, and Rollback plans need to be automated and prepared/tested before moving the data.
+                 \item We store the hot data on the fast storage system.
+                 \item Warm data (usual) stored on slightly slower storage.
+                 \item We store the cold data on the slowest storage.
             \end{itemize}
         \end{itemize}
     \end{wideitemize}
@@ -735,12 +728,44 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-    \frametitle{How to implement? Cont.}
+	\frametitle{How to implement a multi-temperature storage system? Cont.}
+	
+	\begin{wideitemize}
+			\item Design consideration to make the retention easily.
+			\begin{itemize}[<+->]
+				\item Table partitions need to be split based on the retention policy plan \forexample (date).
+				\item Summary tables (agg) need to be maintained to reduce the need for access the cold storage.
+				\item Backup, Recovery, and Rollback plans need to be automated and prepared/tested before moving the data.
+			\end{itemize}
+	\end{wideitemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{How to implement a multi-temperature storage system? Cont.}
+	\begin{wideitemize}
+		\item Implementation (summary):
+		\begin{itemize}[<+->]
+			\item There are lots of tools for this purpose and  categorized as follows:
+			\begin{itemize}
+				\item Enterprise.
+				\item Open source.
+				\item Cloud tools.
+			\end{itemize}
+			
+		\end{itemize}
+		%Cost,Security
+	\end{wideitemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \frametitle{How to implement a multi-temperature storage system? Cont.}
     \begin{wideitemize}
-        \item Implementation (summary):
-        \begin{itemize}[<+->]
-            \item There are lots of tools for this purpose as follows:
-            \item Enterprise \faEdit \space \faArrowCircleORight \space:
+            \item Enterprise \forexample:
             \begin{itemize}
                 \item IBM InfoSphere
                 \item Informatica PowerCenter
@@ -748,7 +773,6 @@
                 \item Talend Data Integration
                 \item Microsoft SQL
             \end{itemize}
-        \end{itemize}
         %Cost,Security
     \end{wideitemize}
 \end{frame}
@@ -756,40 +780,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-    \frametitle{How to implement? Cont.}
+    \frametitle{How to implement a multi-temperature storage system? Cont.}
     \begin{wideitemize}
-        \item Implementation (summary):
-        \begin{itemize}[<+->]
-            \item There are lots of tools for this purpose as follows:
-            \item Open source \faEdit \space \faArrowCircleORight \space:
+            \item Open source \forexample:
             \begin{itemize}
                 \item Apache NiFi*
                 \item CloverETL
                 \item Pentaho
                 \item Talend Open Studio*
             \end{itemize}
-        \end{itemize}
-        %Cost,Security
     \end{wideitemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-    \frametitle{How to implement? Cont.}
+    \frametitle{How to implement a multi-temperature storage system? Cont.}
     \begin{wideitemize}
-        \item Implementation (summary):
-        \begin{itemize}[<+->]
-            \item There are lots of tools for this purpose as follows:
-            \item Cloud tools \faEdit \space \faArrowCircleORight \space:
+            \item Cloud tools \forexample:
             \begin{itemize}
                 \item AWS Migration Services.
                 \item Azure Migration Tools.
                 \item Google Migration Services/Velostrata.
             \end{itemize}
-            \item Some cloud provider offers physical data movement services.
+            \item Some cloud providers offer physical data movement services.
             \item How to choose the most suitable storage type for your project/organization?
-        \end{itemize}
         %Cost,Security
     \end{wideitemize}
 \end{frame}
@@ -801,7 +816,7 @@
     \frametitle{DWH Architecture Layers}
 
     \begin{wideitemize}
-        \item DWH Architecture contains the following layers:
+        \item DWH architecture contains the following layers:
         \begin{itemize}[<+->]
             \item Source system layer.
             \item Extraction layer.
@@ -821,12 +836,10 @@
 \begin{frame}
     \frametitle{DWH Architecture Overview}
     \begin{figure}[ht]
-        %@@@ TODO: add the link to resources
         \centering
         \includegraphics[width=.9\linewidth,height=.8\textheight]{./Figures/chapter-01/Datawarehouse_reference_architecture.jpg}
-        %https://commons.wikimedia.org/wiki/File:Datawarehouse_reference_architecture.jpg
-        %		\includegraphics[width=\linewidth,height=\textheight]{./Figures/chapter-01/baby-02.jpg}
-        \caption{taken from https://commons.wikimedia.org/wiki/File:Datawarehouse\_reference\_architecture.jpg}
+                
+        \caption{\tiny{taken from https://commons.wikimedia.org/wiki/File:Datawarehouse\_reference\_architecture.jpg}}
     \end{figure}
 \end{frame}
 
@@ -835,12 +848,12 @@
 \begin{frame}
     \frametitle{Source System Integration Process}
     \begin{itemize}[<+->]
-        \item In some companies they hire or dedicate a team for this part (business analyst, system analyst, data analyst, or demand team).
-        \item Before we start, ALL communications from start till the end should be documented into any format.
-        \begin{itemize}
-            \item  Conflounce page, Word, or Excel sheet.
-            \item  Make the discussion online and put comments to make the history available always.
-            \item  All tasks should be clear what is the expected output \faEdit \space \faArrowCircleORight \space (analysis means to document data structure, format, column names, etc..).
+        \item In some companies, they hire or dedicate a team for this part (business analyst, system analyst, data analyst, or demand team).
+        \item Before we start, we need to document all the communications into any format.
+		\begin{itemize}
+            \item Confluence pages, Word, or Excel sheet.
+            \item Make the discussion online and put comments to make the history available always.
+			\item We need to clarify all the tasks and what is the expected output, \forexample (analysis means to document data structure, format, column names, etc.).
         \end{itemize}
     \end{itemize}
 
@@ -853,8 +866,8 @@
         \item  Requirements gathering. % or business need (It could be DWH unification).
         \item  Identify the stakeholders (Data owner(s)).
         \item  Data Analysis includes but not only (format, latency, and column definitions).
-        \item  Connectivity analysis and security (assessment).
-        \item  Technical discussion about the best way to ingest the data.
+        \item  Check the source system access and perform connectivity assessment.
+        \item  Initiate the technical discussion about the best way to ingest the data.
         \item  Data Ingestion method and format.
         \item  Sign or confirmation for every point between the stakeholders.
         \item  \blue{This layer deliver a data analysis (Source system interface ) document}.
@@ -870,18 +883,16 @@
 \begin{frame}
     \frametitle{Extraction Layer}
     \begin{itemize}[<+->]
-        \item In some companies they hire or dedicate a team for this part (extraction or ingestion team) but in other companies it is part of the data engineering team.
-        \item This layer take the output analysis and decisions from the previous layer (source system analysis) and implement the extraction \blue{(quality from the previous team output highly affect this team)}.
-        \item There are many consideration this team need to take care about or deal with but we can summarize it in the following:
-        \begin{itemize}
-            \item  Data latency will affect the tool and the methodology (stream or batch).
-            \item  Data extraction method (push or pull).
-            \item  Data size and format compared with the available resources for this project.
-        \end{itemize}
+		\item In some companies, they hire or dedicate a team for this part (extraction or ingestion team), but in other companies, it is part of the data engineering team.
+		\item This layer takes the output analysis and decisions from the previous layer (source system analysis) and implement the extraction (quality from the previous team output highly affect this team).
+		\item There is a lot of consideration this team needs to take care of or deal with, but we can summarize it in the following:
+		\begin{itemize}[<+->]
+			\item Data latency analysis as it affects the tool and the methodology (stream or batch).
+			\item Data extraction method (push or pull).
+			\item Data size and format compared with the available resources for this project.
+	    \end{itemize}
         \item \blue{This layer output is a minimal data cleansing (no transformation) into the staging/landing layer}.
-
     \end{itemize}
-
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -891,7 +902,7 @@
     \frametitle{Staging Layer}
     \begin{itemize}[<+->]
         \item This layer handled by the same team who own the \blue{storage part} in most of the organizations.
-        \item Segregation of this layer if it uses different storage type or multi-teams access this layer for a different purpose \faEdit \space \faArrowCircleORight \space (Kafka)\\ \red{\textit{\faBullhorn Kafka is not a storage layer but it could be used as landing layer or data persistence layer}}.
+        \item Segregation of this layer if it uses different storage type or multi-teams access this layer for a different purpose \forexample (Kafka)\\ \red{\textit{\faBullhorn Kafka is not a storage layer, but it could be used as a landing layer or data persistence layer}}.
         \item All the ETL layers are working on top of this layer.
         \item The decision of the storage type is based on the use case and the data.
 
@@ -909,11 +920,10 @@
 \begin{frame}
     \frametitle{Data Modeling Objective}
     \begin{itemize}[<+->]
-        \item Understanding the data modeling and its roles.
-        \item Be aware about its importance.
+        \item Explain what data modeling is and its roles?
+        \item Be aware of its importance.
         \item Explore different types of data modeling.
-        \item \blue{We will not go in details about how to design in this part (we will explain it later and in the appendix)}.
-
+        \item \blue{We target to explain the main components and types, and for more details, it could be found in the appendix videos.}.
     \end{itemize}
 
 \end{frame}
@@ -922,12 +932,12 @@
 
 \begin{frame}
     \frametitle{What is data model?}
-    Data model is
+	The data model
     \begin{itemize}[<+->]
-        \item An abstract model that organizes elements of data.
-        \item It describes the objects, entities and data structure properties, semantic, and constraint.
+        \item is An abstract model that organizes elements of data.
+        \item It describes the objects, entities, and data structure properties, semantic, and constraint.
         \item It formalizes the relationship between entities.
-        \item It describes how application (report) API data manipulation.
+        \item It describes how the application (report) API data manipulation.
         \item It describes the conceptual design of a business or an application with its flow, logic, semantic information (rules), and how things are done.
         \item It refers to a set of concepts used in defining such as entities, attributes, relations, or tables.
     \end{itemize}
@@ -953,11 +963,11 @@
         \column{0.45\textwidth}
         Data model is
         \begin{itemize}[<+->]
-            \item a general concepts which lead to build full architecture.
+            \item a general concept that leads to build full architecture.
             \item an engineering design practices.
             \item different based on the use case and the database type.
-            \item customizable and we can utilize some of ready built architecture.
-            \item affecting the information reporting performance.
+            \item customizable, and we can utilize some of the ready built architecture.
+            \item affecting information reporting performance.
         \end{itemize}
 
         \column{0.2\textwidth}
@@ -969,24 +979,24 @@
 
 \begin{frame}
     \frametitle{What is data model?}
-    Data model is
+    The data model is
     \begin{itemize}[<+->]
-        \item The initial part before starting integration with any new source system.
-        \item It the connection layer between the business requirements and the technical design.
+        \item The fist part before starting integration with any new source system.
+        \item The connection layer between business requirements and technical design.
         \item It is also the translation between logical and physical layer.
-        \item It is unified across the all systems and has the same patterns and practices.
-        \item It could be engage with any source systems integration from early stages.
-        \item \blue{This stage output is data model design document or mapping sheet}.
+        \item It is unified across all systems and has the same patterns and practices.
+        \item It engaged with any source systems integration from the early stages.
+        \item \blue{This stage output is a data model design document or mapping sheet}.
     \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-    \frametitle{Why does data models are important?}
+    \frametitle{Why does the data model are important?}
     \begin{wideitemize}
         \item Data models are currently affecting software design.
-        \item It decides how engineers will think about the problem they are solving.
+        \item It decides how engineers think about the problem they are solving.
     \end{wideitemize}
 \end{frame}
 
@@ -995,16 +1005,16 @@
     \frametitle{Data Model Design vs Implementation}
     %Replace it by photo
     \begin{itemize}[<+->]
-        \item You need to build a home. So, how do we design this home?
+        \item If you need to build a home, so, how do we design this home?
         \begin{itemize}[<+->]
             \item Determine if the home is one level or multi-level and decide man bedrooms and bathrooms for each floor. (User needs)
-            \item Hire an architect to put the architecture in more detailed way \faEdit \space \faArrowCircleORight \space the size for each room, the distribution of the wireds, where the plumbing fixtures will be placed, etc. (Architecture phase)
+            \item Hire an architect to put the architecture in more detailed way \forexample the size for each room, the distribution of the wires, where the plumbing fixtures will be placed, etc. (Architecture phase)
             \item Decide the decorations, colors for each room, carpets, etc.
         \end{itemize}
         \item What do we do for the implementation?
         \begin{itemize}[<+->]
             \item Hire a contractor to build (implement the design) the home.
-            \item This phase will implement the design but it also include some detail related to the actual way to build the tools and the material. (Physical Design)
+            \item This phase implement the design, but it also includes some detail related to the real way to build the tools and the material (Physical Design).
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -1013,23 +1023,20 @@
 \midTitle{Data Model: Elements of Data Model}
 \begin{frame}
     \frametitle{Elements of Data Model}
-    %https://www.guru99.com/dimensional-model-data-warehouse.html
     \begin{description}[<+->]
-        \item[Facts] are the measurements/metrics or facts from business process \faEdit \space \faArrowCircleORight \space (Telecom industry, a measurement would be count of daily/hourly usage per customer). We could consider facts as the source of reporting for business.
+        \item[Facts] are the measurements/metrics or facts from the business process \forexample (Telecom industry, measurement would be the count of daily/hourly usage per customer). We could consider facts as the source of reporting for the business.
         %measure and ids when,where
-        \item[Dimensions] provide the context surrounding a business process event. In simple terms, they give who, what, where of a fact. \faEdit \space \faArrowCircleORight \space (Telecom industry, for the fact daily usage, dimensions would be Who – (Customer id), Where (Location), What (counts of activities incoming/outgoing call) )
-
-        \item[Attributes] are the various characteristics of the dimension. In the previous examples the attributes can be customer details (from customer id get the gender, age, nationality, etc..).
+        \item[Dimensions] provide the context surrounding a business process event. In simple terms, they give who, what, where the fact, \forexample (Telecom industry, for the fact daily usage, dimensions would be customer\_id, location\_id).
+        
+        \item[Attributes] are the various characteristics of the dimension. In the previous examples, the attributes can be customer details (from customer\_id get the gender, age, nationality, etc.).
         %Attributes are used to search, filter, or classify facts. Dimension Tables contain Attributes
         %	Facts include dimensions, dimensions include attributes
     \end{description}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\midTitle{Data Model: Elements of Data Model}
 \begin{frame}
     \frametitle{Elements of Dimensional Data Model}
-    %https://www.guru99.com/dimensional-model-data-warehouse.html
     \begin{description}[<+->]
         \item[Fact Table] is a primary table in a dimensional model. A Fact Table contains (Measurements/facts and Foreign key to \textit{dimension table}). It located at the center of a star or snowflake schema and surrounded by dimensions.
         %	contains only ids customer, date, location ids  to get this ids go to the diem
@@ -1045,9 +1052,21 @@
 
     \input{./Figures/chapter-01/Fig_FCT_DIM_Ex.tex}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Data Model: Elements of Data Model}
+\begin{frame}
+	\frametitle{Elements of Data Model}
+		Dimensional model life cycle:
+	    \begin{itemize}[<+->]
+			\item Gathering Requirements (Source Driven, Business/User Driven).
+			\item Identify granularity of the facts
+			\item Identify the dimensions
+			\item Identify the facts
+	    \end{itemize}	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 \frametitle{Dimensions Types}
 	\begin{itemize}[<+->]
@@ -1077,10 +1096,9 @@
         \item[Conformed Dimensions]    the dimension which is \underline{\textit{identical}} and has the \underline{\textit{same meaning}} across many fact tables which it relates and used in different areas of the warehouse.
         \begin{example}
             \begin{itemize}[<+->]
-                \item \underline{\textbf{(Date as a Key)}}: if we have date column across many facts we could use date as key in all table.
-                So, it will be unified format
+                \item \underline{\textbf{(Date as a Key)}}: if we have a date column across many facts, we could use the date as key in all tables. So, it should be a unified format.
                 \item \underline{\textbf{(Product-Id as a Key)}}: if we have a product name which could vary between systems
-                \faEdit \space \faArrowCircleORight \space (upper/lower) we can create dimension table for the product details and use product id unified across fact tables.
+                \forexample (upper/lower) We can create a dimension table for the product details and use product id unified across fact tables.
             \end{itemize}
         \end{example}
     \end{description}
@@ -1094,8 +1112,9 @@
 		\item Degenerate Dimensions
 		\begin{itemize}[<+->]
 			\item Dimension Key without corresponding dimension table.% (Not a fact and not an attribute)
-			\item Stored in Fact table.
+			\item Stored in fact table.
 			%This kind of dimension does not have its dimension as it is derived from the fact table.
+			\item It used to provide a grouping for business cases.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -1107,7 +1126,7 @@
 		\item Degenerate Dimensions
 		\begin{itemize}
 			\item Dimension Key without corresponding dimension table.% (Not a fact and not an attribute)
-			\item Stored in Fact table.
+			\item Stored in fact table.
 			\item It used to provide a grouping for business cases.
 			%This kind of dimension does not have its dimension as it is derived from the fact table.
 		\end{itemize}
@@ -1141,9 +1160,8 @@
     \frametitle{Junk Dimension}
     \begin{itemize}[<+->]
         %junk assume we have multi flags we will collect them as one id
-        \item It used to reduce the number of dimensions (low-cardinality columns) in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
+        \item It used to reduce the number of dimensions (low-cardinality columns) in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags, or text attributes.
         \item It optimizes space as fact tables should not include low-cardinality or text fields. It mainly includes measures, foreign keys, and degenerate dimension keys.
-                     
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1151,8 +1169,8 @@
     \frametitle{Junk Dimension}
 	\begin{itemize}[<+->]
 		%junk assume we have multi flags we will collect them as one id
-		\item It used to reduce the number of dimensions (low-cardinality columns) in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags or text attributes.
-		\item It optimizes space as fact tables should not include low-cardinality or text fields. It mainly includes measures, foreign keys, and degenerate dimension keys.		
+        \item It used to reduce the number of dimensions (low-cardinality columns) in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags, or text attributes.
+		\item It optimizes space as fact tables should not include low-cardinality or text fields. It mainly includes measures, foreign keys, and degenerate dimension keys.
 	\end{itemize}
     \input{./Figures/chapter-01/Fig_Junk_DIM_Ex.tex}
 \end{frame}
@@ -1162,8 +1180,8 @@
 
 	\begin{block}{Junk Dimension Table Size}
 		\begin{itemize}
-			\item We must split Junk dimension into more dimensions in case the size grows by the time.
-			\item It is easy to calculate the expected number of rows as it is the total number of combinations between the low-cardinality attributes \\ \faEdit \space \faArrowCircleORight \space 3 columns each has 3 values total = 3 * 3 = 9.
+			\item We must split the Junk dimension into more dimensions in case the size grows by the time.
+			\item It is easy to calculate the expected number of rows as it is the total number of combinations between the low-cardinality attributes; \forexample 3 columns each have 3 values total = 3 * 3 = 9.
 		\end{itemize}
 	\end{block}
 	
@@ -1183,8 +1201,8 @@
     \frametitle{Conformed vs Role-Playing Dimension}
     \begin{block}{Conformed vs Role-Playing}
         \begin{itemize}
-            \item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning}} \faEdit \space \faArrowCircleORight \space CustomerID.
-            \item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings}} \faEdit \space \faArrowCircleORight \space Date.
+            \item \textbf{Conformed} is the same dimension used in different facts and has \textit{\underline{the same meaning}} \forexample CustomerID.
+            \item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings}} \forexample Date.
         \end{itemize}
     \end{block}
 \end{frame}
@@ -1194,7 +1212,7 @@
     \frametitle{Outrigger Dimensions}
     \begin{itemize}[<+->]
         \item A dimension which has a reference to another dimension table. The secondary dimension called outrigger dimension.
-        \item \blue{\textit{\faBullhorn This dimensions design should be used carefully without limited cases}}.
+        \item \blue{\textit{\faBullhorn This dimension design should be used carefully without limited cases}}.
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1212,18 +1230,16 @@
 \begin{frame}
     \frametitle{Snowflake Dimensions}
     \begin{itemize}[<+->]
-        \item A dimension which has a hierarchy of arributes this attributes has been normalized and each dimension has a relationship with another hirarcy dimension table.\\
-        \item \red{\textit{\faBug This dimensions design is not recommended as it has a lot of complexity to the model and query performance. Also, it complicates the ETL process and make too much dimensions without needs}}.
+        \item Snowflake Dimension is a dimension that has a hierarchy of attributes. This attribute is normalized, and each dimension has a relationship with another hierarchy dimension table.\\
+        \item \red{\textit{\faBug This dimension design not recommended as it has much complexity to the model and query performance. Also, it complicates the ETL process and makes too many dimensions without needs}}.
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
     \frametitle{Snowflake Dimensions}
     \begin{itemize}
-        \item A dimension which has a hierarchy of arributes this attributes has been normalized and each
-        dimension has a relationship with another hirarcy dimension table.\\
-        \item \red{\textit{\faBug This dimensions design is not recommended as it has a lot of complexity
-        to the model and query performance. Also, it complicates the ETL process and make too much dimensions without needs}}.
+        \item Snowflake Dimension is a dimension that has a hierarchy of attributes. This attribute is normalized, and each dimension has a relationship with another hierarchy dimension table.\\
+		\item \red{\textit{\faBug This dimension design not recommended as it has much complexity to the model and query performance. Also, it complicates the ETL process and makes too many dimensions without needs}}.
     \end{itemize}
     \centering
     \input{./Figures/chapter-01/Fig_SF_Ex.tex}
@@ -1234,15 +1250,14 @@
     \frametitle{Shrunken Rollup Dimensions}%منكمش
     \begin{itemize}[<+->]    	
 		\item Shrunken Rollup dimension is used for developing aggregate (higher level of summary) fact tables. 
-		\item It required that the data model has the lower level granularity.
+		\item It required that the data model has a lower level of granularity.
 	\end{itemize}
 		\begin{example}
 		    \begin{itemize}[<+->]    	
-			\item We have a daily usage fact table and we need to have a higher level monthly usage. So, we use the monthly dimension to get a summary of the daily.
-			\item We have a daily usage fact table aggregated on area id and we need to create another summary table aggregated based on city id. So, the new grain level here is the new dimension for city.
+			\item We have a daily usage fact table, and we need to have a higher level of monthly usage. So, we use the monthly dimension to get a summary of the daily.
+			\item We have a daily usage fact table aggregated on area-id, and we need to create another summary table aggregated based on city id. So, the new grain level here is the new dimension for the city.
 			\end{itemize}
 		\end{example}
-%https://www.kimballgroup.com/2011/08/design-tip-137-creating-and-managing-shrunken-dimensions/
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -1310,15 +1325,15 @@
 \frametitle{Swappable Dimensions}
 	\begin{itemize}[<+->]
 		\item A dimension that has multiple alternate versions of itself that can be \textbf{swapped at query time}.
-		\item Each version of the hot swappable dimension (sub-types)
+		\item Each version of the hot-swappable dimension (sub-types)
 			\begin{itemize}[<+->]
-				\item Has different meaning
-				\item Has different structures.
-				\item Has less data compared to the primary dimension (less rows and columns).
-				\item Has different output based on the input version and its alternatives.
+				\item It has a different meaning
+				\item It has a different structure.
+				\item It has fewer data compared to the primary dimension (fewer rows and columns).
+				\item It has a different output based on the input version and its alternatives.
 				\item Multi versions could be used together in the same fact with different types.
-				\item Can act as the primary dimension and join to the same fact table.
-				\item Has different target users and sometimes we restrict the users to access the primary dimension and only access the swapped version to restrict the data without needs to show the whole primary attributes.
+				\item It can act as the primary dimension and join to the same fact table.
+				\item It has different target users and sometimes we restrict the users to access the primary dimension and only access the swapped version to restrict the data without needs to show the whole primary attributes.
 
 			\end{itemize}.
 	\end{itemize}
@@ -1348,9 +1363,9 @@
 \begin{frame}
 \frametitle{Attention: Conformed vs Role-Playing Dimension vs Swappable}
 	\begin{itemize}[<+->]
-		\item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning and value}} \faEdit \space \faArrowCircleORight \space CustomerID 123 can be represented into the whole model using the same value and same meaning.
-		\item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings and same value}} \faEdit \space \faArrowCircleORight \space Date Dimension 20191012 can be used for different purpose order delivery date, expire date but different meanings.
-		\item \textbf{Swappable} different version from the primary dimension each version has its own attributes and meanings based on the use case \textit{\underline{(different meaning based on the category)}}. \faEdit \space \faArrowCircleORight \space party id dimension has different version sales, agent, employee and all of them sub-types of the party but used for different purpose in different facts.
+		\item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning and value}} \forexample CustomerID 123 can be represented into the whole model using the same value and same meaning.
+		\item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings and same value}} \forexample Date Dimension 20191012 can be used for different purpose order delivery date, expire date but different meanings.
+		\item \textbf{Swappable} different version from the primary dimension each version has its own attributes and meanings based on the use case \textit{\underline{(different meaning based on the category)}}. \forexample party id dimension has different version sales, agent, employee and all of them sub-types of the party but used for different purpose in different facts.
 	\end{itemize}
 
 \end{frame}
@@ -1798,17 +1813,95 @@
 
 %multi-valued attributes is to create a relationship between the dimension table and a secondary dimensional table (outrigger table).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Schema Types}
+\begin{frame}
+\frametitle{Schema Types}
+	\begin{itemize}[<+->]
+		\item Star schema.
+		\item Snowflake schema.
+		\item Galaxy schema.
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
     \frametitle{Schema Types (Star vs Snowflake)}
-    - Multidimensional Model(Star, Snowflake, and Galaxy Schema).\\
-    %	  primary dim & secondary 2 level only
+	\begin{itemize}
+		\item What is the differences between schemas?		    	
+			\begin{itemize}
+				\item \textbf{Star Schema} the center of the star can have one fact table and a number of associated dimension tables. It is known as star schema as its structure resembles a star. The star schema is the simplest type of Data Warehouse schema. It is also known as Star Join Schema and is optimized for querying large data sets.
+			\end{itemize}
+	\end{itemize}
+%     primary dim & secondary 2 level only 
     %snawflake multi dim nationality for example egypt
     %it will scan the nationality first and it will be fortign key with forign key inner join
-
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Schema Types (Star vs Snowflake)}
+\begin{itemize}
+	\item Characteristics of Star Schema:
+	\begin{itemize}
+		\item Every dimension in a star schema is represented with the only one-dimension table.
+		\item The dimension table should contain the set of attributes.
+		\item The dimension table is joined to the fact table using a foreign key
+		\item The dimension table are not joined to each other
+		\item Fact table would contain key and measure
+		\item The Star schema is easy to understand and provides optimal disk usage.
+		\item The dimension tables are not normalized. For instance, in the above figure, Country\_ID does not have Country lookup table as an OLTP design would have.
+		\item The schema is widely supported by BI Tools
+	\end{itemize}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is a Snowflake Schema?}
+	\begin{itemize}
+		\item \textbf{Snowflake Schema} is an extension of a Star Schema, and it adds additional dimensions. It is called snowflake because its diagram resembles a Snowflake. The dimension tables are normalized which splits data into additional tables. In the following example, Country is further normalized into an individual table.
+	\end{itemize}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is a Snowflake Schema?}
+\begin{itemize}
+	\item Characteristics of Snowflake Schema:
+	\begin{itemize}
+		\item The main benefit of the snowflake schema it uses smaller disk space.
+		\item Easier to implement a dimension is added to the Schema
+		\item Due to multiple tables query performance is reduced
+		\item The primary challenge that you will face while using the snowflake Schema is that you need to perform more maintenance efforts because of the more lookup tables.
+	\end{itemize}
+\end{itemize}
+\end{frame}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Star Vs Snowflake Schema}
+	\begin{table}[t]
+		\centering				
+			%		\centering
+			\begin{tabular}{| c | c|}
+				\hline
+				\textbf{Star}& \textbf{Snow Flake} \\
+				\hline
+				Hierarchies of the Dimensions are stored in the dimensional table	 & Hierarchies are divided into separate tables \\
+				Fact table surrounded by dimension tables & One fact table surrounded by dimension table which are in turn surrounded by dimension table\\
+				In a star schema, only single join creates the relationship between the fact table and any dimension tables &  A snowflake schema requires many joins to fetch the data\\
+				Simple DB Design & Very Complex DB Design\\
+				Denormalized Data structure and query also run faster & Normalized Data Structure\\
+				High level of Data redundancy & Very low-level data redundancy\\
+				Single Dimension table contains aggregated data & Data Split into different Dimension Tables\\
+				Cube processing is faster & Cube processing might be slow because of the complex join\\
+				Offers higher performing queries using Star Join Query Optimization. Tables may be connected with multiple dimensions & The Snow Flake Schema is represented by centralized fact table which unlikely connected with multiple dimensions\\
+				
+				\hline
+			\end{tabular}
+			%		\caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
+	\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
     \frametitle{Roll Up, Drill Down, and Pivot Analysis}
 
