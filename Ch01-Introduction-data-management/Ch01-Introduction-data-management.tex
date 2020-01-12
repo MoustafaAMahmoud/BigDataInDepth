@@ -808,41 +808,32 @@
         %Cost,Security
     \end{wideitemize}
 \end{frame}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{DWH Architecture}
 \begin{frame}
-    \frametitle{DWH Architecture Layers}
-
-    \begin{wideitemize}
-        \item DWH architecture contains the following layers:
-        \begin{itemize}[<+->]
-            \item Source system layer.
-            \item Extraction layer.
-            \item Staging Area.
-            \item Data Modeling.
-            \item ETL layer.
-            \item Storage layer.
-            \item Reporting (UI) layer.
-            \item Metadata layer.
-            \item System operations layer.
-        \end{itemize}
-    \end{wideitemize}
-
+\frametitle{DWH Architecture Overview}
+\input{./Figures/chapter-01/tikz_preamble_dwh_arch.tex}
 \end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-    \frametitle{DWH Architecture Overview}
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[width=.9\linewidth,height=.8\textheight]{./Figures/chapter-01/Datawarehouse_reference_architecture.jpg}
-                
-        \caption{\tiny{taken from https://commons.wikimedia.org/wiki/File:Datawarehouse\_reference\_architecture.jpg}}
-    \end{figure}
-\end{frame}
+\frametitle{DWH Architecture Layers}
 
+\begin{wideitemize}
+	\item DWH architecture contains the following layers:
+	\begin{itemize}[<+->]
+		\item Source system layer.
+		\item Extraction layer.
+		\item Staging Area.
+		\item Data Modeling.
+		\item ETL layer.
+		\item Storage layer.
+		\item Reporting (UI) layer.
+		\item Metadata layer.
+		\item System operations layer.
+	\end{itemize}
+\end{wideitemize}
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Source System Integration Process}
 \begin{frame}

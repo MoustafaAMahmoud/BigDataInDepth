@@ -1,0 +1,82 @@
+	\begin{tikzpicture}[every label/.append style={font=\tiny},regentonne/.style={cylinder,aspect=.7,draw,shape border rotate=90}]
+		%\draw[step=.5cm,gray,very thin] (-2,-1) grid (9.5,6);
+		%SS recatangle
+		\filldraw[draw=blue,thick,rounded corners,fill=white] (-2,-1) rectangle (0.2,6);
+
+		%ETL recatangle		
+		\filldraw[draw=Maroon,thick,rounded corners,fill=white] (.4,0) rectangle (2.5,6);
+		
+		%EDW
+		\filldraw[draw=OliveGreen,thick,rounded corners,fill=white] (2.7,0) rectangle (7.7,6);
+		
+		%BI LAYER
+		\filldraw[draw=mauve,thick,rounded corners,fill=white] (7.9,0) rectangle (9.5,6);
+
+		%Metadata LAYER
+		\filldraw[draw=ballblue,thick,rounded corners,fill=white] (.4,-1.2) rectangle (9.5,-.7);
+
+		%User Access LAYER
+		\filldraw[draw=black,thick,rounded corners,fill=white] (.4,-.6) rectangle (9.5,-.1);
+
+		
+   	    \node[text width=2cm,font=\scriptsize] at (-.9,5.6) {Source Systems};
+		\node[database,label=below:CRM] (s1) at (-1,5) {};
+		\node[database,label=below:ERP] (s2) at (-1,4) {};
+		\node[database,label=below:MobileApp] (s3) at (-1,3) {};		
+		\node[database,label=below:Billing] (s4) at (-1,2) {};		
+		\node[database,label=below:WebApp] (s5) at (-1,1) {};						
+		\node[database,label=below:Other] (s6) at (-1,0) {};				
+		
+		\draw[line width=0.25mm, blue] (s1) -- ([xshift=.5cm]s1.east) -- ([xshift=.5cm]s2.east) -- (s2)  -- ([xshift=.5cm]s2.east) -- ([xshift=.5cm]s3.east) -- (s3)-- ([xshift=.5cm]s3.east) -- ([xshift=.5cm]s4.east) -- (s4) -- ([xshift=.5cm]s4.east) --  ([xshift=.5cm]s5.east) -- (s5) --  ([xshift=.5cm]s5.east) -- ([xshift=.5cm]s6.east) -- (s6);
+	
+		%connection arrow
+		\draw[->,line width=0.5mm, black] ([xshift=.5cm,yshift=-.5cm]s3.east) -- ([xshift=1.45cm,yshift=-.5cm]s3.east) ;		
+
+		
+		%ETL
+   	    \node[text width=2cm,font=\scriptsize] at (2.2,5.6) {ETL};
+        \pic[draw,fill=Maroon]          (etlS) at (1.45,4.3)   {gear={0.08}{17}{15}};
+        \pic[draw,fill=uiborange]       (etlM) at (1.45,2.5)   {gear={0.08}{17}{15}};
+        \pic[draw,fill=mygreen]         (etlB) at (1.45,.8)   {gear={0.08}{17}{15}};
+   		\draw[line width=0.25mm, gray] (2.03,4.3) -- (2.4,4.3);
+  		\draw[line width=0.25mm, gray] (2.03,2.5) -- (2.4,2.5);
+  		\draw[line width=0.25mm, gray] (2.03,.8) -- (2.4,0.8);
+  		\draw[line width=0.25mm, gray] (2.4,4.3) -- (2.4,0.8);  		
+		%connection arrow	
+  		\draw[->,line width=0.5mm, black] (2.4,2.5) -- (3.3,2.5);
+   		
+		%EDW
+   	    \node[text width=4.5cm,font=\scriptsize] at (5.3,5.6) {Enterprise Data Warehouse (EDW)};
+     	\node[database,label=below:DWH,database radius=.7cm,database segment height=.4cm] (A)  at (4,2.6) {};
+     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm]  (B)  at (6.5,4) {};     	
+     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm]  (C)  at (6.5,2.5) {};
+     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm]  (D)  at (6.5,1) {};     	
+     	\node[database,label=below:Operational Data Store,database radius=.6cm,database segment height=.3cm] (E) at (4,4.6) {};
+    
+       \draw[line width=0.25mm,alizarin,->] (A) -- (B);
+       \draw[line width=0.25mm,alizarin,->] (A) -- (C);
+       \draw[line width=0.25mm,alizarin,->] (A) -- (D);
+       \draw[line width=0.25mm,alizarin,->] (E) -- (A);
+
+       \draw[line width=0.25mm,alizarin] (7.3,.9) -- (7.3,4);
+       
+       \draw[line width=0.25mm,alizarin] (6.9,4) -- (7.3,4);
+       \draw[line width=0.25mm,alizarin] (6.9,2.5) -- (7.3,2.5);
+       \draw[line width=0.25mm,alizarin] (6.9,.9) -- (7.3,.9);
+       
+       \draw[line width=0.5mm,black,->] (7.3,2.5) -- (8,2.5);
+       
+		%BI LAYER
+		\node[text width=1.3cm,font=\scriptsize] at (8.8,5.6) {BI Layer};
+		\node[inner sep=0pt] (rep) at (8.7,4.6) {\includegraphics[width=.1\textwidth,height=.1\textheight]{./Figures/chapter-01/report.png}};
+		\node[yshift=.4cm,below of=rep] {{\tiny Reporting}};
+		\node (io) at (8.7,2.5) [io] {{\tiny Analytics}}; 		
+		\node (start) at (8.7,0.5) [startstop] {{\tiny Integrations}}; 
+
+		%MDM
+		\node at (4.5,-.4) {Metadata Repository Management (MDM)};
+		
+		%Access Layer
+		\node at (4.5,-1) {User Access Management \faExpeditedssl};
+		
+	\end{tikzpicture}

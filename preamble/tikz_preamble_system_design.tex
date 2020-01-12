@@ -1,0 +1,76 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzset{
+	database/.style={
+		path picture={
+			\draw[black] (0, 1.5*\database@segmentheight) circle [x radius=\database@radius,y radius=\database@aspectratio*\database@radius];
+			\draw[black] (-\database@radius, 0.5*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius];
+			\draw[black] (-\database@radius,-0.5*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius];
+			\draw[black] (-\database@radius,1.5*\database@segmentheight) -- ++(0,-3*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius] -- ++(0,3*\database@segmentheight);
+		},
+		minimum width=2*\database@radius + \pgflinewidth,
+		minimum height=3*\database@segmentheight + 2*\database@aspectratio*\database@radius + \pgflinewidth,
+	},
+	database segment height/.store in=\database@segmentheight,
+	database radius/.store in=\database@radius,
+	database aspect ratio/.store in=\database@aspectratio,
+	database segment height=0.1cm,
+	database radius=0.25cm,
+	database aspect ratio=0.35,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzset{pics/gear/.style n args={3}{
+		code={
+			\def\modu{#1}
+			\def\Zb{#2}
+			\def\AngleA{#3}
+			
+			\pgfmathsetmacro{\Rpr}{\Zb*\modu/2}
+			\pgfmathsetmacro{\Rb}{\Rpr*cos(\AngleA)}
+			\pgfmathsetmacro{\Rt}{\Rpr+\modu}
+			\pgfmathsetmacro{\Rp}{\Rpr-1.25*\modu}
+			\pgfmathsetmacro{\AngleT}{pi/180*acos(\Rb/\Rt)}
+			\pgfmathsetmacro{\AnglePr}{pi/180*acos(\Rb/\Rpr)}
+			\pgfmathsetmacro{\demiAngle}{180/\Zb}
+			\pgfmathsetmacro{\Angledecal}{(\demiAngle-2*\AnglePr)/2}
+			
+			\path[pic actions] foreach \zz in{1,...,\Zb}{
+				\ifnum\zz=1
+				% don't use a lineto in the first iteration
+				(\zz/\Zb*360-\Angledecal:\Rp)
+				\else
+				-- (\zz/\Zb*360-\Angledecal:\Rp)
+				\fi
+				to[bend right=\demiAngle]
+				(\zz/\Zb*360+\Angledecal:\Rp)
+				--
+				plot[domain=-0:\AngleT,smooth,variable=\t]
+				({{180/pi*(-\t+tan(180/pi*\t)) +\zz/\Zb*360+\Angledecal}:\Rb/cos(180/pi*\t)})
+				%
+				to[bend right=\demiAngle]
+				({{180/pi*(\AngleT+tan(180/pi*-\AngleT)) +(\zz+1)/\Zb*360-\Angledecal}:
+					\Rb/cos(180/pi*-\AngleT)})
+				--
+				plot[domain=-\AngleT:-0,smooth,variable=\t]
+				({{180/pi*(-\t+tan(180/pi*\t)) +(\zz+1)/\Zb*360-\Angledecal}:\Rb/cos(180/pi*\t)})
+			} -- cycle;
+		}
+}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzset{report/.style={tape, draw, tape bend top=none}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=.4cm, minimum height=.4cm, text centered, draw=black, fill=green!30]
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=.4cm, minimum height=.4cm,text centered, draw=black, fill=red!30]
+
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+% !TeX root = ../main.tex
+%%% TeX-engine: xetex
+%%% End:
