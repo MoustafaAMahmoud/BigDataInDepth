@@ -1,21 +1,52 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tikzset{
+	database top segment style/.style={draw},
+	database middle segment style/.style={draw},
+	database bottom segment style/.style={draw},
 	database/.style={
 		path picture={
-			\draw[black] (0, 1.5*\database@segmentheight) circle [x radius=\database@radius,y radius=\database@aspectratio*\database@radius];
-			\draw[black] (-\database@radius, 0.5*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius];
-			\draw[black] (-\database@radius,-0.5*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius];
-			\draw[black] (-\database@radius,1.5*\database@segmentheight) -- ++(0,-3*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius] -- ++(0,3*\database@segmentheight);
+			\path [database bottom segment style]
+			(-\db@r,-0.5*\db@sh) 
+			-- ++(0,-1*\db@sh) 
+			arc [start angle=180, end angle=360,
+			x radius=\db@r, y radius=\db@ar*\db@r]
+			-- ++(0,1*\db@sh)
+			arc [start angle=360, end angle=180,
+			x radius=\db@r, y radius=\db@ar*\db@r];
+			\path [database middle segment style]
+			(-\db@r,0.5*\db@sh) 
+			-- ++(0,-1*\db@sh) 
+			arc [start angle=180, end angle=360,
+			x radius=\db@r, y radius=\db@ar*\db@r]
+			-- ++(0,1*\db@sh)
+			arc [start angle=360, end angle=180,
+			x radius=\db@r, y radius=\db@ar*\db@r];
+			\path [database top segment style]
+			(-\db@r,1.5*\db@sh) 
+			-- ++(0,-1*\db@sh) 
+			arc [start angle=180, end angle=360,
+			x radius=\db@r, y radius=\db@ar*\db@r]
+			-- ++(0,1*\db@sh)
+			arc [start angle=360, end angle=180,
+			x radius=\db@r, y radius=\db@ar*\db@r];
+			\path [database top segment style]
+			(0, 1.5*\db@sh) circle [x radius=\db@r, y radius=\db@ar*\db@r];
 		},
-		minimum width=2*\database@radius + \pgflinewidth,
-		minimum height=3*\database@segmentheight + 2*\database@aspectratio*\database@radius + \pgflinewidth,
+		minimum width=2*\db@r + \pgflinewidth,
+		minimum height=3*\db@sh + 2*\db@ar*\db@r + \pgflinewidth,
 	},
-	database segment height/.store in=\database@segmentheight,
-	database radius/.store in=\database@radius,
-	database aspect ratio/.store in=\database@aspectratio,
+	database segment height/.store in=\db@sh,
+	database radius/.store in=\db@r,
+	database aspect ratio/.store in=\db@ar,
 	database segment height=0.1cm,
 	database radius=0.25cm,
 	database aspect ratio=0.35,
+	database top segment/.style={
+		database top segment style/.append style={#1}},
+	database middle segment/.style={
+		database middle segment style/.append style={#1}},
+	database bottom segment/.style={
+		database bottom segment style/.append style={#1}}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tikzset{pics/gear/.style n args={3}{

@@ -20,12 +20,13 @@
 
 		
    	    \node[text width=2cm,font=\scriptsize] at (-.9,5.6) {Source Systems};
-		\node[database,label=below:CRM] (s1) at (-1,5) {};
-		\node[database,label=below:ERP] (s2) at (-1,4) {};
-		\node[database,label=below:MobileApp] (s3) at (-1,3) {};		
-		\node[database,label=below:Billing] (s4) at (-1,2) {};		
-		\node[database,label=below:WebApp] (s5) at (-1,1) {};						
-		\node[database,label=below:Other] (s6) at (-1,0) {};				
+		\node[database,label=below:CRM, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue} ] (s1) at (-1,5) {};
+		\node[database,label=below:ERP, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s2) at (-1,4) {};
+		\node[database,label=below:MobileApp, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s3) at (-1,3) {};		
+		\node[database,label=below:Billing, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s4) at (-1,2) {};		
+		\node[database,label=below:WebApp, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s5) at (-1,1) {};						
+		\node[database,label=below:Other, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s6) at (-1,0) {};				
+
 		
 		\draw[line width=0.25mm, blue] (s1) -- ([xshift=.5cm]s1.east) -- ([xshift=.5cm]s2.east) -- (s2)  -- ([xshift=.5cm]s2.east) -- ([xshift=.5cm]s3.east) -- (s3)-- ([xshift=.5cm]s3.east) -- ([xshift=.5cm]s4.east) -- (s4) -- ([xshift=.5cm]s4.east) --  ([xshift=.5cm]s5.east) -- (s5) --  ([xshift=.5cm]s5.east) -- ([xshift=.5cm]s6.east) -- (s6);
 	
@@ -44,14 +45,19 @@
   		\draw[line width=0.25mm, gray] (2.4,4.3) -- (2.4,0.8);  		
 		%connection arrow	
   		\draw[->,line width=0.5mm, black] (2.4,2.5) -- (3.3,2.5);
-   		
+  		\draw[->,line width=0.5mm, black] (2.15,4.5) -- (3.45,4.5);
+ 		\draw[->,line width=0.5mm, black] (4.45,4.5) -- (8,4.5);
 		%EDW
    	    \node[text width=4.5cm,font=\scriptsize] at (5.3,5.6) {Enterprise Data Warehouse (EDW)};
-     	\node[database,label=below:DWH,database radius=.7cm,database segment height=.4cm] (A)  at (4,2.6) {};
-     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm]  (B)  at (6.5,4) {};     	
-     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm]  (C)  at (6.5,2.5) {};
-     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm]  (D)  at (6.5,1) {};     	
-     	\node[database,label=below:Operational Data Store,database radius=.6cm,database segment height=.3cm] (E) at (4,4.6) {};
+     	\node[database,label=below:DWH,database radius=.7cm,database segment height=.4cm		, database middle segment={draw=black,fill=green-yellow}, database bottom segment={draw=black, fill=green-yellow}, database top segment={draw=black,fill=green-yellow}] (A)  at (4,2.6) {};
+     	
+     	
+     	%DataMart
+     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm, database middle segment={draw=black,fill=spirodiscoball}, database bottom segment={draw=black, fill=spirodiscoball}, database top segment={draw=black,fill=spirodiscoball}]  (B)  at (6.5,4) {};     	
+     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm, database middle segment={draw=black,fill=spirodiscoball}, database bottom segment={draw=black, fill=spirodiscoball}, database top segment={draw=black,fill=spirodiscoball}]  (C)  at (6.5,2.5) {};
+     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm, database middle segment={draw=black,fill=spirodiscoball}, database bottom segment={draw=black, fill=spirodiscoball}, database top segment={draw=black,fill=spirodiscoball}]  (D)  at (6.5,1) {};     	
+     	%ODS
+     	\node[database,label=below:Operational Data Store,database radius=.6cm,database segment height=.3cm, database middle segment={draw=black,fill=harvardcrimson}, database bottom segment={draw=black, fill=harvardcrimson}, database top segment={draw=black,fill=harvardcrimson}] (E) at (4,4.6) {};
     
        \draw[line width=0.25mm,alizarin,->] (A) -- (B);
        \draw[line width=0.25mm,alizarin,->] (A) -- (C);
