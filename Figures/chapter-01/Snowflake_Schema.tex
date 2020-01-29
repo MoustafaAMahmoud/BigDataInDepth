@@ -1,0 +1,63 @@
+
+\resizebox{\columnwidth}{!}{%
+\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.75, every node/.style={scale=0.75}]
+%https://tex.stackexchange.com/questions/133754/creating-crows-foot-style-e-r-diagrams-rather-than-chen-style-ones
+\matrix  [entity=Usage, entity anchor=Usage-id]  {
+	\properties{
+		id,
+		cust-id (FK),
+		cal-id (FK), 
+		loc-id (FK),
+		promo-id (FK),
+		date-id (FK),
+		TotalInCalls (agg),
+		TotalOutCalls (agg),
+		TotalAmount (agg)
+	}
+};
+
+
+\matrix [entity=CustomerProfile, below right=of Usage-id,yshift=10ex, entity anchor=CustomerProfile-id]  {
+	\properties{
+		id, 
+		gender, 
+		age, 
+		NationalityID,
+		firstname,
+		lastname
+	}
+};
+
+\matrix [entity=Nationality, below right=of CustomerProfile-id,yshift=10ex, entity anchor=Nationality-id]  {
+	\properties{
+		id, 
+		name
+	}
+};
+
+
+\matrix  [entity=Calendar, above right=of Usage-id, entity anchor=Calendar-id]  {
+	\properties{
+		id,
+		date,
+		day,
+		week,
+		month,
+		qtr,
+		year
+	}
+};
+
+\draw [one to one] (Usage-id)  to (CustomerProfile-id);
+\draw [one to one] (Usage-id)  to (Calendar-id);
+\draw [one to one] (CustomerProfile-id)  to (Nationality-id);
+
+\end{tikzpicture}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main.tex"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

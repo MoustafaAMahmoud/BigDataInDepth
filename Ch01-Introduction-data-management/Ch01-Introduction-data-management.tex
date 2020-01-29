@@ -972,7 +972,7 @@
     \frametitle{What is data model?}
     The data model is
     \begin{itemize}[<+->]
-        \item The fist part before starting integration with any new source system.
+        \item The first part before starting integration with any new source system.
         \item The connection layer between business requirements and technical design.
         \item It is also the translation between logical and physical layer.
         \item It is unified across all systems and has the same patterns and practices.
@@ -1663,13 +1663,13 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]
-	\frametitle{Slowly changing Dimensions}
-	
-	\lstinputlisting[language=sql,caption={Example to show how to use SCD}]{./Ch01-Introduction-data-management/Code/SCD_Examply.sql}
-	
-\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[fragile]
+%	\frametitle{Slowly changing Dimensions}
+%	
+%	\lstinputlisting[language=sql,caption={Example to show how to use SCD}]{./Ch01-Introduction-data-management/Code/SCD_Examply.sql}
+%	
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \VideoClassification[column=1, colour=blue]
@@ -1833,7 +1833,6 @@
 	\begin{itemize}[<+->]
 		\item Star schema.
 		\item Snowflake schema.
-		\item Galaxy schema.
 	\end{itemize}
 	
 \end{frame}
@@ -1895,6 +1894,12 @@
 \end{itemize}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Schema Types: Star schema (Example)}
+	
+	\input{./Figures/chapter-01/Snowflake_Schema.tex}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -1904,22 +1909,22 @@
 		\hline
 		Star & Snowflake\\
 		\hline
- \makecell{Hierarchies of the dimensions\\are stored in the dimensional table} &  \makecell{Hierarchies are divided\\ into separate tables}\\
+		 \makecell{Hierarchies of the dimensions\\are stored in the dimensional table} &  \makecell{Hierarchies are divided\\ into separate tables}\\
+		 		\hline
+		\makecell{Fact table surrounded\\ by dimension tables} & 
+		\makecell{One fact table surrounded by\\multi-level of dimension tables} \\
+				\hline
+		 \makecell{Single join creates the\\relation between fact \& dimensions}
+		 & \makecell{Requires many joins\\ to fetch the data}\\
  		\hline
-\makecell{Fact table surrounded\\ by dimension tables} & 
-\makecell{One fact table surrounded by\\multi-level of dimension tables} \\
+		Simple DB Design & Very Complex DB Design\\
 		\hline
- \makecell{Single join creates the\\relation between fact \& dimensions}
- & \makecell{Requires many joins\\ to fetch the data}\\
- 		\hline
-Simple DB Design & Very Complex DB Design\\
-\hline
-De-normalized Data structure & Normalized Data Structure\\
-\hline
-High level of Data redundancy & Very low-level data redundancy\\
-\hline
-Cube processing is faster & Cube processing is slow\\% (complex join)
-\hline
+		De-normalized Data structure & Normalized Data Structure\\
+		\hline
+		High level of Data redundancy & Very low-level data redundancy\\
+		\hline
+		Cube processing is faster & Cube processing is slow\\% (complex join)
+		\hline
 	\end{tabular}
 
 

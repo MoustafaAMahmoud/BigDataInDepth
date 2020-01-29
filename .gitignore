@@ -78,7 +78,7 @@ flycheck_*.el
 # Logs and databases #
 ######################
 *.log
-*.sql
+#*.sql
 *.sqlite
 
 # OS generated files #
