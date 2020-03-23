@@ -652,7 +652,7 @@ The Full picture required a DWH. However, we still need the other operational da
 \begin{itemize}[<+->]
 	\item It is a data classification design which allows us to have the following characteristics
 	\begin{itemize}[<+->]
-		\item Fast (high performance) access on the frequent data (Hot data).
+		\item  (high performance) access on the frequent data (Hot data).
 		\item Good (average performance) access to less-frequently data (warm data).
 		\item Availability to access rarely accessed data (cold data).
 	\end{itemize}
@@ -1536,7 +1536,7 @@ The Full picture required a DWH. However, we still need the other operational da
 			\hline
 			\hline		
 			1 & 123456789 & Ronaldo  & Madrid & 2018-12-12 & 2019-06-12 & false\\
-			2 & 123456789 & Ronaldo  & Madrid & 2019-06-12 & 2019-08-12 & false\\
+			2 & 123456789 & Ronaldo  & Turin & 2019-06-12 & 2019-08-12 & false\\
 			3 & 123456789 & Ronaldo  & London & 2019-08-12 & 2019-12-12 & false\\
 			4 & 123456789 & Ronaldo  & Porto  & 2019-12-12 & null & true\\
 			\hline
@@ -1608,7 +1608,7 @@ The Full picture required a DWH. However, we still need the other operational da
 		\hline
 		\hline		
 		1 & 123456789 & Ronaldo  & Madrid & 2018-12-12 & 2019-06-12\\
-		2 & 123456789 & Ronaldo  & Madrid & 2019-06-12 & 2019-08-12\\
+		2 & 123456789 & Ronaldo  & Turin & 2019-06-12 & 2019-08-12\\
 		3 & 123456789 & Ronaldo  & London & 2019-08-12 & 2019-12-12\\
 		4 & 123456789 & Ronaldo  & Porto  & 2019-12-12 & null\\
 		\hline
@@ -1742,8 +1742,6 @@ The Full picture required a DWH. However, we still need the other operational da
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\VideoClassification[column=1, colour=blue]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Fast Changing Dimension (Mini Dimension)}
 
@@ -1756,7 +1754,7 @@ The Full picture required a DWH. However, we still need the other operational da
 			\hline		
 			123 & 1   & 2019-01-01 & 2019-01-07\\
 			123 & 2   & 2019-01-07 & 2019-01-14\\
-			123 & 3   & 2019-01-14 & 2019-01-14\\
+			123 & 3   & 2019-01-14 & 2019-01-21\\
 			123 & 4   & 2019-01-21 & null\\
 			\hline
 		\end{tabular}
