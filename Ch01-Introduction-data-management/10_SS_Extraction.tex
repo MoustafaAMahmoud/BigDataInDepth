@@ -1,0 +1,18 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=2, colour=blue]
+\subsubsection{Extraction Layer}
+
+\begin{frame}
+    \frametitle{Extraction Layer}
+    \begin{itemize}[<+->]
+		\item In some companies, they hire or dedicate a team for this part (extraction or ingestion team), but in other companies, it is part of the data engineering team.
+		\item This layer takes the output analysis and decisions from the previous layer (source system analysis) and implement the extraction (quality from the previous team output highly affect this team).
+		\item There is a lot of consideration this team needs to take care of or deal with, but we can summarize it in the following:
+		\begin{itemize}[<+->]
+			\item Data latency analysis as it affects the tool and the methodology (stream or batch).
+			\item Data extraction method (push or pull).
+			\item Data size and format compared with the available resources for this project.
+	    \end{itemize}
+        \item \blue{This layer output is a minimal data cleansing (no transformation) into the staging/landing layer}.
+    \end{itemize}
+\end{frame}

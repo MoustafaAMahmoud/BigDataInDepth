@@ -1,0 +1,106 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=1, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\midTitle{Schema Types}
+\begin{frame}
+\frametitle{Schema Types}
+	\begin{itemize}[<+->]
+		\item Star schema.
+		\item Snowflake schema.
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Schema Types: Star schema}
+\begin{frame}
+    \frametitle{Schema Types: Star schema}
+			\begin{itemize}
+				\item \textbf{Star Schema} the center of the star can have one fact table and a number of associated dimension tables. It is known as star schema as its structure resembles a star. The star schema is the simplest type of Data Warehouse schema. It is also known as Star Join Schema and is optimized for querying large data sets.
+			\end{itemize}
+%     primary dim & secondary 2 level only 
+    %snawflake multi dim nationality for example egypt
+    %it will scan the nationality first and it will be fortign key with forign key inner join
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Schema Types: Star schema}
+\begin{itemize}
+	\item Characteristics of Star Schema:
+	\begin{itemize}
+		\item Every dimension in a star schema is represented with the only one-dimension table.
+		\item The dimension table should contain the set of attributes.
+		\item The dimension table is joined to the fact table using a foreign key
+		\item The dimension table are not joined to each other
+		\item Fact table would contain key and measure
+		\item The Star schema is easy to understand and provides optimal disk usage.
+		\item The dimension tables are not normalized. For instance, in the above figure, Country\_ID does not have Country lookup table as an OLTP design would have.
+		\item The schema is widely supported by BI Tools
+	\end{itemize}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Schema Types: Star schema (Example)}
+
+\input{./Figures/chapter-01/Fig_FCT_DIM_Ex.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Schema Types: Snowflake  schema}
+\begin{frame}
+\frametitle{Schema Types: Snowflake  schema}
+	\begin{itemize}
+		\item \textbf{Snowflake Schema} is an extension of a Star Schema, and it adds additional dimensions. It is called snowflake because its diagram resembles a Snowflake. The dimension tables are normalized which splits data into additional tables. In the following example, Country is further normalized into an individual table.
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Schema Types: Snowflake  schema}
+\begin{itemize}
+	\item Characteristics of Snowflake Schema:
+	\begin{itemize}
+		\item The main benefit of the snowflake schema it uses smaller disk space.
+		\item Easier to implement a dimension is added to the Schema
+		\item Due to multiple tables query performance is reduced
+		\item The primary challenge that you will face while using the snowflake Schema is that you need to perform more maintenance efforts because of the more lookup tables.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Schema Types: Star schema (Example)}
+	
+	\input{./Figures/chapter-01/Snowflake_Schema.tex}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Star Vs Snowflake Schema}
+
+	\begin{tabular}{| l | l |}
+		\hline
+		Star & Snowflake\\
+		\hline
+		 \makecell{Hierarchies of the dimensions\\are stored in the dimensional table} &  \makecell{Hierarchies are divided\\ into separate tables}\\
+		 		\hline
+		\makecell{Fact table surrounded\\ by dimension tables} & 
+		\makecell{One fact table surrounded by\\multi-level of dimension tables} \\
+				\hline
+		 \makecell{Single join creates the\\relation between fact \& dimensions}
+		 & \makecell{Requires many joins\\ to fetch the data}\\
+ 		\hline
+		Simple DB Design & Very Complex DB Design\\
+		\hline
+		De-normalized Data structure & Normalized Data Structure\\
+		\hline
+		High level of Data redundancy & Very low-level data redundancy\\
+		\hline
+		Cube processing is faster & Cube processing is slow\\% (complex join)
+		\hline
+	\end{tabular}
+
+
+\end{frame}

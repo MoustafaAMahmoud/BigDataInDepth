@@ -1,0 +1,68 @@
+\VideoClassification[column=3, colour=blue]
+
+%---------------------------------------------------------
+
+
+\section{Introduction To Data Management and Data Warehouse}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Chapter Objectives}
+
+\begin{itemize}[<+->]
+	\item Be familiar with data management life-cycle.
+	\item Understand the data abstraction and the data layer.
+	\item Motivation to DWH.
+	\item What are the different types of DWH?
+	\item Usecases for DWH. How is it different from the operational DB?
+	\item Explain the data Encoding and Formats.
+	\item Show what the challenges of building a DWH are?
+	\item What are the data modeling and its design?
+\end{itemize}
+%https://opentextbc.ca/dbdesign01/chapter/chapter-5-data-modelling/
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Data Management}
+
+\begin{frame}
+\frametitle{Data Management}
+
+\begin{itemize}[<+->]
+\item Data are a product.
+\item Data product has a life-cycle as following (simplified):
+\begin{itemize}[<+->]
+	\item \textbf{Question}, Idea, or service.
+	\item \textbf{Identify} the source of information and the data type.
+	\item \textbf{Document} all details regarding the data including quality, security, efficiency, and access (consideration during the cycle).
+	\item Delivery automation (Tools and Process). AKA \textbf{DevOps} cycle.
+	\item Data Architecture (model design and rules).
+	\item \textbf{Extraction}, \textbf{Transformation}, and \textbf{Loading} Process.
+	\item Business Intelligence (\textbf{BI}) or data discovery (continues process).
+	\item \textbf{Integration} and publishing.
+	\item Data retention or \textbf{archiving} process \forexample (Hot or Cold storage).
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Data Management Life-Cycle}
+\scalebox{0.9}{
+
+\smartdiagramset{circular distance=3.5cm,
+font=\scriptsize,
+%				text width=1cm,
+module minimum width=2cm,
+circular distance =3.4cm,
+module minimum height=.1cm,
+arrow tip=to}
+\smartdiagram[circular diagram]{Archiving,Idea, Identify, Document, 				
+DevOps, Arch.,ETL, BI, Integration}
+}
+\end{frame}
+

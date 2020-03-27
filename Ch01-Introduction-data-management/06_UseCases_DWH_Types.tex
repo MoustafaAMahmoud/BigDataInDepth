@@ -1,0 +1,102 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Use Cases of Operational DB vs DWH}
+
+\begin{frame}
+\frametitle{Use case (Operational DB)}
+
+\begin{itemize}[<+->]
+
+\item A telecommunication company named \textbf{XTec}.
+\newline
+\item They have lots of systems. One of this systems is a CRM system as example of operational DB.
+\begin{itemize}[<+->]
+
+\item The CRM system handles the customer activities with the company including (sales, change in customer plans, and other activities).
+\item This system has a backend database (MySQL).
+\item CRM team can report their sales and customer activities from their database.
+\item Product owner can take a decision based on their system backend reports.
+
+\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Use case (DWH)}
+
+\begin{itemize}[<+->]
+
+\item What is the need for DWH?		
+\begin{itemize}[<+->]
+\item This company has other systems \forexample billing, charging, signaling.	
+\item They need to report information related to the CRM, billing, and signaling source systems in one report.
+\item So, they need to ingest (transfer) the data from the source systems to one single database.
+\item The decision from the DHW is a \textbf{global and strategical decision.}
+\item If the company needs to build a machine learning model which needs data from different sources. They need to load the data from a centralized database rather than read each source alone.
+\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Use case (DWH)}
+\centering
+The Full picture required a DWH. However, we still need the other operational databases for product development perspective.
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Use case (ODS)}
+\centering
+
+\begin{itemize}[<+->]
+\item Why do we need the ODS?
+\item 	How does it fit in our system?
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Use case (ODS)}
+\centering
+\textbf{XTec} has a call center system which handles the customer inquiries. This system requires the some data related to usage, customer information, billing details to be calculated and accumulated in \textbf{real-time} to be able to give the customer the right answer for his inquires.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Use case (ODS)}
+
+	\begin{itemize}[<+->]
+		\item So, What is the challenge for this system?
+			\begin{itemize}[<+->]		
+				\item It needs specific information from different source systems.
+				\item It requires to track the source system database changes or update in real-time.
+				\item It's functionality is based on the aggregate data not the transactions \forexample (It needs the total outgoing calls till time or it needs the total charging amounts from prepaid or the available limits from billing if it is postpaid).
+			\end{itemize}
+	\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Use case (ODS)}
+
+	\begin{itemize}[<+->]
+		\item ODS is based on change data capture (CDC). This approach used to determine the data change and apply action based on this change.
+		\item ODS uses the real-time aggregations to support the online systems from different source systems.
+	\end{itemize}
+\end{frame}

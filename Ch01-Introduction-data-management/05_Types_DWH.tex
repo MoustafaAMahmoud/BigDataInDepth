@@ -1,0 +1,44 @@
+%---------------------------------------------------------
+\VideoClassification[column=2, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Types of DWH}
+\begin{frame}
+\frametitle{Motivation to Data Warehouse}
+Types of Data Warehouse
+\begin{description}
+\item [\textbf{Enterprise Data Warehouse (EDWH)}] It provides decision support service across the enterprise. It offers a unified approach for organizing and representing data (DWH Model). It offers data classifications according to the subject with privileges policy.
+\item [\textbf{Operational Data Store (ODS):}] is a central database that provides an up-to-date (real-time) data from multiple transnational systems for operational reporting into a single DWH.
+
+%% for real time questions and answers. call ODS using intermidiate data store. DWH is day -1 (billing & subscribtions). Oracle (Loading or headache) && CDC capture change interest column not row
+\item [\textbf{Data Mart:}] A data mart is a subset of the data warehouse. It specially designed for a particular line of business, such as sales, finance, sales or finance. In an independent data mart, data can collect directly from sources.
+\end{description}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{DWH vs ODS vs Data Mart}
+
+
+\begin{table}[t]
+\centering	
+\resizebox{\columnwidth}{!}{%
+
+%		\centering
+\begin{tabular}{|c | c | c| c |}
+\hline
+\textbf{Metric}  & \textbf{DWH}& \textbf{ODS} & \textbf{Data Mart} \\
+\hline
+Latency & Day -1  & Real-time & Day -1 \\			
+Data level  & Transnational & Transnational & Summary \\
+Historical  & Long-term & Snapshot & Aggregated Long-Term \\
+Size & TB/PB & GB & GB/TB\\
+Orientation & Multi sources & Multi sources & Product\\
+Business Units & Multi organizational units & Product team & Business team \\
+\hline
+\end{tabular}
+%		\caption{Data Representation Combination Matrix}\label{Tab:Data_Representation_Matrix}
+}
+\end{table}
+\end{frame}

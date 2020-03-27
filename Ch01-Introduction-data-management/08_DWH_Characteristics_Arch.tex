@@ -1,0 +1,52 @@
+
+%---------------------------------------------------------
+\VideoClassification[column=2, colour=red]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{DWH Characteristics}
+\begin{frame}
+    \frametitle{DWH Characteristics}
+    %these is not a definitions, we just show the meaning and the understanding.
+    \begin{wideitemize}
+        \item The characteristics of DWH:
+        \begin{wideitemize}
+        	\item Integrated: \textit{DWH is an integrated environment which allows us to
+        	integrate different source systems. Data are modeled (organized) in a unified manner}.%regardless of the original source
+        	
+        	\item Time-Variant: \textit{Data modeled (organized) based on periods
+        	(hourly, daily, weekly, monthly, quarterly, yearly)}.
+        	
+        	\item Subject-oriented: \textit{DWH main target is to support business needs for
+        	the whole organization including (decision-makers, departments, and
+        	specific user requirements)}.
+        	
+        	\item Non-Volatile: \textit{It refers to the data that erased or deleted (It could be archived and retrieved when needed). Data can be accumulated daily the new snapshots (refreshed at based on the source system interval.  \faArrowCircleORight \space It could be updated daily, weekly, and monthly)}.
+        \end{wideitemize}
+    \end{wideitemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{DWH Architecture}
+\begin{frame}
+\frametitle{DWH Architecture Overview}
+\input{./Figures/chapter-01/tikz_preamble_dwh_arch.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{DWH Architecture Layers}
+
+\begin{wideitemize}
+	\item DWH architecture contains the following layers:
+	\begin{itemize}[<+->]
+		\item Source system layer.
+		\item Extraction layer.
+		\item Staging Area.
+		\item Data Modeling.
+		\item ETL layer.
+		\item Storage layer.
+		\item Reporting (UI) layer.
+		\item Metadata layer.
+		\item System operations layer.
+	\end{itemize}
+\end{wideitemize}
+
+\end{frame}
+\VideoClassification[column=2, colour=blue]

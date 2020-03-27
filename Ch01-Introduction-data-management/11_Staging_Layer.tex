@@ -1,0 +1,15 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Staging Layer}
+\begin{frame}
+    \frametitle{Staging Layer}
+    \begin{itemize}[<+->]
+        \item This layer handled by the same team who own the \blue{storage part} in most of the organizations.
+        \item Segregation of this layer if it uses different storage type or multi-teams access this layer for a different purpose \forexample (Kafka)\\ \red{\textit{\faBullhorn Kafka is not a storage layer, but it could be used as a landing layer or data persistence layer}}.
+        \item All the ETL layers are working on top of this layer.
+        \item The decision of the storage type is based on the use case and the data.
+
+    \end{itemize}
+
+\end{frame}
+\VideoClassification[column=2, colour=red]
