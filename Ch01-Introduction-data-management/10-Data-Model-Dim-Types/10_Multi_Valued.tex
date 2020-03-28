@@ -27,7 +27,7 @@
 			\item Assume we need to report the sales of article and we have some articles has more than one author.
 			\item Each author has weighting factor for each article.
 			\item According to the report we need to check each author and associate with the articles they have authored. How can we model this case?
-			\item Assume the article has only one author \textit{Moustafa}, and the second article has two authors \textit{Ahmed \& Amr}.
+			\item Assume the first article has only one author \textit{Moustafa}, and the second article has two authors \textit{Ahmed \& Amr}.
 		\end{itemize}
 	\end{example}
 
@@ -93,7 +93,7 @@
 What are the problems in this implementation?
 \begin{itemize}
 	\item We can't get the weighting factor for each author.
-	\item Duplicated numbers in sales due to many authors has the same article id.
+	\item Duplicated rows in sales.
 	
 \end{itemize}
 
@@ -111,7 +111,7 @@ What are the problems in this implementation?
 			\hline		
 			1 & 321  & 11 & 20200303 & 3 & 10 & 30 \\
 			2 & 432  & 22 & 20200304 & 1 & 20 & 20 \\
-			3 & 543  & 22 & 20200304 & 1 & 20 & 20 \\
+			3 & 432  & 22 & 20200304 & 1 & 20 & 20 \\
 			\hline
 		\end{tabular}
 	}
@@ -131,7 +131,7 @@ What are the problems in this implementation?
 			\hline 
 			\hline		
 			1 & 321  & 11 & 20200303 & 3 & 10 & 30 \\
-			2 & 432543  & 22 & 20200304 & 1 & 20 & 20 \\
+			2 & 432  & 22 & 20200304 & 1 & 20 & 20 \\
 			\hline
 		\end{tabular}
 	}
