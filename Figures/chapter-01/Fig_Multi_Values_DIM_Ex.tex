@@ -1,5 +1,6 @@
 \begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.7, every node/.style={scale=0.7}]
-  
+\node [cloud,draw,inner ysep=.5em,inner xsep=.5em,fill=green!5,thick] at (-12,-3.8)  {\makecell[l]{Weghting \faCheckSquareO\\
+		Duplicate \faCheckSquareO}};  
     \matrix  [entity=Author, entity anchor=Author-ID]  {
 	    \properties{
 	    ID,
@@ -24,11 +25,13 @@
 
 	\matrix  [entity=ArticleSales, below right =of AuthorGroup-ID,yshift=7ex,xshift=-6ex, entity anchor=ArticleSales-ID]  {
 	\properties{
-		ID,
-		AuthorGroupID,
-		SalesDt,
-		Quantity,
-		UnitPrice
+			ID,
+			AuthorGroupID,
+			ArticleID,
+			SalesDt,
+			Quantity,
+			UnitPrice,
+			TotalPrice
 	}
 	};
 
@@ -37,7 +40,6 @@
 		ID,
 		Title,
 		Journal,
-		Volume,
 		Price
 	}
 };

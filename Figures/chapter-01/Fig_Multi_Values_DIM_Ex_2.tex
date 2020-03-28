@@ -1,0 +1,57 @@
+\begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.7, every node/.style={scale=0.7}]
+
+\node [cloud,draw,inner ysep=.5em,inner xsep=.5em,fill=blue!5,thick] at (-8,-3.8)  {\makecell[l]{Weghting \faCheckSquareO\\
+Duplicate \faBug}};
+
+\matrix  [entity=Author, entity anchor=Author-ID]  {
+	\properties{
+		ID,
+		Name,
+		Email,
+		Bio
+	}
+};
+\matrix  [entity=AuthorGroupRelation,left=of Author-ID,entity anchor=AuthorGroupRelation-ID]  {
+	\properties{
+		ID,
+		AuthorID,
+		WieghtingFactor
+	}
+};
+
+\matrix  [entity=ArticleSales, below  =of Author-ID,xshift=-12ex,yshift=16ex,entity anchor=ArticleSales-ID]  {
+	\properties{
+		ID,
+		AuthorGroupRelationID,
+		ArticleID,
+		SalesDt,
+		Quantity,
+		UnitPrice,
+		TotalPrice
+	}
+};
+
+\matrix  [entity=Article,  right =of ArticleSales-ID,xshift=-8ex, entity anchor=Article-ID]  {
+	\properties{
+		ID,
+		Title,
+		Journal,
+		Price
+	}
+};
+
+
+
+\draw [one to many] (Author-ID)  to (AuthorGroupRelation-ID);
+\draw [many to one] (AuthorGroupRelation-ID) to (ArticleSales-ID);
+\draw [many to many] (ArticleSales-ID)  to (AuthorGroupRelation-ID);
+\draw [many to one] (ArticleSales-ID)  to (Article-ID);
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main.tex"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

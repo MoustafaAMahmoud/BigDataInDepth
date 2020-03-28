@@ -1,34 +1,66 @@
 \begin{tikzpicture}[every node/.style={font=\ttfamily}, node distance=1.4in,scale=.7, every node/.style={scale=0.7}]
-    \matrix  [entity=Party, entity anchor=Party-id]  {
+    \matrix  [entity=SalesDetails,  entity anchor=SalesDetails-id]  {
+	\properties{
+		id,
+		SalesID (PartyId (FK)),
+		AgentID (PartyId (FK)),
+		TransactionDate (FK),
+		TotalAmount
+	}
+};
+    \matrix  [entity=Party,left=of SalesDetails-id,xshift=-25ex, entity anchor=Party-id]  {
 	    \properties{
 	    id,
 	    PartyName,
-	    PartyAddress,
 	    PartyContactNumber,
 	    PartyDepartment,
-	    PartyPosition
+   	    PartyType,
+	    PartyPosition,
+	    PartySalesTarget,
+	    PartySalesChannel,
+	    PartySalesDirectory,
+	    PartyOffice,
+	    PartyFirstLanguage,
+	    PartySecondLanugage	    	    
 	    }
     };
-    \matrix  [entity=SalesDetails, left=of Party-id,xshift=9ex, entity anchor=SalesDetails-id]  {
+
+
+    \matrix  [entity=Sales,below right=of Party-id ,yshift=-7ex,xshift=-3ex, entity anchor=Sales-id]  {
 		\properties{
-			id,
-			SalesID (PartyId (FK)),
-			AgentID (PartyId (FK)),
-			TransactionDate (FK),
-			TotalAmount
+	    id,
+		PartyName,
+		PartyContactNumber,
+		PartyDepartment,
+		PartyPosition,
+	    PartySalesTarget,
+		PartySalesChannel,
+		PartySalesDirectory
 		}
 	};
 
-	\matrix  [entity=EmployeesDetails, right=of Party-id,xshift=-9ex, entity anchor=EmployeesDetails-id]  {
-		\properties{
-			id,
-			EmployeeId (PartyId (FK)),
-			SalaryDetails
+    \matrix  [entity=Agent,right=of Sales-id,xshift=-3ex,yshift=5ex,  entity anchor=Agent-id]  {
+	\properties{
+		id,
+		PartyName,
+		PartyContactNumber,
+		PartyDepartment,
+		PartyPosition,
+	    PartyOffice,
+		PartyFirstLanguage,
+		PartySecondLanugage
 		}
 	};
+
+
+
+
 
 \draw [one to one] (Party-id)  to (SalesDetails-id);
-\draw [one to one] (Party-id)  to (EmployeesDetails-id);
+\draw [one to one] (Party-id)  to (Sales-id);
+\draw [one to one] (Party-id)  to (Agent-id);
+
+
 
 \end{tikzpicture}
 
