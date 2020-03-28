@@ -1,0 +1,65 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=1, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Degenerate Dimension}
+\begin{frame}
+	\frametitle{Degenerate Dimensions}
+	%https://www.guru99.com/dimensional-model-data-warehouse.html
+	\begin{itemize}[<+->]
+		\item Degenerate Dimensions
+		\begin{itemize}[<+->]
+			\item Dimension Key without corresponding dimension table.% (Not a fact and not an attribute)
+			\item Stored in fact table.
+			%This kind of dimension does not have its dimension as it is derived from the fact table.
+			\item It used to provide a grouping for business cases.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\VideoClassification[column=1, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Degenerate Dimension}
+	%https://www.guru99.com/dimensional-model-data-warehouse.html
+	\begin{itemize}
+		\item Degenerate Dimensions
+		\begin{itemize}
+			\item Dimension Key without corresponding dimension table.% (Not a fact and not an attribute)
+			\item Stored in fact table.
+			\item It used to provide a grouping for business cases.
+			%This kind of dimension does not have its dimension as it is derived from the fact table.
+		\end{itemize}
+	\end{itemize}
+	\centering
+	\input{./Figures/chapter-01/Fig_DD_DIM_Ex.tex}
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|a | l | l | l | l|}
+			\hline
+			OrderID  & OrderDate & ProductID & Quantity & Amount\\
+			\hline
+			\hline
+			%\rowcolor{LightCyan}
+			123 & 123456789 & 111 & 2 & 120.45\\
+			123 & 123456789 & 222 & 5 & 10.45\\
+			%\rowcolor{myorange}
+			\hline
+			\hline
+			431 & 98765122 & 333 & 1 & 15.45\\
+			431 & 98765122 & 555 & 6 & 4.45\\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

@@ -1,0 +1,30 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=1, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Conformed Dimension}
+\begin{frame}
+    \frametitle{Conformed Dimensions}
+    %https://www.guru99.com/dimensional-model-data-warehouse.html
+    %The dimension can also contain one or more hierarchical relationships
+    \begin{description}[<+->]
+        \item[Conformed Dimensions]    the dimension which is \underline{\textit{identical}} and has the \underline{\textit{same meaning}} across many fact tables which it relates and used in different areas of the warehouse.
+        \begin{example}
+            \begin{itemize}[<+->]
+                \item \underline{\textbf{(Date as a Key)}}: if we have a date column across many facts, we could use the date as key in all tables. So, it should be a unified format.
+                \item \underline{\textbf{(Product-Id as a Key)}}: if we have a product name which could vary between systems
+                \forexample (upper/lower) We can create a dimension table for the product details and use product id unified across fact tables.
+            \end{itemize}
+        \end{example}
+    \end{description}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+% !TeX root = ../main.tex
+%%% TeX-engine: xetex
+%%% End:

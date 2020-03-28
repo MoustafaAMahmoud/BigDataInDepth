@@ -1,0 +1,36 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=1, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Heterogeneous Dimensions}
+\begin{frame}
+\frametitle{Heterogeneous Dimensions}
+\begin{itemize}[<+->]
+	
+	\item This type works when we have a case that a company selling different product to the same base of customer. Every product has it different attributes. 
+	\item One famous example of this type assume an insurance company has two types of product like health and car. In this case Car insurance has different attributes than the health insurance.
+	\item If we tried to model this two different products this type name Heterogeneous dimensions. 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Heterogeneous Dimensions}
+	\begin{itemize}[<+->]		
+		\item There are different scenario to implement this type
+		\begin{description}
+			\item [Separate Dimensions] Split each one in separate dimensions and facts. It will be less data and business will do this analysis from two separate facts.
+			\item [Merge Attributes] We will merge all the attributes in one single table and we will add the common attributes and null for un related attributes. Implementing this scenarios when we have less different of attributes. However, this implementation is not recommended because of the table size, performance, and maintenance.
+			\item [Generic Design] In this approach we will create a single fact table and single dimension with the common attributes. The problem of this design we will report or care about the common attributes only.
+		\end{description}		
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

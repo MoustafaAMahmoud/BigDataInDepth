@@ -1,0 +1,310 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=1, colour=red]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Slowly changing Dimensions}
+\begin{frame}
+    \frametitle{Slowly changing Dimensions}
+    %https://www.guru99.com/dimensional-model-data-warehouse.html
+    \begin{itemize}[<+->]
+		\item It the dimension which changes over time. So, for a specific date we have different value.
+		\item It has different types as following
+		    \begin{itemize}[<+->]
+        \item Type 0 (Fixed Dimension): We don't change the current even the source changes. 
+        \item Type 1 (No History): No history is maintained only the latest replace the current.
+        \item Type 2 (History): Series of history of records are maintained.
+        \item Type 3 (Hybrid): Only the last Change and the Current new change is stored
+        \item Type 4 : We split the data into two tables, first the current record and second is the historical (most common usage).
+    \end{itemize}   
+
+
+        %slowly changing dim assume customer was located in dubai then he changed his location
+        % We don't care about the change. just update the latest
+        % we can have two version new, old.
+        % we can have sergeate key.
+        %with start and end data.
+        %start and end is null
+        %join with sergate key
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+\begin{block}{Note}
+	\textit{There are some other types which is a combination between the above similar than type 3 combined between 1 \& 2. \\ You can check the chapter resources for more information about the other types.}
+\end{block}
+%https://www.kimballgroup.com/2013/02/design-tip-152-slowly-changing-dimension-types-0-4-5-6-7/     
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+	
+	\begin{itemize}
+		\item Type 0.
+	\end{itemize}
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | a |}
+			\hline
+			CustomerID & Name & City\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Madrid\\
+			\hline
+		\end{tabular}
+		\quad
+		\begin{tabular}{|l | l| a|}
+			\hline
+			CustomerID & Name & City\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Turin\\
+			\hline
+		\end{tabular}
+		\caption{Source System Old vs New}
+	\end{table}
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | l |a|}
+			\hline
+			ID & CustomerID & Name & City\\
+			\hline
+			\hline		
+			1 & 123456789 & Ronaldo  & Madrid\\
+			\hline
+		\end{tabular}
+		\caption{Customer Profile Dimension}
+	\end{table}
+		
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+	
+	\begin{itemize}
+		\item Type 1.
+	\end{itemize}
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | a |}
+			\hline
+			CustomerID & Name & City\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Madrid\\
+			\hline
+		\end{tabular}
+		\quad
+		\begin{tabular}{|l | l| a|}
+			\hline
+			CustomerID & Name & City\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Turin\\
+			\hline
+		\end{tabular}
+		\caption{Source System Old vs New}
+	\end{table}
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | l |a|}
+			\hline
+			ID & CustomerID & Name & City\\
+			\hline
+			\hline		
+			1 & 123456789 & Ronaldo  & Turin\\
+			\hline
+		\end{tabular}
+		\caption{Customer Profile Dimension}
+	\end{table}	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+	\begin{itemize}
+		\item Type 2.
+	\end{itemize}
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | a |l|}
+			\hline
+			CustomerID & Name & City & UpdatedDt \\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Madrid & 2018-12-12\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Turin & 2019-06-12\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & London & 2019-08-12\\
+			\hline
+			\hline						
+			123456789 & Ronaldo  & Porto & 2019-12-12\\		
+			\hline
+		\end{tabular}	
+		\caption{Source System Old vs New}
+	\end{table}%
+	\vspace{-.8cm}
+
+	\begin{table}[t]
+		\centering
+		\sffamily
+		  \begin{adjustbox}{max width=\textwidth}			
+		\begin{tabular}{|l | l | l | a | l | l |a|}
+			\hline
+			ID & CustomerID & Name & City & effectiveDt & TerminationDt & isCurrent\\
+			\hline
+			\hline		
+			1 & 123456789 & Ronaldo  & Madrid & 2018-12-12 & 2019-06-12 & false\\
+			2 & 123456789 & Ronaldo  & Turin & 2019-06-12 & 2019-08-12 & false\\
+			3 & 123456789 & Ronaldo  & London & 2019-08-12 & 2019-12-12 & false\\
+			4 & 123456789 & Ronaldo  & Porto  & 2019-12-12 & null & true\\
+			\hline
+		\end{tabular}
+		\end{adjustbox}
+
+		\caption{Customer Profile Dimension {\scriptsize We can replace null with a finite date (9999-12-31) but it needs to be consistent}}
+	\end{table}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+	\begin{itemize}
+		\item Type 3.
+	\end{itemize}
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | a |l|}
+			\hline
+			CustomerID & Name & City & UpdatedDt \\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Madrid & 2018-12-12\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & Turin & 2019-06-12\\
+			\hline
+			\hline			
+			123456789 & Ronaldo  & London & 2019-08-12\\
+			\hline
+			\hline						
+			123456789 & Ronaldo  & Porto & 2019-12-12\\		
+			\hline
+		\end{tabular}	
+		\caption{Source System Old vs New}
+		
+	\end{table}
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | l | a | l | l |}
+			\hline
+			ID & CustomerID & Name & City & UpdatedDate  & previousCity\\
+			\hline
+			\hline		
+			1 & 123456789 & Ronaldo  & Porto  & 2019-12-12 & London\\
+			\hline
+		\end{tabular}
+		\caption{Customer Profile Dimension}
+	\end{table}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Slowly changing Dimensions}
+	\begin{itemize}
+		\item Type 4 (Split current and Historical).
+	\end{itemize}
+
+	\begin{table}[t]
+	\centering
+	\sffamily
+	\begin{tabular}{|l | l | l | a | l | l |a|}
+		\hline
+		ID & CustomerID & Name & City & effectiveDt & TerminationDt\\
+		\hline
+		\hline		
+		1 & 123456789 & Ronaldo  & Madrid & 2018-12-12 & 2019-06-12\\
+		2 & 123456789 & Ronaldo  & Turin & 2019-06-12 & 2019-08-12\\
+		3 & 123456789 & Ronaldo  & London & 2019-08-12 & 2019-12-12\\
+		4 & 123456789 & Ronaldo  & Porto  & 2019-12-12 & null\\
+		\hline
+	\end{tabular}
+	\caption{Customer Profile Dimension Hist}
+\end{table}
+
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | l | l | a | l |}
+			\hline
+			ID & CustomerID & Name & City & UpdatedDate\\
+			\hline
+			\hline		
+			1 & 123456789 & Ronaldo  & Porto  & 2019-12-12\\
+			\hline
+		\end{tabular}
+		\caption{Customer Profile Dimension}
+	\end{table}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{Slowly changing Dimensions}
+	\begin{itemize}
+		\item How does the Facts join SCD? We have two scenarios as following:
+		\begin{itemize}
+			\item Getting the current customer information (Join with the latest).
+			\item Getting the historical customer information (Join with the historical table based on \textbf{\textit{cust id \& date}}).
+		\end{itemize}
+	\end{itemize}
+
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | a | l | l |}
+			\hline
+			ID & CustomerID & TotalCalls & CallDate \\
+			\hline
+			\hline		
+			1 & 123456789 & 30 & 2018-12-12 \\
+			2 & 123456789 & 30 & 2019-12-12 \\
+			\hline
+		\end{tabular}
+		\caption{Customer Usage}
+	\end{table}
+
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{Slowly changing Dimensions}
+	
+	\lstinputlisting[language=sql,caption={Example to show how to use SCD}]{./Ch01-Introduction-data-management/Code/SCD_Examply.sql}
+	
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

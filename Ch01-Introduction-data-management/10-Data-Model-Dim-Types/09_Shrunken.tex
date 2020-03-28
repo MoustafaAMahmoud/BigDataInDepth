@@ -1,0 +1,87 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=1, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Shrunken Rollup Dimensions}
+\begin{frame}
+    \frametitle{Shrunken Rollup Dimensions}%منكمش
+    \begin{itemize}[<+->]    	
+		\item Shrunken Rollup dimension is used for developing aggregate (higher level of summary) fact tables. 
+		\item It required that the data model has a lower level of granularity.
+	\end{itemize}
+		\begin{example}
+		    \begin{itemize}[<+->]    	
+			\item We have a daily usage fact table, and we need to have a higher level of monthly usage. So, we use the monthly dimension to get a summary of the daily.
+			\item We have a daily usage fact table aggregated on area-id, and we need to create another summary table aggregated based on city id. So, the new grain level here is the new dimension for the city.
+			\end{itemize}
+		\end{example}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Shrunken Rollup Dimensions Cont.}
+
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|l | a | l |}
+			\hline
+			OrderDate & AreaID & TotalOrders\\
+			\hline
+			\hline
+			123456789 & 123  & 20\\
+			123456789 & 123  & 30\\
+			\hline
+			\hline
+			123456789 & 678  & 10\\
+			123456789 & 678  & 12\\
+			\hline
+		\end{tabular}
+
+	\end{table}
+	
+	\begin{table}[t]
+		\centering
+		\sffamily
+		\begin{tabular}{|a | l | l |}
+			\hline
+			AreaID & AreaName & CityID\\
+			\hline
+			\hline			
+			123 & Al-Matareya  & 1\\
+			678 & Ain shams    & 1\\
+			\hline
+		\end{tabular}
+		\quad
+		\begin{tabular}{|a | l|}
+			\hline
+			CityID & CityName\\
+			\hline
+			\hline			
+			1 & Cairo \\
+			\hline
+		\end{tabular}
+	\end{table}
+
+	\begin{table}[t]
+	\centering
+	\sffamily
+		\begin{tabular}{|l | a | l |}
+			\hline
+			OrderDate & CityID & TotalOrders\\
+			\hline
+			\hline		
+			123456789 & 1  & 72\\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

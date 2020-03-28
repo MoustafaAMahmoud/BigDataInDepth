@@ -1,0 +1,41 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=1, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Junk Dimension (Garbage Dimension)}
+\begin{frame}
+    \frametitle{Junk Dimension}
+    \begin{itemize}[<+->]
+        %junk assume we have multi flags we will collect them as one id
+        \item It used to reduce the number of dimensions (low-cardinality columns) in the dimensional model and reduce the number of columns in the fact table. It is a collection of random transnational codes, flags, or text attributes.
+        \item It optimizes space as fact tables should not include low-cardinality or text fields. It mainly includes measures, foreign keys, and degenerate dimension keys.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Junk Dimension}
+    \input{./Figures/chapter-01/Fig_Junk_DIM_Ex.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Junk Dimension}
+
+	\begin{block}{Junk Dimension Table Size}
+		\begin{itemize}
+			\item We must split the Junk dimension into more dimensions in case the size grows by the time.
+			\item It is easy to calculate the expected number of rows as it is the total number of combinations between the low-cardinality attributes; \forexample 3 columns each have 3 values total = 3 * 3 = 9.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

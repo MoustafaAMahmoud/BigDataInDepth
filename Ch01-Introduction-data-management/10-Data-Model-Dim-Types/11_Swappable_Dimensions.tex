@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=1, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Swappable Dimensions}
+\begin{frame}
+\frametitle{Swappable Dimensions}
+	\begin{itemize}[<+->]
+		\item A dimension that has multiple alternate versions of itself that can be \textbf{swapped at query time}.
+		\item Each version of the hot-swappable dimension (sub-types)
+			\begin{itemize}[<+->]
+				\item It has a different meaning
+				\item It has a different structure.
+				\item It has fewer data compared to the primary dimension (fewer rows and columns).
+				\item It has a different output based on the input version and its alternatives.
+				\item Multi versions could be used together in the same fact with different types.
+				\item It can act as the primary dimension and join to the same fact table.
+				\item It has different target users and sometimes we restrict the users to access the primary dimension and only access the swapped version to restrict the data without needs to show the whole primary attributes.
+
+			\end{itemize}.
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Swappable Dimensions}
+\centering
+\input{./Figures/chapter-01/Fig_SW_DIM_Ex.tex}
+\begin{block}{Implementation}
+	\begin{itemize}
+		\item Physical tables (sub-types).
+		\begin{itemize}
+			\item Pros: Performance.
+			\item Cons: Data redundancy, increase in data size, and ETL headache.
+		\end{itemize}
+		\item Logical views (with index or re partition based on the key).% Now, we can join the view with the fact and we will let the fact has only permission for this view.
+		\begin{itemize}
+			\item Pros: Easy for (managing, implementation) with consistent views.
+			\item Cons: Performance and manage the authorization per view.
+		\end{itemize}		
+	\end{itemize}
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Attention: Conformed vs Role-Playing Dimension vs Swappable}
+	\begin{itemize}[<+->]
+		\item \textbf{Conformed} is the same dimension which used in different facts and has \textit{\underline{the same meaning and value}} \forexample CustomerID 123 can be represented into the whole model using the same value and same meaning.
+		\item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings and same value}} \forexample Date Dimension 20191012 can be used for different purpose order delivery date, expire date but different meanings.
+		\item \textbf{Swappable} different version from the primary dimension each version has its own attributes and meanings based on the use case \textit{\underline{(different meaning based on the category)}}. \forexample party id dimension has different version sales, agent, employee and all of them sub-types of the party but used for different purpose in different facts.
+	\end{itemize}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

@@ -1,0 +1,34 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=1, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Dimensions Types: Role-Playing Dimension}
+\begin{frame}
+    \frametitle{Role-Playing Dimension}
+    \begin{description}
+        \item [Role-Playing Dimensions (Re-usable Dimension)] A single physical dimension helps to reference multiple times in a fact table as each reference linking to a logically distinct role for the dimension.
+    \end{description}
+    \centering
+    \input{./Figures/chapter-01/Fig_RP_DIM_Ex.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Conformed vs Role-Playing Dimension}
+    \begin{block}{Conformed vs Role-Playing}
+        \begin{itemize}
+            \item \textbf{Conformed} is the same dimension used in different facts and has \textit{\underline{the same meaning}} \forexample CustomerID.
+            \item \textbf{Role-Playing} is the same dimension which used multiple times within the same fact but \textit{\underline{with different meanings}} \forexample Date.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:
