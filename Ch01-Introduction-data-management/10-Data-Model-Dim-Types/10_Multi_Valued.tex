@@ -25,16 +25,128 @@
 	\begin{example}[Sales of Articles]
 		\begin{itemize}[<+->]
 			\item Assume we need to report the sales of article and we have some articles has more than one author.
+			\item Each author has weighting factor for each article.
 			\item According to the report we need to check each author and associate with the articles they have authored. How can we model this case?
+			\item Assume the article has only one author \textit{Moustafa}, and the second article has two authors \textit{Ahmed \& Amr}.
 		\end{itemize}
 	\end{example}
-	\input{./Figures/chapter-01/Fig_Multi_Values_DIM_Ex.tex}
+
+\begin{table}
+	\resizebox{.97\columnwidth}{!}{%
+		
+		\begin{tabular}{| l | l | l | l |}
+			\hline
+			ID & Name & Email & Bio \\
+			\hline 
+			\hline		
+			123 & Moustafa   & abc@gability.com & S-Engineer \\
+			234 & Ahmed   & def@gability.com & L-Engineer \\
+			345 & Amr   & geh@gability.com & S-Manager \\
+			\hline
+		\end{tabular}
+		
+		\quad
+		
+		\begin{tabular}{| l | l | l | l |}
+			\hline
+			ID & Title & Journal & Price \\
+			\hline
+			\hline		
+			11 & 50 & IEEE& 110.0\\
+			22 & 55 & ACM&130.0\\
+			\hline
+		\end{tabular}
+	}
+	\caption{author and articles sample data.}
+\end{table}
+
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Multi-valued dimensions (Implementation-1)}
+\input{./Figures/chapter-01/Fig_Multi_Values_DIM_Ex_1.tex}
 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Multi-valued dimensions (Implementation-1)}
+\input{./Figures/chapter-01/Fig_Multi_Values_DIM_Ex_1.tex}
+
+
+\begin{table}
+	\resizebox{.97\columnwidth}{!}{%
+		\begin{tabular}{| l | l | l | l | l | l| l |}
+			\hline
+			ID & AuthorID & ArticleID & SalesDt & Quantity & UnitPrice & TotalOrder \\
+			\hline 
+			\hline		
+			1 & 123  & 11 & 20200303 & 3 & 10 & 30 \\
+			2 & 234  & 22 & 20200304 & 1 & 20 & 20 \\
+			3 & 345  & 22 & 20200304 & 1 & 20 & 20 \\
+			\hline
+		\end{tabular}
+	}
+	\caption{Output of wrong implementation of ArticleSales}
+\end{table}
+
+What are the problems in this implementation?
+\begin{itemize}
+	\item We can't get the weighting factor for each author.
+	\item Duplicated numbers in sales due to many authors has the same article id.
+	
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Multi-valued dimensions (Implementation-2)}
+\input{./Figures/chapter-01/Fig_Multi_Values_DIM_Ex_2.tex}
+\begin{table}
+	\resizebox{.97\columnwidth}{!}{%
+		\begin{tabular}{| l | l | l | l | l | l| l |}
+			\hline
+			ID & AuthorGroupRelationID & ArticleID & SalesDt & Quantity & UnitPrice & TotalOrder \\
+			\hline 
+			\hline		
+			1 & 321  & 11 & 20200303 & 3 & 10 & 30 \\
+			2 & 432  & 22 & 20200304 & 1 & 20 & 20 \\
+			3 & 543  & 22 & 20200304 & 1 & 20 & 20 \\
+			\hline
+		\end{tabular}
+	}
+	\caption{Output of wrong implementation of ArticleSales}
+\end{table}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Multi-valued dimensions (Final Implementation)}
+\input{./Figures/chapter-01/Fig_Multi_Values_DIM_Ex.tex}
+\begin{table}
+	\resizebox{.97\columnwidth}{!}{%
+		\begin{tabular}{| l | l | l | l | l | l| l |}
+			\hline
+			ID & AuthorGroupID & ArticleID & SalesDt & Quantity & UnitPrice & TotalOrder \\
+			\hline 
+			\hline		
+			1 & 321  & 11 & 20200303 & 3 & 10 & 30 \\
+			2 & 432543  & 22 & 20200304 & 1 & 20 & 20 \\
+			\hline
+		\end{tabular}
+	}
+	\caption{Expected output of ArticleSales}
+\end{table}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %multi-valued attributes is to create a relationship between the dimension table and a secondary dimensional table (outrigger table).
-%
-
-
+\begin{frame}
+\frametitle{Example Reference}
+	\begin{itemize}[<+->]
+		\item Example in this video taken from this link \href{https://www.nuwavesolutions.com/bridge-tables/}{https://www.nuwavesolutions.com/bridge-tables/}
+	\end{itemize}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Local Variables:
