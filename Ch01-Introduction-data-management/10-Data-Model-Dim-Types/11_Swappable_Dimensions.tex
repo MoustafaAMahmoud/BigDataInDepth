@@ -25,18 +25,25 @@
 \frametitle{Swappable Dimensions}
 \centering
 \input{./Figures/chapter-01/Fig_SW_DIM_Ex.tex}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Swappable Dimensions}
 \begin{block}{Implementation}
 	\begin{itemize}
-		\item Physical tables (sub-types).
-		\begin{itemize}
-			\item Pros: Performance.
-			\item Cons: Data redundancy, increase in data size, and ETL headache.
-		\end{itemize}
-		\item Logical views (with index or re partition based on the key).% Now, we can join the view with the fact and we will let the fact has only permission for this view.
+		\item Direct join between Fact and Dimension with filter based on PartyType (run-time ). In this case Party includes some empty columns based on the type.
+		\item Logical views each view has its own number of columns and rows based on the type details.
 		\begin{itemize}
 			\item Pros: Easy for (managing, implementation) with consistent views.
 			\item Cons: Performance and manage the authorization per view.
-		\end{itemize}		
+		\end{itemize}	
+		\item Physical tables (Types \& Sub-types).
+		\begin{itemize}
+			\item Pros: Performance, better design.
+			\item Cons: Data redundancy, key could be duplicated (when join with fact), increase in data size, and ETL headache.
+		\end{itemize}
+	
 	\end{itemize}
 \end{block}
 \end{frame}
