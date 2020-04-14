@@ -1,0 +1,389 @@
+%! Author = Mostafa Alaa
+%! Date = 4/7/2020
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=1, colour=red]
+
+% %TODO:
+% Review Text
+
+
+\subsubsection{Fact Table}
+
+\begin{frame}
+	\frametitle{Fact Table Recap}
+	What is the fact table?
+    	\begin{itemize}
+    		\item It is the foundation of the data warehouse.
+            \item It consists of facts and measurements of a particular business aspect and processes ex: daily revenue for a product.
+    		\item It is the target of queries in most of DWH analysis and reports.
+            \item It contains measurements/facts and foreign keys to \textit{dimensions table}. 
+            \item It located at the center of the schema and surrounded by dimension tables.
+    	\end{itemize}
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+	\frametitle{Fact Table Recap}
+
+          \begin{fquote}[Ralph Kimball][kimballgroup.com]
+        ``There is no point in hoisting fact tables up the flagpole unless they have been chosen to reflect urgent business priorities``
+          \end{fquote}
+
+\end{frame}
+%--------------------------------------------------
+\midTitle{How to design a fact table?}
+\begin{frame}
+	\frametitle{How to design a fact table?}
+    
+    	\begin{itemize}
+    		\item Choose the business process.
+            \item Identify the grain.
+            \item Identify the dimensions.
+            \item Identify the fact.
+    	\end{itemize}
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}
+	\frametitle{Fact Granularity}
+    	\begin{itemize}
+                \item The grain is the definition of what a single row in the fact table will represent or contains.
+                \item The grain describes the physical event which needs to be measured.
+                \item Grain controls the dimensions which are available in fact.
+                \item Grain represents the level of information we need to represent. It is not always time; it could be the physical business measurement level.
+                \item Design from the lowest possible grain.
+        	\end{itemize}
+\end{frame}
+%--------------------------------------------------
+\subsubsection{Fact Table Types}
+\begin{frame}
+	\frametitle{Fact Types}
+	There are three types of fact tables:
+	\begin{itemize}
+		\item Transaction.
+		\item Periodic.
+		\item Accumulated Snapshot.
+	\end{itemize}
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}
+	\frametitle{Fact Types: Transaction Fact Table}
+	\begin{itemize}
+        \item Fact grain set at a single transaction
+        \item It has one row per transaction.
+        \item For each transaction, we add a new single record.
+        \item The transaction fact table is known to grow very fast as the number of transactions increases.
+        
+	\end{itemize}
+    
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+	\frametitle{Fact Types:Transaction Example}
+ \begin{table}
+    		\begin{tabular}{| l | l | l|l|l|}
+           			\hline
+                      customer\_id & trns\_date & trns\_time & call\_type & duration\\
+                  	  \hline
+                      1234 & 2020-01-01 & 12:22:45.9 & Incoming & 29\\
+                      1234 & 2020-01-01 & 12:22:45.9 & Incoming & 3134\\
+                      1234 & 2020-01-02 & 15:22:45.0 & Outgoing & 890 \\
+                      1234 & 2020-01-02 & 15:22:45.0 & International& 119 \\
+                      1234 & 2020-01-03 & 23:22:45.0 & Incoming & 145 \\
+                      1234 & 2020-01-03 & 23:22:45.0 & Outgoing & 124 \\
+                      1234 & 2020-01-03 & 23:22:45.0 & Outgoing & 1200\\
+    			\hline
+    		\end{tabular}
+    	\caption{Transaction fact example of telecom calls data.}
+    \end{table}
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+	\frametitle{Fact Types: Periodic Fact Table}
+	\begin{itemize}
+        \item A periodic fact table contains one row for a \textit{group} of transactions over a period. 
+		\item It must be from lower granularity to higher granularity hourly, daily, monthly, and quertrly, then yearly.
+	\end{itemize}
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+	\frametitle{Fact Types: Periodic Fact Table Example}
+     \begin{table}
+        		\begin{tabular}{| l | l | l|l|l|}
+             	\hline    
+                 cust\_id & month\_id  & incoming     & outgoing & international\\
+                 		\hline
+                 1234       & 20200131        & 3308           & 2124      & 119 \\
+    			\hline
+    		\end{tabular}            
+    	\caption{Periodic fact example of telecom calls data.}
+    \end{table}
+
+\end{frame}
+%--------------------------------------------------
+
+
+%--------------------------------------------------
+\begin{frame}
+	\frametitle{Fact Types: Accumulated Snapshot Fact Table}
+	\begin{itemize}
+		\item An accumulating fact table stores one row for the entire process.
+		\item It does not accumulate time it accumulates business process.
+		\item A row in an accumulating snapshot fact table summarizes the measurement events occurring at predictable steps between the beginning and the end of a process
+		\item Accumulating Fact tables are used to show the activity of progress through a well-defined process and are most often used to research the time between milestones.
+		\item These fact tables are updated as the business process unfolds, and each milestone is completed.
+        
+	\end{itemize}
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{Fact Types: Accumulated Snapshot Fact Table Example}
+    \begin{itemize}
+        \item Accumulated Snapshot use cases are engaged when we need to report the entire process life-cycle.Fact Types: Accumulated Snapshot Use Cases.        
+        \item It also uses to measure the process performance life-cycle.
+            \begin{itemize}
+                \item Order life-cycle.
+                \item Insurance processing.
+                \item Hiring process.
+            \end{itemize}       
+    \end{itemize}
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{Fact Types: Accumulated Snapshot Fact Table Example}
+    An insurance company
+    \begin{itemize}
+        \item It has a fact table named: \textit{fact\_claim\_processing}.
+        \item This fact represents the claim life-cycle inside the company.
+        \item It contains detail related to claim.
+        \item This fact update after each stage finished.
+    \end{itemize}
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{Fact Types: Accumulated Snapshot Fact Table Example}
+    Example of Accumlated Snapshot: An insurance company
+    \begin{itemize}
+        \item It fact table named: fact\_claim\_processing.
+        \item This fact represents the claim life-cycle inside the company.
+        \item It contains detail related to claim.
+        \item This fact update after each stage finished.
+        \item The requirement it to report the number of days (lag) between stages (milestone) and the claim data (starting).
+    \end{itemize}
+    \vspace{5 mm}
+    \input{Ch01-Introduction-data-management/12-Data-Model/03-Data-Model-Fact-Types/Figures/Fig_Clm_Proc_Life_Cycle}
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{Fact Types:Accumulated Snapshot Example}
+    \setlength{\leftmargini}{2em}    
+    \begin{columns}[T,onlytextwidth]
+            \column{.4\textwidth}
+                \setlength{\partopsep}{3pt}%AND EVEN REMOVING EXTRA itemize SPACE
+                \begin{itemize}\vspace{-5mm}
+%                   \itemsep 1.5em
+                    \item One solution to implement the requirement is to use SCD.
+                    \item In this case, we will have stages and dates, and we will calculate the difference between stages and dates using complex sub-query.
+                    \item Another solution is to implement an accumulated snapshot fact.
+                \end{itemize}
+                \column{.4\textwidth}
+                \setlength{\partopsep}{3pt}
+                \input{Ch01-Introduction-data-management/12-Data-Model/03-Data-Model-Fact-Types/Figures/Fig_Fct_Clm_Proc_Tbl}
+   \end{columns}    
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{Fact Types:Accumulated Snapshot Example}
+    \setlength{\leftmargini}{2em}    
+    \setlength{\headsep}{2em}
+    \begin{columns}[T,onlytextwidth]                       
+                \column{.4\textwidth}
+                    \setlength{\headsep}{2em}
+                \setlength{\partopsep}{1pt}
+                \input{Ch01-Introduction-data-management/12-Data-Model/03-Data-Model-Fact-Types/Figures/Fig_Fct_Clm_Proc_Tbl}
+                \column{.5\textwidth}
+                    \setlength{\headsep}{2em}
+                \setlength{\partopsep}{1pt}
+                \input{Ch01-Introduction-data-management/12-Data-Model/03-Data-Model-Fact-Types/Figures/Fig_Fct_Clm_Proc_Acc_Tbl}
+   \end{columns}    
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{Fact Types: Accumulated Snapshot Table Example}
+    
+    \begin{table}
+    		\begin{tabular}{| l | l |}
+           			\hline
+                      column\_name & column\_value\\
+                  	  \hline
+                      \hline
+                      claim\_key & 123\\
+                      customer\_key& 5235326\\
+                      policy\_key& 23632623\\
+                      claim\_date& 2020-01-01\\
+                      investigation\_date& 2020-01-03\\
+                      day\_to\_investigate& 2\\
+                      review\_date& 2020-01-07\\
+                      day\_to\_review& 6\\
+                      decision\_date& 2020-01-08\\
+                      day\_to\_decision& 7\\
+                      payment\_date& 2020-01-11\\
+                      day\_to\_payment& 10\\
+                      process\_completed\_flag& 10\\                      
+    			\hline
+    		\end{tabular}
+    	\caption{Accumulated Snapshot Fact Example on Claim Process Data.}
+    \end{table}
+    
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{Fact Table Types: Comparison}
+
+    \begin{table}
+        \resizebox{.9\textwidth}{!}{% <------ Don't forget this %
+        \centering\renewcommand\cellalign{lc}
+        \setcellgapes{1pt}\makegapedcells
+    		\begin{tabular}{| l | l | l | l |}
+           		\hline                
+                   Feature & Transaction & Periodic & Accumulating\\
+                \hline
+           		\hline
+                   Grain & 1 row/transaction & 1 row/time-period & \makecell{1 row/entire\\ event stages}\\
+                \hline   
+                   Date Dimension &  Lowest granularity& End-of-period granularity& Multiple date\\
+                \hline   
+                   Facts & Transaction activities & Periodic activities & \makecell{Defined lifetime\\ activities}\\
+                \hline   
+                   Size & Largest & Medium & Smallest\\
+        		\hline
+                   Update & No &  No &\makecell{Yes, after\\stage finished}\\
+    			\hline
+    		\end{tabular}
+            }
+    	\caption{Fact tables types comparison.}
+    \end{table}
+\end{frame}
+%--------------------------------------------------
+\midTitle{Fact types}
+\begin{frame}
+    \frametitle{Fact types}
+    Each fact table includes facts and it has different types:
+                \begin{itemize}
+                    \item Additive facts.
+                    \item Semi-additive facts.
+                    \item Non-additive facts.
+                    \item Derived facts.
+                    \item Textual facts.
+                    \item Factless fact.
+                \end{itemize}
+\end{frame}
+%--------------------------------------------------
+
+\begin{frame}
+    \frametitle{Additive facts}
+                \begin{itemize}
+                    \item It is the most ﬂexible and useful facts.
+                    \item Its measures can be summed across any of the dimensions associated with the fact table.
+                \end{itemize}
+
+\end{frame}
+%--------------------------------------------------
+
+\begin{frame}
+    \frametitle{Additive facts}
+                \begin{itemize}
+                    \item It is the most ﬂexible and useful facts.
+                    \item It can be summed across any of the dimensions associated with the fact table.
+                \end{itemize}    
+                \vspace{1cm}
+                \centering
+                \input{Ch01-Introduction-data-management/12-Data-Model/03-Data-Model-Fact-Types/Figures/Fig_Fct_Additive_Tbl}
+
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{Semi-additive facts}
+    
+    \begin{itemize}
+        \item It can be added across some dimensions but not all also known as (partially-additive).
+    \end{itemize}
+    \vspace{1cm}
+    \centering
+    \input{Ch01-Introduction-data-management/12-Data-Model/03-Data-Model-Fact-Types/Figures/Fig_Fct_Semi_Additive_Tbl}
+    \begin{itemize}
+        \item what's the total current balance for all accounts in the bank?
+        \item What's the current balances for a given account for each day of the month does not give us any useful information?
+    \end{itemize}
+    
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{Non-additive facts}
+    
+    \begin{itemize}
+        \item It can't be added for any of the dimensions.
+        \item Non-additive facts are usually the result of ratios (percentage) or other mathematical calculations.
+        \item \textbf{Profit\_Margin} is an example non-additive.
+    \end{itemize}
+
+    \vspace{1cm}
+    \centering
+    \input{Ch01-Introduction-data-management/12-Data-Model/03-Data-Model-Fact-Types/Figures/Fig_Fct_Semi_Additive_Tbl}
+
+\end{frame}
+
+%--------------------------------------------------
+
+\begin{frame}
+    \frametitle{Derived facts}
+    
+    \begin{itemize}
+        \item Derived facts are created by performing a mathematical calculation
+        on a number of other facts, and are sometimes referred to as
+        calculated facts. Derived facts may or may not be stored inside the
+        fact table.
+        \item Total\_sales = Qty\_Sold * ( Unit\_price - Discount)
+    \end{itemize}
+
+    \centering
+    \input{Ch01-Introduction-data-management/12-Data-Model/03-Data-Model-Fact-Types/Figures/Fig_Fct_Derived_Tbl}
+
+
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{Textual facts}
+    \begin{itemize}
+        \item A textual fact consists of one or more characters such as flags and indicators.
+        \item \red{It should be avoided in the fact table}.
+    \end{itemize}
+    
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+\frametitle{Factless fact}
+    \begin{itemize}
+        \item A fact table with only foreign keys and no facts is called a factless
+        fact table.
+    \end{itemize}
+\end{frame}
+%--------------------------------------------------
+\begin{frame}
+    \frametitle{References}
+        \begin{itemize}
+            \item https://www.nuwavesolutions.com/accumulating-snapshot-fact-tables/
+            \item https://www.kimballgroup.com/2008/11/fact-tables/
+            \item https://www.1keydata.com/datawarehousing/fact-table-types.html
+        \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+% !TeX root = ../main.tex
+%%% TeX-engine: xetex
+%%% End:
