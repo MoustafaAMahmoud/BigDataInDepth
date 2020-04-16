@@ -19,7 +19,7 @@
 	\begin{itemize}[<+->]
 		\item \textbf{Simplicity}: It is the simplest type of DWH schemas.
 		\item \textbf{Query effectiveness}: Because of simplicity, It needs less join to query the data (It is optimized to query large dataset).
-		\item \textbf{Data Redundancy and Large Table Size}: Due to de-normalization it has a data redundancy and the table size is very huge.
+		\item \textbf{Data Redundancy and Large Table Size}: Due to de-normalization, it has a data redundancy, and the table size is huge.
 		\item \textbf{Most} used and \textbf{widely} supported.
 	\end{itemize}
 \end{frame}
@@ -29,8 +29,8 @@
 	\begin{itemize}[<+->]
 		\item Dimensions represented by one one-dimension table.
 		\item The dimension table are not joined to each other
-		\item Fact table would contains key and measure.
-		\item Data integrity is not enforced due de-normalized structure.
+		\item The fact table would contain key and measure.
+		\item Data integrity is not enforced due to the de-normalized structure.
 	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,8 +68,8 @@
 \frametitle{Star Schema Characteristics}
 	\begin{itemize}
 		\item \textbf{Extension}: Snowflake is an extension of the Star Schema.
-		\item \textbf{Normalized}: Dimension tables are normalized this means every dimension could be expanded into additional tables.
-		\item \textbf{Disk Space Efficiency}: Due to its normalization methodology it uses less desk space which enhance the query as we scan less data size.
+		\item \textbf{Normalized}: Dimension tables are normalized; this means every dimension may expand into additional tables.
+		\item \textbf{Disk Space Efficiency}:  Due to its normalization methodology, it uses less desk space, which enhances the query as we scan less data size.
 		\item \textbf{Complicated}: Due to the normalization query needs to join more table in some cases to get the data which reduces the performance.
 	\end{itemize}
 
@@ -83,7 +83,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Star Vs Snowflake Schema}
+\frametitle{Star Vs. Snowflake Schema}
 \vspace{.1cm}
 	\begin{tabular}{| l | l |}
 		\hline
@@ -117,4 +117,3 @@
 %%% TeX-master: "../main"
 % !TeX root = ../main.tex
 %%% TeX-engine: xetex
-%%% End:
