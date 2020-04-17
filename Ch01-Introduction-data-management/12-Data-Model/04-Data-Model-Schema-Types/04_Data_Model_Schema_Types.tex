@@ -36,7 +36,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Schema Types: Star Schema Example}
+
+\resizebox{\columnwidth}{!}{%
 \input{Ch01-Introduction-data-management/12-Data-Model/04-Data-Model-Schema-Types/Figures/Fig_FCT_DIM_Ex}
+}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \midTitle{Schema Types: Snowflake Schema}
@@ -65,8 +68,8 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Star Schema Characteristics}
-	\begin{itemize}
+\frametitle{Snowflake Schema Characteristics}
+	\begin{itemize}[<+->]
 		\item \textbf{Extension}: Snowflake is an extension of the Star Schema.
 		\item \textbf{Normalized}: Dimension tables are normalized; this means every dimension may expand into additional tables.
 		\item \textbf{Disk Space Efficiency}:  Due to its normalization methodology, it uses less desk space, which enhances the query as we scan less data size.
@@ -77,8 +80,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Schema Types: Star schema (Example)}
+	\frametitle{Schema Types: Snowflake schema (Example)}
+	\resizebox{\columnwidth}{!}{%
 	\input{Ch01-Introduction-data-management/12-Data-Model/04-Data-Model-Schema-Types/Figures/Snowflake_Schema.tex}
+	}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,6 +119,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../main"
-% !TeX root = ../main.tex
+%%% TeX-master: "../../../main"
+% !TeX root = ../../../main.tex
 %%% TeX-engine: xetex
