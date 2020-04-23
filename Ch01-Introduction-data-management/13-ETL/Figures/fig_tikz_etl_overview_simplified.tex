@@ -1,0 +1,60 @@
+%! Author = moustafa
+%! Date = 4/21/20
+
+\begin{tikzpicture}[every label/.append style={font=\tiny},regentonne/.style={cylinder,aspect=.7,draw,shape border rotate=90}]
+    %\draw[step=.5cm,gray,very thin] (-2,-1) grid (9.5,6);
+
+    \node[text width=2cm,font=\scriptsize] at (-.4,-.8) {Source Systems};
+
+    \node[text width=4cm,font=\scriptsize] at (3.5,5.6) {Data Integration Overview};
+
+    \node[database,label=below:CRM,
+    database middle segment={draw=black,fill=aliceblue},
+    database bottom segment={draw=black, fill=aliceblue},
+    database top segment={draw=black,fill=aliceblue} ] (s1) at (-.5,5) {};
+
+    \node[database,label=below:ERP,
+    database middle segment={draw=black,fill=aliceblue},
+    database bottom segment={draw=black, fill=aliceblue},
+    database top segment={draw=black,fill=aliceblue}] (s2) at (-.5,4) {};
+
+    \node[database,label=below:MobApp,
+    database middle segment={draw=black,fill=aliceblue},
+    database bottom segment={draw=black, fill=aliceblue},
+    database top segment={draw=black,fill=aliceblue}] (s3) at (-.5,3) {};
+
+    \node[database,label=below:Billing,
+    database middle segment={draw=black,fill=aliceblue},
+    database bottom segment={draw=black, fill=aliceblue},
+    database top segment={draw=black,fill=aliceblue}] (s4) at (-.5,2) {};
+
+    \node[database,label=below:WebApp,
+    database middle segment={draw=black,fill=aliceblue},
+    database bottom segment={draw=black, fill=aliceblue},
+    database top segment={draw=black,fill=aliceblue}] (s5) at (-.5,1) {};
+
+    \node[database,label=below:Other,
+    database middle segment={draw=black,fill=aliceblue},
+    database bottom segment={draw=black, fill=aliceblue},
+    database top segment={draw=black,fill=aliceblue}] (s6) at (-.5,0) {};
+
+
+    \draw[line width=0.25mm, blue] (s1) -- ([xshift=.5cm]s1.east) -- ([xshift=.5cm]s2.east) -- (s2)  -- ([xshift=.5cm]s2.east) -- ([xshift=.5cm]s3.east) -- (s3)-- ([xshift=.5cm]s3.east) -- ([xshift=.5cm]s4.east) -- (s4) -- ([xshift=.5cm]s4.east) --  ([xshift=.5cm]s5.east) -- (s5) --  ([xshift=.5cm]s5.east) -- ([xshift=.5cm]s6.east) -- (s6);
+
+    %connection arrow
+    \draw[->,line width=0.5mm, black] ([xshift=.5cm,yshift=-.5cm]s3.east) -- (2.35,2.5);
+
+    %ETL
+    \node[text width=2cm,font=\scriptsize] at (3.7,1.6) {ETL};
+    \pic[draw,fill=Maroon]       (etlM) at (3,2.5)   {gear={0.07}{17}{15}};
+
+    \draw[->,line width=0.5mm, black] (3.5,2.5) -- (5.5,2.5);
+    %label=below:DWH,
+    \node[database,database radius=.5cm,database segment height=.3cm,
+    database middle segment={draw=black,fill=green-yellow},
+    database bottom segment={draw=black, fill=green-yellow},
+    database top segment={draw=black,fill=green-yellow}] (A)  at (6,2.6) {};
+    \node[text width=2cm,font=\scriptsize] at (6.65,1.6) {DWH};
+
+
+\end{tikzpicture}
