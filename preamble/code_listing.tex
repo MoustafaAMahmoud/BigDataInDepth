@@ -60,7 +60,7 @@
 	numberstyle=\tiny,
 	rulecolor=\color{ltgray},
 	showspaces=false,
-	showstringspaces=false, 
+	showstringspaces=false,
 	showtabs=false,
 	stepnumber=1,
 	tabsize=4,
@@ -81,14 +81,14 @@
 {
 	showstringspaces    = false,
 	keywords            = {false,true},
-	alsoletter          = 0123456789.,
-	morestring          = [s]{"}{"},
-	framextopmargin=3pt,
-	stringstyle         = \ifcolonfoundonthisline\JSONstringvaluestyle\fi,
-	MoreSelectCharTable =%
+alsoletter          = 0123456789.,
+morestring          = [s]{"}{"},
+framextopmargin=3pt,
+stringstyle         = \ifcolonfoundonthisline\JSONstringvaluestyle\fi,
+MoreSelectCharTable =%
 	\lst@DefSaveDef{`:}\colon@json{\processColon@json},
-	basicstyle          = \ttfamily,
-	keywordstyle        = \ttfamily\bfseries,
+basicstyle          = \ttfamily,
+keywordstyle        = \ttfamily\bfseries,
 }
 
 % flip the switch if a colon is found in Pmode
@@ -105,7 +105,7 @@
 	\def\lst@thestyle{\JSONnumbervaluestyle}%
 	\fi
 	\fi
-	%override by keyword style if a keyword is detected!
+%override by keyword style if a keyword is detected!
 	\lsthk@DetectKeywords% 
 }
 
