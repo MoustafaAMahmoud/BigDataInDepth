@@ -29,17 +29,17 @@
         \item The ETL is the process of
         \begin{itemize}[<+->]
             \item  \textbf{Extracting}: the data from one or more source system
-            \item  \textbf{Transformation}: then apply some rules over this data including
+            \item  \textbf{Transformation}: apply some rules over the extracted data including
             \begin{itemize}[<+->]
                 \item Cleansing ex: remove null, or trim spaces.
                 \item Drop duplicates.
-                \item joining with lookups to validate values.
-                \item Reshaping.
-                \item Adding new columns or removing columns to these data.
+                \item joining with lookups to validate values or enrich the data.
+                \item Reshaping or changing the data structure.
+                \item Adding new columns or removing columns from these data.
                 \item Change of data granularity.
                 \item Convert data types.
             \end{itemize}
-            \item \textbf{Loading}: Then loading this data into target table based on the required format..
+            \item \textbf{Loading}: loading the transformed data into target table based on the required format.
         \end{itemize}    
     \end{itemize}
 
@@ -53,8 +53,7 @@
 		
 		\item This team takes the delivered output from the previous stage (data modeling) and start to implement the mapping.
 		
-		\item The implementation of the ETL preferred to be unified across the team members and the organization unless
-		there is a special case of license of capacity.
+		\item The implementation of the ETL preferred to be unified across the team members and the organization.
 		
 	\end{itemize}
 	
@@ -62,12 +61,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
     \frametitle{Why?}
-
-    \begin{itemize}[<+->]
-        \item Why ETL has become mandatory in any DWH systems? because of the rapidly increase in the data volumes,
-        and the variety of the data types structure, semi-structure, and non-structure data.
-
-    \end{itemize}
+\centering
+\begin{block}{Why ETL has become mandatory in any DWH systems? }
+Because of the rapidly increase in the data volumes,
+and the variety of the data types structure, semi-structure, and non-structure data.
+\end{block}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -88,166 +86,316 @@
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
     \frametitle{ETL Best Practice}
     \begin{itemize}[<+->]
-        \item To implement the previous characteristics you need to have the following:
+        \item The keys to  most of ETL implementation as following:
         \begin{itemize}[<+->]
-            \item [\faCheckSquareO] Logging.
+        	
+        	\item [\faCheckSquareO] \blue{ \textbf{Auditing}}
+        	
+            \item [\faCheckSquareO] \textbf{Managing Bad Data (Rejection Handling)}
+            
+			\item [\faCheckSquareO] \textbf{Data Lineage}
 
-            \item [\faCheckSquareO] Auditing.
+			\item [\faCheckSquareO] \textbf{Modularity}
+        	       
+            \item [\faCheckSquareO] \textbf{Logging}
 
-            \item [\faCheckSquareO] Data Lineage.
-
-            \item [\faCheckSquareO] Modularity.
-
-            \item [\faCheckSquareO] Atomicity.
-
-            \item [\faCheckSquareO] Error Handling.
-
-            \item [\faCheckSquareO] Managing Bad Data (Rejection Handling).
+            \item [\faCheckSquareO] \textbf{Error Handling}
+                        
+            \item [\faCheckSquareO] \textbf{Atomicity}
+            
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{ETL: Auditing}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-    \frametitle{ETL Logging}
-    %%
-    \begin{itemize}[<+->]
-        \item Logging
-        \begin{itemize}[<+->]
-            \item  Logging.
-            \item  Logging.
-            \item  Logging.
-
-
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-    \frametitle{ETL Auditing}
-    %%
-    \begin{itemize}[<+->]
-        \item Logging
-        \begin{itemize}[<+->]
-            \item  Logging.
-            \item  Logging.
-            \item  Logging.
-
-
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-    \frametitle{ETL Data Lineage}
-    %%
-    \begin{itemize}[<+->]
-        \item Logging
-        \begin{itemize}[<+->]
-            \item  Logging.
-            \item  Logging.
-            \item  Logging.
-
-
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-    \frametitle{ETL Modularity}
-    %%
-    \begin{itemize}[<+->]
-        \item Logging
-        \begin{itemize}[<+->]
-            \item  Logging.
-            \item  Logging.
-            \item  Logging.
-
-
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-    \frametitle{ETL Atomicity}
-    %%
-    \begin{itemize}[<+->]
-        \item Logging
-        \begin{itemize}[<+->]
-            \item  Logging.
-            \item  Logging.
-            \item  Logging.
-
-
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-    \frametitle{ETL Error Handling}
-    %%
-    \begin{itemize}[<+->]
-        \item Logging
-        \begin{itemize}[<+->]
-            \item  Logging.
-            \item  Logging.
-            \item  Logging.
-
-
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-    \frametitle{ETL Rejection Handling}
-    %%
-    \begin{itemize}[<+->]
-        \item Logging
-        \begin{itemize}[<+->]
-            \item  Logging.
-            \item  Logging.
-            \item  Logging.
-
-
-        \end{itemize}
-    \end{itemize}
+	\frametitle{ETL Auditing}
+	\begin{itemize}[<+->]
+		\item Example
+		\begin{itemize}[<+->]
+			\item We have a billing source system and we need to integrate this source system in our DWH. 
+			\item Assume you get every day around 3M rows of data with total amount around 1M\$.
+			\item Auditing will help us into three parts:
+			\begin{itemize}[<+->]
+				\item Confirm the received rows are inserted into the target or (target + malformed = source).
+				\item Identify the abnormal behavior if the source row changed maybe 3M (+/- 1\%). The same metrics for the target and malformed records to be analyzed.
+				\item Identify the abnormal behavior in the total aggregations, for example if we have a peak up to the total amount more than the normal (+/- 5\%).								
+			\end{itemize}					
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-    \frametitle{ETL vs ELT When? Why?}
+	\frametitle{ETL Auditing}
+	%%
+	\begin{itemize}[<+->]
+		\item Auditing: The most important key to have a well-designed ETL architecture is to support the auditing row counts, aggregation, and other metrics based on the business and the use case. The first and most important quality gate is based on the auditing.
+		
+		\begin{itemize}[<+->]
+			\item Auditing helps for identifications of the data abnormalities even if the ETL job doesn't have any errors.
+			\item  Auditing implementation differ between systems based on the use case and you could customize it based on the ETL job and the criticality of the source system could add more auditing metrics.
+			\item  Auditing could extend for database monitoring.
+			
+			
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{ETL: Logging}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{ETL Logging}
+	%%
+	\begin{itemize}[<+->]
+		\item Logging: is key to any successful ETL architecture and it requires to be general strategy that all the projects implementation.
+		
+		\begin{itemize}[<+->]
+			\item  ETL logging includes logs of any activtities or events that occur in the ETL job before, during, and after every stage. 
+			\item Some of ETL software tools has its logs for the ETL; however, it could extends to other logs added to enhanced the ETL logging. 					
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{ETL Logging}
+	%%
+	\begin{itemize}[<+->]
+
+	\item What are the types of events or mertics needed to be captured during ETL logging?
+		\begin{itemize}[<+->]
+				
+			\item \textit{Start and stop events}. 
+			\item \textit{Status}
+			\item \textit{Errors and other exceptions}
+			\item \textit{Audit information}
+			\item \textit{Testing and debugging information}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{ETL Logging}
+	%%
+	\begin{itemize}[<+->]
+		
+		\item Some consideration during building of the logging strategy:
+		\begin{itemize}[<+->]
+			\item How to make your logs \textbf{format} easy for analysis? 
+			\item Do you have a dashboard or tools for logs visualization or it will be ad-hoc fashion?
+			\item Who are the audience for these logs and what are their needs?
+			\item Are there any security requirements or restriction for data logging?
+			\item What is the retention policy?
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{ETL: Managing Bad Data (Rejection Handling)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{ETL: Managing Bad Data (Rejection Handling)}
+	%%
+	\begin{itemize}[<+->]
+		\item In some systems you get some of the data which are malformed and it needs to be handled (not removed).
+		\item It means the data is not accurate or as expected when compared to same source system. 
+		\item If we use this data as is we are in a risk to affect the quality of the business reports.
+		\item To manage the malformed records we need to apply the following steps
+		\begin{itemize}[<+->]
+			\item  Define what is the meaning by well-formed records or accurate record. 
+			\item  Configure which actions needed to handle the malformed records.
+			\item  \red{We don't recommend to delete any malformed it needs to be rejected then we can archive or delete in a later stage}.			
+			
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{ETL: Managing Bad Data (Rejection Handling)}
+
+	\begin{itemize}[<+->]
+		\item Example
+		\begin{itemize}[<+->]
+			\item  We have a CSV file which contains 5 columns and we need to apply ETL process for this file.			
+		\end{itemize}
+	\end{itemize}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{ETL: Managing Bad Data Part 1}
+
+	\begin{lstlisting}[style=json]
+{
+"sourceName": "3G_ERCSN",
+"dataFileDelimiter": "|",
+"totalInputFileColumns": "5",
+"rejectedRecordsPath": "/RAW_ZONE/REJECTION/3G_ERCSN/",
+"schemaName": "MOD",
+"targetTable": "Singl_KPI",
+"saveMode": "Append",
+"inputFileFormat": "processing",
+"outputFormat": "orc",
+"header": "false",
+"partitionColumns_3G_ERCSN": "event_date,batch_id",
+"getDetailedAuditStats": "false",
+"inputSchema": [
+{
+
+]
+}
+	\end{lstlisting}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{ETL: Managing Bad Data Part 2}
+	
+\begin{lstlisting}[style=json,basicstyle=\scriptsize ]
+{
+"columnName": "C0",
+"columnType": "IntegerType",
+"isNullable": "true"
+},
+{
+"columnName": "C1",
+"columnType": "StringType",
+"isNullable": "true"
+},
+.
+.
+.
+{
+"columnName": "C4",
+"columnType": "TimestampType",
+"isNullable": "true"
+}
+\end{lstlisting}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{ETL: Modularity}
+\begin{frame}
+	\frametitle{ETL Modularity}
+	%%
+	\begin{itemize}[<+->]
+		\item ETL architecture is not only the quality of data but also how the code are reusable and modularized. This could help to reduce the system error, complexity, efforts, and maintainability time. 
+		\item How to achieve this modularity?
+		\begin{itemize}[<+->]
+			\item Design the template jobs for each part of the system. 
+			\item Standard methods and strategy for the common tasks such as logging, error handling, and rejecting handling.
+			\item  Reduce the duplicate code by creating common library for the ETL.
+			\item  Create common functionality for unit testing.
+						
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-    \frametitle{References}
-    https://www.timmitchell.net/etl-best-practices/
+	\frametitle{ETL Modularity}
+	%%
+	\begin{itemize}[<+->]
+		\item How does this affecting the team?
+		\begin{itemize}[<+->]
+			\item Maintainability.
+			\item Debugging.
+			\item Investigation.
+			\item Testing.
+			\item Sharing the tasks between the team.
+			
+		\end{itemize}
+		\item This part is continues enhancement part. 
+	\end{itemize}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{ETL: Data Lineage}
+\begin{frame}
+	\frametitle{ETL: Data Lineage}
+	%%
+	\begin{itemize}[<+->]
+		\item Data Lineage is an important part of our process to understand how this data transformed and where this data originated from.
+		\item It also help to make the trust in the data by connecting the target into the source.
+		\item It helps for data tracing at the row level.
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{ETL: Data Lineage Example}
+	%%
+	\begin{itemize}
+		\item  We have a CSV file which contains 5 columns and we need to apply ETL process for this file assume the name is 3g\_ercsn.csv it could be any name.				
+		\item After process this file we rename this file to be filename\_batch\_id.
+	\end{itemize}
+
+	\begin{adjustbox}{max width=.99\textwidth}			
+	\begin{tabular}{| l | l | l | l | l| a|}
+		\hline
+		trns\_id & cell\_id & cust\_number & app & trns\_ts & batch\_id \\
+		\hline
+		\hline		
+		123 & C15343   & 503987123 & fb & 2020-04-25 12:12:33.4 &20200426020202\\
+		3436 & C15341 & 503987123 & fb & 2020-04-25 15:12:33.4&20200426020202\\
+		43634 & C15353   & 503987135 & twitter & 2020-04-25 18:12:33.4&20200426020202\\
+		32632 & C15123   & 503987151 & youtube & 2020-04-25 22:12:33.4&20200426020202\\
+		\hline
+	\end{tabular}
+\end{adjustbox}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{ETL: Error Handling}
+
+\begin{frame}
+	\frametitle{ETL Error Handling}
+	%%
+	\begin{itemize}[<+->]
+		\item Error handling answer a question, What we should do if the process failed?
+		\item It also shows can prevent failure and handle these errors.
+		\item We deal with the errors with different strategies:
+		\begin{itemize}[<+->]
+			\item  Fail safe (a.k.a. graceful shutdown/stop).
+			\item  Fail fast.
+			\item  Design error handling framework it includes: prevention and response.
+			\item Design framework to deal with error responses. 
+			
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{ETL: Atomicity}
+\begin{frame}
+	\frametitle{ETL Atomicity}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{References}
+	https://www.timmitchell.net/etl-best-practices/
+\end{frame}
+
 
 
 
