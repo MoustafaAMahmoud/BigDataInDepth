@@ -389,12 +389,32 @@
 \begin{frame}
 	\frametitle{ETL Atomicity}
 	%%
-
+	\begin{itemize}[<+->]
+		\item Atomicity refers to breaking bigger parts into smaller individual parts.
+		\item It also refers to how to split bigger ETL process or job into smaller parts.
+		\item Implementation of atomicity pattern involves identification of business parts and how to split it into smaller units for individual execution.
+		\item We refer for the anti-pattern for atomicity by monolithic.
+		\item Atomicity requires the ETL engineer to have some overview about the whole project cycle and how can we split it without afect the business.
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{ETL Atomicity}
+	Why do we need Atomicity?
+	\begin{itemize}[<+->]
+		\item Maintainability and readability of the code.
+		\item It helps in code tracing, testing, and enhancing.
+		\item Agile development and parallel work.
+		\item Avoid single failure job which enhance the performance, and the resource optimization.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{References}
-	https://www.timmitchell.net/etl-best-practices/
+	\begin{itemize}[<+->]
+		\item \href{https://www.timmitchell.net/etl-best-practices/}{ETL Best Practices By Tim Mitchell}
+	\end{itemize}
+
 \end{frame}
 
 
