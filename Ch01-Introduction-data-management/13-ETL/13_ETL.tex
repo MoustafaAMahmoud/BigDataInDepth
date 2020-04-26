@@ -242,9 +242,9 @@
 \begin{frame}[fragile]
 	\frametitle{ETL: Managing Bad Data Part 1}
 
-	\begin{lstlisting}[style=json]
-	{
-			"sourceName": "3G_ERCSN",
+\begin{lstlisting}[style=json]
+{
+"sourceName": "3G_ERCSN",
 "dataFileDelimiter": "|",
 "totalInputFileColumns": "5",
 "rejectedRecordsPath": "/RAW_ZONE/REJECTION/3G_ERCSN/",
@@ -257,10 +257,9 @@
 "partitionColumns_3G_ERCSN": "event_date,batch_id",
 "getDetailedAuditStats": "false",
 "inputSchema": [
-			{
-
-	]
-	}
+{
+]
+}
 	\end{lstlisting}
 
 \end{frame}
@@ -268,26 +267,26 @@
 \begin{frame}[fragile]
 	\frametitle{ETL: Managing Bad Data Part 2}
 
-	\begin{lstlisting}[style=json,basicstyle=\scriptsize ]
-	{
-			"columnName": "C0",
+\begin{lstlisting}[style=json,basicstyle=\scriptsize ]
+{
+"columnName": "C0",
 "columnType": "IntegerType",
 "isNullable": "true"
-	},
-	{
-			"columnName": "C1",
+},
+{
+"columnName": "C1",
 "columnType": "StringType",
 "isNullable": "true"
-	},
+},
 .
 .
 .
-	{
-			"columnName": "C4",
+{
+"columnName": "C4",
 "columnType": "TimestampType",
 "isNullable": "true"
-	}
-	\end{lstlisting}
+}
+\end{lstlisting}
 
 \end{frame}
 

@@ -1,0 +1,75 @@
+%! Author = moustafa
+%! Date = 26/04/2020
+
+%---------------------------------------------------------
+\VideoClassification[column=2, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Data Abstraction}
+\begin{frame}
+    \frametitle{Motivation to Data Layers (Use Case)}
+    \input{./Figures/chapter-01/Fig_Motivation_DA.tex}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Motivation to Data Layers (Solution Thinking)}
+
+    \begin{itemize}[<+->]
+        \item How can we think about a data solution or challenges in the data products?
+        \begin{itemize}[<+->]
+            \item Requirements analysis.
+            \item Identify the problem (challenges).
+            \item Think about how to overcome the challenges.
+            \item Ask your self the following questions:
+            \begin{itemize}[<+->]
+                \item Can we solve the problem using the current data structure by adding new features?
+                \item What if we enhance/change the data structure or modeling?
+                \item Could it help if we change the backend engine \forexample (DBMS system)?
+            \end{itemize}
+        \end{itemize}
+        \item To answer these questions you need to understand the \textbf{\underline{data layers}}.
+    \end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Data Layers (Abstraction)}
+    \begin{itemize}[<+->]
+        \item Any data product (database) contains multi-layers.
+        \item Each layer responsible for different tasks and operations.
+        \item Each layer interacts with (hardware or software or mixed).
+        \item Eliminate the complexity of data interactions; not all internal processes are shared or available for the user.
+        \item The developer for each layer hides irrelevant internal details from the developer (users).
+        \item The process of \textbf{\underline{\blue{hiding}}} irrelevant details from the developer (user) is called data \textbf{\underline{\blue{abstraction}}}.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Data Layers (Abstraction)}
+    \begin{definition}
+        \textbf{Data Abstraction and Data Independence}: DBMS comprises complex data-structures. To make the system efficient in terms of retrieval of data and reduce complexity in terms of usability of users, developers use abstraction i.e., hide irrelevant details from the users. This approach simplifies database design.
+
+    \end{definition}
+    %Capacity of changing in one level without affecting the other levels. Copied but forget from where!!!
+    \begin{itemize}[<+->]
+        \item There are 3 levels of data abstraction.
+        \begin{itemize}[<+->]
+            \item Physical Level
+            \item Logical/Conceptual Level.
+            \item View Level.
+        \end{itemize}
+    \end{itemize}
+    %TOP TIER, MIDDLE TIER, BOTTOM TIER
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Data Layers (Abstraction)}
+    \input{./Figures/chapter-01/Fig_Data_Abstraction.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+% !TeX root = ../main.tex
+%%% TeX-engine: xetex
+%%% End:

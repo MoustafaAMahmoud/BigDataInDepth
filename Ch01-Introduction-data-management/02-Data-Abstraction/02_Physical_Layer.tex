@@ -1,0 +1,51 @@
+%! Author = moustafa
+%! Date = 26/04/2020
+%---------------------------------------------------------
+\VideoClassification
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Physical level}
+    \begin{itemize}[<+->]
+        \item \textbf{Physical level (Internal)}:
+        \begin{itemize}[<+->]
+            \item Lowest level.
+            \item Describes \textbf{\underline{\blue{how}}} data is stored.
+            \item Describes the data structure.
+            \item It allows you to modify the lowest level (Physical part) without any change in the logical schema. These change could be
+            \begin{itemize}[<+->]
+                \item Using a new storage device
+                \item Change the structure of the data used for storage
+                \item Change the file type or use a different storage structure
+                \item Chang the access method
+                \item Modify indexes
+                \item Change the compression algorithm or hashing technique.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Physical level}
+    \begin{example}
+        \begin{itemize}[<+->]
+            \item Database contains product information.
+            \item Physical layer describes
+            \begin{itemize}[<+->]
+                \item Storage mechanism and the blocks (bytes, gigabytes, terabytes, etc.).
+                \item The amount of memory used.
+                \item Usually this layer abstracted from the programmers.
+            \end{itemize}
+        \end{itemize}
+    \end{example}
+
+\end{frame}
+%---------------------------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+% !TeX root = ../main.tex
+%%% TeX-engine: xetex
+%%% End:

@@ -1,0 +1,83 @@
+%! Author = moustafa
+%! Date = 26/04/2020
+%---------------------------------------------------------
+\VideoClassification[column=2, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]
+    \frametitle{Data solution thinking (Summary) }
+    % !!!!!!!!!!!!!! We need to mention that this slide is just an overview there will be a detailed one later
+    \begin{center}
+        Let's answer our previous question. How can we solve data challenges?
+    \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Data solution thinking (Summary) }
+    \begin{itemize}[<+->]
+        \item Let's split the problem based on the data layers.
+        \begin{itemize}[<+->]
+            \item View layer
+            \begin{itemize}[<+->]
+                \item When we need to add/remove/create new reports, it is usually a view layer.
+                \item We don't need to change the logical or physical layer to support the view layer.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Data solution thinking (Summary) }
+    \begin{itemize}[<+->]
+        \item Let's split the problem based on the data layers.
+        \begin{itemize}[<+->]
+            \item Logical Layer
+            \begin{itemize}[<+->]
+                \item When you have missing sources into your logical layer, and you need to add this source and its structure.
+                \item There is a performance issue in the existing reports, and you need to change the model. \forexample reduce the join by creating a new join table (\textit{materialized view}).
+                \item Update the data type or the existing relation, which could help to fix some data or performance issues.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Data solution thinking (Summary) }
+    \begin{itemize}[<+->]
+        \item Let's split the problem based on the data layers.
+        \begin{itemize}[<+->]
+            \item Physical Layer
+            \begin{itemize}[<+->]
+                \item When our problem is hard or impossible to fix by optimizing the query (view)/ logical layer, it is time for physical change.
+                \item If we need to change your storage/compression/structure/access technique.
+                \item If we need to change the data orientation structure from row to column or key-value storage, It is time to change the physical layer.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Data solution thinking (Summary) }
+    \begin{itemize}[<+->]
+        \item Let's split the problem based on the data layers.
+        \begin{itemize}[<+->]
+            \item https://beginnersbook.com/2015/04/levels-of-abstraction-in-dbms/
+            \item https://www.guru99.com/dbms-data-independence.html
+            \item https://www.geeksforgeeks.org/data-abstraction-and-data-independence/
+        \end{itemize}
+    \end{itemize}
+    \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+% !TeX root = ../main.tex
+%%% TeX-engine: xetex
+%%% End:
