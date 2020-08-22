@@ -1,0 +1,83 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{ETL Demo}
+%
+%	\begin{itemize}
+%		\item Overview
+%		\begin{itemize}
+%			\item Data analysis in practice.
+%			\item Coding ETL job.
+%			\item Run integration testing in ETL and end to end scenario.
+%			\item Deploying the ETL job and simulate the production platform.
+%		\end{itemize}
+%	\end{itemize}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\frametitle{ETL Demo}
+%	
+%	\begin{itemize}
+%		\item Notes:
+%		\begin{itemize}
+%				\item 		All examples are not related to actual company data; however, it simulates the real use case.
+%				\item 		The code covers some topics and tools which we are plan to explain it in detail later in this course. 
+%				\item 		Focus on the pipeline and the idea, not the actual code.
+%				\item 		We wrote the code into two steps, first, implement the customized use case then think about the generalized case.
+%		\end{itemize}
+%	\end{itemize}
+%	
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{ETL Demo Big Picture}
+	
+\centering
+\vspace{2cm}
+\smartdiagramset{%uniform color list=orange!60!yellow for 7 items,
+	circular final arrow disabled=true,
+	circular distance=2.25cm,
+	arrow tip=to,
+	text width=1.5cm,
+	text width=1.7cm,
+	arrow line width=2pt,
+	additions=
+	{additional item bottom color=orange!40!yellow,
+		additional item border color=gray,
+		additional item shadow=drop shadow,
+		additional item offset=0.65cm,
+		additional item text width=2cm,
+		additional arrow line width=2pt,
+		additional arrow tip=to,
+		additional arrow color=orange!60!yellow,}}
+	\smartdiagramadd[circular diagram]{parse input data,validate schema,parse conf.,apply ETL rules,build the pipeline}
+	{above of module1/parse param,right of module5/deployment}
+	\smartdiagramconnect{to-}{module1/additional-module1}
+	\smartdiagramconnect{-to}{module5/additional-module2}
+%\end{minipage}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Takeaway Notes!}
+	\vspace{2cm}
+
+		\begin{itemize}[<+->]
+			\item Parsing input data is different than validate its schema.
+			\item We verify the data type and nullable check for schema validation.
+			\item Other validations are related to business, and we could introduce business rejection records.
+		\end{itemize}
+	
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+% !TeX root = ../../main.tex
+%%% TeX-engine: xetex
+%%% End:

@@ -25,12 +25,12 @@
 \begin{frame}
 	\frametitle{What is ETL?}
 
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item The ETL is the process of
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item  \textbf{Extracting}: the data from one or more source system
 			\item  \textbf{Transformation}: apply some rules over the extracted data including
-			\begin{itemize}[<+->]
+			\begin{itemize}
 				\item Cleansing ex: remove null, or trim spaces.
 				\item Drop duplicates.
 				\item joining with lookups to validate values or enrich the data.
@@ -48,7 +48,7 @@
 \begin{frame}
 	\frametitle{What is ETL?}
 
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item The ETL (Extraction, Transformation, Loading) is the primary core function for any data engineering (DWH) team.
 
 		\item This team takes the delivered output from the previous stage (data modeling) and start to implement the mapping.
@@ -73,9 +73,9 @@
 \begin{frame}
 	\frametitle{ETL Characteristics}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item Successful ETL design have the following characteristics:
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item [\faCheckSquareO] Maintainable.
 			\item [\faCheckSquareO] Reusable.
 			\item [\faCheckSquareO] Well-Performed.
@@ -88,9 +88,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{ETL Best Practice}
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item The keys to  most of ETL implementation as following:
-		\begin{itemize}[<+->]
+		\begin{itemize}
 
 			\item [\faCheckSquareO] \blue{ \textbf{Auditing}}
 
@@ -115,13 +115,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{ETL Auditing}
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item Example
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item We have a billing source system and we need to integrate this source system in our DWH.
 			\item Assume you get every day around 3M rows of data with total amount around 1M\$.
 			\item Auditing helps us into three parts:
-			\begin{itemize}[<+->]
+			\begin{itemize}
 				\item Confirm the received rows are inserted into the target or (target + malformed = source).
 				\item Identify the abnormal behavior if the source row changed maybe 3M (+/- 1\%). The same metrics for the target and malformed records to be analyzed.
 				\item Identify the abnormal behavior in the total aggregations, for example if we have a peak up to the total amount more than the normal (+/- 5\%).
@@ -135,10 +135,10 @@
 \begin{frame}
 	\frametitle{ETL Auditing}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item Auditing: The most important key to have a well-designed ETL architecture is to support the auditing row counts, aggregation, and other metrics based on the business and the use case. The first and most important quality gate is based on the auditing.
 
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item Auditing help identifying the data abnormalities even if the ETL job doesn't have any errors.
 			\item Auditing implementation differs between systems based on the use case.
 			\item It is Customized based on the source system's criticality that could add more auditing metrics.
@@ -156,10 +156,10 @@
 \begin{frame}
 	\frametitle{ETL Logging}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item Logging: is key to any successful ETL architecture, and it requires implementing a general strategy for all projects.
 
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item ETL logging includes logs of any activtities or events that occur in the ETL job before, during, and after every stage.
 			\item Some of the ETL software tools have their logs for the ETL; however, it could extend to other logs added to enhanced the ETL logging.
 		\end{itemize}
@@ -171,10 +171,10 @@
 \begin{frame}
 	\frametitle{ETL Logging}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 
 		\item What types of events or metrics do we need to capture during ETL logging?
-		\begin{itemize}[<+->]
+		\begin{itemize}
 
 			\item \textit{Start and stop events}.
 			\item \textit{Status}
@@ -189,10 +189,10 @@
 \begin{frame}
 	\frametitle{ETL Logging}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 
 		\item Some consideration during the building of the logging strategy:
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item How to make your logs \textbf{format} easy for analysis?
 			\item Do you have a dashboard or tools for logs visualization, or will it be an ad-hoc fashion?
 			\item Who is the audience for these logs, and what are their needs?
@@ -210,12 +210,12 @@
 \begin{frame}
 	\frametitle{ETL: Managing Bad Data (Rejection Handling)}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item In some systems, you get a malformed data, and it needs special handling (not removing).
 		\item It means the data is not accurate or as expected when compared to the same source system.
 		\item If we use this data as-is, we are risk affecting the quality of the business reports.
 		\item To manage the malformed records, we need to apply the following steps
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item  Define what is the meaning by well-formed records or accurate record.
 			\item  Configure handling actions for the malformed records.
 			\item  \red{Configure handling actions for the malformed records.}.
@@ -228,9 +228,9 @@
 \begin{frame}[fragile]
 	\frametitle{ETL: Managing Bad Data (Rejection Handling)}
 
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item Example
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item  We have a CSV file that contains 5 columns, and we need to apply the ETL on this file.
 		\end{itemize}
 	\end{itemize}
@@ -260,7 +260,7 @@
 {
 ]
 }
-	\end{lstlisting}
+\end{lstlisting}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -295,11 +295,11 @@
 \begin{frame}
 	\frametitle{ETL Modularity}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item ETL architecture is not only the quality of data but also how the code is reusable and modularized. 
 		\item ETL architecture is not only the quality of data but also how the code is reusable and modularized. 		
 		\item How to achieve this modularity?
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item Design template jobs for each part of the system.
 			\item Standard methods and strategy for common tasks such as logging, error handling, and rejecting handling.
 			\item  Reduce the duplicate code by creating  common libraries for the ETL.
@@ -313,9 +313,9 @@
 \begin{frame}
 	\frametitle{ETL Modularity}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item How does this affect the team?
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item Maintainability.
 			\item Debugging.
 			\item Investigation.
@@ -331,7 +331,7 @@
 \begin{frame}
 	\frametitle{ETL: Data Lineage}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item Data Lineage is an essential part of our process to understand how this data transformed and where this data originated.
 		\item It helps to make the trust in the data by connecting the target into the source.
 		\item It helps with data tracing at the row level.
@@ -370,11 +370,11 @@
 \begin{frame}
 	\frametitle{ETL Error Handling}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item Error handling answers a question, What should we do if the process failed?
 		\item It also shows can prevent failure and handle these errors.
 		\item We deal with errors using different strategies:
-		\begin{itemize}[<+->]
+		\begin{itemize}
 			\item Fail safe (a.k.a. graceful shutdown/stop).
 			\item Fail fast.
 			\item Design error handling framework it includes: prevention and response.
@@ -390,7 +390,7 @@
 \begin{frame}
 	\frametitle{ETL Atomicity}
 	%%
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item Atomicity refers to breaking more significant parts into smaller individual parts.
 		\item It also refers to how to split bigger ETL process or job into smaller parts.
 		\item Implementation of the atomicity pattern involves the identification of business parts and how to split it into smaller units for proper execution.
@@ -402,7 +402,7 @@
 \begin{frame}
 	\frametitle{ETL Atomicity}
 	Why do we need Atomicity?
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item Maintainability and readability of the code.
 		\item It helps in code tracing, testing, and enhancing.
 		\item Agile development and parallel work.
@@ -418,7 +418,7 @@
 
 \begin{frame}
 	\frametitle{References}
-	\begin{itemize}[<+->]
+	\begin{itemize}
 		\item \href{https://www.timmitchell.net/etl-best-practices/}{ETL Best Practices By Tim Mitchell}
 	\end{itemize}
 

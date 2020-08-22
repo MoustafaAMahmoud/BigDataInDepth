@@ -1,0 +1,139 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VideoClassification[column=2, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% converting from logical to physical model
+\midTitle{Surrogate vs Natural Key}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Entity Identification}
+	\begin{itemize}[<+->]
+		\item Each entity needs to an identifier column.
+		\item Identifier attribute for each instance (row) helps to distinguish between the instances or row of the same entity.		
+	\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Entity Identification}
+	\begin{itemize}
+		\item Each entity needs to an identifier column.
+		\item Identifier attribute for each instance (row) helps to distinguish between the instances or row of the same entity.		
+	\end{itemize}
+
+	\centering
+	\input{Ch01-Introduction-data-management/12-Data-Model/06-surrogate-vs-natural/fig-exp-surrogate-vs-natural.tex}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Natural vs Surrogate}
+	\hspace{.5cm}
+	  \resizebox{\textwidth}{!}{
+	\begin{tabular}{  | c | c | c |  }
+	\hline
+	Metrics &	Surrogate Key & Natural Key \\
+	\hline
+	Uniqueness & Yes & Yes\\
+	\hline
+	Name &	\makecell{Artificial,\\ System generated} & Business key \\ 
+	\hline
+	\makecell{Business \\Meaning} &  \makecell{Doesn't have a \\business meaning} & \makecell{has a business\\ meaning}\\
+	\hline
+	\makecell{Conceptual\\ Relation} & \makecell{Doesn't relate} & \makecell{Part of \\conceptual model}\\
+	\hline
+	Creation & System (Database) & \makecell{Set of column(s)\\ from the data}\\		
+	\hline    
+	\end{tabular}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Natural or Surrogate?}
+	\vspace{2.6cm}
+\begin{center}
+	\hspace{1.5cm}	{\Huge It depends \\
+	\hspace{1.5cm}			:):}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Natural or Surrogate?}
+	\vspace{1cm}
+	It depends on several factors:
+		\begin{itemize}[<+->]
+			\item The nature of the data.
+			\item Database (DWH) platform.
+			\item The group who uses this data from development or DBA team.		
+		\end{itemize}		
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Natural Key Pros and Cons}
+
+	\hspace{.5cm}
+	\begin{itemize}
+		\item	Pros
+		\begin{itemize}
+			\item Key has a business meaning.
+			\item No extra space or computation needed.
+		\end{itemize}	
+	\end{itemize}
+
+\begin{itemize}
+		\item	Cons
+		\begin{itemize}
+			\item Could be change overtime.
+			\item Difficult for maintenance.
+			\item It required more space or a combination of multi-column
+		\end{itemize}	
+	\end{itemize}	
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Surrogate Key Pros and Cons}
+
+\hspace{.5cm}
+\begin{itemize}
+	\item	Pros
+	\begin{itemize}
+		\item Never changing.
+		\item Easy to maintain.
+		\item Less disk IO is required.
+		\item Guaranteed to be unique.
+		\item Simple key structure.
+	\end{itemize}	
+\end{itemize}
+
+\begin{itemize}
+	\item	Cons
+	\begin{itemize}
+		\item Has no business meaning (could require more joins)
+		\item Extra column added (space).
+		\item Extra IO when insert/update data.
+	\end{itemize}	
+\end{itemize}	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Surrogate Key Pros and Cons}
+\vspace{.5cm}
+Just a few reasons for using surrogate keys for your dimension and fact tables in DWH implementation:
+	\begin{itemize}[<+->]
+	\item Stability: Changing a key because of a business or natural need will negatively affect related tables. Surrogate keys rarely, if ever, need to be changed because there is no meaning tied to the value.
+	
+	\item Convention: Allows you to have a standardized Primary Key column naming convention rather than having to think about how to join tables with various names for their PKs.
+	
+	\item Speed: Depending on the PK value and type, a surrogate key of an integer may be smaller, faster to index and search.
+	
+\end{itemize}	
+
+\href{https://stackoverflow.com/a/63189/2516356}{https://stackoverflow.com/a/63189/2516356}
+
+\end{frame}
