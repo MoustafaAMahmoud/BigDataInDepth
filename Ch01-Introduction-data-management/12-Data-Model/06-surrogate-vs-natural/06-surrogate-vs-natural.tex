@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\VideoClassification[column=2, colour=blue]
+%\VideoClassification[column=2, colour=blue]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % converting from logical to physical model
 \midTitle{Surrogate vs Natural Key}
@@ -7,7 +7,7 @@
 \begin{frame}
 \frametitle{Entity Identification}
 	\begin{itemize}[<+->]
-		\item Each entity needs to an identifier column.
+		\item Each entity needs an identifier column.
 		\item Identifier attribute for each instance (row) helps to distinguish between the instances or row of the same entity.		
 	\end{itemize}
 
@@ -86,7 +86,7 @@
 \begin{itemize}
 		\item	Cons
 		\begin{itemize}
-			\item Could be change overtime.
+			\item Could change over time.
 			\item Difficult for maintenance.
 			\item It required more space or a combination of multi-column
 		\end{itemize}	
@@ -102,7 +102,7 @@
 \begin{itemize}
 	\item	Pros
 	\begin{itemize}
-		\item Never changing.
+		\item Stable.
 		\item Easy to maintain.
 		\item Less disk IO is required.
 		\item Guaranteed to be unique.
@@ -136,4 +136,15 @@ Just a few reasons for using surrogate keys for your dimension and fact tables i
 
 \href{https://stackoverflow.com/a/63189/2516356}{https://stackoverflow.com/a/63189/2516356}
 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{Surrogate Key AND Natural Key}
+	\vspace{.5cm}
+	Do we need to remove the natural key to use the surrogate key?
+	\begin{itemize}[<+->]
+		\item NO, we will keep both in the table and treat the surrogate key as a primary key. 
+	\end{itemize}	
+	
 \end{frame}

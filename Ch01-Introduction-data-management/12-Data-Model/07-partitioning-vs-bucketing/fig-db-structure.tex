@@ -1,0 +1,55 @@
+	\begin{tikzpicture}[every label/.append style={font=\tiny},regentonne/.style={cylinder,aspect=.7,draw,shape border rotate=90}]
+
+		
+		%Database
+		\filldraw[draw=blue,thick,rounded corners,fill=white] (-2,0) rectangle (-0.5,6);
+  	    \node[font=\small] at (-1.25,5.6) {Database};
+
+		%Tables
+
+		\filldraw[draw=Maroon,thick,rounded corners,fill=white] (-0.25,0) rectangle (1.5,6);
+     	\node[font=\small ] at (0.5,5.6) {Schema};
+		
+		%Partitions
+		\filldraw[draw=OliveGreen,thick,rounded corners,fill=white] (1.75,0) rectangle (7.55,6);
+     	\node[font=\small ] at (4.5,5.6) {Table};
+   	    
+   	    
+		%\draw[step=.5cm,gray,very thin] (-2,-1) grid (7.5,6);   	    
+   	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%schemas
+		\node[database,label=below:schema-1, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue} ] (s1) at (-1.3,5) {};
+		
+		\node[database,label=below:schema-2, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s2) at (-1.3,4) {};
+		
+		\node[database,label=below:schema-3, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s3) at (-1.3,3) {};		
+		
+		\node[database,label=below:schema-4, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s4) at (-1.3,2) {};		
+		
+		\node[database,label=below:schema-5, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s5) at (-1.3,1) {};						
+
+   	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%tables
+		\node  (t1) at (.65,5) {\huge \faTable};
+        \node [below=.01 cm of t1]  {\scriptsize table-1};
+
+		\node  (t2) at (.65,3.6) {\huge \faTable};
+		\node [below=.01 cm of t2]  {\scriptsize table-2};	
+		
+		\node  (t3) at (.65,2) {\huge \faTable};
+		\node [below=.01 cm of t3]  {\scriptsize table-3};
+
+   	    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%partitions & buckets
+		%\draw[rectangle, rounded corners, minimum height=1cm,text centered, draw=black, fill=red!30] (2,4) grid (3,5);   	    
+		\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=1cm, minimum height=.5cm,text centered, draw=black, fill=red!30]
+		
+		\node (partition) [startstop] at (2.7,4.6) {\tiny Partition Only};
+		\node (both) [startstop] at (4.5,4.6) {\tiny Both};
+		\node (bucketing) [startstop] at (6.5,4.6) {\tiny Bucketing Only};
+		
+		
+
+
+		
+	\end{tikzpicture}
