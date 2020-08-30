@@ -21,3 +21,115 @@
 	\input{Ch01-Introduction-data-management/12-Data-Model/07-partitioning-vs-bucketing/fig-db-structure.tex}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Partitioning vs Bucketing Example}
+\begin{table}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		cust_id & name & trns_date \\
+		\hline
+		12345 & Ali &  2020-10-10 \\
+		12345 & Ali &  2020-10-10\\
+		\hline 
+		8765 & Amr &  2020-10-11 \\
+		45365 & Omar &  2020-10-11 \\
+		86896 & Zid &  2020-10-11 \\
+		\hline
+	\end{tabular}
+\quad
+
+	\caption{Table data example}\label{eval_table}
+\end{table}
+
+\begin{table}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		partition & cust_id  \\
+		\hline
+		2020-10-10 & 12345 \\
+				   & 12345\\
+		\hline 
+		2020-10-11 &  8765\\
+				   & 45365  \\
+		           & 86896 \\
+		\hline
+	\end{tabular}
+	\quad
+		\begin{tabular}{|c|c|c|c|}
+		\hline
+		partition & bucket & cust_id(s)  \\
+		\hline
+		2020-10-10 & 1 & [12345] \\
+		\hline 
+		2020-10-11 & 1 & [8765,45365]\\
+				   & 2 & [86896] \\
+		\hline
+	\end{tabular}
+	\caption{Table with only partition vs partition with bucketing example}\label{eval_table}
+\end{table}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Partitioning vs Bucketing Example}
+	
+	\begin{itemize}[<+->]
+		\item Example of table creation in \textbf{hive}
+		\item Bucketing also named as \textit{clustering }
+		\item /user/hive/warehouse/cust_trans_hist/trns_date=2020-10-10/
+	\end{itemize}
+	
+			\lstinputlisting[language=sql,caption={Example how to create partition with bucketing in hive}]{Ch01-Introduction-data-management/12-Data-Model/07-partitioning-vs-bucketing/table_creation.sql}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Partitioning Pros vs Cons}
+	
+Partition: Split huge amount of data into parts(directories for example) based on specified table column (s).
+
+	\begin{itemize}[<+->]
+		\item Pros
+		\begin{itemize}[<+->]
+			\item Distribute execution load horizontally.
+			\item Number of partitions are based on the number of unique partition column.
+			\item Faster execution of queries in case filter based on partition value instead of scan the entire table.
+		\end{itemize}
+	
+		\item Cons
+			\begin{itemize}[<+->]
+			\item Limitation for number of partition.
+			\item It can lead to performance issue in case too many small partitions.
+		\end{itemize}
+			
+	\end{itemize}
+\vspace{1.3cm}
+Reference: https://stackoverflow.com/a/33645660/2516356	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Bucketing Pros vs Cons}
+	
+Bucketing split data into equal parts based on column value. 
+	\begin{itemize}[<+->]
+		\item Pros
+		\begin{itemize}[<+->]
+			\item Map side join will be faster because all partitions are equal.
+			\item Faster query response like partitioning
+		\end{itemize}
+		
+		\item Cons
+		\begin{itemize}[<+->]
+			\item Number of buckets needs to be defined manual by the developers.
+		\end{itemize}
+		
+	\end{itemize}
+\vspace{3.6cm}
+	Reference: https://stackoverflow.com/a/33645660/2516356
+\end{frame}
+

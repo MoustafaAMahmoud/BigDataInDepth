@@ -11,7 +11,7 @@
      	\node[font=\small ] at (0.5,5.6) {Schema};
 		
 		%Partitions
-		\filldraw[draw=OliveGreen,thick,rounded corners,fill=white] (1.75,0) rectangle (7.55,6);
+		\filldraw[draw=OliveGreen,thick,rounded corners,fill=white] (1.75,-1) rectangle (7.55,6);
      	\node[font=\small ] at (4.5,5.6) {Table};
    	    
    	    
@@ -44,12 +44,35 @@
 		%\draw[rectangle, rounded corners, minimum height=1cm,text centered, draw=black, fill=red!30] (2,4) grid (3,5);   	    
 		\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=1cm, minimum height=.5cm,text centered, draw=black, fill=red!30]
 		
-		\node (partition) [startstop] at (2.7,4.6) {\tiny Partition Only};
-		\node (both) [startstop] at (4.5,4.6) {\tiny Both};
-		\node (bucketing) [startstop] at (6.5,4.6) {\tiny Bucketing Only};
+		\node (partition) [startstop] at (2.8,4.6) {\tiny Partition Only(s)};
+		\node (both) [startstop] at (4.7,2) {\tiny Both};
+		\node (bucketing) [startstop] at (6.6,4.6) {\tiny Bucketing Only};
 		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\tikzstyle{partition} = [rectangle, minimum width=1cm, minimum height=.5cm,text centered, draw=black, fill=green!30]
+		\node (part-dtl-1) [partition] at (2.6,3.9) {\tiny partition-1};		
+		\node (part-dtl-2) [partition] at (2.6,3.3) {\tiny partition-2};		
+		\node (part-dtl-3) [partition] at (2.6,2.7) {\tiny partition-3};		
 		
-
-
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\tikzstyle{bucket} = [rectangle, minimum width=1cm, minimum height=.2cm,text centered, draw=black, fill=blue!60,text=white]
+		\node (buck-dtl-1) [bucket] at (6.8,3.9) {\tiny bucket-1};		
+		\node (buck-dtl-2) [bucket] at (6.8,3.3)   {\tiny bucket-2};		
+		\node (buck-dtl-3) [bucket] at (6.8,2.7) {\tiny bucket-3};	
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+		\node (part-buck-1) [partition] at (4.7,1.1) {\tiny partition-1};
+		\node (part-buck-1-1) [bucket] at (6.7,1.6) {\tiny bucket-1-1};
+		\node (part-buck-1-2) [bucket] at (6.7,1.1) {\tiny bucket-1-2};
+		\node (part-buck-1-3) [bucket] at (6.7,.6) {\tiny bucket-1-3};
+		\draw [->] (part-buck-1) -- (part-buck-1-1);
+		\draw [->] (part-buck-1) -- (part-buck-1-2);
+		\draw [->] (part-buck-1) -- (part-buck-1-3);
+		
+		\node (part-buck-2) [partition] at (4.7,0) {\tiny partition-2};
+		\node (part-buck-2-1) [bucket] at (6.7,0) {\tiny bucket-2-1};
+		\node (part-buck-2-2) [bucket] at (6.7,-.5) {\tiny bucket-2-2};
+		\draw [->] (part-buck-2) -- (part-buck-2-1);
+		\draw [->] (part-buck-2) -- (part-buck-2-2);
+		
 		
 	\end{tikzpicture}
