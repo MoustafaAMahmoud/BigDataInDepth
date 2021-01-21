@@ -1,0 +1,97 @@
+	\begin{tikzpicture}[every label/.append style={font=\tiny},regentonne/.style={cylinder,aspect=.7,draw,shape border rotate=90}]
+		%\draw[step=.5cm,gray,very thin] (-2,-1) grid (9.5,6);
+		%SS recatangle
+		\filldraw[draw=blue,thick,rounded corners,fill=white] (-2,-1) rectangle (-.55,6);
+
+		%Staging recatangle
+		\filldraw[draw=BurntOrange,thick,rounded corners,fill=white] (-.4,-1) rectangle (1,6);
+
+		%ETL recatangle		
+		\filldraw[draw=Maroon,thick,rounded corners,fill=white] (1.15,-1) rectangle (3.3,6);
+		
+		%EDW
+		\filldraw[draw=OliveGreen,thick,rounded corners,fill=white] (3.45,-1) rectangle (7.7,6);
+		
+		%BI LAYER
+		\filldraw[draw=mauve,thick,rounded corners,fill=white] (7.9,-1) rectangle (9.5,6);
+
+		
+   	    \node[text width=2cm,font=\scriptsize] at (-.9,5.6) {Source\\ Systems};
+   	    
+		\node[database,label=below:CRM, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue} ] (s1) at (-1.5,5) {};
+		
+		\node[database,label=below:ERP, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s2) at (-1.5,4) {};
+		\node[database,label=below:MobApp, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s3) at (-1.5,3) {};		
+		\node[database,label=below:Billing, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s4) at (-1.5,2) {};		
+		\node[database,label=below:WebApp, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s5) at (-1.5,1) {};						
+		\node[database,label=below:Other, database middle segment={draw=black,fill=aliceblue}, database bottom segment={draw=black, fill=aliceblue}, database top segment={draw=black,fill=aliceblue}] (s6) at (-1.5,0) {};				
+
+		
+		\draw[line width=0.25mm, blue] (s1) -- ([xshift=.5cm]s1.east) -- ([xshift=.5cm]s2.east) -- (s2)  -- ([xshift=.5cm]s2.east) -- ([xshift=.5cm]s3.east) -- (s3)-- ([xshift=.5cm]s3.east) -- ([xshift=.5cm]s4.east) -- (s4) -- ([xshift=.5cm]s4.east) --  ([xshift=.5cm]s5.east) -- (s5) --  ([xshift=.5cm]s5.east) -- ([xshift=.5cm]s6.east) -- (s6);
+	
+		%connection arrow
+		\draw[->,line width=0.5mm, black] ([xshift=.5cm,yshift=-.5cm]s3.east) -- ([xshift=1.1cm,yshift=-.5cm]s3.east);
+
+		%staging
+   	    \node[text width=2cm,font=\scriptsize] at (.9,5.6) {Stage};
+				
+		
+		\node[database,label=below:Staging,database radius=.4cm,database segment height=.2cm, database middle segment={draw=black,fill=WildStrawberry}, database bottom segment={draw=black, fill=WildStrawberry}, database top segment={draw=black,fill=WildStrawberry}]  (stg) at (0.3,2.5) {};			
+	
+		%connection arrow
+		\draw[->,line width=0.5mm, black] (stg.east) -- ([xshift=.6cm]stg.east);
+
+		
+		%ETL
+   	    \node[text width=2cm,font=\scriptsize] at (3,5.6) {ETL};
+        \pic[draw,fill=Maroon]          (etlS) at (2,4.3)   {gear={0.07}{17}{15}};
+        \pic[draw,fill=uiborange]       (etlM) at (2,2.5)   {gear={0.07}{17}{15}};
+        \pic[draw,fill=mygreen]         (etlB) at (2,.8)   {gear={0.07}{17}{15}};
+   		\draw[line width=0.25mm, gray] (2.5,4.3) -- (3.1,4.3);
+  		\draw[line width=0.25mm, gray] (2.5,2.5) -- (3.1,2.5);
+  		\draw[line width=0.25mm, gray] (2.5,.8) -- (3.1,0.8);
+  		\draw[line width=0.25mm, gray] (3.1,4.3) -- (3.1,0.8);  		
+		%connection arrow	
+		%middle connection to edw
+  		\draw[->,line width=0.5mm, black] (3.1,2.5) -- (4.1,2.5);
+		
+		%DWH label
+	    \node[text width=4.5cm,font=\scriptsize] at (6.7,5.6) {Data Warehouse};
+
+		%DWH shape		
+%     	\node[database,label=below:DWH,database radius=.5cm,database segment height=.3cm		, database middle segment={draw=black,fill=green-yellow}, database bottom segment={draw=black, fill=green-yellow}, database top segment={draw=black,fill=green-yellow}] (A)  at (4,2.6) {};
+     		\node (A)  at (4,2.5) {};
+     	
+     	%DataMart
+     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm, database middle segment={draw=black,fill=spirodiscoball}, database bottom segment={draw=black, fill=spirodiscoball}, database top segment={draw=black,fill=spirodiscoball}]  (B)  at (6,4) {};     
+     		
+     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm, database middle segment={draw=black,fill=spirodiscoball}, database bottom segment={draw=black, fill=spirodiscoball}, database top segment={draw=black,fill=spirodiscoball}]  (C)  at (6,2.5) {};
+     	
+     	\node[database,label=below:Data Mart,database radius=.4cm,database segment height=.2cm, database middle segment={draw=black,fill=spirodiscoball}, database bottom segment={draw=black, fill=spirodiscoball}, database top segment={draw=black,fill=spirodiscoball}]  (D)  at (6,1) {};     	
+     	
+       \draw[line width=0.25mm,alizarin,->] (A) -- (B);
+       \draw[line width=0.25mm,alizarin,->] (A) -- (C);
+       \draw[line width=0.25mm,alizarin,->] (A) -- (D);
+
+
+       \draw[line width=0.25mm,alizarin] (7.3,.9) -- (7.3,4);
+       
+       \draw[line width=0.25mm,alizarin] (6.4,4) -- (7.3,4);
+       \draw[line width=0.25mm,alizarin] (6.4,2.5) -- (7.3,2.5);
+       \draw[line width=0.25mm,alizarin] (6.4,.9) -- (7.3,.9);
+       
+       \draw[line width=0.5mm,black,->] (7.3,2.5) -- (8,2.5);
+       
+		%BI LAYER
+		\node[text width=1.3cm,font=\scriptsize] at (8.8,5.6) {BI Layer};
+		\node[inner sep=0pt] (rep) at (8.7,4.6) {\includegraphics[width=.1\textwidth,height=.1\textheight]{./Figures/chapter-01/report.png}};
+		\node[yshift=.4cm,below of=rep] {{\tiny Reporting}};
+		\node (io) at (8.7,2.5) [io] {{\tiny Analytics}}; 		
+		\node (start) at (8.7,0.5) [startstop] {{\tiny Integrations}}; 
+
+	\end{tikzpicture}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../../main"
+% !TeX root = ../../../main.tex
+%%% TeX-engine: xetex

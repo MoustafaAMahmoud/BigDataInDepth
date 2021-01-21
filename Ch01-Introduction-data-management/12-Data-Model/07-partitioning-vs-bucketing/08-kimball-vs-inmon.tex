@@ -1,0 +1,181 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\VideoClassification[column=2, colour=blue]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\midTitle{Kimball vs Inmon}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{How to architect the data warehouse?}
+	\begin{itemize}[<+->]
+		\item Kimball paradigm (Dimensional Modeling).
+		\item Inmon paradigm (Enterprise Warehouse).
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{How to architect the data warehouse? }
+	\begin{itemize}[<+->]
+	\item Architecture focus on the way we construct the data model.
+	\item We choose the architecture based on the use case and the project.
+	\item The type of business and project time frame are considered before choosing the architecture. 
+\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Commons between Kimball and Inmon}
+		\begin{itemize}[<+->]
+		\item \textbf{Both} consider DWH as the central data repository for the enterprise.
+		\item \textbf{Both} using ETL to load DWH.
+		\item \textbf{Both} serve enterprise reporting needs.
+		\item \textbf{Both} combine the DWH elements to build their model.
+	\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Kimball's paradigm}
+	\begin{itemize}[<+->]
+		\item Kimball focus on business (organization department).
+		\item It is suitable for organizations which have changes (best choice for startups or mid-organizations).
+		\item It works well in the agile and quick delivery for the business.
+		\item It focus to make the user  access the data easily.
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Kimball's paradigm}
+	\begin{itemize}[<+->]
+		\item  Data warehouse is a set of small data marts for each department. 
+		\item These data mart stored in dimensional model (star or snowflake schema).
+		\item According to this approach data warehouse is essentially a union of all data marts.
+		\item Ralph Kimball, in 1997, stated that “...\textbf{\textit{the data warehouse is nothing more than the union of all the data marts}}“
+	\end{itemize}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Kimball's paradigm}
+	Dimentional Model Architecture Approach:
+	\begin{itemize}[<+->]
+		\item After identifying business process or mertics, It starts to design the data mart which serve this business.
+		\item Identify dimensions and facts to achieve business mertics.
+		\item It is okay to have duplicates in the design.
+		\item It doesn't focus on normalization.
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Disadvantages of Kimball's paradigm}
+	\begin{itemize}
+		\item Because of Kimball's focus on individual business (data marts), This lead to the following points:
+		\begin{itemize}[<+->]
+			\item Lose the idea of single source of truth because the entire data warehouse is not fully integrated.
+			\item Redundant data added into the model.
+			\item The model is not help to take the stratigic decisions or it needs too complicated process for getting the BI reports from mutliple data marts. 
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Inmon's paradigm}
+	\begin{itemize}[<+->]
+		\item Inmon’s paradigm, is to have "\textbf{one version of the truth}," an enterprise has all the information in one place named data warehouse, and data marts source their information from the data warehouse.
+	
+		\item Bill Inmon responded in 1998 by saying,  “\textbf{\textit{You can catch all the minnows in the ocean and stack them together and they still do not make a whale}}“. 
+	\end{itemize}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Inmon's paradigm}
+	\begin{itemize}[<+->]
+		\item Inmon’s paradigm is startigic (visionary), and has enterprise-wide reporting.
+		\item It has very low data redundancy. So, it is easy for maintainance (change) and well-integrated.
+
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Inmon's paradigm}
+	\begin{itemize}[<+->]
+		\item Inmon's paradigm has a great edge and impact for enterprise especial in known industries.
+		\item There are lots of mature models ready for enterprises and they most of cases following Inmon strategy.
+		 For example, If we plan to build a banking, telecom, or insurance data model.
+		
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Disadvantages of Inmon's paradigm}
+	\begin{itemize}[<+->]
+		\item Initial build is costly.
+		\item It is time-consuming at the begining. 
+		\item It requires highly skilled data modeling team.
+		\item It requires more effort in ETL to build data marts after creation of data warehouse. 
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Kimball vs Inmon}
+\begin{table}
+    \resizebox{\textwidth}{!}{
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Paradigm & Kimball & Inmon \\
+		\hline
+		Data integration & Focus on the individual business & enterprise-wide\\
+		\hline
+		Data orientation &  Business process & Subject \\
+		\hline
+		Approach & Bottom-Up Approach & Top-Down Approach \\
+    	\hline	
+		Building time & Less time &  lot of time \\
+    	\hline			
+		Cost & Iterative steps of effecient cost &  \makecell{High initial cost but\\ development costs are low} \\
+    	\hline	
+		Maintenance & difficult &  easy \\
+    	\hline			
+		Model & De-normalized &  Normalized \\
+    	\hline			
+		Modeling Complicated & generalist team to implement &  It needs specialized team \\
+		\hline			
+		Organization Size & Startups or Mid-Level & Enterprise \\
+		\hline
+	\end{tabular}
+	}
+\vspace{.1cm}
+	\caption{Kimball vs Inmon}\label{eval_table}
+\end{table}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{DWH Architecture Overview}
+	\input{./Figures/chapter-01/tikz_preamble_dwh_arch.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{References}
+
+\vspace{1.5cm}
+
+\begin{itemize}
+    	\item The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling, 3rd Edition by Ralph Kimball. 
+		\item https://www.1keydata.com/datawarehousing/inmon-kimball.html
+		\item https://www.geeksforgeeks.org/difference-between-kimball-and-inmon/
+		\item http://www.datamartist.com/data-warehouse-vs-data-mart
+		\item https://www.astera.com/type/blog/data-warehouse-concepts/
+\end{itemize}
+
+
+\end{frame}
+
