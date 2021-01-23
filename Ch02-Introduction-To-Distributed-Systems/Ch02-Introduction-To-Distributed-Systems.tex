@@ -5,28 +5,51 @@
 \begin{frame}
 \frametitle{Chapter Objectives}
 
-\begin{itemize}
-	\item<1-> Understand the distributed systems concepts. \pause
-	\item<2-> Replication and its usage in distributed systems.
-	\item<3-> Partitioning and its usage in distributed systems . \pause
-
+\begin{itemize} [<+->]
+	\item Capturing the state of the art in building high performance distributed computing using Hadoop, Spark, and Kafka.. 
+	\item Providing the relevant theoretical and practical background and its best practices.
+	\item Demonastrating the main concepts and components for distributed systems. 
+	\item Advancing the understanding of building scalable software systems for large scale data processing and its best practices. 
 \end{itemize}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Design Simple Distributed System}
 \begin{frame}
-	\frametitle{\subsecname}
+	\frametitle{Target Audience}
+	
+	\begin{itemize} [<+->]
+		\item Software Engineers and Application Developers.
+		\item Data Analysts and DWH/Data Engineers.
+		\item Researchers.
+	\end{itemize}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Design Simple Distributed System (Case Study Example 1)}
+\begin{frame}
+	\frametitle{Case Study Example 1}
 	\begin{itemize} 
-		\item Any Big Data solution working based distributed systems.
-		\item What is distributed systems in brief?
+		\item Assume we have a file contains \textbf{\underline{1TB}} of text lines, and we need to convert the text to be the upper case, for example (The -> THE).
+		\item We need to design the program without using any ready distributed system framework.
+		\item You can use any number (n) of machines. Assume n specs are 8 GB of memory, hard desk 128 GB, and 2 cores of CPU.
+
 	\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\begin{frame}[plain,c]
+	\frametitle{Case Study Example 1}
+\input{./Figures/chapter-02/ds_case_study_1.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain,c]
+	\frametitle{Case Study Example 1}
+	\input{./Figures/chapter-02/ds_case_study_1_1.tex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Distributed Systems Concepts}
 \begin{frame}
