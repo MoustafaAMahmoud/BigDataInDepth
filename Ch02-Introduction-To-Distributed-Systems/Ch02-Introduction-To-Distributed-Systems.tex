@@ -31,7 +31,7 @@
 \subsection{Design Simple Distributed System (Case Study Example 1)}
 \begin{frame}
 	\frametitle{Case Study Example 1}
-	\begin{itemize} 
+	\begin{itemize}  [<+->]
 		\item Assume we have a file contains \textbf{\underline{1TB}} of text lines, and we need to convert the text to be the upper case, for example (The -> THE).
 		\item We need to design the program without using any ready distributed system framework.
 		\item You can use any number (n) of machines. Assume n specs are 8 GB of memory, hard desk 128 GB, and 2 cores of CPU.
@@ -47,7 +47,40 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[plain,c]
 	\frametitle{Case Study Example 1}
+	\begin{figure}
+		\centering
+		\input{./Figures/chapter-02/ds_case_study_1_2.tex}
+		\caption{In this example, If the file can't fit in the memory, we can split the file into chunks. We don't care about the order of the file chunks. } \label{fig:DS1}
+	\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain,c]
+	\frametitle{Case Study Example 1}
+		\begin{figure}
+		\centering
 	\input{./Figures/chapter-02/ds_case_study_1_1.tex}
+			\caption{Adding another node to distribute the processing across serveral nodes (n). } \label{fig:DS2}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain,c]
+	\frametitle{Case Study Example 1}
+	\begin{figure}
+		\centering
+		\input{./Figures/chapter-02/ds_case_study_1_3.tex}
+	\end{figure}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{Management box (???)}
+	\begin{itemize} 
+		\item Any Big Data solution working based distributed systems.
+		\item What is distributed systems in brief?
+	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
