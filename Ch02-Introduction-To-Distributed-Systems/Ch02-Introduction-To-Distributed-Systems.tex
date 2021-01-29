@@ -42,15 +42,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[plain,c]
 	\frametitle{Case Study Example 1}
-\input{./Figures/chapter-02/ds_case_study_1.tex}
+		\begin{figure}
+		\input{./Figures/chapter-02/ds_case_study_1.tex}
+		\caption{Simple design for small file(s) processing } \label{fig:DS1}
+		\end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[plain,c]
 	\frametitle{Case Study Example 1}
 	\begin{figure}
 		\centering
-		\input{./Figures/chapter-02/ds_case_study_1_2.tex}
-		\caption{In this example, If the file can't fit in the memory, we can split the file into chunks. We don't care about the order of the file chunks. } \label{fig:DS1}
+		\input{./Figures/chapter-02/ds_case_study_1_4.tex}
+		\caption{In this example, If the file can't fit in the memory, we can split the file into chunks. We don't care about the order of the file chunks. } \label{fig:DS2}
 	\end{figure}
 
 \end{frame}
@@ -59,9 +62,9 @@
 	\frametitle{Case Study Example 1}
 		\begin{figure}
 		\centering
-	\input{./Figures/chapter-02/ds_case_study_1_1.tex}
-			\caption{Adding another node to distribute the processing across serveral nodes (n). } \label{fig:DS2}
-\end{figure}
+			\input{./Figures/chapter-02/ds_case_study_1_1.tex}
+			\caption{Adding another node to distribute the processing across serveral nodes (n). } \label{fig:DS3}
+		\end{figure}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -77,9 +80,12 @@
 
 \begin{frame}
 	\frametitle{Management box (???)}
-	\begin{itemize} 
-		\item Any Big Data solution working based distributed systems.
-		\item What is distributed systems in brief?
+	\begin{itemize} [<+->]
+		\item How do we distribute the data across the nodes?
+		\item How do we know the number of active nodes?
+		\item How do we know if some tasks are stucking?
+		\item How do we track the tasks passed to the nodes?
+		\item What will happen if this box is down? How can we avoid this?
 	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
