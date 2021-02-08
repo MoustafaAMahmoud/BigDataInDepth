@@ -11,7 +11,8 @@
 auto-save-list
 tramp
 .\#*
-
+.metals/
+.vscode/
 # Org-mode
 .org-id-locations
 *_archive
