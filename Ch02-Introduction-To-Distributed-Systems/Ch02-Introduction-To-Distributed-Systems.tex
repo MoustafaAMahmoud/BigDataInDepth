@@ -1,81 +1,23 @@
 \section{Introduction To Distributed Systems}
-
+%\input{Ch02-Introduction-To-Distributed-Systems/Ch01-01-sub-intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Design Simple Distributed System (Case Study Example 2)}
 
-\begin{frame}
-\frametitle{Chapter Objectives}
-
-\begin{itemize} [<+->]
-	\item Capturing the state of the art in building high performance distributed computing using Hadoop, Spark, and Kafka.
-	\item Providing the relevant theoretical and practical background and its best practices.
-	\item Demonastrating the main concepts and components for distributed systems. 
-	\item Advancing the understanding of building scalable software systems for large scale data processing and its best practices. 
-\end{itemize}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-	\frametitle{Target Audience}
+\begin{frame}[c]{ }
+	\centering     
 	
-	\begin{itemize} [<+->]
-		\item Software Engineers and Application Developers.
-		\item Data Analysts and DWH/Data Engineers.
-		\item Researchers.
-	\end{itemize}
-	
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Design Simple Distributed System (Case Study Example 1)}
-\begin{frame}
-	\frametitle{Case Study Example 1}
-	\begin{itemize}  [<+->]
-		\item Assume we have a file contains \textbf{\underline{1TB}} of text lines, and we need to convert the text to be the upper case, for example (The -> THE).
-		\item We need to design the program without using any ready distributed system framework.
-		\item You can use any number (n) of machines. Assume n specs are 8 GB of memory, hard desk 128 GB, and 2 cores of CPU.
-
-	\end{itemize}
+	\textcolor{offgreen}{ \large Previous video recap!}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[plain,c]
-	\frametitle{Case Study Example 1}
-		\begin{figure}
-		\input{./Figures/chapter-02/ds_case_study_1.tex}
-		\caption{Simple design for small file(s) processing } \label{fig:DS1}
-		\end{figure}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[plain,c]
 	\frametitle{Case Study Example 1}
 	\begin{figure}
 		\centering
-		\input{./Figures/chapter-02/ds_case_study_1_4.tex}
-		\label{fig:DS2}
-		\caption{Parallel processing vs Distributed processing } 
+		\input{./Figures/chapter-02/ds_case_study_1_1.tex}
+		\caption{Convert text to upper text, for example, The -> THE } \label{fig:DS3}
 	\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[plain,c]
-	\frametitle{Case Study Example 1}
-		\begin{figure}
-		\centering
-			\input{./Figures/chapter-02/ds_case_study_1_2.tex}
-			\caption{Adding File Split function to split big files into equal chunks } \label{fig:DS3}
-		\end{figure}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[plain,c]
-	\frametitle{Case Study Example 1}
-		\begin{figure}
-		\centering
-			\input{./Figures/chapter-02/ds_case_study_1_1.tex}
-			\caption{Adding another node to distribute the processing across serveral nodes (n). } \label{fig:DS3}
-		\end{figure}
-
+	
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[plain,c]
@@ -87,40 +29,26 @@
 	
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-	\frametitle{Management box}
-	\begin{itemize} [<+->]
-		\item How do we distribute the data across the nodes?
-		\item How do we know the number of active nodes (or the status of the nodes)?
-		\item How do we know if some tasks are stucking?
-		\item How do we track the tasks passed to the nodes?
-		\item What will happen if this box is down? How can we avoid this?
-		\item How do we track the available resources (containers) in our cluster?
+	\frametitle{Case Study Example 2}
+	\begin{itemize}  [<+->]
+		\item Assume we have a file contains \textbf{\underline{1TB}} of text lines, and we need to calculate the word count across the document, for example, \textcolor{offyellow}{The cat came back the very next day} -> \textcolor{brown}{(the, 2), (cat,1), (came,1), (back, 1), (very, 1), (next, 1), (day, 1)}.
+
 	\end{itemize}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-	\frametitle{File System}
-	\begin{itemize} [<+->]
-        \item How can we store a massive amount of data in distributed systems?
-        \item How can we design a file system which supports highly fault-tolerant?
-        \item Do we require special hardware to design a distributed storage system?
-        \item How can we design storage systems to support distributed processing?
-	\end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Data nodes}
-	\begin{itemize} [<+->]
-        \item How datanodes continuously communicate with the management node?
-        \item How datanodes receive the tasks instructed by the management node?
-        \item Can datanodes store data besides their roles for processing?
-	\end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain,c]
+	\frametitle{Case Study Example 2}
+	\begin{figure}
+		\centering
+		\input{./Figures/chapter-02/ds_case_study_2_1.tex}
+	\end{figure}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
 %\frametitle{\subsecname}
 %\begin{itemize} 
