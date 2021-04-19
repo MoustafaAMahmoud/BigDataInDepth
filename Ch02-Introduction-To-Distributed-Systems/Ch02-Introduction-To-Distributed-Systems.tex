@@ -34,7 +34,57 @@
 	\begin{itemize}  [<+->]
 		\item Assume we have a file contains \textbf{\underline{1TB}} of text lines, and we need to calculate the word count across the document, for example, \textcolor{offyellow}{The cat came back the very next day} -> \textcolor{brown}{(the, 2), (cat,1), (came,1), (back, 1), (very, 1), (next, 1), (day, 1)}.
 
+		\item One of the distributed architecture solutions for this problem is to use \textcolor{offyellow}{\textit{map-reduce}}.
 	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{The basic idea of MapReduce}
+	\begin{itemize}  [<+->]
+		\item Assume we need to launch a high-throughput bulk-production sandwich shop. 
+		\item This sandwich has a lot of raw ingredients, and our target is to produce the sandwich as quickly as possible.
+		\item To make the production very quickly we need to distribute the tasks between the  \textcolor{offyellow}{\textit{workers}}.				
+	\end{itemize}
+	\footnotetext[1]{This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}	} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{The basic idea of MapReduce}
+	We break this into three stages
+	\begin{itemize}  [<+->]
+		\item Map.
+		\item Shuffle/Group (Mapper Intermediates).
+		\item Reduce			
+	\end{itemize}
+	\footnotetext[1]{This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}	} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Map}
+	We distribute our raw ingredients amongst the workers.
+	\begin{figure}
+		\includegraphics[width=.5\textwidth,height=.7\textheight]{./Figures/chapter-02/map-reduce-map-side.jpeg}
+	\end{figure}			
+	\footnotetext[1]{{\tiny This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}	} }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Shuffle/Group}
+	We will organise and group the processed ingredients into piles, so that making a sandwich becomes easy.
+		\begin{figure}
+		\includegraphics[width=.7\textwidth,height=.64\textheight]{./Figures/chapter-02/map-reduce-shuffle.png}
+	\end{figure}			
+	\footnotetext[1]{{\tiny This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}	}} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Reduce}
+	we’ll combine the ingredients into a sandwich
+	\begin{figure}
+		\includegraphics[width=.96\textwidth,height=.7\textheight]{./Figures/chapter-02/map-reduce-reduce-side.png}
+	\end{figure}			
+	\footnotetext[1]{ {\tiny This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}	}} 
 \end{frame}
 
 
