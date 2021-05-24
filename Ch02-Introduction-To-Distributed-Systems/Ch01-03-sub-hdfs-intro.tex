@@ -1,0 +1,84 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Core Hadoop Concepts }
+	\centering     
+	
+	\textcolor{offgreen}{ \large Hadoop Core Components}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Hadoop Core Concepts }
+	
+	
+	\begin{itemize}  [<+->]
+		\item [--] HDFS.
+		\item [--] Map-Reduce.
+		\item [--] YARN.
+		
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{HDFS }
+	
+	
+	\begin{itemize}  [<+->]
+		\item [--] HDFS responsible for storing the data on the hadoop cluster.
+		\item [--] Data is split into blocks with configurable block size, for example 64MB, 128MB, 512MB.
+		\item [--] Each data block is replicated and distributed across the cluster data node. This replication is configrable and by default three replica.
+		\item [--] Each block is stored in three different nodes. It is recommended to have two nodes in the same rack and the third one in a different rack.
+		
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{HDFS }
+	
+	
+	\begin{itemize}  [<+->]
+		\item [--] {\footnotesize HDFS is responsible for storing the data on the Hadoop cluster.}
+		\item [--] {\footnotesize Data is split into blocks with configurable block size, for example, 64MB, 128MB, and 512MB.}
+		\item [--] {\footnotesize Each data block is replicated and distributed across the cluster data node. This replication is configurable, and by default, three replica (folds).}
+		\item [--] {\footnotesize Each block is stored in three different nodes. It is recommended to have two nodes in the same rack and the third one in a different rack.}
+		\item [--] {\footnotesize A \textit{NameNode} keeps track of the location of the blocks and which blocks make up these files. These details known as \textit{metadata}.}
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{HDFS }
+		\begin{figure}
+		\centering
+		\input{./Figures/chapter-02/hdfs.tex}
+		\caption{Hadoop Architecture } \label{fig:hdfs}
+	\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{HDFS }
+	
+	
+	\begin{itemize}  [<+->]
+		\item [--] {\footnotesize Hadoop cluster contains NameNodes and DataNodes.}
+		\item [--] {\footnotesize NameNodes daemon must be running at all times. A daemon is simply a program running on a node. }
+		\item [--] {\footnotesize Hadoop cluster contains at least two NameNodes Active/Standby nodes.}
+		\item [--] {\footnotesize HDFS files are \textit{write one}, so we can't do any random writes.}
+		\item [--] {\footnotesize HDFS is optimized for large files. If we have many small files we could face a problem \textit{Hadoop small files problem}}
+			\end{itemize}
+			\footnotetext[1]{Small file problems \href{https://blog.cloudera.com/the-small-files-problem/}{https://blog.cloudera.com/the-small-files-problem/}	} 
+		
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Access HDFS }
+	
+	
+	\begin{itemize}  [<+->]
+		\item [--] {\footnotesize To acess HDFS we use Hadoop APIs. }
+		\item [--] {\footnotesize These APIs provide various functionality over HDFS . }
+		\item [--] {\footnotesize We can use the command line "FsShell" or call the API through MapReduce, Spark, or Other Restful interfaces.}
+		
+		
+	\end{itemize}
+	\footnotetext[1]{HDFS Commands \href{https://hadoop.apache.org/docs/r2.7.1/hadoop-project-dist/hadoop-common/FileSystemShell.html}{https://hadoop.apache.org/docs/r2.7.1/hadoop-project-dist/hadoop-common/FileSystemShell.html}	} 
+	
+\end{frame}
