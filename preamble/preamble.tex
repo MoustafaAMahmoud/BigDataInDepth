@@ -3,6 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\input{preamble/ch_01_theme}
 \usepackage{preamble/dbt}
+
 \usepackage[toc,page]{appendix}
 \usepackage{listings}
 \usepackage{hyperref}
@@ -28,6 +29,8 @@
 \usepackage{xcolor,colortbl}
 \usepackage{import}
 \usepackage{marvosym}
+\usepackage{ulem} %Strikethrough
+
 %\overfullrule=2cm
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{preamble/preamble_quote_custom_commands.tex}
@@ -38,6 +41,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\input{preamble/code_listing.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz,lipsum,fontspec}
+\usetikzlibrary{shapes.callouts,decorations.pathmorphing}
+\newfontfamily\comic{Comic Sans MS}
 \input{preamble/presentation-mode.tex}
 
 \AtBeginDocument{
