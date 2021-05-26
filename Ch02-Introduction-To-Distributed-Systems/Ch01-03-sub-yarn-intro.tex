@@ -1,0 +1,240 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Core Hadoop Concepts }
+	\centering     
+	
+	\textcolor{offgreen}{ \large Hadoop Core Components}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Hadoop Core Concepts }
+	
+	
+	\begin{itemize}  [<+->]
+		\item [--] HDFS.
+		\item [--] Map-Reduce.
+		\item [--] YARN.
+		
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{YARN }
+	
+	\begin{itemize}  [<+->]
+		\item [--] YARN =  Yet Another Resource Negotiator.
+		\item [--] YARN is responsible for the data-computation framework in Hadoop.
+		\item [--] The fundamental idea of YARN is to split up the functionalities of 	\textcolor{offyellow}{ \underline{ \textbf{resource management}}} and 	\textcolor{offyellow}{ \underline{ \textbf{job scheduling/monitoring}}} into separate daemons.
+		\item [--] The idea is to have a \textcolor{offyellow}{ \underline{ \textbf{global ResourceManager (RM)}}} and 	\textcolor{offyellow}{ \underline{ \textbf{per-application ApplicationMaster (AM)}}}. 
+		\item [--] An application is either a single job or a DAG of jobs.		
+	\end{itemize}
+			\footnotetext[1]{Apache Hadoop YARN \href{https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html}{https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html}	} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{YARN }
+	YARN allows to run multiple processing engine on the Hadoop cluster .
+	{\footnotesize
+	\begin{itemize}  [<+->]
+		\item [--] Map-Reduce, Hive, and PIG.
+		\item [--] Spark batch, streaming, ML, and SQL.
+		\item [--] Impala, Mahoot, and other engines.
+	\end{itemize}
+	}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{YARN }
+
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] YARN provides APIs for requesting and working with cluster resources.
+			\item [--] These APIs are  not  typically  used  directly  by  user  code.
+			\item [--] Users  write  to  higher-level APIs provided by distributed computing frameworks, Ex: (Map-reduce or Spark on yarn), which themselves are built on YARN and hide the resource management details from the user..
+		\end{itemize}
+	}
+			\footnotetext[1]{Hadoop the defenitive guide Ch.4 P.79. \href{https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html}{https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html}} 
+			\footnotetext[1]{Apache Hadoop YARN Ch.4 P.43. \href{https://www.oreilly.com/library/view/apache-hadooptm-yarn/9780133441925/}{https://www.oreilly.com/library/view/apache-hadooptm-yarn/9780133441925/}} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{YARN }
+	In YARN, there are at least three actors:	
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item The clinet : The Job Submitter.
+			\item Node(s) Master: the Resource Manager.
+			\item Data Node(s): the Node Manager.
+		\end{itemize}
+}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{YARN Daemon}
+	YARN (The data-computation framework) consists of
+		\begin{itemize}  [<+->]
+			\item [--] Resource Manager (long-running daemon): It is \textcolor{offyellow}{ \underline{ \textbf{one per cluster}}} to manage the use of resources across the cluster.
+			\item [--] Node Manager: It is running on all the nodes in the cluster to launch and monitor \textcolor{offyellow}{ \underline{ \textbf{containers}}}
+		\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Resource Manager }
+	The Resource Manager has two main components
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] Scheduler.
+			\item [--] Applications Manager.
+		\end{itemize}
+	}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Resource Manager }
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] It runs on the master node.
+			\item [--] It is the ultimate authority that arbitrates resources among all the applications in the system.
+			\item [--] It is the global resource schedule.
+			\item [--] It is a single point of failure in YARN. We can acheive HA with an active-standby configuration.
+		\end{itemize}
+	}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Resource Manager - Applications Manager}
+	
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] It is responsible for accepting job submissions.
+			\item [--] It is responsible for negotiating the first container for executing the application specific \textcolor{offyellow}{ \underline{ \textbf{ApplicationMaster}}}.
+			\item [--] After application submission
+			\begin{itemize}  [<+-> \color{almond}]
+				\item It first validates the application’s specifications.
+				\item It rejects any application that requests unsatisfiable resources for its ApplicationMaster (i.e., no node in the cluster has enough resources to run the ApplicationMaster itself).
+				\item It then ensures that no other application was already submitted with the same application ID.
+				\item It forwards the admitted application to the scheduler.
+			\end{itemize}
+		\end{itemize}
+	}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Resource Manager - Applications Manager}
+	
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] It is responsible for recording and managing finished applications for a while before being completely evacuated from the ResourceManager’s memory.
+			\item [--] It places an ApplicationSummary in the daemon’s log file after the application finishes.
+			\item [--] Finally, the ApplicationsManager keeps a cache of completed applications long after applications finish to support users’ requests for application data
+		\end{itemize}
+	}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Resource Manager -  Scheduler}	
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] It is responsible for allocating resources to the various running applications subject to familiar constraints of capacities, queues etc.
+			\item [--] It performs its scheduling function based on the resource requirements of the applications.
+			\item [--] It does so based on the abstract notion of a resource \textcolor{offyellow}{ \underline{ \textbf{containers}}} which incorporates elements such as memory, cpu, disk, network etc.
+			\item [--] The current schedulers such as the \textcolor{offyellow}{ \underline{ \textbf{CapacityScheduler}}} and the \textcolor{offyellow}{ \underline{ \textbf{FairScheduler}}} would be some examples of plug-ins.
+		\end{itemize}
+	}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Node Manager }
+		The Node Manager has two main components
+		\begin{itemize}  [<+->]
+			\item [--] Containers
+			\item [--] Application Master (AM)
+		\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Node Manager }
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] It runs on the data node.
+			\item [--] It is YARN’s per-node “worker” agent, taking care of the individual compute nodes in a Hadoop cluster.
+			\item [--] On start-up, the NodeManager registers with the ResourceManager; it then sends heartbeats with its status and waits for instructions. 
+			\item [--] Its primary goal is to manage application containers assigned to it by the ResourceManager.
+		\end{itemize}
+	}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Node Manager }
+	Node Manager is responsilble for 
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] Node Status Updater: Keeping up-to-date with the ResourceManage.
+			\item [--] Container Manager: Overseeing application containers’ life-cycle management, and monitoring resource usage (memory, CPU) of individual containers.
+			\item [--] Node Health Checker Service: Tracking node health.
+			\item [--] Log Handler: keeping the containers’ logs, and uploading them onto a file-system.
+		\end{itemize}
+	}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Node Manager - Containers }
+	
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] A container is a collection of physical resources such as RAM, CPU cores, and disks on a single node.
+			\item [--] There can be multiple containers on a single node.
+			\item [--] Every node in the system is considered to be composed of multiple containers of minimum size of memory (e.g., 512 MB or 1 GB) and CPU.
+			\item [--] A container executes an application-specific process with a constrained set of resources(memory, CPU, and so on).
+			\item [--] RM is creating containers based on the application requirements. 
+			\item [--] ApplicaIons run in one or more containers.
+			\item [--] A container is supervised by the NodeManager and scheduled by the ResourceManager.
+		\end{itemize}
+	}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Node Manager - Containers }
+	
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] Each application starts out as an ApplicationMaster, which is itself a container (often referred to as container 0).
+			\item [--] Once started, the ApplicationMaster must negotiate with the ResourceManager for more containers.
+			\item [--] Container requests (and releases) can take place in a dynamic fashion at run time. For instance, a MapReduce job may request a certain amount of mapper containers; as they finish their tasks, it may release them and request more reducer containers to be started.
+		\end{itemize}
+	}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{Node Manager - Application Master }
+	
+	{\footnotesize
+		\begin{itemize}  [<+->]
+			\item [--] The ApplicationMaster is the process that coordinates an application’s execution in the cluster (It runs in container 0).
+
+			\item [--] Each application has its own unique ApplicationMaster (one per applicaIon), which is tasked with negotiating resources (containers) from the ResourceManager and working with the NodeManager(s) to execute and monitor the tasks.
+
+			\item [--] It will periodically send heartbeats to the ResourceManager to affirm its health and to update the record of its resource demands.
+
+			\item [--] It is framework/applicaIon specific.			
+
+		\end{itemize}
+	}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{YARN Components }
+		\begin{figure}
+		\centering
+		\input{./Figures/chapter-02/yarn_1.tex}
+		\caption{YARN } \label{fig:yarn}
+	\end{figure}
+\end{frame}
+
+
