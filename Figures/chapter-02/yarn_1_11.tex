@@ -1,6 +1,11 @@
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		
+	
+	% Text Node
+	\node (11,3.17) (com) [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle \$\ \ $ \textcolor{offgreen}{hadoop} \textcolor{white}{ jar my-app.jar} \textcolor{offyellow}{sales\_data}};
+	
 	%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
 	\node  [below=of com,yshift=1cm,xshift=-.3cm]  [scale=.4] (clientPC){\usebox\Server};
 	\node [below=of clientPC,yshift=1.2cm]  [font=\footnotesize] (clientLb) {client};
@@ -50,11 +55,7 @@
 	\draw   (482,115) -- (588,115) -- (588,183) -- (482,183) -- cycle ;
 	\node  at (563,150) [scale=.5] (clientPC){\usebox\Server};
 	\draw (486,141) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {Name \\Node};
-	
-	
-	% Text Node
-	\node (11,3.17) (com) [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle \$\ \ $ \textcolor{offgreen}{hadoop} \textcolor{white}{ jar my-app.jar} \textcolor{offyellow}{sales\_data}};
-	
+
 	
 	\draw (13,141) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {Resource \\Manager};
 	
@@ -84,22 +85,7 @@
 	\draw[fill={rgb, 255:red, 245; green, 166; blue, 35 }, thick] (310,214) circle (.25cm);
 	\draw (303,209) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color=black] [align=left] {B3};
 	
-	
-	%%%%%%%%%%%%%%%%
-	
-	%%%%Application Master
-	\draw  [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (279,150) -- (375,150) -- (375,165) -- (279,165) -- cycle ;
-	%Straight Lines [id:da0062971628482225706] 
-	\draw [->] [fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ]   (120,156) -- (276.1,156) ;
-	\draw (279,152) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {Application Master};
-	
-	% Text Node
-	\draw (158,141) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color=offyellow ,opacity=1 ] [align=left] {lunch};
-	
-	\draw[fill={rgb, 255:red, 74; green, 144; blue, 226 }, thick] (150,144) circle (.2 cm);
-	\draw (145,139) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {2};
-	
-	\draw (465,20) node [draw,rectangle,fill=mauve,text width=3cm,text centered]   [anchor=north west] [inner sep=3pt]  [font=\bfseries,font=\scriptsize] [align=left] { The RM assumes the responsibility to start a container which hold AM and launch it};
-	
+ 	\draw (465,20) node [draw,rectangle,fill=mauve,text width=3cm,text centered]   [anchor=north west] [inner sep=3pt]  [font=\bfseries,font=\scriptsize] [align=left] { A client submits the app including the specifications to  launch the application-specific AM};
+ 	
 	
 \end{tikzpicture}
