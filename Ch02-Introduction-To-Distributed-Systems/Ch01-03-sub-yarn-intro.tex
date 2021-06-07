@@ -7,6 +7,14 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[c]{ }
+	\frametitle{Data Center Components }
+	\begin{figure}
+		\centering
+		\input{./Figures/chapter-02/cluster_design.tex}
+	\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
 	\frametitle{Hadoop Core Concepts }
 	
 	
@@ -68,6 +76,23 @@
 		\end{itemize}
 }
 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]{ }
+	\frametitle{YARN Components Hierarchy}
+	
+	\begin{tikzpicture}[every node/.style={shape=rectangle, rounded corners,
+			draw, align=center,
+			top color=white, bottom color=blue!20,font=\scriptsize,color=black},level 1/.style={sibling distance=80mm},level 2/.style={sibling distance=50mm}
+		]
+		\node {YARN}
+		child { node {Name Node} 
+			child { node {Resource Manager} child { node {Scheduler} }  child { node {Applications Manager}}}
+		}
+		child { node {Data Node}  child {node {Node Manager} child {node {Containers}} child {node {Application Master}}}}
+		;
+	\end{tikzpicture}
+	
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[c]{ }

@@ -1,0 +1,75 @@
+
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+	
+	%Shape: Rectangle [id:dp48918224033703217] 
+	\draw   (33,20) -- (600,20) -- (600,250) -- (33,250) -- cycle ;
+	%Shape: Rectangle [id:dp165115113681796] 
+	\draw   (150,40) -- (150,200) -- (50,200) -- (50,40) -- cycle ;
+	%Shape: Rectangle [id:dp571567564721695] 
+	\draw   (280,40) -- (280,200) -- (180,200) -- (180,40) -- cycle ;
+	%Shape: Rectangle [id:dp6858294917527059] 
+	\draw   (410,40) -- (410,200) -- (310,200) -- (310,40) -- cycle ;
+	%Shape: Rectangle [id:dp026686803204176823] 
+	\draw   (540,40) -- (540,200) -- (440,200) -- (440,40) -- cycle ;
+	
+	%Straight Lines [id:da3697838459968448] 
+	\draw    (100,230) -- (490,230) ;
+	%Straight Lines [id:da7952384044138053] 
+	\draw  [{Circle}-{Circle[open]}] (100,231) -- (100,200) ;
+	%Straight Lines [id:da6419250185576916] 
+	\draw   [{Circle}-{Circle[open]}]  (230,231) -- (230,200) ;
+	%Straight Lines [id:da7501600393941193] 
+	\draw   [{Circle}-{Circle[open]}]  (360,231) -- (360,200) ;
+	%Straight Lines [id:da9542370953289699] 
+	\draw   [{Circle}-{Circle[open]}]  (490,231) -- (490,200) ;
+	
+	
+	
+
+	% Text Node
+	\draw (33,3)   node [anchor=north west][inner sep=0.75pt]   [align=left] {{\small Data Center CAI-1234}};
+	% Text Node
+
+	\node at (50,26) (rac1)  [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {RAC-A-123};
+	% Text Node
+	\node at (180,26) (rac2)  [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {RAC-A-456};
+	% Text Node
+	\node at (310,26) (rac3)  [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {RAC-B-123};
+	% Text Node
+	\node at (440,26) (rac4)  [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {RAC-B-456};
+	
+	%rac 1
+	\node  [below=of rac1,yshift=1cm,xshift=.4cm]  [scale=.4] (server1){\usebox\Server};
+	\node [below=of server1,yshift=1.2cm]  [font=\scriptsize] (server1Lb) {Server 1};
+
+	\node  [below=of server1Lb,yshift=1cm]  [scale=.4] (server2){\usebox\Server};
+	\node [below=of server2,yshift=1.2cm]  [font=\scriptsize] (server2Lb) {Server 2};	
+	
+	%%%rac 2
+	\node  [below=of rac2,yshift=1cm,xshift=.4cm]  [scale=.4] (server21){\usebox\Server};
+	\node [below=of server21,yshift=1.2cm]  [font=\scriptsize] (server21Lb) {Server 1};
+	
+	\node  [below=of server21Lb,yshift=1cm]  [scale=.4] (server22){\usebox\Server};
+	\node [below=of server22,yshift=1.2cm]  [font=\scriptsize] (server22Lb) {Server 2};	
+
+	%%%rac 3
+	\node  [below=of rac3,yshift=1cm,xshift=.4cm]  [scale=.4] (server31){\usebox\Server};
+	\node [below=of server31,yshift=1.2cm]  [font=\scriptsize] (server31Lb) {Server 1};
+	
+	\node  [below=of server31Lb,yshift=1cm]  [scale=.4] (server32){\usebox\Server};
+	\node [below=of server32,yshift=1.2cm]  [font=\scriptsize] (server32Lb) {Server 2};	
+
+	%%%rac 4
+	\node  [below=of rac4,yshift=1cm,xshift=.4cm]  [scale=.4] (server41){\usebox\Server};
+	\node [below=of server41,yshift=1.2cm]  [font=\scriptsize] (server41Lb) {Server 1};
+	
+	\node  [below=of server41Lb,yshift=1cm]  [scale=.4] (server42){\usebox\Server};
+	\node [below=of server42,yshift=1.2cm]  [font=\scriptsize] (server42Lb) {Server 2};	
+		
+\end{tikzpicture}
+
