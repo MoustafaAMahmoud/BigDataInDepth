@@ -1,0 +1,152 @@
+
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+	%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+	\node  [below=of com,yshift=1cm,xshift=-1.3cm]  [scale=.4] (clientPC){\usebox\Server};
+	\node [below=of clientPC,yshift=1.2cm]  [font=\footnotesize] (clientLb) {client};
+
+	%Shape: Rectangle [id:dp5619170157619483] 
+	\draw   (7.23,120) -- (115,120) -- (115,178) -- (7.23,178) -- cycle ;
+	\node  at (90,150) [scale=.4] (clientPC){\usebox\Server};
+	%Straight Lines [id:da31002175643328755] 
+	\draw [->]   (78,90) -- (79.05,118) ;
+
+	%%%data node boxes
+	%Shape: Rectangle [id:dp554125548261542] 
+	\draw   (223,10) -- (418,10) -- (418,51.17) -- (223,51.17) -- cycle ;
+	\node  at (400,30) [scale=.3] (datanode){\usebox\Server};
+	%Shape: Rectangle [id:dp9273881082754108] 
+	\draw   (223,69) -- (418,69) -- (418,110.17) -- (223,110.17) -- cycle ;
+	\node  at (400,89) [scale=.3] (datanode){\usebox\Server};
+	%Shape: Rectangle [id:dp8796814929656595] 
+	\draw   (223,129) -- (418,129) -- (418,170.17) -- (223,170.17) -- cycle ;
+	\node  at (400,149) [scale=.3] (datanode){\usebox\Server};
+	%Shape: Rectangle [id:dp17827363758413817] 
+	\draw   (223,186) -- (418,186) -- (418, 227.17) -- (223,227.17) -- cycle ;
+	\node  at (400,206) [scale=.3] (datanode){\usebox\Server};
+	\draw (350,230) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {Data Nodes};
+	
+	
+	%%%long line
+	%Straight Lines [id:da14914786071792174] 
+	\draw    (202,21) -- (202,208) ;
+	%Straight Lines [id:da8867292837129914] 
+	\draw    (202,21) -- (221,21) ;
+	%Straight Lines [id:da5461355192839608] 
+	\draw    (202,90) -- (221,90) ;
+	%Straight Lines [id:da062355905035047066] 
+	\draw    (202,148) -- (221,148) ;
+	%Straight Lines [id:da003049579272986991] 
+	\draw    (202,208) -- (221,208) ;
+
+	%%%Node Manager
+	\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (225,12) -- (300.1,12) -- (300.1,28.17) -- (225,28.17) -- cycle ;
+	\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 334 }  ,fill opacity=1 ] (225,71) -- (300.1,71) -- (300.1,87.17) -- (225,87.17) -- cycle ;
+	\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (225,131) -- (300.1,131) -- (300.1,148.17) -- (225,148.17) -- cycle ;
+	\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (225,188) -- (300.1,188) -- (300.1,205.17) -- (225,205.17) -- cycle ;
+	
+	%%%Containers
+	\draw [fill={rgb, 255:red, 208; green, 2; blue, 27 },fill opacity=1] (225,31) -- (270.1,31) -- (270,48) -- (225,48) -- cycle ;
+	\draw [fill={rgb, 255:red, 208; green, 2; blue, 27 },fill opacity=1]  (225,90) -- (270.1,90) -- (270,107) -- (225,107) -- cycle ;
+	\draw [fill={rgb, 255:red, 208; green, 2; blue, 27 },fill opacity=1] (225,207) -- (270.1,207) -- (270,223) -- (225,223) -- cycle ;
+
+	\draw (225,32) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {Task};
+	\draw (225,92) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {Task};
+	\draw (225,209) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {Task};
+	
+	\draw (140,80) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {HYG};
+	
+	\draw [dashed,->,draw=cyan]  (120,150) -- (222,38)  ;
+	\draw [dashed,->,draw=cyan]  (120,150) -- (222,97);		
+	\draw [dashed,->,draw=cyan]  (120,150) -- (222,213);		
+	
+	\draw [dashed,->,draw=cyan]  (279,150) -- (270,38);		
+	\draw [dashed,->,draw=cyan]  (279,150) -- (270,97);		
+	\draw [dashed,->,draw=cyan]  (279,150) -- (270,213);		
+
+	%%%%Application Master
+	\draw  [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (279,150) -- (375,150) -- (375,165) -- (279,165) -- cycle ;
+	
+	%Straight Lines [id:da0062971628482225706] 
+	\draw [->] [fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ]   (120,156) -- (276.1,156) ;
+	\draw [->] [fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ]    (276.1,163) -- (120,163) ;
+	
+	%Shape: Rectangle [id:dp9681909278200241] 
+	\draw  [fill={rgb, 255:red, 139; green, 87; blue, 42 }   ,draw opacity=1 ] (55,190) -- (185,190) -- (185,240) -- (55,240) -- cycle ;
+	
+	%%%% Name Node
+	\draw   (482,115) -- (588,115) -- (588,183) -- (482,183) -- cycle ;
+	\node  at (563,150) [scale=.5] (clientPC){\usebox\Server};
+	\draw (486,141) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {Name \\Node};
+	
+	\draw [->] [fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ]   (375,153) -- (480,153) ;
+	\draw [->] [fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ]  (480,159)  -- (375,159) ;
+
+	\draw (420,120) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color=offred  ,opacity=1 ] [align=left] {Where is \\sales\_data?};
+	\draw (420,162) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color=offred  ,opacity=1 ] [align=left] {Node (1,2,4)};
+	
+	% Text Node
+	 \node (11,3.17) (com) [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle \$\ \ $ \textcolor{offgreen}{hadoop} \textcolor{white}{ jar my-app.jar} \textcolor{offyellow}{sales\_data}};
+
+	
+	\draw (13,141) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {Resource \\Manager};
+	% Text Node
+	\draw (158,141) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color=offyellow ,opacity=1 ] [align=left] {lunch};
+
+
+	% Text Node
+	\draw (225,13) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color=black] [align=left] {Node Manager};	
+	\draw (225,72) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color=black] [align=left] {Node Manager};
+	\draw (225,132) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color=black] [align=left] {Node Manager};
+	\draw (225,189) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color=black] [align=left] {Node Manager};
+
+	\draw (279,152) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {Application Master};
+
+	%circles
+	\draw[fill={rgb, 255:red, 74; green, 144; blue, 226 }, thick] (50,95) circle (.2 cm);
+	\draw (45,90) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {1};
+
+	\draw[fill={rgb, 255:red, 74; green, 144; blue, 226 }, thick] (150,144) circle (.2 cm);
+	\draw (145,139) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {2};
+	
+	\draw[fill={rgb, 255:red, 74; green, 144; blue, 226 }, thick] (435,106) circle (.2 cm);
+	\draw (430,101) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {3};
+	
+	\draw[fill={rgb, 255:red, 74; green, 144; blue, 226 }, thick] (435,183) circle (.2 cm);
+	\draw (430,178) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {4};
+
+	\draw[fill={rgb, 255:red, 74; green, 144; blue, 226 }, thick] (140,178) circle (.2 cm);
+	\draw (135,173) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {5};
+
+	\draw[fill={rgb, 255:red, 74; green, 144; blue, 226 }, thick] (135,116) circle (.2 cm);
+	\draw (130,111) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {6};
+
+	% Text Node
+	\draw (60,190) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {{ Resource Request:}\\{ - 1 x Node1/1GB/1 core}\\{ - 1 x Node2/1GB/1 core}\\{ - 1 x Node3/1GB/1 core}};
+
+	%Blocks
+	% Text Node
+	\draw[fill={rgb, 255:red, 245; green, 166; blue, 35 }, thick] (310,38) circle (.25cm);
+	\draw (303,33) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color=black] [align=left] {B1};
+
+
+	% Text Node
+	\draw[fill={rgb, 255:red, 245; green, 166; blue, 35 }, thick] (310,97) circle (.25cm);
+	\draw (303,92) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color=black] [align=left] {B2};
+
+	% Text Node
+	\draw[fill={rgb, 255:red, 245; green, 166; blue, 35 }, thick] (310,214) circle (.25cm);
+	\draw (303,209) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color=black] [align=left] {B3};
+	
+	\draw [dashed,->,draw=offpurple]  (420,162) -- (317,41);
+	\draw [dashed,->,draw=offpurple]  (420,162) -- (317,100);
+	\draw [dashed,->,draw=offpurple]  (420,162) -- (317,217);
+		
+
+	
+
+	
+\end{tikzpicture}
