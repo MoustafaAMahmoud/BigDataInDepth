@@ -2,14 +2,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % To Pass graphics paths
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \graphicspath{{./Figures/}}
 \graphicspath{{./Figures/chapter-01/}}
 \input{preamble/preamble.tex}
 \input{./front_page.tex}
+\renewcommand{\logotitle}{\includegraphics%
+	[width=.2\linewidth]{logos/header_logo.png}}
+\renewcommand{\logoheader}{\includegraphics%
+	[width=0\linewidth]{logos/header_logo.png}}
+\renewcommand{\logofooter}{\includegraphics%
+	[width=.15\linewidth]{logos/header_logo.png}}
+\date{\today}
 
 %------------------------------------------------------------
 \begin{document}
-
     %---------------------------------------------------------
     %The next statement creates the title page.
     \frame{\titlepage}
@@ -23,8 +30,8 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %    \include{Ch00-CourseOverview/CourseOverview.tex}
 %    \include{Ch01-Introduction-data-management/Ch01-Introduction-data-management}
-     \include{Ch02-Introduction-To-Distributed-Systems/Ch02-Introduction-To-Distributed-Systems}
-%    \include{Ch03-HadoopMR/Ch02-HadoopMR}
+%     \include{Ch02-Introduction-To-Distributed-Systems/Ch02-Introduction-To-Distributed-Systems}
+\include{Ch03-HadoopMR/Ch02-HadoopMR}
 %    \include{Ch04-Spark/FN-Scala}
 %    \include{Ch04-Spark/Spark}
 %    \include{Ch05-BigData-Applications/Applications}
