@@ -6,6 +6,16 @@
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{ltgray}{rgb}{0.5,0.5,0.5}
+\usepackage{caption} % Add the caption package
+
+% Redefine the lstlisting format to remove the unwanted prefix
+\DeclareCaptionFormat{mylst}{#1#2#3}
+\renewcommand\lstlistingname{Code Snippet:}
+\renewcommand\lstlistlistingname{Code Snippet:}
+%\DeclareCaptionStyle{listing} [justification=raggedright,indention=0pt, labelfont=bf]{}
+%\captionsetup[lstlisting]{style=listing, labelsep=none}
+
+\captionsetup[lstlisting]{format=mylst,labelfont=bf,labelsep=space,justification=raggedright}
 
 \lstset{%
 	frame=tb,
@@ -37,7 +47,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \lstset{%
-	language=sql,
+	language=SQL,
 	backgroundcolor=\color{white},
 	basicstyle=\footnotesize,
 	breakatwhitespace=false,
@@ -64,8 +74,17 @@
 	showtabs=false,
 	stepnumber=1,
 	tabsize=4,
-	title=\lstname
+	caption=Example SQL Query
 }
+% \lstset{
+%   language=SQL,
+%   basicstyle=\ttfamily,
+%   keywordstyle=\color{blue},
+%   commentstyle=\color{green},
+%   stringstyle=\color{red},
+%   showstringspaces=false,
+%   tabsize=2
+% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

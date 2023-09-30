@@ -1,7 +1,7 @@
 % use no footline.
-\begin{frame}[plain, noframenumbering]{Outline}
-	\tableofcontents
-\end{frame}
+% \begin{frame}[plain, noframenumbering]{Outline}
+% 	\tableofcontents
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hive}
 
@@ -18,6 +18,7 @@
 	\item<5-> Relational Data Analysis with Hive. \pause
 	\item<6-> Hive Data Management. \pause
 	\item<7-> Hive Optimization. \pause
+	\item<8-> Hive Demo. \pause
 \end{itemize}
 
 \end{frame}
@@ -54,6 +55,17 @@
 		\item Apache Hive bridges the gap between the world of big data and traditional relational databases, making it a valuable tool for data engineers, analysts, and data scientists.\pause	
 	\end{itemize}
 	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Hive Query Example}
+
+\begin{lstlisting}[caption={Hive Query Example},language=SQL]
+SELECT * 
+FROM Customers
+WHERE Country = 'USA';
+\end{lstlisting}
+
+	\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -77,15 +89,17 @@
 	\begin{itemize}
 		\item Hive Clients.
 		\item Hive Services.
+		\item Hive Metadata (Metastore).
 		\item Hive Storage and Computing.
 	\end{itemize}
 	\end{frame}
 	
 \begin{frame}{Abstract Components of Apache Hive}
-	\includegraphics[width=\linewidth,height=.8\textheight]{./Figures/chapter-03/Hive_Architecture.jpg}
-\end{frame}
-	
 
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./Figures/chapter-03/Hive_Architecture.pdf}
+
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Hive Clients}
@@ -313,44 +327,26 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Job Execution Flow in Hive}
 \begin{frame}{Job Execution Flow in Hive}
-	\begin{itemize}
-		\item Receive SQL Query.
-		\begin{itemize}
-			\item Parse HiveQL.
-			\item Make optimization.
-			\item Plan execution.
-			\item Submit job(s) to the cluster.
-			\item Monitor the progress.
-			\item Process the data in MapReduce or Spark.
-			\item Store the data in HDFS.
-		\end{itemize}
-	\end{itemize}
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./Figures/chapter-03/Hive_Query_Flow.pdf}
+
+	% \begin{itemize}
+	% 	\item Receive SQL Query.
+	% 	\begin{itemize}
+	% 		\item Parse HiveQL.
+	% 		\item Make optimization.
+	% 		\item Plan execution.
+	% 		\item Submit job(s) to the cluster.
+	% 		\item Monitor the progress.
+	% 		\item Process the data in MapReduce or Spark.
+	% 		\item Store the data in HDFS.
+	% 	\end{itemize}
+	% \end{itemize}
 	\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Hive Schema and Data Storage}
-\begin{frame}{Hive Schema and Data Storage}
-	\begin{itemize}
-		\item Hive queries operate on tables, similar to RDBMS.
-		\begin{itemize}
-			\item A table corresponds to a directory in storage (HDFS, S3, GCS, or Azure).
-			\item Each table comprises one or more files.
-			\item Every table is associated with a specific file format.
-			\item Hive stores table structure and location in the metadata store (RDBMS).
-			\item Hive supports various file formats, such as Parquet, ORC, and Text.
-		\end{itemize}
-	\end{itemize}
-\end{frame}
 
-\begin{frame}{Hive Schema and Data Storage (Continued)}
-	\begin{itemize}
-		\item Hive queries reference the metastore to access table location and structure.
-		\item While queries interact with the file system, metadata is stored in the RDBMS.
-	\end{itemize}
-\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Performance Tuning}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Query Execution Plan}
 \begin{frame}
@@ -395,10 +391,33 @@
 	
 	\end{frame}
 \subsubsection{Cost-Based Optimization}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Hive Schema and Data Storage}
+\begin{frame}{Hive Schema and Data Storage}
+	\begin{itemize}
+		\item Hive queries operate on tables, similar to RDBMS.
+		\begin{itemize}
+			\item A table corresponds to a directory in storage (HDFS, S3, GCS, or Azure).
+			\item Each table comprises one or more files.
+			\item Every table is associated with a specific file format.
+			\item Hive stores table structure and location in the metadata store (RDBMS).
+			\item Hive supports various file formats, such as Parquet, ORC, and Text.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Hive Schema and Data Storage (Continued)}
+	\begin{itemize}
+		\item Hive queries reference the metastore to access table location and structure.
+		\item While queries interact with the file system, metadata is stored in the RDBMS.
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Further Readings and Assignment}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../main"
