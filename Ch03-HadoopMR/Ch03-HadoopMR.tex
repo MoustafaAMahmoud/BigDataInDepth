@@ -83,6 +83,61 @@ WHERE Country = 'USA';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsubsection{Comparing Hive to Traditional Databases}
+\begin{frame}{Comparison between Apache Hive and Traditional RDBMS (Part 1)}
+	\begin{table}[h!]
+		\centering
+		\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|m{5cm}|m{6cm}|m{6cm}|}	    
+		\hline
+		\rowcolor{Gray}
+		\textbf{Feature} & \textbf{Apache Hive} & \textbf{Traditional RDBMS} \\
+		\hline
+		Purpose & Big data analytics. & Transactional systems and traditional data warehousing. \\
+		\hline
+		Query Language & HiveQL, similar to SQL. & SQL. \\
+		\hline
+		Speed & Slower, optimized for batch processing. & Faster, optimized for real-time transactional processing. \\
+		\hline
+		Data Size & Designed to handle petabytes of data. & gigabytes to terabytes; some systems can handle petabytes at higher cost. \\
+		\hline
+		ACID Properties & Limited ACID support. & Full ACID support. \\
+		\hline
+	\end{tabular}
+	}
+	\caption{Comparison between Apache Hive and Traditional RDBMS}
+  \end{table}
+  \end{frame}
+  
+  \begin{frame}{Comparison between Apache Hive and Traditional RDBMS (Part 2)}
+	\begin{table}[h!]
+		\centering
+		\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|m{5cm}|m{6cm}|m{6cm}|}	  
+		\hline
+		\rowcolor{Gray}
+		\textbf{Feature} & \textbf{Apache Hive} & \textbf{Traditional RDBMS} \\
+		\hline
+		Storage & Built on HDFS. & Uses internal storage mechanisms. \\
+		\hline
+		Metadata Storage & Stored in Hive Metastore. & Stored in system catalogs within the database. \\
+		\hline
+		Compute Engine & MapReduce, Tez, or Spark can be used. & Built-in engine, tightly integrated. \\
+		\hline
+		Query Execution Location & Executes on Hadoop cluster nodes. & Executes on the database server. \\
+		\hline
+		Data Storage Formats & ORC, Parquet, CSV, JSON, XML, Avro & Proprietary Binary Format \\
+		\hline
+		Max Simultaneous Connections & Governed by Hadoop Cluster & Varies (Hundreds to Thousands) \\
+		\hline		
+	\end{tabular}
+	}
+	\caption{Comparison between Apache Hive and Traditional RDBMS}
+  \end{table}
+  \end{frame}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Hive Architecture}
 
 \begin{frame}{Abstract Components of Apache Hive}
@@ -91,7 +146,7 @@ WHERE Country = 'USA';
 		\item Hive Services.
 		\item Hive Metadata (Metastore).
 		\item Storage.
-		\item Computing.
+		\item Compute.
 	\end{itemize}
 	\end{frame}
 	
