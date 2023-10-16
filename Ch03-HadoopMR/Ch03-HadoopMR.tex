@@ -304,7 +304,7 @@ WHERE Country = 'USA';
 \begin{frame}{Hive Services | HiveServer2 (Continued)}
 	\begin{itemize}
 		\item \textbf{HiveServer2}: HiveServer2 is a service that allows clients to submit HiveQL queries programmatically. It provides a remote interface for running Hive queries and managing sessions.
-		\item \textbf{JDBC and ODBC}: Hive supports JDBC (Java Database Connectivity) and ODBC (Open Database Connectivity) protocols, enabling users to connect to Hive using popular programming languages and tools.
+		% \item \textbf{JDBC and ODBC}: Hive supports JDBC (Java Database Connectivity) and ODBC (Open Database Connectivity) protocols, enabling users to connect to Hive using popular programming languages and tools.
 		\item \textbf{Thrift Service}: Hive uses the Apache Thrift framework to provide a cross-language service interface. This enables communication between clients and the Hive server.
 		\item \textbf{Sessions}: When clients connect to HiveServer2, sessions are established to manage their interactions. Sessions help keep track of query state and context.
 	\end{itemize}
@@ -402,6 +402,613 @@ WHERE Country = 'USA';
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Hive Table Format}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Hive Table Format}
+
+	\begin{itemize}
+		\item Hive was created to convert SQL statements into MapReduce jobs.
+		\item Mechanism needed for SQL to identify files and metadata.
+		\item Hive was a breakthrough, linking directories and files to tables.
+		\item HDFS directories map to database schemas and tables.
+
+	
+	\end{itemize}
+	\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Hive Table Format | continued}
+
+	\begin{itemize}
+		\item This was a breakthrough as it enabled working directly with the object store (i.e., HDFS) as the primary database storage, eliminating the need for custom file formats.
+		\item It also introduced flexibility in adding more file input formats (open formats), such as CSV, ORC, AVRO, Parquet, etc. Any processing that can be done with Map-Reduce can be applied to Hive.
+        \item Hive uses metastore/metadata to map raw HDFS data to named columns and types.
+		\item Each Hive table belongs to a specific database.
+	
+	\end{itemize}
+	\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Technical components in a data lake}
+	\begin{minipage}{\textwidth}
+		\begin{tikzpicture}
+		  % Place image at the left side
+		  \node[anchor=west] (image) at (0,0) {\includegraphics[width=\textwidth,height=.78\textheight,keepaspectratio]{./Figures/chapter-03/datalake_table_format.png}};
+		  % Place text and arrow
+		  \draw[<-, thick] (image) -- ++(4,1) node[right, align=left,font=\small, text=gray] {Apache Iceberg: The Definitive Guide: \\Data Lakehouse Functionality,\\ Performance, and Scalability\\ on the Data Lake\\ PUBLISHED BY:
+		  O'Reilly Media, Inc.};
+		\end{tikzpicture}
+		\captionof{figure}{Technical components in a data lake}
+	\end{minipage}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Hive Table Format | Example of Text File}
+
+	\begin{itemize}
+		\item Each Hive table links to a folder, usually on HDFS.
+		\item This folder contains one or more text files.
+		\item Basics of Hive's default text format:
+		\begin{itemize}
+		  \item One record by line (\textbackslash n separator).
+		  \item Columns are split by Control-A (\textasciicircum A).
+		  \item Complex types use Control-B (\textasciicircum B).
+		  \item Map keys and values use Control-C (\textasciicircum C).
+		\end{itemize}
+		\item You can change these settings when making a new table.
+	  \end{itemize}
+	
+	\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Text File vs. Binary File in Hive | High Level}
+	\begin{table}[h!]
+		\centering
+		\resizebox{\textwidth}{!}{%
+		%\begin{tabular}{|m{5cm}|m{6cm}|m{6cm}|}	    
+			\begin{tabular}{|l|l|l|}
+				\hline
+				\rowcolor{Gray}
+				Criteria & Text File & Binary File (e.g., ORC, Parquet) \\
+				\hline
+				Readability & Human-readable & Not human-readable \\
+				\hline
+				Debugging & Easier & Harder \\
+				\hline
+				Storage Size & Larger & More efficient \\
+				\hline
+				Speed & Slower & Faster \\
+				\hline
+				Delimiters & Basic (e.g., Control-A) & Complex types supported \\
+				\hline
+				Suitability & Small datasets & Large datasets \\
+				\hline
+			  \end{tabular}
+	}
+	\caption{Comparison between Text and Binary File Formats in Hive}	
+  \end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Why Binary Format is Faster than Text Format}
+	\begin{table}[h!]
+		\centering
+		\resizebox{\textwidth}{!}{%
+		%\begin{tabular}{|m{5cm}|m{6cm}|m{6cm}|}	    
+		\begin{tabular}{|l|l|l|}
+				\hline
+				\rowcolor{Gray}
+				Factor & Text File & Binary File \\
+				\hline
+				Parsing & Needs conversion & Directly readable \\
+				\hline
+				Memory & Less efficient & Efficient \\
+				\hline
+				Storage & Larger files & Smaller due to compression \\
+				\hline
+				Compression & Basic & Advanced algorithms \\
+				\hline
+				IO Operations & More reads/writes & Fewer reads/writes \\
+				\hline
+				Schema Evolution & Harder & Easier \\
+				\hline
+		\end{tabular}
+	}
+	\caption{Summary: Binary formats are generally more efficient in reading, writing, and storing data, making them faster for large datasets.}
+  \end{table}
+  \end{frame}
+\subsubsection*{Hive Data Management}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Understanding Hive Database}
+	\begin{itemize}
+	  \item \textbf{What is Hive Database?}
+		\begin{itemize}
+		  \item A namespace for tables.
+		  \item Helps in organizing data in Hive.
+		  \item Namespaces function to avoid naming conflicts for tables, views, partitions, columns, and so on.  Databases can also be used to enforce security for a user or group of users.
+		\end{itemize}
+	  
+	  \item \textbf{Table Organization}
+		\begin{itemize}
+		  \item Groups related tables under a single database.
+		  \item Simplifies data management.
+		  \item Homogeneous units of data which have the same schema.
+		\end{itemize}
+		
+	\end{itemize}
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Creating Database in Hive}
+
+\begin{lstlisting}[caption={Create Database command in Hive},language=SQL]
+CREATE [REMOTE] (DATABASE|SCHEMA) [IF NOT EXISTS] database_name
+[COMMENT database_comment]
+[LOCATION hdfs_path]
+[MANAGEDLOCATION hdfs_path]
+[WITH DBPROPERTIES (property_name=property_value, ...)];  
+\end{lstlisting}	
+\begin{lstlisting}[caption={Create Database Example},language=SQL]
+CREATE DATABASE hrDB;
+USE hrDB;
+\end{lstlisting}		
+
+\end{frame}  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Drop Database in Hive}
+
+\begin{lstlisting}[caption={Drop Database command in Hive},language=SQL]
+DROP (DATABASE|SCHEMA) [IF EXISTS] database_name [RESTRICT|CASCADE];
+\end{lstlisting}		
+	
+\end{frame} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Alter Database in Hive}
+
+\begin{lstlisting}[caption={Alter Database command in Hive},language=SQL]
+ALTER (DATABASE|SCHEMA) database_name 
+SET DBPROPERTIES (property_name=property_value, ...);
+\end{lstlisting}		
+\begin{lstlisting}[caption={Alter Database Example},language=SQL]
+ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;
+\end{lstlisting}		
+\end{frame} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Use Database in Hive}
+
+\begin{lstlisting}[caption={Alter Database command in Hive},language=SQL]
+USE database_name;
+USE DEFAULT;
+\end{lstlisting}		
+\end{frame} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Hive Schema vs. Database}		  
+	\begin{itemize}
+	  \item In Hive, the terms 'schema' and 'database' are interchangeable.
+	  \item Both serve as a namespace for tables.
+	\end{itemize}	
+	\begin{tcolorbox}[colback=white, colframe=black, title=\scriptsize From Hive Documentation]
+		\small \color{darkgray}{\textit{%
+		"The uses of SCHEMA and DATABASE are interchangeable – they mean the same thing. CREATE DATABASE was added in Hive 0.6 (HIVE-675). The WITH DBPROPERTIES clause was added in Hive 0.7 (HIVE-1836)."
+		}}
+	  \end{tcolorbox}
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Creating Tables in Hive}
+\vspace{-.7cm}
+\begin{lstlisting}[caption={Create Table Commands},language=SQL]
+CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
+[(col_name data_type [column_constraint_specification] [COMMENT col_comment], ... [constraint_specification])]
+[COMMENT table_comment]
+[PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]
+[CLUSTERED BY (col_name, col_name, ...) [SORTED BY (col_name [ASC|DESC], ...)] INTO num_buckets BUCKETS]
+[SKEWED BY (col_name, col_name, ...)
+ON ((col_value, col_value, ...), (col_value, col_value, ...), ...)
+[STORED AS DIRECTORIES]
+[
+[ROW FORMAT row_format] 
+[STORED AS file_format]
+| STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]
+]
+[LOCATION hdfs_path]
+[TBLPROPERTIES (property_name=property_value, ...)]
+[AS select_statement];
+\end{lstlisting}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 1:\scriptsize Table Creation Basics]
+		\small
+		\begin{itemize}
+			\item \texttt{CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db\_name.]table\_name}
+			\begin{itemize}
+			  \item \texttt{TEMPORARY}: Creates a temporary table.
+			  \item \texttt{EXTERNAL}: Defines the table as an external table.
+			  \item \texttt{IF NOT EXISTS}: Only creates if the table does not exist.
+			  \item \texttt{db\_name.table\_name}: Specifies database and table name.
+			\end{itemize}
+		  \end{itemize}
+	\end{tcolorbox}
+
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 2: Column Definitions]
+		\small
+		\begin{itemize}
+		\item \texttt{[(col\_name data\_type [COMMENT col\_comment], ...)]}
+			\begin{itemize}
+				\item Define the columns and their data types.
+				\item Optional comment for each column.
+			\end{itemize}
+		\end{itemize}
+	\end{tcolorbox}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 2: Column Definitions (data_type)]
+		\small	
+			\begin{itemize}	
+				\vspace{-0.2cm}\item \textbf{Primitive Type}: Basic data types like INT, BIGINT, BOOLEAN, FLOAT, DOUBLE, STRING, TIMESTAMP, DECIMAL, DATE, etc.
+				\vspace{-0.2cm}\item \textbf{Array Type}: Ordered sequences of the same type, e.g., ARRAY<INT>.			
+				\vspace{-0.2cm}\item \textbf{Map Type}: Key-value pairs, e.g., MAP<STRING, INT>.				
+				\vspace{-0.2cm}\item \textbf{Struct Type}: Collection of named fields that can be different types, e.g., STRUCT<field1:STRING, field2:INT>.				
+				\vspace{-0.2cm}\item \textbf{Union Type}: Can be any of the specified types, e.g., UNIONTYPE<STRING, INT>.		  
+			\end{itemize}
+	\end{tcolorbox}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 3: Row Format and SerDe in Hive]
+		\small
+	\begin{itemize}
+	  \item \texttt{[ROW FORMAT row\_format]}
+	  \begin{itemize}
+		\item Specifies the row format (e.g., delimited, sequence file, etc.)
+		\item Native SerDe is used if ROW FORMAT is not specified or ROW FORMAT DELIMITED is specified.
+		\item Use SERDE clause for custom SerDe.
+	  \end{itemize}
+	\end{itemize}
+	\end{tcolorbox}
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{CREATE TABLE in Hive | continued}
+
+
+\textbf{RegEx Example}
+\begin{lstlisting}[caption={RegEx Example},language=SQL]
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+WITH SERDEPROPERTIES ("input.regex" = "<regex>")
+STORED AS TEXTFILE;
+\end{lstlisting}
+  
+\textbf{CSV/TSV Example}
+\begin{lstlisting}[caption={CSV/TSV Example},language=SQL]
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES ("separatorChar" = "\t","quoteChar" = "'", "escapeChar" = "\\")
+STORED AS TEXTFILE;
+\end{verbatim}
+\end{lstlisting}	  
+
+
+  \end{frame}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 4: File Format and Storage Handler]
+		\small
+	\begin{itemize}
+	  \item \texttt{[STORED AS file\_format | STORED BY 'storage.handler.class.name']}
+	  \begin{itemize}
+		\item Specifies the file format (e.g., TEXTFILE, PARQUET, SEQUENCEFILE, ORC, AVRO, JSONFILE etc.).
+		\item Custom storage handler (e.g., INPUTFORMAT input_format_classname OUTPUTFORMAT output_format_classname)
+	  \end{itemize}
+	\end{itemize}
+	\end{tcolorbox}
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+		\small
+	\begin{itemize}
+	  \item \texttt{[PARTITIONED BY (col\_name data\_type [COMMENT col\_comment], ...)]}
+	  \begin{itemize}
+		\item Specifies columns to be used for partitioning.
+		\vspace{-0.2cm}\item Partitioned tables can be created using the \textcolor{blue}{\textbf{\texttt{PARTITIONED BY}}} clause.
+		\vspace{-0.2cm}\item A table can have one or more partition keys, and a separate data directory is created for each distinct value combination in the partition columns.
+		\vspace{-0.2cm}\item Partitioning enables efficient data filtering.
+		
+	  \end{itemize}
+	\end{itemize}
+	\end{tcolorbox}
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}[fragile]
+	\frametitle{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+		\small
+\begin{lstlisting}[caption={Create Partitioned Table},language=SQL]
+CREATE TABLE sales (
+product_id INT,
+order_date STRING,
+amount DOUBLE
+)
+PARTITIONED BY (year INT, region STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+\end{lstlisting}
+\end{tcolorbox}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\begin{frame}[fragile]
+	\frametitle{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+		\small
+
+	\begin{itemize}
+	\item \textbf{Table:} sales
+	\item \textbf{Columns:} product_id, order_date, amount
+	\item \textbf{Partition Columns:} year, region
+	\end{itemize}
+	This table stores sales records. Each record includes the \textit{product\_id}, \textit{order\_date}, and \textit{amount} of the sale.
+\end{tcolorbox}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}
+\vspace{-0.5cm}\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+\small
+\vspace{-0.3cm}\begin{lstlisting}[caption={Each partition by \textit{year} and \textit{region} is represented as a sub-directory under the main \textit{sales} directory.},language=SQL,showstringspaces=false,showspaces=false,xleftmargin=4.0ex]
+/sales/
+->/year=2021/
+->->/region=US/
+->->->file1
+->->->file2
+->->/region=EU/
+->->->file1
+->/year=2022/
+->->/region=US/
+->->->file1
+->->/region=EU/
+->->->file1
+\end{lstlisting}
+	
+\end{tcolorbox}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+\small
+\begin{lstlisting}[caption={SQL},language=SQL]
+SELECT * FROM sales WHERE year=2021 AND region='US';
+\end{lstlisting}
+\vspace{-0.5cm}
+  \begin{table}[h!]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|p{6cm}|p{6cm}|}
+			\hline
+			\rowcolor{Gray}
+			Non-Partitioned Table & Partitioned Table \\
+			\hline
+			Step 1: Full table scan & Step 1: Identify partitions (\texttt{year=2021, region='US'}) \\
+			\hline
+			Step 2: Apply \texttt{WHERE} filters (\texttt{year=2021 AND region='US'}) & Step 2: Scan only those partitions \\
+			\hline
+		  \end{tabular}
+}
+\caption{Comparison: Non-Partitioned vs Partitioned Table.}
+\end{table}
+
+\end{tcolorbox}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{CREATE TABLE in Hive | continued}
+	\vspace{-0.6cm}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+	\small
+	\vspace{-0.3cm}
+\begin{lstlisting}[caption={Explain Plan Command for Non-Partitioned Table },language=SQL]
+EXPLAIN SELECT * FROM sales_non_partitioned WHERE year=2021 AND region='US';
+\end{lstlisting}
+	\vspace{-0.5cm}
+	\begin{figure}
+		\includegraphics[width=.7\textwidth,height=\textheight,keepaspectratio]{./Figures/chapter-03/non_partitioned_explain.png}
+		\caption{Non-Partitioned Table Execution Plan Summary}	
+	\end{figure}
+\end{tcolorbox}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{CREATE TABLE in Hive | continued}
+	\vspace{-0.6cm}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+	\small
+	\vspace{-0.3cm}
+\begin{lstlisting}[caption={Explain Plan Command for Partitioned Table},language=SQL]
+EXPLAIN SELECT * FROM sales_partitioned WHERE year=2021 AND region='US';
+\end{lstlisting}
+	\vspace{-0.5cm}
+	\begin{figure}
+	\includegraphics[width=.7\textwidth,height=\textheight,keepaspectratio]{./Figures/chapter-03/partitioned_explain.png}
+\caption{Partitioned Table Execution Plan Summary}	
+\end{figure}
+\end{tcolorbox}
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+
+	\begin{table}[h!]
+		\centering
+		\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|p{4cm}|p{5cm}|p{5cm}|}	
+			\hline
+			\rowcolor{Gray}
+			Aspect & Non-Partitioned & Partitioned \\
+			\hline
+			Full Table Scan & Yes & No \\
+			Partition Pruning & N/A & Yes \\
+			I/O Cost & High & Low \\
+			Time Complexity & More Time & Less Time \\
+			Resource Utilization & High & Low \\
+			\hline
+	\end{tabular}
+	}
+\caption{Comparison: Non-Partitioned vs Partitioned Table.}
+\end{table}
+\end{tcolorbox}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting]
+		\small
+	\begin{itemize}
+	  \item \texttt{[CLUSTERED BY (col\_name, ...) [SORTED BY (col\_name [ASC|DESC], ...)] INTO num\_buckets BUCKETS]}
+	  \begin{itemize}
+		\item Clustering and sorting options for better performance.
+	  \end{itemize}
+	\end{itemize}
+	\end{tcolorbox}
+  \end{frame}
+  
+  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Data Skewing]
+		\small
+	\begin{itemize}
+	  \item \texttt{[SKEWED BY (col\_name, ...) ON ((col\_value, ...), ...) [STORED AS DIRECTORIES]]}
+	  \begin{itemize}
+		\item Specifies skewed columns and values for better query performance.
+		\item Optionally store these as directories.
+	  \end{itemize}
+	\end{itemize}
+	\end{tcolorbox}
+  \end{frame}
+  
+
+  
+  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Location]
+		\small
+	\begin{itemize}
+	  \item \texttt{[LOCATION hdfs\_path]}
+	  \begin{itemize}
+		\item Sets the HDFS directory where table data will be stored.
+	  \end{itemize}
+	\end{itemize}
+	\end{tcolorbox}	
+  \end{frame}
+  
+  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Table Properties]
+		\small
+	\begin{itemize}
+	  \item \texttt{[TBLPROPERTIES (property\_name=property\_value, ...)]}
+	  \begin{itemize}
+		\item Sets table-level properties.
+	  \end{itemize}
+	\end{itemize}
+	\end{tcolorbox}
+  \end{frame}
+  
+  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: CTAS]
+		\small
+	\begin{itemize}
+	  \item \texttt{[AS select\_statement]}
+	  \begin{itemize}
+		\item Populates the table using the result set of a SELECT statement.
+	  \end{itemize}
+	\end{itemize}
+	\end{tcolorbox}
+  \end{frame}
+   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Creating Tables in Hive | continued}
+\begin{lstlisting}[caption={Create Table employess in Hive under hrDB},language=SQL]
+CREATE TABLE employees (
+id INT,
+name STRING,
+age INT,
+salary FLOAT
+)
+\end{lstlisting}
+  
+\begin{itemize}	
+  \item \textbf{HDFS Directory Structure:}
+  \begin{itemize}
+	\item Root directory for Hive: `/user/hive/warehouse`
+	\item Database directory: `/user/hive/warehouse/hrDB`
+	\item Table directory: `/user/hive/warehouse/hrDB/employees`
+  \end{itemize}
+\end{itemize}  
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Query Execution Plan}

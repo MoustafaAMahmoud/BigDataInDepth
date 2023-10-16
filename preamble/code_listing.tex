@@ -10,12 +10,13 @@
 
 % Redefine the lstlisting format to remove the unwanted prefix
 \DeclareCaptionFormat{mylst}{#1#2#3}
+\DeclareCaptionFont{mycolor}{\color{red}}
 \renewcommand\lstlistingname{Code Snippet:}
 \renewcommand\lstlistlistingname{Code Snippet:}
 %\DeclareCaptionStyle{listing} [justification=raggedright,indention=0pt, labelfont=bf]{}
 %\captionsetup[lstlisting]{style=listing, labelsep=none}
 
-\captionsetup[lstlisting]{format=mylst,labelfont=bf,labelsep=space,justification=raggedright}
+\captionsetup[lstlisting]{format=mylst,labelfont={color=harvardcrimson},labelsep=space,justification=raggedright}
 
 \lstset{%
 	frame=tb,
@@ -37,12 +38,15 @@
 	breaklines=true,
 	breakatwhitespace=true,
 	breakindent=20pt,
-	tabsize=3,
+	tabsize=4,
 	frameround=tttt,
 	escapeinside={\%*}{*)},        % to add a comment within your code
 	emph={count,take,textFile,filter,first,collect,mkString}, % Scala functions
 	emphstyle={\color{mauve}},
 	morekeywords ={val,sc},        % to add more keywords to the set  
+	showspaces=false,
+	showstringspaces=false,
+	keepspaces=true
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -50,7 +54,7 @@
 	language=SQL,
 	backgroundcolor=\color{white},
 	basicstyle=\footnotesize,
-	breakatwhitespace=false,
+	%breakatwhitespace=false,
 	breaklines=true,
 	captionpos=b,
 	numbers=left,                   % where to put the line-numbers
@@ -58,33 +62,66 @@
 	stepnumber=1,                   % the step between two line-numbers. If it's 1, each line will be numbered
 	numbersep=5pt,                  % how far the line-numbers are from the code
 	commentstyle=\color{dkgreen},
-	deletekeywords={...},
-	escapeinside={\%*}{*)},
-	extendedchars=true,
-	frame=single,
-	keepspaces=true,
+	%deletekeywords={...},
+	%escapeinside={\%*}{*)},
+	%extendedchars=true,
+	frame=tb,
+	keepspaces=false,
 	keywordstyle=\color{blue},
-	morekeywords={*,modify,MODIFY,...},
+	morekeywords={modify,MODIFY,ALL, ALTER, AND, ARRAY, AS, AUTHORIZATION, BETWEEN, BIGINT, BINARY, BOOLEAN, BOTH, BY, CASE, CAST, CHAR, COLUMN, CONF, CREATE, CROSS, CUBE, CURRENT, CURRENT_DATE, CURRENT_TIMESTAMP, CURSOR, DATABASE, DATE, DECIMAL, DELETE, DESCRIBE, DISTINCT, DOUBLE, DROP, ELSE, END, EXCHANGE, EXISTS, EXTENDED, EXTERNAL, FALSE, FETCH, FLOAT, FOLLOWING, FOR, FROM, FULL, FUNCTION, GRANT, GROUP, GROUPING, HAVING, IF, IMPORT, IN, INNER, INSERT, INT, INTERSECT, INTERVAL, INTO, IS, JOIN, LATERAL, LEFT, LESS, LIKE, LOCAL, MACRO, MAP, MORE, NONE, NOT, NULL, OF, ON, OR, ORDER, OUT, OUTER, OVER, PARTIALSCAN,PARTITIONED, STORED, TERMINATED, ROW, FORMAT, PARTITION,PERCENT, PRECEDING, PRESERVE, PROCEDURE, RANGE, READS, REDUCE, REVOKE, RIGHT, ROLLUP, ROW, ROWS, SELECT, SET, SMALLINT, TABLE, TABLESAMPLE, THEN, TIMESTAMP, TO, TRANSFORM, TRIGGER, TRUE, TRUNCATE, UNBOUNDED, UNION, UNIQUEJOIN, UPDATE, USER, USING, UTC_TMESTAMP, VALUES, VARCHAR, WHEN, WHERE, WINDOW, WITH, BY},
 	numbers=left,
 	numbersep=15pt,
 	numberstyle=\tiny,
 	rulecolor=\color{ltgray},
-	showspaces=false,
 	showstringspaces=false,
 	showtabs=false,
 	stepnumber=1,
 	tabsize=4,
-	caption=Example SQL Query
+	caption=Example SQL Query,
+	showspaces=false,
+	xleftmargin=4.0ex,	
+	keepspaces=true
 }
-% \lstset{
-%   language=SQL,
-%   basicstyle=\ttfamily,
-%   keywordstyle=\color{blue},
-%   commentstyle=\color{green},
-%   stringstyle=\color{red},
-%   showstringspaces=false,
-%   tabsize=2
-% }
+
+%%%%%%%%%%YML 
+\newcommand\YAMLcolonstyle{\color{red}}
+\newcommand\YAMLkeystyle{\color{black}}
+\newcommand\YAMLvaluestyle{\color{blue}}
+
+\makeatletter
+
+% here is a macro expanding to the name of the language
+% (handy if you decide to change it further down the road)
+\newcommand\language@yaml{yaml}
+
+\expandafter\expandafter\expandafter\lstdefinelanguage
+\expandafter{\language@yaml}
+{
+  keywords={true,false,null,y,n,STAGE,PLANS,STAGE PLANS,Map, Reduce,Scan, Table,TableScan,Operator,Tree,alias,predicate},
+  keywordstyle=\color{darkgray}\footnotesize,
+  basicstyle=\footnotesize,
+  basicstyle=\YAMLkeystyle,                                 % assuming a key comes first
+  sensitive=false,
+  comment=[l]{\#},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple},
+  stringstyle=\YAMLvaluestyle,
+  moredelim=[l][\color{orange}]{\&},
+  moredelim=[l][\color{magenta}]{*},
+  moredelim=**[il][\YAMLcolonstyle{:}\YAMLvaluestyle]{:},   % switch to value style at :
+  morestring=[b]',
+  morestring=[b]",
+  literate =    {---}{{\ProcessThreeDashes}}3
+                {>}{{\textcolor{red}\textgreater}}1     
+                {|}{{\textcolor{red}\textbar}}1 
+                {\ -\ }{{\mdseries\ -\ }}3,
+}
+
+% switch to key style at EOL
+\lst@AddToHook{EveryLine}{\ifx\lst@language\language@yaml\YAMLkeystyle\fi}
+\makeatother
+
+\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
