@@ -76,53 +76,48 @@
 	showstringspaces=false,
 	showtabs=false,
 	stepnumber=1,
-	tabsize=4,
+	tab=2,
+	literate={\ \ }{{\ }}1,
+	keepspaces=true,
+	showtabs=false,
 	caption=Example SQL Query,
 	showspaces=false,
 	xleftmargin=4.0ex,	
 	keepspaces=true
 }
-
 %%%%%%%%%%YML 
-\newcommand\YAMLcolonstyle{\color{red}}
-\newcommand\YAMLkeystyle{\color{black}}
-\newcommand\YAMLvaluestyle{\color{blue}}
-
-\makeatletter
-
-% here is a macro expanding to the name of the language
-% (handy if you decide to change it further down the road)
-\newcommand\language@yaml{yaml}
-
-\expandafter\expandafter\expandafter\lstdefinelanguage
-\expandafter{\language@yaml}
-{
-  keywords={true,false,null,y,n,STAGE,PLANS,STAGE PLANS,Map, Reduce,Scan, Table,TableScan,Operator,Tree,alias,predicate},
-  keywordstyle=\color{darkgray}\footnotesize,
-  basicstyle=\footnotesize,
-  basicstyle=\YAMLkeystyle,                                 % assuming a key comes first
-  sensitive=false,
-  comment=[l]{\#},
-  morecomment=[s]{/*}{*/},
-  commentstyle=\color{purple},
-  stringstyle=\YAMLvaluestyle,
-  moredelim=[l][\color{orange}]{\&},
-  moredelim=[l][\color{magenta}]{*},
-  moredelim=**[il][\YAMLcolonstyle{:}\YAMLvaluestyle]{:},   % switch to value style at :
-  morestring=[b]',
-  morestring=[b]",
-  literate =    {---}{{\ProcessThreeDashes}}3
-                {>}{{\textcolor{red}\textgreater}}1     
-                {|}{{\textcolor{red}\textbar}}1 
-                {\ -\ }{{\mdseries\ -\ }}3,
+\lstdefinestyle{yaml}{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+	morekeywords={Name, Type, Operations, Condition,TableName},
+    keywordstyle=\color{blue},
+    morestring=[b]",
+    stringstyle=\color{red},
+    keepspaces=true
 }
 
-% switch to key style at EOL
-\lst@AddToHook{EveryLine}{\ifx\lst@language\language@yaml\YAMLkeystyle\fi}
-\makeatother
-
-\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
-
+\lstdefinelanguage{my-yaml}{
+  keywords={spec, containers, name,Type,TableName,PruningEnabled,PruningEnabled,RelevantBuckets,Condition}, % ,... all the keyword you want
+  keywordstyle=\color{blue}\bfseries,
+  moredelim=[is][commentstyle]{||}{££}, % invisible custom delimiters
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{olive}\ttfamily,
+  stringstyle=\color{orange}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstdefinestyle{my-yamll}{	
+     basicstyle=\color{black}\footnotesize,
+     rulecolor=\color{blue},
+     string=[s]{'}{'},
+     stringstyle=\color{black},
+     comment=[l]{:},
+     commentstyle=\color{blue},
+     morecomment=[l]{-}
+ }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand\JSONnumbervaluestyle{\color{red}}

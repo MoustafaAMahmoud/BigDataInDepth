@@ -432,7 +432,7 @@ WHERE Country = 'USA';
 	\begin{minipage}{\textwidth}
 		\begin{tikzpicture}
 		  % Place image at the left side
-		  \node[anchor=west] (image) at (0,0) {\includegraphics[width=\textwidth,height=.78\textheight,keepaspectratio]{./Figures/chapter-03/datalake_table_format.png}};
+		  \node[anchor=west] (image) at (0,0) {\includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-03/datalake_table_format.png}};
 		  % Place text and arrow
 		  \draw[<-, thick] (image) -- ++(4,1) node[right, align=left,font=\small, text=gray] {Apache Iceberg: The Definitive Guide: \\Data Lakehouse Functionality,\\ Performance, and Scalability\\ on the Data Lake\\ PUBLISHED BY:
 		  O'Reilly Media, Inc.};
@@ -513,7 +513,10 @@ WHERE Country = 'USA';
 	\caption{Summary: Binary formats are generally more efficient in reading, writing, and storing data, making them faster for large datasets.}
   \end{table}
   \end{frame}
-\subsubsection*{Hive Data Management}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hive Data Management}
+\subsubsection{Hive Database}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Understanding Hive Database}
 	\begin{itemize}
@@ -533,6 +536,36 @@ WHERE Country = 'USA';
 		
 	\end{itemize}
   \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Hive Warehouse Structure}
+% %\vspace{-0.5cm}
+\begin{figure}
+\includegraphics[width=\textwidth,height=.75\textheight]{./Figures/chapter-03/mermaid-diagram-hive_db.png}
+
+\caption{Hive database structure}	
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Hive Warehouse Structure | continued}
+
+
+\begin{figure}
+	\includegraphics[width=\textwidth,height=.65\textheight]{./Figures/chapter-03/mermaid-diagram-retail_db.png}
+	
+	\caption{Hive database structure | Retail DB Example}	
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Hive Warehouse Structure | continued}
+
+
+	\begin{figure}
+	\includegraphics[width=\textwidth,height=.65\textheight,keepaspectratio]{./Figures/chapter-03/Screenshot_retail_db.png}
+		
+	\caption{Hive database structure | Retail DB HDFS Structure}	
+	\end{figure}
+	\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Creating Database in Hive}
 
@@ -596,6 +629,7 @@ USE DEFAULT;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Hive Tables}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Creating Tables in Hive}
 \vspace{-.7cm}
@@ -622,7 +656,7 @@ ON ((col_value, col_value, ...), (col_value, col_value, ...), ...)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{CREATE TABLE in Hive | continued}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 1:\scriptsize Table Creation Basics]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 1: Table Creation Basics]
 		\small
 		\begin{itemize}
 			\item \texttt{CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db\_name.]table\_name}
@@ -766,24 +800,37 @@ STORED AS TEXTFILE;
 \frametitle{CREATE TABLE in Hive | continued}
 \vspace{-0.5cm}\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
 \small
-\vspace{-0.3cm}\begin{lstlisting}[caption={Each partition by \textit{year} and \textit{region} is represented as a sub-directory under the main \textit{sales} directory.},language=SQL,showstringspaces=false,showspaces=false,xleftmargin=4.0ex]
-/sales/
-->/year=2021/
-->->/region=US/
-->->->file1
-->->->file2
-->->/region=EU/
-->->->file1
-->/year=2022/
-->->/region=US/
-->->->file1
-->->/region=EU/
-->->->file1
-\end{lstlisting}
-	
+\vspace{-0.2cm}
+\begin{figure}
+	\includegraphics[width=\textwidth,height=.6\textheight,keepaspectratio]{./Figures/chapter-03/Screenshot_partitioned_example.png}
+	\caption{Hive database structure | Retail DB HDFS Structure}	
+	\end{figure}	
 \end{tcolorbox}
 	
 \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[fragile]
+% \frametitle{CREATE TABLE in Hive | continued}
+% \vspace{-0.5cm}\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+% \small
+% \vspace{-0.2cm}
+% \begin{lstlisting}[caption={Explain Plan Command for Non-Partitioned Table }]
+% /sales/
+% |___ /year=2021/
+%     |___ /region=US/
+%     |       |___ file1
+%     |       |___ file2
+%     |___ /region=EU/
+%             |___ file1
+% |___ /year=2022/
+%     |___ /region=US/
+%     |       |___ file1
+%     |___ /region=EU/
+%             |___ file1
+% \end{lstlisting}
+% \end{tcolorbox}	
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}
@@ -885,12 +932,325 @@ EXPLAIN SELECT * FROM sales_partitioned WHERE year=2021 AND region='US';
 	\begin{itemize}
 	  \item \texttt{[CLUSTERED BY (col\_name, ...) [SORTED BY (col\_name [ASC|DESC], ...)] INTO num\_buckets BUCKETS]}
 	  \begin{itemize}
-		\item Clustering and sorting options for better performance.
+		\item Clustering and sorting options for better performance and to optimize data storage.
 	  \end{itemize}
 	\end{itemize}
 	\end{tcolorbox}
   \end{frame}
-  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\begin{frame}
+\frametitle{CREATE TABLE in Hive | continued}
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+	\small
+	\begin{table}[h!]
+		\centering
+		\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|p{4cm}|p{5cm}|p{5cm}|p{5cm}|}	
+			\hline
+			\rowcolor{Gray}
+			ID & Name & Department & Salary \\
+			\hline
+			1 & John & HR & 5000 \\
+			2 & Alice & Sales & 6000 \\
+			3 & Bob & IT & 7000 \\
+			4 & Carol & HR & 8000 \\
+			5 & Dave & Sales & 9000 \\
+			6 & Eve & IT & 4000 \\
+			\hline
+	  	\end{tabular}
+		}
+	\end{table}
+\end{tcolorbox}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}	
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+\small
+\begin{lstlisting}[caption={Create CLUSTERED Table},language=SQL]
+CREATE TABLE Employee (
+  ID INT,
+  Name STRING,
+  Department STRING,
+  Salary INT)
+CLUSTERED BY (Department) INTO 3 BUCKETS;
+\end{lstlisting}
+\end{tcolorbox}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	% Slide 4: Bucket Distribution
+\begin{frame}
+\frametitle{CREATE TABLE in Hive | continued}
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+
+\begin{itemize}
+\item Bucket 1: Data for HR
+\item Bucket 2: Data for Sales
+\item Bucket 3: Data for IT
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\begin{frame}
+	\frametitle{CREATE TABLE in Hive | continued}		
+	\vspace{-0.5cm}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+		\vspace{-0.2cm}
+		\begin{figure}
+			\includegraphics[width=\textwidth,height=.65\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by.png}				
+			\caption{Hive Table | Clustered by mechanism}	
+		\end{figure}
+	\end{tcolorbox}				
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\begin{frame}
+	\frametitle{CREATE TABLE in Hive | continued}		
+	\vspace{-0.5cm}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+		\vspace{-0.2cm}
+		\begin{figure}
+			\includegraphics[width=\textwidth,height=.65\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by_exp.png}				
+			\caption{Hive Table | Clustered by mechanism example}	
+		\end{figure}
+	\end{tcolorbox}				
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\begin{frame}
+	\frametitle{CREATE TABLE in Hive | continued}		
+	\vspace{-0.5cm}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+
+		\begin{figure}
+			\includegraphics[width=\textwidth,height=1.2\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by_exp_hash.png}				
+			\caption{Hive Table | Clustered by mechanism example}	
+		\end{figure}
+	\end{tcolorbox}				
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}	
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+\small
+\begin{lstlisting}[caption={Simple SQL statement},language=SQL]
+EXPLAIN SELECT * FROM Employee WHERE Department = 'HR';
+\end{lstlisting}
+\end{tcolorbox}
+\end{frame}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}	
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+\small
+\begin{lstlisting}[caption={Simplified Explain Plan for Table Without CLUSTERED BY},style=my-yamll]
+ExplainPlan:
+Stage:    
+    - Name: "Stage-1"
+        Type: "Map Reduce"
+    Operations:
+        - TableScan: 
+            TableName: "Employee"
+        - Filter: 
+            Condition: "Department='HR'"
+\end{lstlisting}
+\end{tcolorbox}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}	
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+\small
+\begin{lstlisting}[caption={Simplified Explain Plan for Table with CLUSTERED BY},style=my-yamll]
+ExplainPlan:
+Stage: 	
+    - Name: "Stage-1"
+      Type: "Map Reduce"
+    Operations:
+        - TableScan: 
+            TableName: "Employee"
+            Bucketing: 
+                PruningEnabled: true
+                RelevantBuckets: "1/3"
+        - Filter: 
+            Condition: "Department='HR'"
+\end{lstlisting}
+\end{tcolorbox}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{CREATE TABLE in Hive | continued}	
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+	\begin{itemize}
+		\item Faster JOIN operations.
+		\item Optimized for grouped analysis.
+	\end{itemize}
+\end{tcolorbox}	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Sorting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}	
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | SORTED BY]
+	\small
+\begin{lstlisting}[caption={With CLUSTERED BY and SORT BY},style=my-yamll]
+CREATE TABLE Employee (
+    ID INT,
+    Name STRING,
+    Department STRING,
+    Salary INT)
+CLUSTERED BY (Department) INTO 3 BUCKETS;
+\end{lstlisting}
+\end{tcolorbox}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}	
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | SORTED BY]
+	\small
+\begin{lstlisting}[caption={With only CLUSTERED BY},style=my-yamll]
+CREATE TABLE Employee (
+    ID INT,
+    Name STRING,
+    Department STRING,
+    Salary INT)
+CLUSTERED BY (Department) SORTED BY (ID) INTO 3 BUCKETS;
+\end{lstlisting}
+\end{tcolorbox}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}	
+\vspace{-0.5cm}
+
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | SORTED BY]
+	\small
+\begin{lstlisting}[caption={Simplified Explain Plan With only CLUSTERED BY},style=my-yamll]
+Query: 
+    Text: "EXPLAIN SELECT * FROM Employee WHERE Department = 'HR'"
+    ExplainPlan:
+    Stage:
+        - Name: "Stage-1"
+        Type: "Map Reduce"
+        Operations:
+            - TableScan: 
+              TableName: "Employee"
+              Bucketing: 
+                PruningEnabled: true
+                RelevantBuckets: "1/3"
+          - Filter: 
+              Condition: "Department='HR'"
+\end{lstlisting}
+\end{tcolorbox}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}    
+\vspace{-0.5cm}
+
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | SORTED BY]
+	\small
+\begin{lstlisting}[caption={Simplified Explain Plan: With CLUSTERED BY and SORT BY},style=my-yamll]
+Query: 
+Text: "EXPLAIN SELECT * FROM Employee WHERE Department = 'HR'"
+ExplainPlan:
+    Stage:
+      - Name: "Stage-1"
+        Type: "Map Reduce"
+        Operations:
+          - TableScan: 
+              TableName: "Employee"
+              Bucketing: 
+                PruningEnabled: true
+                RelevantBuckets: "1/3"
+          - Filter: 
+              Condition: "Department='HR'"
+          - Sort:
+              Columns: "ID"    
+\end{lstlisting}
+\end{tcolorbox}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}    
+\vspace{-0.5cm}
+
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Clustered By: Key Points]
+		\begin{itemize}
+		\item \textbf{Data Distribution}: Distributes rows based on hash value of one or more columns.
+		\item \textbf{Query Optimization}: Faster responses when filtering by clustered columns.
+		\item \textbf{Storage}: Organizes data in HDFS, improving data locality.
+		\item \textbf{Better with Joins}: Joins on bucketed columns are optimized.
+		\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}    
+\vspace{-0.5cm}
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Clustered By: When to Use]
+		\begin{itemize}
+			\item \textbf{Large Datasets}: Effective for partitioning large datasets.
+			\item \textbf{Common Queries}: Use when filtering or joining on specific columns.
+		\end{itemize}
+\end{tcolorbox}
+\end{frame}
+		
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}    
+\vspace{-0.5cm}
+
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Sort By: Key Points]
+		\begin{itemize}
+			\item \textbf{Ordering}: Sorts data within each bucket.
+			\item \textbf{Local Sort}: Sorting is local to each bucket, not global.
+			\item \textbf{Speed}: May speed up range-based queries within a bucket.
+		\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}    
+\vspace{-0.5cm}		
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Sort By: When to Use]
+		\begin{itemize}
+			\item \textbf{Range Queries}: Useful for frequent range-based queries on a column within a bucket.
+			\item \textbf{Ordered Reads}: Use if you need data in a specific order within each bucket.				  
+		\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{CREATE TABLE in Hive | continued}    
+\vspace{-0.5cm}		
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Sort By: When to Use]
+		\begin{itemize}
+			\item Understand the query and consumption patterns.
+		\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+		% \begin{frame}[fragile]
+		% 	\frametitle{CREATE TABLE in Hive | continued}    
+		% 	\vspace{-0.5cm}		
+		% 	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Conclusion ]					
+		% 			\begin{itemize}
+		% 				\item Understand the query and consumption patterns.
+		% 			\end{itemize}
+		% 	\end{tcolorbox}
+		% 	\end{frame}		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \begin{frame}{CREATE TABLE in Hive | continued}
 	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Data Skewing]
 		\small
@@ -942,30 +1302,6 @@ EXPLAIN SELECT * FROM sales_partitioned WHERE year=2021 AND region='US';
 	\end{tcolorbox}
   \end{frame}
    
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Creating Tables in Hive | continued}
-\begin{lstlisting}[caption={Create Table employess in Hive under hrDB},language=SQL]
-CREATE TABLE employees (
-id INT,
-name STRING,
-age INT,
-salary FLOAT
-)
-\end{lstlisting}
-  
-\begin{itemize}	
-  \item \textbf{HDFS Directory Structure:}
-  \begin{itemize}
-	\item Root directory for Hive: `/user/hive/warehouse`
-	\item Database directory: `/user/hive/warehouse/hrDB`
-	\item Table directory: `/user/hive/warehouse/hrDB/employees`
-  \end{itemize}
-\end{itemize}  
-  \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 
 
