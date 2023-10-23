@@ -40,11 +40,17 @@
 \usepackage[inkscapelatex=false]{svg}
 \usepackage{tcolorbox}
 \usepackage{graphicx}
+\usepackage{etoolbox}
+%\BeforeBeginEnvironment{figure}{\vspace{-1em}}
+%\BeforeBeginEnvironment{lstlisting}{\vspace{-1em}}
+\BeforeBeginEnvironment{table}{\vspace{-1em}}
+
 %\usepackage{enumitem}
 \usepackage{caption}
 \DeclareCaptionLabelFormat{nospace}{#1#2}
-\captionsetup[table]{skip=0pt,font=footnotesize,labelfont={color=blue,footnotesize,bf},name=Table T-,labelformat=nospace,labelsep=colon}
-\captionsetup[figure]{skip=0pt,font=footnotesize,labelfont={color=blue,footnotesize,bf},name=Figure F-,labelformat=nospace,labelsep=colon}
+\captionsetup[table]{skip=1pt,font=footnotesize,labelfont={color=blue,footnotesize,bf},name=Table T-,labelformat=nospace,labelsep=colon}
+\captionsetup[figure]{skip=1pt,font=footnotesize,labelfont={color=blue,footnotesize,bf},name=Figure F-,labelformat=nospace,labelsep=colon}
+
 
 
 %\overfullrule=2cm

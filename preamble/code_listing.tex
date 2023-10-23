@@ -10,13 +10,11 @@
 
 % Redefine the lstlisting format to remove the unwanted prefix
 \DeclareCaptionFormat{mylst}{#1#2#3}
-\DeclareCaptionFont{mycolor}{\color{red}}
-\renewcommand\lstlistingname{Code Snippet:}
-\renewcommand\lstlistlistingname{Code Snippet:}
-%\DeclareCaptionStyle{listing} [justification=raggedright,indention=0pt, labelfont=bf]{}
-%\captionsetup[lstlisting]{style=listing, labelsep=none}
+\DeclareCaptionFont{mycolor}{\color{blue}}
+\renewcommand\lstlistingname{Code C:}
+\renewcommand\lstlistlistingname{Code C:}
 
-\captionsetup[lstlisting]{format=mylst,labelfont={color=harvardcrimson},labelsep=space,justification=raggedright}
+\captionsetup[lstlisting]{skip=2pt, font=footnotesize, labelfont={color=blue,footnotesize,bf}, format=mylst,labelsep=colon,justification=raggedright}
 
 \lstset{%
 	frame=tb,
