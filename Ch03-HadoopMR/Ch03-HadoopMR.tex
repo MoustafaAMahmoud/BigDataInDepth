@@ -747,9 +747,49 @@ STORED AS TEXTFILE;
 	\end{itemize}
 	\end{tcolorbox}
   \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Location]
+		\small
+		\begin{itemize}
+			\item \texttt{[LOCATION hdfs\_path]}
+			\begin{itemize}
+				\item Sets the HDFS directory where table data will be stored.
+			\end{itemize}
+		\end{itemize}
+	\end{tcolorbox}	
+\end{frame}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Table Properties]
+		\small
+	\begin{itemize}
+	  \item \texttt{[TBLPROPERTIES (property\_name=property\_value, ...)]}
+	  \begin{itemize}
+		\item Sets table-level properties.
+	  \end{itemize}
+	\end{itemize}
+	\end{tcolorbox}
+  \end{frame}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: CTAS]
+		\small
+	\begin{itemize}
+	  \item \texttt{[AS select\_statement]}
+	  \begin{itemize}
+		\item Populates the table using the result set of a SELECT statement.
+	  \end{itemize}
+	\end{itemize}
+	\end{tcolorbox}
+  \end{frame}
+   
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \begin{frame}{CREATE TABLE in Hive | continued}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Partitions]
 		\small
 	\begin{itemize}
 	  \item \texttt{[PARTITIONED BY (col\_name data\_type [COMMENT col\_comment], ...)]}
@@ -766,7 +806,7 @@ STORED AS TEXTFILE;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \begin{frame}[fragile]
 	\frametitle{CREATE TABLE in Hive | continued}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Partitions]
 		\small
 \begin{lstlisting}[caption={Create Partitioned Table},language=SQL]
 CREATE TABLE sales (
@@ -785,7 +825,7 @@ STORED AS TEXTFILE;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	\begin{frame}[fragile]
 	\frametitle{CREATE TABLE in Hive | continued}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Partitions]
 		\small
 
 	\begin{itemize}
@@ -800,7 +840,7 @@ STORED AS TEXTFILE;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}
-\vspace{-0.5cm}\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+\vspace{-0.5cm}\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Partitions]
 \small
 \vspace{-0.2cm}
 \begin{figure}
@@ -814,7 +854,7 @@ STORED AS TEXTFILE;
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \begin{frame}[fragile]
 % \frametitle{CREATE TABLE in Hive | continued}
-% \vspace{-0.5cm}\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+% \vspace{-0.5cm}\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Partitions]
 % \small
 % \vspace{-0.2cm}
 % \begin{lstlisting}[caption={Explain Plan Command for Non-Partitioned Table }]
@@ -836,7 +876,7 @@ STORED AS TEXTFILE;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Partitions]
 \small
 \begin{lstlisting}[caption={Simple sql statement for sales table filters on year and region},language=SQL]
 SELECT * FROM sales WHERE year=2021 AND region='US';
@@ -866,7 +906,7 @@ SELECT * FROM sales WHERE year=2021 AND region='US';
 \begin{frame}[fragile]
 	\frametitle{CREATE TABLE in Hive | continued}
 	\vspace{-0.6cm}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Partitions]
 	\small
 	\vspace{-0.3cm}
 \begin{lstlisting}[caption={Explain Plan Command for Non-Partitioned Table },language=SQL]
@@ -891,7 +931,7 @@ Stage: Stage-1
 \begin{frame}[fragile]
 	\frametitle{CREATE TABLE in Hive | continued}
 	\vspace{-0.6cm}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Partitions]
 	\small
 	\vspace{-0.3cm}
 \begin{lstlisting}[caption={Explain Plan Command for Partitioned Table },language=SQL]
@@ -915,7 +955,7 @@ EXPLAIN SELECT * FROM sales_partitioned WHERE year=2021 AND region='US';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 	\frametitle{CREATE TABLE in Hive | continued}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 5: Table Partitions]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Partitions]
 \vspace{.5cm}
 	\begin{table}[h!]
 		\centering
@@ -943,7 +983,7 @@ EXPLAIN SELECT * FROM sales_partitioned WHERE year=2021 AND region='US';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
   \begin{frame}{CREATE TABLE in Hive | continued}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting]
 		\small
 	\begin{itemize}
 	  \item \texttt{[CLUSTERED BY (col\_name, ...) [SORTED BY (col\_name [ASC|DESC], ...)] INTO num\_buckets BUCKETS]}
@@ -957,7 +997,7 @@ EXPLAIN SELECT * FROM sales_partitioned WHERE year=2021 AND region='US';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \begin{frame}
 \frametitle{CREATE TABLE in Hive | continued}
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 	\small
 	vspace{.2cm}
 	\begin{table}[h!]
@@ -984,7 +1024,7 @@ EXPLAIN SELECT * FROM sales_partitioned WHERE year=2021 AND region='US';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}	
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 \small
 \begin{lstlisting}[caption={Create CLUSTERED Table},language=SQL]
 CREATE TABLE Employee (
@@ -1001,7 +1041,7 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 % Slide 4: Bucket Distribution
 \begin{frame}
 \frametitle{CREATE TABLE in Hive | continued}
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 	\begin{itemize}
 		\item Bucket 1: Data for HR
 		\item Bucket 2: Data for Sales
@@ -1013,7 +1053,7 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 \begin{frame}
 	\frametitle{CREATE TABLE in Hive | continued}		
 	\vspace{-0.5cm}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 		\vspace{-0.2cm}
 		\begin{figure}
 			\includegraphics[width=\textwidth,height=.6\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by.png}				
@@ -1025,7 +1065,7 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 \begin{frame}
 	\frametitle{CREATE TABLE in Hive | continued}		
 	\vspace{-0.5cm}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 		\vspace{-0.2cm}
 		\begin{figure}
 			\includegraphics[width=\textwidth,height=.6\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by_exp.png}				
@@ -1037,7 +1077,7 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 \begin{frame}
 	\frametitle{CREATE TABLE in Hive | continued}		
 	\vspace{-0.5cm}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 		\begin{figure}
 			\includegraphics[width=\textwidth,height=1.2\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by_exp_hash.png}				
 			\caption{Hive Table | Clustered by mechanism example}	
@@ -1049,18 +1089,18 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}	
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 	\small
-		\begin{lstlisting}[caption={Simple SQL statement},language=SQL]
-		EXPLAIN SELECT * FROM Employee WHERE Department = 'HR';
-		\end{lstlisting}
+\begin{lstlisting}[caption={Simple SQL statement},language=SQL]
+EXPLAIN SELECT * FROM Employee WHERE Department = 'HR';
+\end{lstlisting}
 	\end{tcolorbox}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}	
 \vspace{-0.3cm}
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 \small
 \vspace{-0.3cm}
 \begin{lstlisting}[caption={Simplified Explain Plan for Table Without CLUSTERED BY},style=my-yamll]
@@ -1080,7 +1120,7 @@ Stage:
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}
 \vspace{-0.3cm}	
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 \small
 \vspace{-0.3cm}
 \begin{lstlisting}[caption={Simplified Explain Plan for Table with CLUSTERED BY},style=my-yamll]
@@ -1101,7 +1141,7 @@ Stage:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{CREATE TABLE in Hive | continued}	
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 	\begin{itemize}
 		\item Faster JOIN operations.
 		\item Optimized for grouped analysis.
@@ -1113,7 +1153,7 @@ Stage:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}	
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | SORTED BY]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | SORTED BY]
 	\small
 \begin{lstlisting}[caption={With CLUSTERED BY and SORT BY},style=my-yamll]
 CREATE TABLE Employee (
@@ -1128,7 +1168,7 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}	
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | SORTED BY]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | SORTED BY]
 	\small
 \begin{lstlisting}[caption={With only CLUSTERED BY},style=my-yamll]
 CREATE TABLE Employee (
@@ -1144,7 +1184,7 @@ CLUSTERED BY (Department) SORTED BY (ID) INTO 3 BUCKETS;
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.65cm}
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | SORTED BY]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | SORTED BY]
     \small
 \begin{lstlisting}[caption={Explain Plan Query},language=SQL]
 EXPLAIN SELECT * FROM Employee WHERE Department = 'HR'
@@ -1156,7 +1196,7 @@ EXPLAIN SELECT * FROM Employee WHERE Department = 'HR'
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.65cm}
 
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | SORTED BY]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | SORTED BY]
 	\small
 \vspace{-0.35cm}	
 \begin{lstlisting}[caption={Simplified Explain Plan With only CLUSTERED BY},style=my-yamll]
@@ -1179,7 +1219,7 @@ Stage:
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.65cm}
 
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | SORTED BY]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | SORTED BY]
 	\small
 	\vspace{-0.35cm}	
 \begin{lstlisting}[caption={Simplified Explain Plan: With CLUSTERED BY and SORT BY},style=my-yamll]
@@ -1204,7 +1244,7 @@ Stage:
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.5cm}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Clustered By: Key Points]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | Clustered By: Key Points]
 			\begin{itemize}
 				\item \textbf{Data Distribution}: Distributes rows based on hash value of one or more columns.
 				\item \textbf{Query Optimization}: Faster responses when filtering by clustered columns.
@@ -1217,7 +1257,7 @@ Stage:
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.5cm}
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Clustered By: When to Use]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | Clustered By: When to Use]
 		\begin{itemize}
 			\item \textbf{Large Datasets}: Effective for partitioning large datasets.
 			\item \textbf{Common Queries}: Use when filtering or joining on specific columns.
@@ -1229,7 +1269,7 @@ Stage:
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.5cm}
 
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Sort By: Key Points]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | Sort By: Key Points]
 		\begin{itemize}
 			\item \textbf{Ordering}: Sorts data within each bucket.
 			\item \textbf{Local Sort}: Sorting is local to each bucket, not global.
@@ -1242,7 +1282,7 @@ Stage:
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.5cm}		
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Sort By: When to Use]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | Sort By: When to Use]
 		\begin{itemize}
 			\item \textbf{Range Queries}: Useful for frequent range-based queries on a column within a bucket.
 			\item \textbf{Ordered Reads}: Use if you need data in a specific order within each bucket.				  
@@ -1253,7 +1293,7 @@ Stage:
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.5cm}		
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Conclusion]
+\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | Conclusion]
 		\begin{itemize}
 			\item Understand the query and consumption patterns.
 		\end{itemize}
@@ -1261,7 +1301,7 @@ Stage:
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{CREATE TABLE in Hive | continued}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: Data Skewing]
 		\small
 	\begin{itemize}
 	  \item \texttt{[SKEWED BY (col\_name, ...) ON ((col\_value, ...), ...) [STORED AS DIRECTORIES]]}
@@ -1278,7 +1318,7 @@ Stage:
 	\begin{frame}[fragile]
 		\frametitle{CREATE TABLE in Hive | continued}    
 		\vspace{-0.5cm}		
-		\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]
+		\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: Data Skewing]
 				\begin{itemize}
 					\item Imagine a dataset where one ID appears many times, while others appear only a few times. This "popular" ID can overwhelm one reducer, while other reducers finish quickly and wait.					
 				\end{itemize}
@@ -1306,7 +1346,7 @@ Stage:
 		\begin{frame}[fragile]
 			\frametitle{CREATE TABLE in Hive | continued}  
 			\vspace{-0.5cm}		
-			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]	
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: Data Skewing]	
 				\begin{figure}
 					\includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-03/dwh_hive-skweed_dt.png}	
 					\caption{Abstract Components of Apache Hive}
@@ -1317,7 +1357,7 @@ Stage:
 		\begin{frame}[fragile]
 			\frametitle{CREATE TABLE in Hive | continued}    
 			\vspace{-0.5cm}		
-			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: Data Skewing]
 	
 		% The 'axis' environment is used to draw the histogram.
 			\begin{figure} % 'h' places the figure approximately here
@@ -1345,7 +1385,7 @@ Stage:
 		\begin{frame}
 			\frametitle{CREATE TABLE in Hive | continued}  
 			\vspace{-0.5cm}		
-			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]	
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: Data Skewing]	
 				\vspace{-0.3cm}
 				\begin{figure}
 					\includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-03/dwh_hive-skweed_dt_mr_2.png}	
@@ -1357,7 +1397,7 @@ Stage:
 		\begin{frame}
 			\frametitle{CREATE TABLE in Hive | continued}  
 			\vspace{-0.5cm}		
-			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]					
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: Data Skewing]					
 				\begin{figure}
 					\includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-03/dwh_hive-skweed_dt_mr.png}	
 					\caption{Abstract Components of Apache Hive}
@@ -1368,7 +1408,7 @@ Stage:
 		\begin{frame}
 			\frametitle{CREATE TABLE in Hive | continued}  
 			\vspace{-0.5cm}		
-			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]	
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: Data Skewing]	
 				\begin{figure}
 					\includegraphics[width=\textwidth,height=.6\textheight,keepaspectratio]{./Figures/chapter-03/dwh_hive-unskweed_dt.png}	
 					\caption{Abstract Components of Apache Hive}
@@ -1378,7 +1418,7 @@ Stage:
 		\begin{frame}
 			\frametitle{CREATE TABLE in Hive | continued}  
 			\vspace{-0.5cm}		
-			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]	
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: Data Skewing]	
 				\begin{figure}
 					\includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-03/dwh_hive-unskweed_dt_mr.png}	
 					\caption{Abstract Components of Apache Hive}
@@ -1387,7 +1427,7 @@ Stage:
 		\end{frame}	
 		
 		\begin{frame}{CREATE TABLE in Hive | continued}
-			\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Location]
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: Data Skewing]
 				\small
 				\begin{itemize}
 			  		\item \textbf{Resolving Skewness with Hive's \texttt{SKEWED BY} }
@@ -1397,43 +1437,6 @@ Stage:
 				\end{itemize}
 			\end{tcolorbox}	
 		\end{frame}
-	
- \begin{frame}{CREATE TABLE in Hive | continued}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Location]
-		\small
-		\begin{itemize}
-			\item \texttt{[LOCATION hdfs\_path]}
-			\begin{itemize}
-				\item Sets the HDFS directory where table data will be stored.
-			\end{itemize}
-		\end{itemize}
-	\end{tcolorbox}	
-\end{frame}
-  
-  \begin{frame}{CREATE TABLE in Hive | continued}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Table Properties]
-		\small
-	\begin{itemize}
-	  \item \texttt{[TBLPROPERTIES (property\_name=property\_value, ...)]}
-	  \begin{itemize}
-		\item Sets table-level properties.
-	  \end{itemize}
-	\end{itemize}
-	\end{tcolorbox}
-  \end{frame}
-  
-  \begin{frame}{CREATE TABLE in Hive | continued}
-	\begin{tcolorbox}[colback=white,colframe=black,title= Part 10: CTAS]
-		\small
-	\begin{itemize}
-	  \item \texttt{[AS select\_statement]}
-	  \begin{itemize}
-		\item Populates the table using the result set of a SELECT statement.
-	  \end{itemize}
-	\end{itemize}
-	\end{tcolorbox}
-  \end{frame}
-   
 
 
 
