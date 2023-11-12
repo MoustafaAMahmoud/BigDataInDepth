@@ -151,13 +151,10 @@ WHERE Country = 'USA';
 	\end{frame}
 	
 \begin{frame}{Abstract Components of Apache Hive}
-\begin{figure}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./Figures/chapter-03/Hive_Architecture.pdf}	
-\caption{Abstract Components of Apache Hive}
-\end{figure}
-
-
-
+	\begin{figure}
+		\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./Figures/chapter-03/Hive_Architecture.pdf}	
+		\caption{Abstract Components of Apache Hive}
+	\end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -386,7 +383,7 @@ WHERE Country = 'USA';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Job Execution Flow in Hive}
 \begin{frame}{Job Execution Flow in Hive}
-
+	\vspace{-0.8cm}
 \begin{figure}
 	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./Figures/chapter-03/Hive_Query_Flow.pdf}
 	\caption{Hive Job execution flow}
@@ -415,10 +412,10 @@ WHERE Country = 'USA';
 \begin{frame}{Hive Table Format}
 
 	\begin{itemize}
-		\item Hive was created to convert SQL statements into MapReduce jobs.
-		\item Mechanism needed for SQL to identify files and metadata.
-		\item Hive was a breakthrough, linking directories and files to tables.
-		\item HDFS directories map to database schemas and tables.
+		\item Hive was created to convert SQL statements into MapReduce jobs. \pause
+		\item Mechanism needed for SQL to identify files and metadata. \pause
+		\item Hive was a breakthrough, linking directories and files to tables. \pause
+		\item HDFS directories map to database schemas and tables. \pause
 
 	
 	\end{itemize}
@@ -427,10 +424,10 @@ WHERE Country = 'USA';
 \begin{frame}{Hive Table Format | continued}
 
 	\begin{itemize}
-		\item This was a breakthrough as it enabled working directly with the object store (i.e., HDFS) as the primary database storage, eliminating the need for custom file formats.
-		\item It also introduced flexibility in adding more file input formats (open formats), such as CSV, ORC, AVRO, Parquet, etc. Any processing that can be done with Map-Reduce can be applied to Hive.
-        \item Hive uses metastore/metadata to map raw HDFS data to named columns and types.
-		\item Each Hive table belongs to a specific database.
+		\item This was a breakthrough as it enabled working directly with the object store (i.e., HDFS) as the primary database storage, eliminating the need for custom file formats. \pause
+		\item It also introduced flexibility in adding more file input formats (open formats), such as CSV, ORC, AVRO, Parquet, etc. Any processing that can be done with Map-Reduce can be applied to Hive. \pause
+        \item Hive uses metastore/metadata to map raw HDFS data to named columns and types. \pause
+		\item Each Hive table belongs to a specific database. \pause
 	
 	\end{itemize}
 	\end{frame}
@@ -451,16 +448,16 @@ WHERE Country = 'USA';
 \begin{frame}{Hive Table Format | Example of Text File}
 
 	\begin{itemize}
-		\item Each Hive table links to a folder, usually on HDFS.
-		\item This folder contains one or more text files.
-		\item Basics of Hive's default text format:
-		\begin{itemize}
-		  \item One record by line (\textbackslash n separator).
-		  \item Columns are split by Control-A (\textasciicircum A).
-		  \item Complex types use Control-B (\textasciicircum B).
-		  \item Map keys and values use Control-C (\textasciicircum C).
-		\end{itemize}
-		\item You can change these settings when making a new table.
+		\item Each Hive table links to a folder, usually on HDFS. \pause
+		\item This folder contains one or more text files. \pause
+		% \item Basics of Hive's default text format:
+		% \begin{itemize}
+		%   \item One record by line (\textbackslash n separator).
+		%   \item Columns are split by Control-A (\textasciicircum A).
+		%   \item Complex types use Control-B (\textasciicircum B).
+		%   \item Map keys and values use Control-C (\textasciicircum C).
+		% \end{itemize}
+		% \item You can change these settings when making a new table.
 	  \end{itemize}
 	
 	\end{frame}
@@ -649,8 +646,7 @@ CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
 [SKEWED BY (col_name, col_name, ...)
 ON ((col_value, col_value, ...), (col_value, col_value, ...), ...)
 [STORED AS DIRECTORIES]
-[
-[ROW FORMAT row_format] 
+[[ROW FORMAT row_format] 
 [STORED AS file_format]
 |STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]]
 [LOCATION hdfs_path]
@@ -859,7 +855,7 @@ SELECT * FROM sales WHERE year=2021 AND region='US';
 			Step 2: Apply \texttt{WHERE} filters (\texttt{year=2021 AND region='US'}) & Step 2: Scan only those partitions \\
 			\hline
 		  \end{tabular}
-}
+		}
 \caption{Comparison: Non-Partitioned vs Partitioned Table.}
 \end{table}
 
@@ -1002,19 +998,17 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-	% Slide 4: Bucket Distribution
+% Slide 4: Bucket Distribution
 \begin{frame}
 \frametitle{CREATE TABLE in Hive | continued}
 \begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
-
-\begin{itemize}
-\item Bucket 1: Data for HR
-\item Bucket 2: Data for Sales
-\item Bucket 3: Data for IT
-\end{itemize}
+	\begin{itemize}
+		\item Bucket 1: Data for HR
+		\item Bucket 2: Data for Sales
+		\item Bucket 3: Data for IT
+	\end{itemize}
 \end{tcolorbox}
 \end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 \begin{frame}
 	\frametitle{CREATE TABLE in Hive | continued}		
@@ -1022,7 +1016,7 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
 		\vspace{-0.2cm}
 		\begin{figure}
-			\includegraphics[width=\textwidth,height=.65\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by.png}				
+			\includegraphics[width=\textwidth,height=.6\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by.png}				
 			\caption{Hive Table | Clustered by mechanism}	
 		\end{figure}
 	\end{tcolorbox}				
@@ -1034,7 +1028,7 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
 		\vspace{-0.2cm}
 		\begin{figure}
-			\includegraphics[width=\textwidth,height=.65\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by_exp.png}				
+			\includegraphics[width=\textwidth,height=.6\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by_exp.png}				
 			\caption{Hive Table | Clustered by mechanism example}	
 		\end{figure}
 	\end{tcolorbox}				
@@ -1044,7 +1038,6 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 	\frametitle{CREATE TABLE in Hive | continued}		
 	\vspace{-0.5cm}
 	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
-
 		\begin{figure}
 			\includegraphics[width=\textwidth,height=1.2\textheight,keepaspectratio]{./Figures/chapter-03/mermaid-diagram-hive_db_clustered_by_exp_hash.png}				
 			\caption{Hive Table | Clustered by mechanism example}	
@@ -1056,14 +1049,13 @@ CLUSTERED BY (Department) INTO 3 BUCKETS;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}	
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
-\small
-\begin{lstlisting}[caption={Simple SQL statement},language=SQL]
-EXPLAIN SELECT * FROM Employee WHERE Department = 'HR';
-\end{lstlisting}
-\end{tcolorbox}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | CLUSTERED BY]
+	\small
+		\begin{lstlisting}[caption={Simple SQL statement},language=SQL]
+		EXPLAIN SELECT * FROM Employee WHERE Department = 'HR';
+		\end{lstlisting}
+	\end{tcolorbox}
 \end{frame}
-	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}	
@@ -1149,12 +1141,9 @@ CLUSTERED BY (Department) SORTED BY (ID) INTO 3 BUCKETS;
 \end{tcolorbox}
 \end{frame}
 
-
-
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.65cm}
-
 \begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | SORTED BY]
     \small
 \begin{lstlisting}[caption={Explain Plan Query},language=SQL]
@@ -1215,15 +1204,14 @@ Stage:
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.5cm}
-
-\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Clustered By: Key Points]
-		\begin{itemize}
-		\item \textbf{Data Distribution}: Distributes rows based on hash value of one or more columns.
-		\item \textbf{Query Optimization}: Faster responses when filtering by clustered columns.
-		\item \textbf{Storage}: Organizes data in HDFS, improving data locality.
-		\item \textbf{Better with Joins}: Joins on bucketed columns are optimized.
-		\end{itemize}
-\end{tcolorbox}
+	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Clustered By: Key Points]
+			\begin{itemize}
+				\item \textbf{Data Distribution}: Distributes rows based on hash value of one or more columns.
+				\item \textbf{Query Optimization}: Faster responses when filtering by clustered columns.
+				\item \textbf{Storage}: Organizes data in HDFS, improving data locality.
+				\item \textbf{Better with Joins}: Joins on bucketed columns are optimized.
+			\end{itemize}
+	\end{tcolorbox}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -1262,7 +1250,6 @@ Stage:
 \end{tcolorbox}
 \end{frame}
 
-
 \begin{frame}[fragile]
 \frametitle{CREATE TABLE in Hive | continued}    
 \vspace{-0.5cm}		
@@ -1272,44 +1259,156 @@ Stage:
 		\end{itemize}
 \end{tcolorbox}
 \end{frame}
-
-		% \begin{frame}[fragile]
-		% 	\frametitle{CREATE TABLE in Hive | continued}    
-		% 	\vspace{-0.5cm}		
-		% 	\begin{tcolorbox}[colback=white,colframe=black,title= Part 6: Clustering and Sorting | Conclusion ]					
-		% 			\begin{itemize}
-		% 				\item Understand the query and consumption patterns.
-		% 			\end{itemize}
-		% 	\end{tcolorbox}
-		% 	\end{frame}		
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \begin{frame}{CREATE TABLE in Hive | continued}
+\begin{frame}{CREATE TABLE in Hive | continued}
 	\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]
 		\small
 	\begin{itemize}
 	  \item \texttt{[SKEWED BY (col\_name, ...) ON ((col\_value, ...), ...) [STORED AS DIRECTORIES]]}
 	  \begin{itemize}
 		\item Specifies skewed columns and values for better query performance.
-		\item Optionally store these as directories.
+		\item Data skewness is when data is not distributed evenly. It means some values are seen more often than others.
+		\item In big data processing, like with MapReduce, data skew can cause some reducers to have much more work than others. This imbalance can make the whole system slow because everyone has to wait for the busiest reducer.
 	  \end{itemize}
 	\end{itemize}
 	\end{tcolorbox}
   \end{frame}
   
 
-  
-  \begin{frame}{CREATE TABLE in Hive | continued}
+	\begin{frame}[fragile]
+		\frametitle{CREATE TABLE in Hive | continued}    
+		\vspace{-0.5cm}		
+		\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]
+				\begin{itemize}
+					\item Imagine a dataset where one ID appears many times, while others appear only a few times. This "popular" ID can overwhelm one reducer, while other reducers finish quickly and wait.					
+				\end{itemize}
+				\begin{table}
+					\resizebox{\textwidth}{!}{%
+					\begin{tabular}{|m{6cm}|m{6cm}|}	    
+					\hline
+					\rowcolor{Gray}			
+					\textbf{ID} & \textbf{Frequency} \\
+					\hline
+					1 & 50000 \\
+					2 & 150 \\
+					3 & 150 \\
+					4 & 100 \\
+					5 & 100 \\
+					\hline
+					\end{tabular}
+					}
+					\caption{Example of Skewed Data}
+					\end{table}
+		\end{tcolorbox}
+		\end{frame}
+
+	
+		\begin{frame}[fragile]
+			\frametitle{CREATE TABLE in Hive | continued}  
+			\vspace{-0.5cm}		
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]	
+				\begin{figure}
+					\includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-03/dwh_hive-skweed_dt.png}	
+					\caption{Abstract Components of Apache Hive}
+				\end{figure}
+			\end{tcolorbox}
+		\end{frame}
+
+		\begin{frame}[fragile]
+			\frametitle{CREATE TABLE in Hive | continued}    
+			\vspace{-0.5cm}		
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]
+	
+		% The 'axis' environment is used to draw the histogram.
+			\begin{figure} % 'h' places the figure approximately here
+			\begin{tikzpicture}[scale=0.65]
+				\begin{axis}[
+					ybar,
+					ymin=0, % The minimum value on the y-axis.
+					ymax=5200, % Adjust the maximum value according to your needs.
+					symbolic x coords={1,2,3,4,5}, % X-axis coordinates.
+					xtick=data, % Define ticks on the x-axis based on data points.
+					nodes near coords, % Place nodes near the coordinates.
+					nodes near coords align={vertical}, % Align the nodes vertically.
+					xlabel={ID}, % Label for the x-axis.
+					ylabel={Count}, % Label for the y-axis.
+					bar width=20pt, % The width of the bars.
+				]
+				\addplot coordinates {(1,50000) (2,150) (3,150) (4,100) (5,100)}; % Data points for the plot.
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Data Skewing Example: ID Frequency histogram} % Add your caption
+    		\label{fig:ch_3_hive_skewness_histogram} % Optional: For referencing the figure in text
+			\end{figure}
+			\end{tcolorbox}
+		\end{frame}
+		\begin{frame}
+			\frametitle{CREATE TABLE in Hive | continued}  
+			\vspace{-0.5cm}		
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]	
+				\vspace{-0.3cm}
+				\begin{figure}
+					\includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-03/dwh_hive-skweed_dt_mr_2.png}	
+					\caption{Abstract Components of Apache Hive}
+				\end{figure}
+				\vspace{-0.3cm}
+			\end{tcolorbox}
+		\end{frame}		
+		\begin{frame}
+			\frametitle{CREATE TABLE in Hive | continued}  
+			\vspace{-0.5cm}		
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]					
+				\begin{figure}
+					\includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-03/dwh_hive-skweed_dt_mr.png}	
+					\caption{Abstract Components of Apache Hive}
+				\end{figure}
+			\end{tcolorbox}
+		\end{frame}	
+		
+		\begin{frame}
+			\frametitle{CREATE TABLE in Hive | continued}  
+			\vspace{-0.5cm}		
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]	
+				\begin{figure}
+					\includegraphics[width=\textwidth,height=.6\textheight,keepaspectratio]{./Figures/chapter-03/dwh_hive-unskweed_dt.png}	
+					\caption{Abstract Components of Apache Hive}
+				\end{figure}
+			\end{tcolorbox}
+		\end{frame}
+		\begin{frame}
+			\frametitle{CREATE TABLE in Hive | continued}  
+			\vspace{-0.5cm}		
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 7: Data Skewing]	
+				\begin{figure}
+					\includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-03/dwh_hive-unskweed_dt_mr.png}	
+					\caption{Abstract Components of Apache Hive}
+				\end{figure}
+			\end{tcolorbox}
+		\end{frame}	
+		
+		\begin{frame}{CREATE TABLE in Hive | continued}
+			\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Location]
+				\small
+				\begin{itemize}
+			  		\item \textbf{Resolving Skewness with Hive's \texttt{SKEWED BY} }
+			  		\begin{itemize}
+						\item When a table is created in Hive, you can specify certain columns as \texttt{'SKEWED BY'} to improve the distribution of work during a join operation. This allows Hive to partition the data more effectively.
+			  		\end{itemize}
+				\end{itemize}
+			\end{tcolorbox}	
+		\end{frame}
+	
+ \begin{frame}{CREATE TABLE in Hive | continued}
 	\begin{tcolorbox}[colback=white,colframe=black,title= Part 8: Table Location]
 		\small
-	\begin{itemize}
-	  \item \texttt{[LOCATION hdfs\_path]}
-	  \begin{itemize}
-		\item Sets the HDFS directory where table data will be stored.
-	  \end{itemize}
-	\end{itemize}
+		\begin{itemize}
+			\item \texttt{[LOCATION hdfs\_path]}
+			\begin{itemize}
+				\item Sets the HDFS directory where table data will be stored.
+			\end{itemize}
+		\end{itemize}
 	\end{tcolorbox}	
-  \end{frame}
+\end{frame}
   
   \begin{frame}{CREATE TABLE in Hive | continued}
 	\begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Table Properties]
