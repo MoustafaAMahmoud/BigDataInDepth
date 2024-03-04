@@ -461,62 +461,62 @@ WHERE Country = 'USA';
 	  \end{itemize}
 	
 	\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Text File vs. Binary File in Hive | High Level}
-	\begin{table}[h!]
-		\centering
-		\resizebox{\textwidth}{!}{%
-		%\begin{tabular}{|m{5cm}|m{6cm}|m{6cm}|}	    
-			\begin{tabular}{|l|l|l|}
-				\hline
-				\rowcolor{Gray}
-				Criteria & Text File & Binary File (e.g., ORC, Parquet) \\
-				\hline
-				Readability & Human-readable & Not human-readable \\
-				\hline
-				Debugging & Easier & Harder \\
-				\hline
-				Storage Size & Larger & More efficient \\
-				\hline
-				Speed & Slower & Faster \\
-				\hline
-				Delimiters & Basic (e.g., Control-A) & Complex types supported \\
-				\hline
-				Suitability & Small datasets & Large datasets \\
-				\hline
-			  \end{tabular}
-	}
-	\caption{Comparison between Text and Binary File Formats in Hive}	
-  \end{table}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Why Binary Format is Faster than Text Format}
-	\begin{table}[h!]
-		\centering
-		\resizebox{\textwidth}{!}{%
-		%\begin{tabular}{|m{5cm}|m{6cm}|m{6cm}|}	    
-		\begin{tabular}{|l|l|l|}
-				\hline
-				\rowcolor{Gray}
-				Factor & Text File & Binary File \\
-				\hline
-				Parsing & Needs conversion & Directly readable \\
-				\hline
-				Memory & Less efficient & Efficient \\
-				\hline
-				Storage & Larger files & Smaller due to compression \\
-				\hline
-				Compression & Basic & Advanced algorithms \\
-				\hline
-				IO Operations & More reads/writes & Fewer reads/writes \\
-				\hline
-				Schema Evolution & Harder & Easier \\
-				\hline
-		\end{tabular}
-	}
-	\caption{Summary: Binary formats are generally more efficient in reading, writing, and storing data, making them faster for large datasets.}
-  \end{table}
-  \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Text File vs. Binary File in Hive | High Level}
+% 	\begin{table}[h!]
+% 		\centering
+% 		\resizebox{\textwidth}{!}{%
+% 		%\begin{tabular}{|m{5cm}|m{6cm}|m{6cm}|}	    
+% 			\begin{tabular}{|l|l|l|}
+% 				\hline
+% 				\rowcolor{Gray}
+% 				Criteria & Text File & Binary File (e.g., ORC, Parquet) \\
+% 				\hline
+% 				Readability & Human-readable & Not human-readable \\
+% 				\hline
+% 				Debugging & Easier & Harder \\
+% 				\hline
+% 				Storage Size & Larger & More efficient \\
+% 				\hline
+% 				Speed & Slower & Faster \\
+% 				\hline
+% 				Delimiters & Basic (e.g., Control-A) & Complex types supported \\
+% 				\hline
+% 				Suitability & Small datasets & Large datasets \\
+% 				\hline
+% 			  \end{tabular}
+% 	}
+% 	\caption{Comparison between Text and Binary File Formats in Hive}	
+%   \end{table}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{Why Binary Format is Faster than Text Format}
+% 	\begin{table}[h!]
+% 		\centering
+% 		\resizebox{\textwidth}{!}{%
+% 		%\begin{tabular}{|m{5cm}|m{6cm}|m{6cm}|}	    
+% 		\begin{tabular}{|l|l|l|}
+% 				\hline
+% 				\rowcolor{Gray}
+% 				Factor & Text File & Binary File \\
+% 				\hline
+% 				Parsing & Needs conversion & Directly readable \\
+% 				\hline
+% 				Memory & Less efficient & Efficient \\
+% 				\hline
+% 				Storage & Larger files & Smaller due to compression \\
+% 				\hline
+% 				Compression & Basic & Advanced algorithms \\
+% 				\hline
+% 				IO Operations & More reads/writes & Fewer reads/writes \\
+% 				\hline
+% 				Schema Evolution & Harder & Easier \\
+% 				\hline
+% 		\end{tabular}
+% 	}
+% 	\caption{Summary: Binary formats are generally more efficient in reading, writing, and storing data, making them faster for large datasets.}
+%   \end{table}
+%   \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hive Data Management}
 \subsubsection{Hive Database}
@@ -812,8 +812,7 @@ STORED AS TEXTFILE;
 CREATE TABLE sales (
 product_id INT,
 order_date STRING,
-amount DOUBLE
-)
+amount DOUBLE)
 PARTITIONED BY (year INT, region STRING)
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
@@ -999,7 +998,7 @@ EXPLAIN SELECT * FROM sales_partitioned WHERE year=2021 AND region='US';
 \frametitle{CREATE TABLE in Hive | continued}
 \begin{tcolorbox}[colback=white,colframe=black,title= Part 9: Clustering and Sorting | CLUSTERED BY]
 	\small
-	vspace{.2cm}
+	\vspace{.2cm}
 	\begin{table}[h!]
 		\centering
 		\resizebox{\textwidth}{!}{%

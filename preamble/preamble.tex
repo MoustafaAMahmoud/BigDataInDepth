@@ -13,7 +13,7 @@
 \newcommand{\code}[1]{\mbox{\color{yellow}{\texttt{\textbf{\normalsize #1}}}}}
 \usepackage[toc,page]{appendix}
 \usepackage{listings}
-\usepackage{hyperref}
+
 \usepackage{pgf,pgfpages}
 \usepackage{graphicx}
 \usepackage{units}
@@ -44,6 +44,20 @@
 %\BeforeBeginEnvironment{figure}{\vspace{-1em}}
 %\BeforeBeginEnvironment{lstlisting}{\vspace{-1em}}
 \BeforeBeginEnvironment{table}{\vspace{-1em}}
+\usepackage{hyperref}
+% Define hyperlink colors and underline
+\hypersetup{
+    colorlinks = true, % Enables coloring of links
+    urlcolor = blue, % Color for external hyperlinks
+    linkcolor = red, % Color for internal links
+    citecolor = green, % Color for citations
+    pdfborder = {0 0 0}, % Removes border around links
+}
+
+% Ensure hyperref uses the ulem package for underlining
+\renewcommand{\ULthickness}{1pt} % Adjust underline thickness if desired
+\let\oldhref\href
+\renewcommand{\href}[2]{\oldhref{#1}{\uline{#2}}} % Underline hyperlinks
 
 %\usepackage{enumitem}
 \usepackage{caption}
