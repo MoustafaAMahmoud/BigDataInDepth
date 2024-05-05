@@ -6,286 +6,1053 @@
 \section{Apache Spark}
 
 \begin{frame}
-\frametitle{Chapter Objectives}
+    \frametitle{Course Objectives}
 
-\begin{itemize}
-	\item Understand the fundamentals of Apache Spark. \pause
-	\item Build data processing applications using Apache Spark. \pause
-	\item Understand Apache Spark APIs (RDD, DataFrames, and Datasets). \pause
-	\item Optimize and tune Apache Spark applications. \pause
-	\item Build streaming applications using Apache Spark. \pause
-	\item Build scalable machine learning applications using Apache Spark MLlib. \pause
-	\item Deploy Apache Spark in production environments. \pause
-\end{itemize}
+    \begin{itemize}
+        \item Understand the fundamentals of Apache Spark. \pause
+        \item Build data processing applications using Apache Spark. \pause
+        \item Understand Apache Spark APIs (RDD, DataFrames, and Datasets). \pause
+        \item Optimize and tune Apache Spark applications. \pause
+        \item Build streaming applications using Apache Spark. \pause
+        \item Build scalable machine learning applications using Apache Spark MLlib. \pause
+        \item Deploy Apache Spark in production environments. \pause
+    \end{itemize}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Course References}
 \begin{frame}
-	\frametitle{\subsecname}
-	\begin{itemize}
-		\item \href{https://pages.databricks.com/rs/094-YMS-629/images/LearningSpark2.0.pdf}{Learning Spark, 2nd Edition} By Jules S. Damji, Brooke Wenig, Tathagata Das, Denny Lee. \pause
-		\item \href{https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/}{Spark: The Definitive Guide} By Bill Chambers, Matei Zaharia. \pause
-		\item Random blog posts. \pause
-	\end{itemize}
-	\end{frame}
+    \frametitle{\subsecname}
+    \begin{itemize}
+        \item \href{https://pages.databricks.com/rs/094-YMS-629/images/LearningSpark2.0.pdf}{Learning Spark, 2nd Edition} By Jules S. Damji, Brooke Wenig, Tathagata Das, Denny Lee. \pause
+        \item \href{https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/}{Spark: The Definitive Guide} By Bill Chambers, Matei Zaharia. \pause
+        \item Random blog posts. \pause
+    \end{itemize}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Course Prerequisites}
 \begin{frame}
-\frametitle{\subsecname}
-Before beginning this course, participants should have:
-\begin{itemize}
-    \item Experience in programming using Python.  \pause
-    \item Basic programming skills using shell.  \pause
-    \item An understanding of MapReduce foundations and Hive. \href{https://www.youtube.com/playlist?list=PLxNoJq6k39G8Ak39PDC-oYvp6ZRvIn3Pa}{Garage Education YouTube Playlist}  \pause
-\end{itemize}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Python vs Scala}
-\begin{frame}
-\frametitle{\subsecname}
-\begin{itemize}
-	\item Python is widely used with numerous tools and libraries available. \pause
-	\item Python is easier to learn than Scala; however, Scala might be more intuitive for those who prefer functional programming. \pause
-	\item Finding Python developers is generally easier for companies than finding Scala developers. \pause
-	\item Initially, Scala offered better performance in Apache Spark, but this advantage has diminished over time, with no significant performance differences now. \pause
-	\item PySpark and Scala share the same Spark concepts, allowing for interchangeable use of examples from both languages without affecting learning. \pause
-\end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction to Apache Spark}
-\subsection{History of Apache Spark}
-\begin{frame}
-\frametitle{\subsecname}
-\begin{itemize}
-    \item Apache Spark was initiated at UC Berkeley in 2009, leading to the publication of \href{https://www1.icsi.berkeley.edu/pubs/networking/ICSI_sparkclustercomputing10.pdf}{Spark: Cluster Computing with Working Sets} in 2010 by Matei Zaharia et al.  \pause
-%    \item It aimed to address the limitations of Hadoop MapReduce, especially for iterative machine learning algorithms requiring multiple data passes. \pause
-    \item Spark was developed to improve processing efficiency over Hadoop MapReduce, which struggled with iterative tasks because it launched separate jobs and reloaded data for each one. This was particularly important for machine learning algorithms that need multiple data passes. \pause
-    \item Initially, Spark was designed for batch applications, but it quickly expanded to include streaming, SQL analytics, graph processing, and machine learning. \pause
-\end{itemize}
-\end{frame}
-\begin{frame}
-\frametitle{\subsecname}
-\begin{itemize}
-    \item By 2013, the project had more than 100 contributors, and now it has over 2,000 contributors with more than 39,000 commits. It has been donated to the Apache Software Foundation, guaranteeing its future as a vendor-independent project. \pause
-    \item Key milestones in its development are Spark 1.0 in 2014, Spark 2.0 in 2016, and Spark 3.0 in 2020, highlighting its evolution and broad acceptance. \pause
-\end{itemize}
-\end{frame}
-\subsection{About Databricks}
-\begin{frame}
-\frametitle{About Databricks}
-\begin{itemize}
-    \item Databricks, founded by the early AMPlab team, joined the community to further develop Spark. \pause
-    \item The organization was founded to deliver a comprehensive analytics platform, streamlining Spark's application in big data processing and analytics. \pause
-	\item Databricks has bridged the gap between academic research and enterprise applications through its managed cloud service and significant contributions to the Spark project. \pause
-\end{itemize}
-\end{frame}
-\begin{frame}
-\frametitle{Beyond Apache Spark}
-	\begin{minipage}{\textwidth}
-		\begin{tikzpicture}
-		  % Place image at the left side
-		  \node[anchor=west] (image) at (0,0) {\includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-04/databricks_data_intelligence.png}};
-		  % Place text and arrow
-		  \draw[<-, thick] (image) -- ++(4,1) node[right, align=left,font=\small, text=gray] {Photo copied from\\ \url{https://www.datanami.com}};
-		\end{tikzpicture}
-		\captionof{figure}{Databricks Analytics Platform}
-	\end{minipage}
-\end{frame}
-
-\begin{frame}
-\centering % Center the content horizontally
-\vfill % Center the content vertically
-\Large{Do You Need Databricks to Work with Spark?} % Large font size for the question
-\vfill % Add space at the bottom to keep the text centered vertically
-\end{frame}
-
-\begin{frame}
-\centering % Center the content horizontally
-\vfill % Center the content vertically
-\Large{Do You Need Databricks to Work with Spark?} % Question in normal color
-\vspace{1em} % Add some vertical space before the answer
-%\Large{\textcolor{red}{\textbf{NO}}} % Answer "NO" in red and bold for emphasis
-\vfill % Add space at the bottom to keep the text centered vertically
-\end{frame}
-
-\begin{frame}
-\centering % Center the content horizontally
-\vfill % Center the content vertically
-\Large{Do You Need Databricks to Work with Spark?} % Question in normal color
-\hspace{1cm} % Add some vertical space before the answer
-\Large{\textcolor{blue}{The answer is NO!}} % Answer "NO" in red and bold for emphasis
-\vfill % Add space at the bottom to keep the text centered vertically
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Do You Need Databricks to Work with Spark?}
-
-\begin{itemize}
-  \item Spark workloads can be run both on the Cloud and on-premise.
-  \begin{itemize}
-    \item \textbf{Cloud:} Choose any preferred cloud provider, like AWS, GCP, or Azure.
-    \item \textbf{On-Premise:} Deploy on Kubernetes or utilize big data distributions such as Cloudera.
-    \item \textbf{Serverless Platforms:} For efficient resource management, consider options like:
+    \frametitle{\subsecname}
+    Before beginning this course, participants should have:
     \begin{itemize}
-      \item \textbf{AWS:} EMR Serverless or AWS Glue for auto-scaling and managed services.
-      \item \textbf{GCP:} Dataproc for integrated analytics and machine learning.
-      \item \textbf{Azure:} Azure Synapse for big data and advanced analytics.
+        \item Experience in programming using Python.  \pause
+        \item Basic programming skills using shell.  \pause
+        \item An understanding of MapReduce foundations and Hive. \href{https://www.youtube.com/playlist?list=PLxNoJq6k39G8Ak39PDC-oYvp6ZRvIn3Pa}{Garage Education YouTube Playlist}  \pause
     \end{itemize}
+
+\end{frame}
+
+
+\subsection{Apache Spark for business}\label{subsec:spark-for-non-technical}
+\begin{frame}
+    \frametitle{TODO: Apache Spark for business}
+    \begin{itemize}
+        \item TODO: ???
+        \item Python is widely used with numerous tools and libraries available. \pause
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Python vs Scala}\label{subsec:python-vs-scala}
+\begin{frame}
+    \frametitle{\subsecname}
+    \begin{itemize}
+        \item Python is widely used with numerous tools and libraries available. \pause
+        \item Python is easier to learn than Scala; however, Scala might be more intuitive for those who prefer functional programming. \pause
+        \item Finding Python developers is generally easier for companies than finding Scala developers. \pause
+        \item Initially, Scala offered better performance in Apache Spark, but over time this advantage reduced, and now there's no big difference in speed. \pause
+        \item PySpark and Scala share the same Spark concepts, allowing for interchangeable use of examples from both languages without affecting learning. \pause
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Attention!]
+            To Be a Spark Expert You Have to Be Able to Read a Little Scala Anyway!\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}
+        \end{tcolorbox}
+    \end{center}
+
+\end{frame}
+
+%
+\begin{frame}
+    \frametitle{Spark's Codebase and Documentation}
+    \begin{itemize}
+        \item The quality of Spark's documentation is inconsistent.\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}
+        \item Spark's codebase is very readable.
+        \item Understanding the Spark codebase benefits \textbf{advanced users}.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Understanding Spark Through Scala}
+    \begin{itemize}
+        \item Scala helps you understand Spark deeply.\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}
+        \item Spark is written in Scala.
+        \item To work with Spark's source code effectively, it's essential to understand (read) Scala.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{RDD and Scala's Influence}
+    \begin{itemize}
+        \item Scala's influence is evident in Spark's Resilient Distributed Datasets (RDD).\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}
+        \item RDD methods are similar to Scala's collection tools.
+        \item Functions like map, filter, and reduce are similar in both.
+        \item Knowing Scala makes it easier to understand how RDDs work.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark as a Functional Framework}
+    \begin{itemize}
+        \item Spark uses functional programming principles.
+        \item Concepts like immutability and lambda are key.
+        \item Understanding functional programming helps in using Spark well.\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}
+    \end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \frametitle{TODO: Apache Spark Motivation}
+    \begin{itemize}
+        \item Collection operation on huge amount of data.
+    \end{itemize}
+    Referen
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction to Apache Spark}\label{sec:introduction-to-apache-spark}
+
+\subsection{History of Apache Spark}\label{subsec:history-of-apache-spark}
+\begin{frame}
+    \frametitle{\subsecname}
+    \begin{itemize}
+        \item Apache Spark was initiated at UC Berkeley in 2009, leading to the publication of \href{https://www1.icsi.berkeley.edu/pubs/networking/ICSI_sparkclustercomputing10.pdf}{Spark: Cluster Computing with Working Sets} in 2010 by Matei Zaharia et al.  \pause
+%    \item It aimed to address the limitations of Hadoop MapReduce, especially for iterative machine learning algorithms requiring multiple data passes. \pause
+        \item Spark was developed to improve processing efficiency over Hadoop MapReduce, which struggled with iterative tasks because it launched separate jobs and reloaded data for each one. This was particularly important for machine learning algorithms that need multiple data passes. \pause
+        \item Initially, Spark was designed for batch applications, but it quickly expanded to include streaming, SQL analytics, graph processing, and machine learning. \pause
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{\subsecname}
+    \begin{itemize}
+        \item By 2013, the project had more than 100 contributors, and now it has over 2,000 contributors with more than 39,000 commits. It has been donated to the Apache Software Foundation, guaranteeing its future as a vendor-independent project. \pause
+        \item Key milestones in its development are Spark 1.0 in 2014, Spark 2.0 in 2016, and Spark 3.0 in 2020, highlighting its evolution and broad acceptance. \pause
+    \end{itemize}
+\end{frame}
+
+\subsection{About Databricks}\label{subsec:about-databricks}
+\begin{frame}
+    \frametitle{About Databricks}
+    \begin{itemize}
+        \item Databricks, founded by the early AMPlab team, joined the community to further develop Spark. \pause
+        \item The organization was founded to deliver a comprehensive analytics platform, streamlining Spark's application in big data processing and analytics. \pause
+        \item Databricks has bridged the gap between academic research and enterprise applications through its managed cloud service and significant contributions to the Spark project. \pause
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Beyond Apache Spark}
+    \begin{minipage}{\textwidth}
+        \begin{tikzpicture}
+            % Place image at the left side
+            \node[anchor=west] (image) at (0,0) {\includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-04/databricks_data_intelligence}};
+            % Place text and arrow
+            \draw[<-, thick] (image) -- ++(4,1) node[right, align=left,font=\small, text=gray] {Photo copied from\\ \url{https://www.datanami.com}};
+        \end{tikzpicture}
+        \captionof{figure}{Databricks Analytics Platform}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \vfill
+    \Large{Do You Need Databricks to Work with Spark?} % Question in normal color
+    \vspace{1em} % Add some vertical space before the answer
+%\Large{\textcolor{red}{\textbf{NO}}} % Answer "NO" in red and bold for emphasis
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \centering
+    \vfill
+    \Large{Do You Need Databricks to Work with Spark?} % Question in normal color
+    \hspace{1cm} % Add some vertical space before the answer
+    \Large{\textcolor{blue}{The answer is NO!}} % Answer "NO" in red and bold for emphasis
+    \vfill
+\end{frame}
+\begin{frame}
+    \centering
+    \vfill
+    \Large{Databricks is one of the cloud options to run Apache Spark workload} % Question in normal color
+    \hspace{1cm} % Add some vertical space before the answer
+    %\Large{\textcolor{blue}{The answer is NO!}} % Answer "NO" in red and bold for emphasis
+    \vfill
+\end{frame}
+\begin{frame}
+    \frametitle{Do You Need Databricks to Work with Spark?}
+
+    \begin{itemize}
+        \item Spark workloads can be run both on the Cloud and on-premise.
+        \begin{itemize}
+            \item \textbf{Cloud:} Choose any preferred cloud provider, like AWS, GCP, Databricks, or Azure.
+            \item \textbf{On-Premise:} Deploy on YARN, Mesos, or Kubernetes.
+            \item \textbf{Serverless Platforms:} For efficient resource management, consider options like:
+            \begin{itemize}
+                \item \textbf{AWS:} EMR Serverless or AWS Glue.
+                \item \textbf{GCP:} Dataproc.
+                \item \textbf{Azure:} Azure Synapse.
+                \item \textbf{Databricks:} Databricks analytics platform.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Apache Spark in Data Platforms}\label{subsec:apache-spark-in-data-platforms}
+
+\begin{frame}{Technical components in a data lake}
+    \begin{minipage}{\textwidth}
+        \begin{tikzpicture}
+            % Place image at the left side
+            \node[anchor=west] (image) at (0,0) {\includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-03/datalake_table_format}};
+            % Place text and arrow
+            \draw[<-, thick] (image) -- ++(4,1) node[right, align=left,font=\small, text=gray] {Apache Iceberg: The Definitive Guide: \\Data Lakehouse Functionality,\\ Performance, and Scalability\\ on the Data Lake\\ PUBLISHED BY:
+            O'Reilly Media, Inc.};
+        \end{tikzpicture}
+        \captionof{figure}{Technical components in a data lake}
+    \end{minipage}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Technical components in a data lake}
+    \includegraphics[width=\textwidth,height=.8\textheight,keepaspectratio]{./Figures/chapter-04/DataPlatform};
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Running Spark}\label{subsec:running-spark}
+\begin{frame}
+    \frametitle{Running Spark for Beginners}
+
+    \begin{itemize}
+        \item \textbf{Databricks Community Edition:} The simplest option for Spark beginners. A free version that's easy to use for learning and small projects. \pause
+        \item \textbf{Install Spark Locally:} For hands-on experience with Spark's core features on your own machine. \pause
+        \item \textbf{Spark on Docker:} For a flexible, containerized environment that can replicate a production setup.
+    \end{itemize}
+
+    \bigskip % Adds a bit more vertical space
+
+    \emph{Note:} For those new to Spark, starting with the Databricks Community Edition is highly recommended due to its user-friendly interface and comprehensive documentation.
+
+\end{frame}
+\begin{frame}
+    \centering
+    \vfill
+    \Large{Demo: Databricks Community Edition!}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \centering
+    \vfill
+    \Large{Demo: Install Spark Locally on Mac!}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \centering
+    \vfill
+    \Large{Demo: Install Spark Locally on Windows!}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \centering
+    \vfill
+    \Large{Demo: Install Spark Locally on Linux!}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \centering
+    \vfill
+    \Large{Demo: Spark Shell!}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \centering
+    \vfill
+    \Large{Demo: Spark SQL!}
+    \vfill
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{From MapReduce to Apache Spark}\label{subsec:from-mapreduce-to-apache-spark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{The basic idea of MapReduce}
+    \begin{itemize}
+        [<+->]
+        \item Assume we need to launch a high-throughput bulk-production sandwich shop.
+        \item This sandwich has a lot of raw ingredients, and our target is to produce the sandwich as quickly as possible.
+        \item To make the production very quickly we need to distribute the tasks between the  \textcolor{orange}{\textit{workers}}.
+    \end{itemize}
+    \footnotetext[1]{This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{The basic idea of MapReduce}
+    We break this into three stages
+    \begin{itemize}
+        [<+->]
+        \item Map.
+        \item Shuffle/Group (Mapper Intermediates).
+        \item Reduce
+    \end{itemize}
+    \footnotetext[1]{This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}    }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Map}
+    We distribute our raw ingredients amongst the workers.
+    \begin{figure}
+        \includegraphics[width=.5\textwidth,height=.8\textheight]{./Figures/chapter-04/map}\label{fig:map}
+    \end{figure}
+    \footnotetext[1]{{\tiny This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}    } }
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Shuffle/Group}
+    We will organise and group the processed ingredients into piles, so that making a sandwich becomes easy.
+    \begin{figure}
+        \includegraphics[width=.7\textwidth,height=.8\textheight]{./Figures/chapter-04/map_shuffle}\label{fig:map_shuffle}
+    \end{figure}
+    \footnotetext[1]{{\tiny This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}    }}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Reduce}
+    we’ll combine the ingredients into a sandwich
+    \begin{figure}
+        \includegraphics[width=.96\textwidth,height=.6\textheight]{./Figures/chapter-04/map_reduce}\label{fig:map_reduce}
+    \end{figure}
+    \footnotetext[1]{ {\tiny This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}    }}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Map Reduce Bottelneck}
+    \begin{figure}
+        \includegraphics[width=.96\textwidth,height=.6\textheight]{./Figures/chapter-04/MR}\label{fig:figure4}
+    \end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Spark Motivation}
+    \begin{itemize}
+
+        \item In-Memory Processing.
+
+        \item Resilient Distributed Datasets (RDDs).%**: Spark uses RDDs to perform parallel operations on data stored across cluster nodes, minimizing disk I/O by keeping data in RAM.
+
+        \item Optimized Execution.%: The DAG execution engine organizes computations efficiently, reducing unnecessary operations and combining tasks to lower data movement.
+
+        \item Caching.%: Spark allows for the caching of intermediate data in memory, benefiting iterative algorithms that reuse data, thereby avoiding repetitive disk access.
+
+        \item Advanced Optimization.%: With components like the Catalyst optimizer and Tungsten for memory and CPU efficiency, Spark streamlines execution, making it ideal for fast, iterative processing over big data.
+
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{What is Apache Spark}\label{subsec:what-is-apache-spark}
+\begin{frame}
+    \frametitle{\subsecname}
+    \begin{itemize}
+        \item Apache Spark is a \textbf{unified engine} designed for large-scale distributed data processing, either on-premises in data centers or in the cloud.\pause
+        \item Spark provides \textbf{in-memory} storage for intermediate computations, making it much faster than Hadoop MapReduce.\pause
+        \item Spark offers rich, composable APIs, for example:
+        \begin{itemize}
+            \item Spark SQL: SQL for interactive queries.
+            \item MLlib: for machine learning over big data and complex computations.
+            \item Structured Streaming: for stream processing with near real-time data.
+            \item GraphX: for graph processing.
+        \end{itemize}
+        \item \textbf{Optimized Execution Engine}: Spark's Catalyst optimizer and \texttt{Tungsten execution engine} optimize execution plans and generate efficient code for execution.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Characteristics}
+    \begin{itemize}
+        \item Speed. \pause
+        \item Ease of use. \pause
+        \item Modularity. \pause
+        \item Extensibility. \pause
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Spark Characteristics: Speed}
+    \begin{itemize}
+        \item Spark's speed is achieved through various strategies.
+        \begin{itemize}
+            \item \textbf{Hardware Utilization:} Spark leverages commodity hardware with extensive memory and multiple cores, utilizing efficient multithreading and parallel processing for improved performance.
+            \item \textbf{Directed Acyclic Graph (DAG):} Spark constructs computations as a DAG. Its scheduler and optimizer create an efficient graph, allowing parallel task execution across cluster workers. \textit{\color{blue}This topic will be discussed later.}
+            %TODO: about Spark DAG scheduler
+            \item \textbf{Tungsten Execution Engine:} Implements whole-stage code generation, optimizing physical execution for speed. This minimizes disk I/O and keeps intermediate results in memory, significantly boosting performance. \textit{\color{blue}This topic will be discussed later.}
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Spark Characteristics: Ease of use}
+    \begin{itemize}
+        \item Spark simplifies big data processing with an abstraction called a Resilient Distributed Dataset (RDD).\pause
+        \item RDDs serve as the foundation for higher-level data structures like DataFrames and Datasets in Spark. \textit{\color{blue}This topic will be discussed later.}\pause
+        \item Compared with MapReduce and other complex distributed processing frameworks, Spark provides a simple programming model with a range of transformations and actions. \pause
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Characteristics: Ease of use}
+    \begin{itemize}
+        \item Spark can process data from various sources like Hadoop, Cassandra, HBase, MongoDB, Hive, RDBMSs, and others in memory for faster processing.
+        \item Spark's \texttt{DataFrameReader}s and \texttt{DataFrameWriter}s allow Spark to interact with even more data sources, such as Kafka, Kinesis, Azure Storage, and Amazon S3.
+        \item The Spark community maintains a list of third-party packages, enhancing its ecosystem with connectors for external data sources, performance monitors, and more.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Characteristics: Modularity}
+    \begin{itemize}
+        \item Spark operations are flexible, supporting various workloads and languages: Scala, Java, Python, SQL, and R. \pause
+        \item It provides unified libraries with comprehensive APIs (SparkSQL, Structured Streaming, MLlib, and GraphX). \pause
+        \item These modules allow Spark to handle different workloads under a single engine. \pause
+        \item With Spark, you can develop a single application for diverse tasks without the need for separate engines or learning different APIs, achieving a unified processing framework. \pause
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Apache Spark Distributed Execution}\label{sec:apache-spark-distributed-execution}
+\begin{frame}
+    \frametitle{Spark Distributed Execution}
+    \begin{itemize}
+        \item Spark Application. \pause
+        \item Spark driver. \pause
+        \item Spark session. \pause
+        \item Cluster manager. \pause
+        \item Spark executors. \pause
+        \item Deployment mode. \pause
+        \item Data partition. \pause
+    \end{itemize}
+\end{frame}
+
+\subsection{Spark Application}\label{subsec:spark-application}
+\begin{frame}
+    \frametitle{Spark Distributed Execution: Spark Application}
+
+    \begin{itemize}
+        \item A Spark application is a program designed for distributed data processing using Spark.\pause
+        \item It includes a driver program to run the main function and execute parallel operations on a cluster.\pause
+        \item The application divides processing tasks into smaller units called tasks, distributed across cluster nodes.\pause
+        \item Spark applications support various languages like Scala, Java, Python, and R.\pause
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Application}
+
+    \includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-04/SparkCourse.drawio}\footnote{Spark the definitive guide, Ch.02}
+
+\end{frame}
+
+\subsection{Spark Driver}\label{subsec:spark-driver}
+
+\begin{frame}
+    \frametitle{Spark Driver}
+    The driver is the process \texttt{\color{blue}in the driver seat.}\footnote{Spark: The Definitive Guide, Chapter 15.} of your Spark Application.
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Driver: Key functions}
+
+
+    \begin{itemize}
+        \item It transforms all the Spark operations into DAG computations, schedules them, and distributes their execution as tasks across the Spark executors.\pause
+        \item Controlling the execution of a Spark Application.\pause
+        \item Maintaining the state of the Spark cluster, including the tasks and state of the executors.\pause
+
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Spark Driver: Key functions}
+
+    \begin{itemize}
+        \item It requests resources  (CPU, memory, etc.) from the cluster manager for Spark’s executors (JVMs).\pause
+        \item Once the resources are allocated, it communicates directly with the executors.\pause
+        \item Launch executors.\pause
+        \item Acting as a process on a physical machine, responsible for the overall state of the application on the cluster.\pause
+        \item It instantiates the \texttt{\color{blue} SparkSession}\pause
+
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Spark Driver: Recap}
+%    graph TD;
+%    A[Spark Driver] -->|Schedules Tasks| B(DAG Scheduler);
+%    A -->|Manages Execution| C(Cluster Manager);
+%    A -->|Allocates Resources| D(Executors);
+%    A -->|Initiates| E(SparkSession);
+%    B -->|Distributes Tasks| D;
+%    C -->|Grants Resources| D;
+%    D -->|Executes Tasks| F(Task);
+%    E -->|User Interface| G(Application Code);
+    \includegraphics[width=\textwidth,height=.85\textheight,keepaspectratio]{./Figures/chapter-04/Mairmaid_SparkDriver}
+
+\end{frame}
+
+\subsection{Spark Distributed Execution: SparkSession}\label{subsec:spark-session}
+\begin{frame}
+    \frametitle{What is a Session?}
+
+    \begin{itemize}
+        \item A session refers to an interaction between two or more entities.\pause
+        \item In computing, it's especially common in networked computers on the internet.\pause
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Types of Sessions in Computing}
+
+    \begin{itemize}
+        \item TCP session: A basic form of interaction in network communication.
+        \item Login session: The period when a user is logged into a system.
+        \item HTTP session: A series of interactions between a web server and a client.
+        \item User session: The time a user interacts with a software application.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Introducing SparkSession}
+
+    \begin{itemize}
+        \item Similar to the sessions mentioned, Spark has its own SparkSession.\pause
+        \item SparkSession provides a unified entry point to Spark's functionalities.\pause
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Functionality of SparkSession}
+
+    \begin{itemize}
+        \item \textbf{SparkSession:} An object that provides a point of entry to interact with underlying Spark functionality.\pause
+        \item It allows programming Spark with its APIs.\pause
+        \item In an interactive Spark shell, the Spark driver instantiates a SparkSession for you.\pause
+        \item In a Spark application, you create a SparkSession object yourself.\pause
+        \item You can program Spark using DataFrame and Dataset APIs through SparkSession.\pause
+        \item In Scala and Python, the variable is available as \texttt{spark} when you start the console.\pause
+
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{SparkSession}
+    \begin{itemize}
+        \item The SparkSession instance is the way Spark executes user-defined manipulations across the cluster.\pause
+        \item There is a one-to-one correspondence between a SparkSession and a Spark Application.\pause
+        \item It connects the Spark driver program with the cluster manager.\pause
+        \item SparkSession determines the resource manager (YARN, Mesos, or Standalone) for communication.\pause
+        \item It allows configuration of Spark parameters.\pause
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Interacting with Spark in Earlier Versions}
+
+    \begin{itemize}
+        \item In earlier versions of Spark, setting up a Spark application required creating a SparkConf and SparkContext.
+    \end{itemize}
+
+    \begin{lstlisting}[language=Python,label={lst:pyspark-spark-context},caption={Create SparkContext in old Spark versions}]
+from pyspark import SparkConf, SparkContext
+from pyspark.sql import SQLContext
+
+sparkConf = SparkConf().setAppName("SparkSessionExample").setMaster("local")
+sc = SparkContext(conf=sparkConf)
+sqlContext = SQLContext(sc)
+    \end{lstlisting}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Interacting with Spark in Earlier Versions}
+
+    \begin{lstlisting}[language=Scala,label={lst:scala-spark-context},caption={Scala: Create SparkContext in old Spark versions}]
+//set up the spark configuration and create contexts
+val sparkConf = new SparkConf().setAppName("SparkSessionZipsExample").setMaster("local")
+val sc = new SparkContext(sparkConf)
+sc.set("spark.some.config.option", "some-value")
+val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+    \end{lstlisting}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Simplification in Spark 2.0 with SparkSession}
+
+    \begin{itemize}
+        \item Spark 2.0 introduced SparkSession, simplifying the way you interact with Spark.
+        \item SparkSession encapsulates SparkConf, SparkContext, and SQLContext.
+    \end{itemize}
+
+    \begin{lstlisting}[language=Python,label={lst:spark-session-python-example},caption={Pyspark: Create SparkSession}]
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .appName("SparkSessionExample") \
+    .config("spark.some.config.option", "value") \
+    .getOrCreate()
+    \end{lstlisting}
+
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{Simplification in Spark 2.0 with SparkSession}
+    \begin{lstlisting}[language=Scala,label={lst:spark-session-scala-example},caption={Spark: Create SparkSession}]
+// Create a SparkSession. No need to create SparkContext.
+val warehouseLocation = "file:${system:user.dir}/spark-warehouse"
+val spark = SparkSession
+   .builder()
+   .appName("SparkSessionZipsExample")
+   .config("spark.sql.warehouse.dir", warehouseLocation)
+   .enableHiveSupport()
+   .getOrCreate()
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Using SparkSession}
+
+    \begin{itemize}
+
+        \item Spark 2.0 introduces SparkSession.\pause
+        \item With SparkSession, you can access all Spark functionalities.\pause
+        \item A unified entry point to Spark's functionality, reduces the need for multiple context initializations.\pause
+        \item Encapsulates the functionalities of SQLContext, HiveContext, and more.\pause
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reference}
+
+    \begin{itemize}
+        \item The examples shown are based on a blog post from Databricks.
+        \item URL: \url{https://www.databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html}
+    \end{itemize}
+
+\end{frame}
+
+\subsection{Cluster manager}\label{subsec:cluster-manager}
+
+\begin{frame}
+    \frametitle{Introduction to Spark Cluster Managers}
+    \begin{itemize}
+        \item The cluster manager allocates resources for Spark applications.
+        \item Supports several managers: Standalone, Hadoop YARN, Apache Mesos, and Kubernetes.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Role of the Cluster Manager}
+    \begin{itemize}
+        \item The Spark Driver and Executors do not exist in a void, and this is where the cluster manager
+        comes in.
+        \item The cluster manager is important for managing a cluster of machines intended to run Spark Applications.
+        \item Maintains a \texttt{driver (or master)} and \texttt{worker} nodes, tied to \textbf{physical machines}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cluster Manager Components}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/cluster_manager_processes}
+        \caption{Basic setup of a cluster manager.}\label{fig:cluster_manager_processes}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Execution of Spark Applications}
+    \begin{itemize}
+        \item The user requests resources from the cluster manager to initiate Spark applications.
+        \item The user configures the application to specify resources for the driver or only for executors.
+        \item The cluster manager directly manages the machines during the execution of the application.
+    \end{itemize}
+\end{frame}
+
+\subsection{Execution Modes}\label{subsec:deployment-mode}
+\begin{frame}
+    \frametitle{Execution Modes Overview}
+    \begin{itemize}
+        \item Execution modes define the location of resources when running Spark applications.
+        \item Three modes available:
+        \begin{enumerate}
+            \item Cluster mode
+            \item Client mode
+            \item Local mode
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cluster Mode}
+    \begin{itemize}
+        \item Most common mode for running Spark Applications. \pause
+        \item User submits a pre-compiled JAR, Python script, or R script to a cluster manager. \pause
+        \item The cluster manager then launches the driver process on a worker node inside the cluster.\pause
+        \item Executor processes also launched within the cluster.\pause
+        \item Cluster manager handles all Spark Application processes.\pause
+        \item This means that the cluster manager is responsible for maintaining all Spark Application–related processes.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Cluster Mode}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/spark_cluster_mode}
+        \caption{Spark’s cluster mode.}\label{fig:cluster_mode}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Client Mode}
+    \begin{itemize}
+        \item Similar to cluster mode, but the  \textbf{\texttt{Spark driver remains on the client
+        machine that submitted the application}}.
+        \item \textbf{Client machine} is responsible for maintaining the Spark driver process.
+        \item \textbf{Cluster manager} maintains executor processes.
+        \item Commonly used with gateway machines or edge nodes.
+        \item The driver is running on a machine outside of the cluster but that the workers are located on machines in the cluster.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Client Mode}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/spark_client_mode}
+        \caption{Spark’s client mode.}\label{fig:client_mode}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Local Mode}
+    \begin{itemize}
+        \item Runs the entire application on a single machine.
+        \item Parallelism achieved through threads on the same machine.
+        \item Ideal for learning, testing, or local development.
+        \item Not recommended for production use.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Deployment Modes Cheat Sheet}
+    \begin{table}[h!]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|p{2cm} |p{5cm} |p{5cm} |p{5cm}|}
+            \hline
+            \rowcolor{Gray}
+            \textbf{Mode} & \textbf{Driver} & \textbf{Executor} & \textbf{Cluster Manager} \\
+            \hline
+            \textbf{Local} & Runs on a single JVM & Runs with driver & Single host \\
+            \hline
+            \textbf{Standalone} & Any cluster node & Own JVM per node & Any host in cluster \\
+            \hline
+            \textbf{YARN (client)} & Client machine & NodeManager container & YARN Resource Manager \\
+            \hline
+            \textbf{YARN (cluster)} & YARN App Master & Similar to client & Similar to client \\
+            \hline
+            \textbf{Kubernetes} & Kubernetes pod & Individual pods & Kubernetes Master \\
+            \hline
+        \end{tabular}
+        }
+        \caption{Summary of Spark deployment modes}\label{tab:spark-deployment}
+    \end{table}
+\end{frame}
+
+\subsection{Spark executors}\label{subsec:spark-executors}
+
+\begin{frame}
+    \frametitle{Spark Executors in Depth}
+    \begin{itemize}
+        \item Executors are processes that run the tasks assigned by the driver.
+        \item Each Spark Application has distinct executor processes.
+        \item Typically, one executor runs per node in most deployment modes.
+        \item Executors' main function: Execute tasks, return status, and communicate outcomes.
+    \end{itemize}
+\end{frame}
+
+\subsection{Data partition}\label{subsec:data-partition}
+
+
+% Slide 1
+\begin{frame}{Introduction to Data Distribution and Partitions}
+    \begin{itemize}
+        \item \textbf{Data Distribution:} Physical data is distributed across storage as partitions residing in either HDFS  or cloud storage.
+        \item \textbf{Data Abstraction:} Spark treats each partition as a high-level logical data abstraction—as  a DataFrame in memory.
+    \end{itemize}
+\end{frame}
+
+% Slide 2
+\begin{frame}{Data Locality and Task Allocation}
+    \begin{itemize}
+        \item \textbf{Data Locality:} Each Spark executor is  preferably allocated a task that requires it to read the partition closest to it in the network, observing data locality.
+        \item \textbf{Optimal Task Allocation:} Partitioning allows for efficient parallelism.
+        \item \textbf{Minimize Network Bandwidth:} A distributed scheme of breaking up data into chunks or partitions allows Spark executors to process only data that is close to  them, minimizing network bandwidth.
+    \end{itemize}
+\end{frame}
+
+% Slide 3
+\begin{frame}{Benefits of Partitioning}
+    \begin{itemize}
+        \item \textbf{Efficient Parallelism:} Partitioning allows executors to process data close to them.
+        \item \textbf{Dedicated Processing:} Each core on an executor works on its own partition, minimizing network bandwidth usage.
+    \end{itemize}
+\end{frame}
+
+% Slide 4
+\begin{frame}[fragile]{Practical Example - Distributing Data}
+    \begin{lstlisting}[language=Python,label={lst:pyspark-data-partitioning}]
+        log_df = spark.read.text("path_to_large_text_file").repartition(8)
+        print(log_df.rdd.getNumPartitions())
+    \end{lstlisting}
+    This example splits data across clusters into eight partitions.
+\end{frame}
+
+% Slide 5
+\begin{frame}[fragile]{Practical Example - Creating a DataFrame}
+    \begin{lstlisting}[language=Python,label={lst:pyspark-creating-dataframe}]
+        df = spark.range(0, 10000, 1, 8)
+        print(df.rdd.getNumPartitions())
+    \end{lstlisting}
+    This creates a DataFrame of 10,000 integers over eight partitions in memory.
+\end{frame}
+
+% Slide 6
+\begin{frame}{Conclusion}
+    \begin{itemize}
+        \item \textbf{Key Takeaway:} Efficient data partitioning is crucial for optimizing processing in Spark.
+    \end{itemize}
+\end{frame}
+
+\subsection{Spark Operations}\label{subsec:spark-operations}
+\begin{frame}
+    \frametitle{Spark Operations}
+    \begin{itemize}
+        \item Spark \textbf{operations} on distributed data can be classified into two types: transformations
+        and actions.
+        \item All spark operations are \texttt{\color{blue}{immutable}}.
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Immutable Objects}
+    \begin{itemize}
+        \item An object whose state cannot change after it has been constructed is
+called immutable (unchangable).\footnote{Referenced from https://otfried.org/courses/cs109scala/tutorial_mutable.html}
+        \item  The methods of an immutable object do not modify the state of the object.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Immutable Objects}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/Immutable_df}
+        \caption{Spark Dataframe is immutable, and you can't change its values.}\label{fig:Immutable_df}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Immutable Objects}
+    \begin{figure}
+    \includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-04/pyspark_immutable_df}
+    \caption{Filtering a PySpark DataFrame Based on Age}\label{fig:pyspark_immutable_df}
+    \end{figure}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{DEMO}
+   DEMO
+\end{frame}
+\begin{frame}
+    \frametitle{Spark Operations: Transformations}
+    \begin{itemize}
+        \item Transformations: transform a Spark DataFrame into a new DataFrame \textit{\color{blue}{without altering the original data}}.
+        \item Example of Spark transformations, \texttt{\color{orange}{map(), select(), filter(), or drop()} }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Spark Transformations: What are Lazy Transformations?}
+  \begin{itemize}
+    \item In Spark, transformations are \textit{lazy}.
+    \item This means computations are not executed immediately.
+    \item Spark builds a \textbf{DAG} (Directed Acyclic Graph) of transformations.
+    \item All Transformations results are not computed immediately, but they are recorded or remembered as a \textbf{lineage}.
   \end{itemize}
-\end{itemize}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Apache Spark in Data Platforms}
-
-\begin{frame}{Technical components in a data lake}
-	\begin{minipage}{\textwidth}
-		\begin{tikzpicture}
-		  % Place image at the left side
-		  \node[anchor=west] (image) at (0,0) {\includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-03/datalake_table_format.png}};
-		  % Place text and arrow
-		  \draw[<-, thick] (image) -- ++(4,1) node[right, align=left,font=\small, text=gray] {Apache Iceberg: The Definitive Guide: \\Data Lakehouse Functionality,\\ Performance, and Scalability\\ on the Data Lake\\ PUBLISHED BY:
-		  O'Reilly Media, Inc.};
-		\end{tikzpicture}
-		\captionof{figure}{Technical components in a data lake}
-	\end{minipage}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Technical components in a data lake}
-\includegraphics[width=\textwidth,height=.8\textheight,keepaspectratio]{./Figures/chapter-04/DataPlatform.png};
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Running Spark}
 \begin{frame}
-\frametitle{Running Spark for Beginners}
+  \frametitle{Spark Transformations: Benefits of Lazy Evaluation}
+  \begin{itemize}
+    \item \textbf{Optimization:} A lineage allows Spark, at a later time in its execution plan, to rearrange certain transformations, coalesce
+    them, or optimize transformations into stages for more efficient execution.
+    \item \textbf{Resource Management:} Executes tasks efficiently, using fewer resources.
+    \item \textbf{Fault Tolerance:} Easier to recompute parts of the pipeline if a part fails.
+  \end{itemize}
+\end{frame}
 
-\begin{itemize}
-  \item \textbf{Databricks Community Edition:} The simplest option for Spark beginners. A free version that's easy to use for learning and small projects. \pause
-  \item \textbf{Install Spark Locally:} For hands-on experience with Spark's core features on your own machine. \pause
-  \item \textbf{Spark on Docker:} For a flexible, containerized environment that can replicate a production setup.
-\end{itemize}
-
-\bigskip % Adds a bit more vertical space
-
-\emph{Note:} For those new to Spark, starting with the Databricks Community Edition is highly recommended due to its user-friendly interface and comprehensive documentation.
-
+\begin{frame}
+  \frametitle{Spark Transformations: Lazy Transformation}
+  \begin{itemize}
+    \item Consider a dataset with map and filter transformations.
+    \item Spark does not execute these transformations when they are defined.
+    \item Transformations are executed when an action (like \textbf{collect}, \textbf{count}) is called.
+  \end{itemize}
 \end{frame}
 \begin{frame}
-\centering % Center the content horizontally
-\vfill % Center the content vertically
-\Large{Demo!} % Large font size for the question
-\vfill % Add space at the bottom to keep the text centered vertically
+    \frametitle{Lazy Transformations Example}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-04/pyspark_transformations}
+        \caption{Spark Lazy Transformations Example.}\label{fig:pyspark_transformations}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Spark Operations: Actions}
+    \begin{itemize}
+        \item An action triggers the lazy evaluation of all the recorded transformations.
+        \item Actions are operations that trigger execution of transformations.
+        \item They are used to either compute a result to be returned to the Spark driver program or to write data to an external storage system.
+        \item Actions include operations like \textbf{count}, \textbf{collect}, \textbf{saveAsTextFile}, and \textbf{take}.
+    \end{itemize}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{From MapReduce to Apache Spark}
+\begin{frame}
+  \frametitle{Examples of Spark Actions}
+  \begin{itemize}
+    \item \textbf{collect()}: Collects all elements from the Spark context to the driver program.
+    \item \textbf{count()}: Returns the number of elements in the dataset.
+    \item \textbf{saveAsTextFile(path)}: Saves the dataset to a text file at the specified path.
+    \item \textbf{take(n)}: Returns an array with the first n elements of the dataset.
+  \end{itemize}
+\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{The basic idea of MapReduce}
-	\begin{itemize}  [<+->]
-		\item Assume we need to launch a high-throughput bulk-production sandwich shop.
-		\item This sandwich has a lot of raw ingredients, and our target is to produce the sandwich as quickly as possible.
-		\item To make the production very quickly we need to distribute the tasks between the  \textcolor{orange}{\textit{workers}}.
-	\end{itemize}
-	\footnotetext[1]{This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}	}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{The basic idea of MapReduce}
-	We break this into three stages
-	\begin{itemize}  [<+->]
-		\item Map.
-		\item Shuffle/Group (Mapper Intermediates).
-		\item Reduce
-	\end{itemize}
-	\footnotetext[1]{This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}	}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Map}
-	We distribute our raw ingredients amongst the workers.
-	\begin{figure}
-		\includegraphics[width=.5\textwidth,height=.6\textheight]{./Figures/chapter-02/map-reduce-map-side.jpeg}
-	\end{figure}
-	\footnotetext[1]{{\tiny This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}	} }
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Shuffle/Group}
-	We will organise and group the processed ingredients into piles, so that making a sandwich becomes easy.
-		\begin{figure}
-		\includegraphics[width=.7\textwidth,height=.6\textheight]{./Figures/chapter-02/map-reduce-shuffle.png}
-	\end{figure}
-	\footnotetext[1]{{\tiny This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}	}}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Reduce}
-	we’ll combine the ingredients into a sandwich
-	\begin{figure}
-		\includegraphics[width=.96\textwidth,height=.6\textheight]{./Figures/chapter-02/map-reduce-reduce-side.png}
-	\end{figure}
-	\footnotetext[1]{ {\tiny This example taken from  \href{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}{https://reberhardt.com/cs110/summer-2018/lecture-notes/lecture-14/}	}}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Map Reduce Bottelneck}
-	\begin{figure}
-		\includegraphics[width=.96\textwidth,height=.6\textheight]{./Figures/chapter-04/MR}
-	\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Spark Motivation}
-	\begin{itemize}
+\subsection{Narrow and Wide Transformations}\label{subsec:narrow-and-wide-transformations}
 
-\item In-Memory Processing.
+\subsection{Understanding Spark Application Concepts}\label{subsec:understanding-spark-application-concepts}
 
-\item Resilient Distributed Datasets (RDDs).%**: Spark uses RDDs to perform parallel operations on data stored across cluster nodes, minimizing disk I/O by keeping data in RAM.
-
-\item Optimized Execution.%: The DAG execution engine organizes computations efficiently, reducing unnecessary operations and combining tasks to lower data movement.
-
-\item Caching.%: Spark allows for the caching of intermediate data in memory, benefiting iterative algorithms that reuse data, thereby avoiding repetitive disk access.
-
-\item Advanced Optimization.%: With components like the Catalyst optimizer and Tungsten for memory and CPU efficiency, Spark streamlines execution, making it ideal for fast, iterative processing over big data.
-
-	\end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{What is Apache Spark}
 \begin{frame}
-\frametitle{\subsecname}
-\begin{itemize}
-	\item Speed. \pause
-	\item Ease of use. \pause
-	\item Modularity. \pause
-	\item Extensibility. \pause
-\end{itemize}
+    \frametitle{Understanding Spark Application Concepts}
+    \begin{itemize}
+        \item \textbf{Job}: A parallel computation consisting of multiple tasks that gets spawned in response
+        to a Spark action (e.g., save(), collect()).
+        \item \textbf{Stage}: Each job gets divided into smaller sets of tasks called stages that depend on each
+        other.
+        \item \textbf{Task}: A single unit of work or execution that will be sent to a Spark executor.
+    \end{itemize}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Apache Spark Distributed Execution}
 \begin{frame}
-\frametitle{Apache Spark Distributed Execution}
-\begin{itemize}
-	\item Spark driver. \pause
-	\item Spark session. \pause
-	\item Cluster manager. \pause
-	\item Spark executors. \pause
-	\item Deployment mode. \pause
-	\item Data partition. \pause
-\end{itemize}
+    \frametitle{Spark Jobs}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/spark_job}
+        \caption{Spark driver creating one or more Spark jobs.}\label{fig:spark_job}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Spark Stages}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.65\textheight,keepaspectratio]{./Figures/chapter-04/Spark_Stages}
+        \caption{Spark job creating one or more stages}\label{fig:spark_stages}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Spark Stages}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/Spark_Stage}
+        \caption{Spark stage creating one or more tasks to be distributed to executors}\label{fig:spark_stage}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Spark Tasks}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/Spark_tasks}
+        \caption{Spark stage creating one or more tasks to be distributed to executors}\label{fig:Spark_tasks}
+    \end{figure}
+\end{frame}
+
+\subsection{Running Word Count \& Aggregation using Spark}\label{subsec:running-word-count-&-aggregation-using-spark}
+
+
+
+\subsection{Spark Application Life Cycle}\label{subsec:spark-application-life-cycle}
+%%%% Later
+\begin{frame}
+    \frametitle{The Life Cycle of a Spark Application (Inside Spark)}
+    \begin{itemize}
+        \item The Life Cycle of a Spark Application (Inside Spark)
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{The Life Cycle of a Spark Application (Outside Spark)}
+    \begin{itemize}
+        \item The Life Cycle of a Spark Application (Outside Spark)
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{The Life Cycle of a Spark Application (Inside Spark)}
+    \begin{itemize}
+        \item The Life Cycle of a Spark Application (Inside Spark)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ADVANCED: SPARK DRIVER INTERNAL SCHEDULER}
+    \begin{itemize}
+        \item GOING DEEPER INTO SPARK DRIVER.
+        \item CAN WE OPTIMIZE SPARK DRIVER WORKLOAD?
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Further Readings and Assignment}
+
+
 
 %%% Local Variables:
 %%% mode: latex
