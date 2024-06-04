@@ -3,19 +3,21 @@
 % 	\tableofcontents
 % \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Ch.04-01   | Introduction
 \section{Apache Spark}
 
 \begin{frame}
     \frametitle{Course Objectives}
 
     \begin{itemize}
-        \item Understand the fundamentals of Apache Spark. 
-        \item Build data processing applications using Apache Spark. 
-        \item Understand Apache Spark APIs (RDD, DataFrames, and Datasets). 
-        \item Optimize and tune Apache Spark applications. 
-        \item Build streaming applications using Apache Spark. 
-        \item Build scalable machine learning applications using Apache Spark MLlib. 
-        \item Deploy Apache Spark in production environments. 
+        \item Understand the fundamentals of Apache Spark.
+        \item Build data processing applications using Apache Spark.
+        \item Understand Apache Spark APIs (RDD, DataFrames, and Datasets).
+        \item Optimize and tune Apache Spark applications.
+        \item Build streaming applications using Apache Spark.
+        \item Build scalable machine learning applications using Apache Spark MLlib.
+        \item Deploy Apache Spark in production environments.
     \end{itemize}
 
 \end{frame}
@@ -26,9 +28,9 @@
 \begin{frame}
     \frametitle{\subsecname}
     \begin{itemize}
-        \item \href{https://pages.databricks.com/rs/094-YMS-629/images/LearningSpark2.0.pdf}{Learning Spark, 2nd Edition} By Jules S. Damji, Brooke Wenig, Tathagata Das, Denny Lee. 
-        \item \href{https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/}{Spark: The Definitive Guide} By Bill Chambers, Matei Zaharia. 
-        \item Random blog posts. 
+        \item \href{https://pages.databricks.com/rs/094-YMS-629/images/LearningSpark2.0.pdf}{Learning Spark, 2nd Edition} By Jules S. Damji, Brooke Wenig, Tathagata Das, Denny Lee.
+        \item \href{https://learning.oreilly.com/library/view/spark-the-definitive/9781491912201/}{Spark: The Definitive Guide} By Bill Chambers, Matei Zaharia.
+        \item Random blog posts.
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -38,33 +40,26 @@
     \frametitle{\subsecname}
     Before beginning this course, participants should have:
     \begin{itemize}
-        \item Experience in programming using Python.  
-        \item Basic programming skills using shell.  
-        \item An understanding of MapReduce foundations and Hive. \href{https://www.youtube.com/playlist?list=PLxNoJq6k39G8Ak39PDC-oYvp6ZRvIn3Pa}{Garage Education YouTube Playlist}  
+        \item Experience in programming using Python.
+        \item Basic programming skills using shell.
+        \item An understanding of MapReduce foundations and Hive. \href{https://www.youtube.com/playlist?list=PLxNoJq6k39G8Ak39PDC-oYvp6ZRvIn3Pa}{Garage Education YouTube Playlist}
     \end{itemize}
 
 \end{frame}
 
-
-\subsection{Apache Spark for business}\label{subsec:spark-for-non-technical}
-\begin{frame}
-    \frametitle{TODO: Apache Spark for business}
-    \begin{itemize}
-        \item TODO: ???
-        \item Python is widely used with numerous tools and libraries available. 
-    \end{itemize}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Ch.04-02   | Python Vs. Scala
 
 \subsection{Python vs Scala}\label{subsec:python-vs-scala}
 \begin{frame}
     \frametitle{\subsecname}
     \begin{itemize}
-        \item Python is widely used with numerous tools and libraries available. 
-        \item Python is easier to learn than Scala; however, Scala might be more intuitive for those who prefer functional programming. 
-        \item Finding Python developers is generally easier for companies than finding Scala developers. 
-        \item Initially, Scala offered better performance in Apache Spark, but over time this advantage reduced, and now there's no big difference in speed. 
-        \item PySpark and Scala share the same Spark concepts, allowing for interchangeable use of examples from both languages without affecting learning. 
+        \item Python is widely used with numerous tools and libraries available.
+        \item Python is easier to learn than Scala; however, Scala might be more intuitive for those who prefer functional programming.
+        \item Finding Python developers is generally easier for companies than finding Scala developers.
+        \item Initially, Scala offered better performance in Apache Spark, but over time this advantage reduced, and now there's no big difference in speed.
+        \item PySpark and Scala share the same Spark concepts, allowing for interchangeable use of examples from both languages without affecting learning.
     \end{itemize}
 \end{frame}
 
@@ -81,9 +76,9 @@
 \begin{frame}
     \frametitle{Spark's Codebase and Documentation}
     \begin{itemize}
-        \item The quality of Spark's documentation is inconsistent.\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}  
-        \item Spark's codebase is very readable.  
-        \item Understanding the Spark codebase benefits \textbf{advanced users}.  
+        \item The quality of Spark's documentation is inconsistent.\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}
+        \item Spark's codebase is very readable.
+        \item Understanding the Spark codebase benefits \textbf{advanced users}.
     \end{itemize}
 
 \end{frame}
@@ -91,9 +86,9 @@
 \begin{frame}
     \frametitle{Understanding Spark Through Scala}
     \begin{itemize}
-        \item Scala helps you understand Spark deeply.\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01} 
-        \item Spark is written in Scala. 
-        \item To work with Spark's source code effectively, it's essential to understand (read) Scala. 
+        \item Scala helps you understand Spark deeply.\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}
+        \item Spark is written in Scala.
+        \item To work with Spark's source code effectively, it's essential to understand (read) Scala.
     \end{itemize}
 
 \end{frame}
@@ -101,10 +96,10 @@
 \begin{frame}
     \frametitle{RDD and Scala's Influence}
     \begin{itemize}
-        \item Scala's influence is evident in Spark's Resilient Distributed Datasets (RDD).\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01} 
-        \item RDD methods are similar to Scala's collection tools. 
-        \item Functions like map, filter, and reduce are similar in both. 
-        \item Knowing Scala makes it easier to understand how RDDs work. 
+        \item Scala's influence is evident in Spark's Resilient Distributed Datasets (RDD).\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}
+        \item RDD methods are similar to Scala's collection tools.
+        \item Functions like map, filter, and reduce are similar in both.
+        \item Knowing Scala makes it easier to understand how RDDs work.
     \end{itemize}
 
 \end{frame}
@@ -112,9 +107,9 @@
 \begin{frame}
     \frametitle{Spark as a Functional Framework}
     \begin{itemize}
-        \item Spark uses functional programming principles.  
-        \item Concepts like immutability and lambda are key.  
-        \item Understanding functional programming helps in using Spark well.\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}  
+        \item Spark uses functional programming principles.
+        \item Concepts like immutability and lambda are key.
+        \item Understanding functional programming helps in using Spark well.\footnote{Referenced from High Performance Spark, 2nd Edition, Ch.01}
     \end{itemize}
 
 \end{frame}
@@ -123,21 +118,23 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ch.04-03   | Introduction
+
 \subsection{Introduction to Apache Spark}\label{subsec:history-of-apache-spark}
 \begin{frame}
     \frametitle{\subsecname}
     \begin{itemize}
-        \item Apache Spark was initiated at UC Berkeley in 2009, leading to the publication of \href{https://www1.icsi.berkeley.edu/pubs/networking/ICSI_sparkclustercomputing10.pdf}{Spark: Cluster Computing with Working Sets} in 2010 by Matei Zaharia et al.  
+        \item Apache Spark was initiated at UC Berkeley in 2009, leading to the publication of \href{https://www1.icsi.berkeley.edu/pubs/networking/ICSI_sparkclustercomputing10.pdf}{Spark: Cluster Computing with Working Sets} in 2010 by Matei Zaharia et al.
 %    \item It aimed to address the limitations of Hadoop MapReduce, especially for iterative machine learning algorithms requiring multiple data passes. 
-        \item Spark was developed to improve processing efficiency over Hadoop MapReduce, which struggled with iterative tasks because it launched separate jobs and reloaded data for each one. This was particularly important for machine learning algorithms that need multiple data passes. 
-        \item Initially, Spark was designed for batch applications, but it quickly expanded to include streaming, SQL analytics, graph processing, and machine learning. 
+        \item Spark was developed to improve processing efficiency over Hadoop MapReduce, which struggled with iterative tasks because it launched separate jobs and reloaded data for each one. This was particularly important for machine learning algorithms that need multiple data passes.
+        \item Initially, Spark was designed for batch applications, but it quickly expanded to include streaming, SQL analytics, graph processing, and machine learning.
     \end{itemize}
 \end{frame}
 \begin{frame}
     \frametitle{\subsecname}
     \begin{itemize}
-        \item By 2013, the project had more than 100 contributors, and now it has over 2,000 contributors with more than 39,000 commits. It has been donated to the Apache Software Foundation, guaranteeing its future as a vendor-independent project. 
-        \item Key milestones in its development are Spark 1.0 in 2014, Spark 2.0 in 2016, and Spark 3.0 in 2020, highlighting its evolution and broad acceptance. 
+        \item By 2013, the project had more than 100 contributors, and now it has over 2,000 contributors with more than 39,000 commits. It has been donated to the Apache Software Foundation, guaranteeing its future as a vendor-independent project.
+        \item Key milestones in its development are Spark 1.0 in 2014, Spark 2.0 in 2016, and Spark 3.0 in 2020, highlighting its evolution and broad acceptance.
     \end{itemize}
 \end{frame}
 \begin{frame}
@@ -156,13 +153,15 @@
     \end{itemize}
 \end{frame}
 
+%Ch.04-04   | About Databricks
+
 \subsection{About Databricks}\label{subsec:about-databricks}
 \begin{frame}
     \frametitle{About Databricks}
     \begin{itemize}
-        \item Databricks, founded by the early AMPlab team, joined the community to further develop Spark. 
-        \item The organization was founded to deliver a comprehensive analytics platform, streamlining Spark's application in big data processing and analytics. 
-        \item Databricks has bridged the gap between academic research and enterprise applications through its managed cloud service and significant contributions to the Spark project. 
+        \item Databricks, founded by the early AMPlab team, joined the community to further develop Spark.
+        \item The organization was founded to deliver a comprehensive analytics platform, streamlining Spark's application in big data processing and analytics.
+        \item Databricks has bridged the gap between academic research and enterprise applications through its managed cloud service and significant contributions to the Spark project.
     \end{itemize}
 \end{frame}
 \begin{frame}
@@ -223,6 +222,7 @@
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ch.04-05   | Spark In The Data Platforms
 
 \subsection{Apache Spark in Data Platforms}\label{subsec:apache-spark-in-data-platforms}
 
@@ -244,14 +244,15 @@
     \includegraphics[width=\textwidth,height=.8\textheight,keepaspectratio]{./Figures/chapter-04/DataPlatform};
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Ch.04-06   | Running Spark
 
 \subsection{Running Spark}\label{subsec:running-spark}
 \begin{frame}
     \frametitle{Running Spark for Beginners}
 
     \begin{itemize}
-        \item \textbf{Databricks Community Edition:} The simplest option for Spark beginners. A free version that's easy to use for learning and small projects. 
-        \item \textbf{Install Spark Locally:} For hands-on experience with Spark's core features on your own machine. 
+        \item \textbf{Databricks Community Edition:} The simplest option for Spark beginners. A free version that's easy to use for learning and small projects.
+        \item \textbf{Install Spark Locally:} For hands-on experience with Spark's core features on your own machine.
         \item \textbf{Spark on Docker:} For a flexible, containerized environment that can replicate a production setup.
     \end{itemize}
 
@@ -302,6 +303,7 @@
     \vfill
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Ch.04-11   | From Map Reduce To Spark
 
 \subsection{From MapReduce to Apache Spark}\label{subsec:from-mapreduce-to-apache-spark}
 
@@ -380,16 +382,17 @@
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ch.04-12   | Spark Characteristics
 
 \subsection{Spark Characteristics}\label{subsec:characteristics-apache-spark}
 
 \begin{frame}
     \frametitle{Spark Characteristics}
     \begin{itemize}
-        \item Speed. 
-        \item Ease of use. 
-        \item Modularity. 
-        \item Extensibility. 
+        \item Speed.
+        \item Ease of use.
+        \item Modularity.
+        \item Extensibility.
     \end{itemize}
 \end{frame}
 
@@ -397,10 +400,10 @@
 \begin{frame}
     \frametitle{Spark Characteristics: Speed}
     \begin{itemize}
-        \item Spark's speed is achieved through various strategies. 
+        \item Spark's speed is achieved through various strategies.
         \begin{itemize}
-            \item \textbf{Hardware Utilization:} Spark leverages commodity hardware with extensive memory and multiple cores, utilizing efficient multithreading and parallel processing for improved performance. 
-            \item \textbf{Directed Acyclic Graph (DAG):} Spark constructs computations as a DAG. Its scheduler and optimizer create an efficient graph, allowing parallel task execution across cluster workers. \textit{\color{blue}This topic will be discussed later.} 
+            \item \textbf{Hardware Utilization:} Spark leverages commodity hardware with extensive memory and multiple cores, utilizing efficient multithreading and parallel processing for improved performance.
+            \item \textbf{Directed Acyclic Graph (DAG):} Spark constructs computations as a DAG. Its scheduler and optimizer create an efficient graph, allowing parallel task execution across cluster workers. \textit{\color{blue}This topic will be discussed later.}
             %TODO: about Spark DAG scheduler
         \end{itemize}
     \end{itemize}
@@ -410,10 +413,10 @@
 \begin{frame}
     \frametitle{Spark Characteristics: Speed}
     \begin{itemize}
-        \item Spark's speed is achieved through various strategies. 
+        \item Spark's speed is achieved through various strategies.
         \begin{itemize}
             \item \textbf{Tungsten Execution Engine:} Tungsten enhances Spark's speed by optimizing memory management,
-            shifting from JVM-managed objects to direct binary processing, and employing cache-optimized algorithms and advanced code generation. These improvements reduce CPU and memory bottlenecks, significantly boosting performance. \textit{\color{blue}This topic will be discussed later.} 
+            shifting from JVM-managed objects to direct binary processing, and employing cache-optimized algorithms and advanced code generation. These improvements reduce CPU and memory bottlenecks, significantly boosting performance. \textit{\color{blue}This topic will be discussed later.}
         \end{itemize}
     \end{itemize}
 
@@ -424,7 +427,7 @@
     \begin{itemize}
         \item Spark simplifies big data processing with an abstraction called a Resilient Distributed Dataset (RDD).
         \item RDDs serve as the foundation for higher-level data structures like DataFrames and Datasets in Spark. \textit{\color{blue}This topic will be discussed later.}
-        \item Compared with MapReduce and other complex distributed processing frameworks, Spark provides a simple programming model with a range of transformations and actions. 
+        \item Compared with MapReduce and other complex distributed processing frameworks, Spark provides a simple programming model with a range of transformations and actions.
     \end{itemize}
 \end{frame}
 
@@ -432,10 +435,10 @@
 \begin{frame}
     \frametitle{Spark Characteristics: Modularity}
     \begin{itemize}
-        \item Spark operations are flexible, supporting various workloads and languages: Scala, Java, Python, SQL, and R. 
-        \item It provides unified libraries with comprehensive APIs (SparkSQL, Structured Streaming, MLlib, and GraphX). 
-        \item These modules allow Spark to handle different workloads under a single engine. 
-        \item With Spark, you can develop a single application for diverse tasks without the need for separate engines or learning different APIs, achieving a unified processing framework. 
+        \item Spark operations are flexible, supporting various workloads and languages: Scala, Java, Python, SQL, and R.
+        \item It provides unified libraries with comprehensive APIs (SparkSQL, Structured Streaming, MLlib, and GraphX).
+        \item These modules allow Spark to handle different workloads under a single engine.
+        \item With Spark, you can develop a single application for diverse tasks without the need for separate engines or learning different APIs, achieving a unified processing framework.
     \end{itemize}
 \end{frame}
 
@@ -464,15 +467,17 @@
 \begin{frame}
     \frametitle{Spark Distributed Execution}
     \begin{itemize}
-        \item Spark Application. 
-        \item Spark driver. 
-        \item Spark session. 
-        \item Cluster manager. 
-        \item Spark executors. 
-        \item Deployment mode. 
-        \item Data partition. 
+        \item Spark Application.
+        \item Spark driver.
+        \item Spark session.
+        \item Cluster manager.
+        \item Spark executors.
+        \item Deployment mode.
+        \item Data partition.
     \end{itemize}
 \end{frame}
+
+% Ch.04-13   | Spark Applications
 
 \subsection{Spark Application}\label{subsec:spark-application}
 \begin{frame}
@@ -493,6 +498,8 @@
     \includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-04/SparkCourse.drawio}\footnote{Spark the definitive guide, Ch.02}
 
 \end{frame}
+
+% Ch.04-14   | Spark Driver
 
 \subsection{Spark Driver}\label{subsec:spark-driver}
 
@@ -543,6 +550,8 @@
     \includegraphics[width=\textwidth,height=.85\textheight,keepaspectratio]{./Figures/chapter-04/Mairmaid_SparkDriver}
 
 \end{frame}
+
+% Ch.04-15   | Spark Session
 
 \subsection{Spark Distributed Execution: SparkSession}\label{subsec:spark-session}
 \begin{frame}
@@ -691,6 +700,8 @@ val spark = SparkSession
 
 \end{frame}
 
+%Ch.04-16   | Spark Cluster Manager
+
 \subsection{Cluster manager}\label{subsec:cluster-manager}
 
 \begin{frame}
@@ -720,14 +731,6 @@ val spark = SparkSession
     \end{figure}
 \end{frame}
 
-%\begin{frame}
-%    \frametitle{Cluster Manager Components}
-%    \begin{figure}
-%        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/cluster_manager_processes}
-%        \caption{Basic setup of a cluster manager.}\label{fig:cluster_manager_processes}
-%    \end{figure}
-%\end{frame}
-
 \begin{frame}
     \frametitle{Execution of Spark Applications}
     \begin{itemize}
@@ -736,6 +739,8 @@ val spark = SparkSession
         \item The cluster manager directly manages the machines during the execution of the application.
     \end{itemize}
 \end{frame}
+
+% Ch.04-17   | Spark Execution Mode
 
 \subsection{Execution Modes}\label{subsec:deployment-mode}
 \begin{frame}
@@ -762,8 +767,8 @@ val spark = SparkSession
 \begin{frame}
     \frametitle{Cluster Mode}
     \begin{itemize}
-        \item Most common mode for running Spark Applications. 
-        \item User submits a pre-compiled JAR, Python script, or R script to a cluster manager. 
+        \item Most common mode for running Spark Applications.
+        \item User submits a pre-compiled JAR, Python script, or R script to a cluster manager.
         \item The cluster manager then launches the driver process on a worker node inside the cluster.
         \item Executor processes also launched within the cluster.
         \item Cluster manager handles all Spark Application processes.
@@ -834,6 +839,7 @@ val spark = SparkSession
 %        \caption{Summary of Spark deployment modes}\label{tab:spark-deployment}
 %    \end{table}
 %\end{frame}
+% Ch.04-18   | Spark Executors
 
 \subsection{Spark executors}\label{subsec:spark-executors}
 
@@ -847,23 +853,25 @@ val spark = SparkSession
     \end{itemize}
 \end{frame}
 
+% Ch.04-19   | Spark Data Partitioning
+
 \subsection{Data partition}\label{subsec:data-partition}
 
 
 % Slide 1
 \begin{frame}{Introduction to Data Distribution and Partitions}
     \begin{itemize}
-        \item \textbf{Data Distribution:} Physical data is distributed across storage as partitions residing in either HDFS  or cloud storage.
-        \item \textbf{Data Abstraction:} Spark treats each partition as a high-level logical data abstraction—as  a DataFrame in memory.
+        \item \textbf{Data Distribution:} Physical data is distributed across storage as partitions residing in either HDFS or cloud storage.
+        \item \textbf{Data Abstraction:} Spark treats each partition as a high-level logical data abstraction—as a DataFrame in memory.
     \end{itemize}
 \end{frame}
 
 % Slide 2
 \begin{frame}{Data Locality and Task Allocation}
     \begin{itemize}
-        \item \textbf{Data Locality:} Each Spark executor is  preferably allocated a task that requires it to read the partition closest to it in the network, observing data locality.
+        \item \textbf{Data Locality:} Each Spark executor is preferably allocated a task that requires it to read the partition closest to it in the network, observing data locality.
         \item \textbf{Optimal Task Allocation:} Partitioning allows for efficient parallelism.
-        \item \textbf{Minimize Network Bandwidth:} A distributed scheme of breaking up data into chunks or partitions allows Spark executors to process only data that is close to  them, minimizing network bandwidth.
+        \item \textbf{Minimize Network Bandwidth:} A distributed scheme of breaking up data into chunks or partitions allows Spark executors to process only data that is close to them, minimizing network bandwidth.
     \end{itemize}
 \end{frame}
 
@@ -900,6 +908,8 @@ val spark = SparkSession
     \end{itemize}
 \end{frame}
 
+% Ch.04-20   | Spark Operations
+
 \subsection{Spark Operations}\label{subsec:spark-operations}
 \begin{frame}
     \frametitle{Spark Operations}
@@ -913,7 +923,7 @@ val spark = SparkSession
     \frametitle{Immutable Objects}
     \begin{itemize}
         \item An object whose state cannot change after it has been constructed is
-called immutable (unchangable).\footnote{Referenced from https://otfried.org/courses/cs109scala/tutorial_mutable.html}
+        called immutable (unchangable).\footnote{Referenced from https://otfried.org/courses/cs109scala/tutorial_mutable.html}
         \item  The methods of an immutable object do not modify the state of the object.
     \end{itemize}
 \end{frame}
@@ -929,13 +939,13 @@ called immutable (unchangable).\footnote{Referenced from https://otfried.org/cou
 \begin{frame}[fragile]
     \frametitle{Immutable Objects}
     \begin{figure}
-    \includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-04/pyspark_immutable_df}
-    \caption{Filtering a PySpark DataFrame Based on Age}\label{fig:pyspark_immutable_df}
+        \includegraphics[width=\textwidth,height=.75\textheight,keepaspectratio]{./Figures/chapter-04/pyspark_immutable_df}
+        \caption{Filtering a PySpark DataFrame Based on Age}\label{fig:pyspark_immutable_df}
     \end{figure}
 \end{frame}
 \begin{frame}[fragile]
     \frametitle{DEMO}
-   DEMO
+    DEMO
 \end{frame}
 \begin{frame}
     \frametitle{Spark Operations: Transformations}
@@ -946,32 +956,32 @@ called immutable (unchangable).\footnote{Referenced from https://otfried.org/cou
 \end{frame}
 
 \begin{frame}
-  \frametitle{Spark Transformations: What are Lazy Transformations?}
-  \begin{itemize}
-    \item In Spark, transformations are \textit{lazy}.
-    \item This means computations are not executed immediately.
-    \item Spark builds a \textbf{DAG} (Directed Acyclic Graph) of transformations.
-    \item All Transformations results are not computed immediately, but they are recorded or remembered as a \textbf{lineage}.
-  \end{itemize}
+    \frametitle{Spark Transformations: What are Lazy Transformations?}
+    \begin{itemize}
+        \item In Spark, transformations are \textit{lazy}.
+        \item This means computations are not executed immediately.
+        \item Spark builds a \textbf{DAG} (Directed Acyclic Graph) of transformations.
+        \item All Transformations results are not computed immediately, but they are recorded or remembered as a \textbf{lineage}.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Spark Transformations: Benefits of Lazy Evaluation}
-  \begin{itemize}
-    \item \textbf{Optimization:} A lineage allows Spark, at a later time in its execution plan, to rearrange certain transformations, coalesce
-    them, or optimize transformations into stages for more efficient execution.
-    \item \textbf{Resource Management:} Executes tasks efficiently, using fewer resources.
-    \item \textbf{Fault Tolerance:} Easier to recompute parts of the pipeline if a part fails.
-  \end{itemize}
+    \frametitle{Spark Transformations: Benefits of Lazy Evaluation}
+    \begin{itemize}
+        \item \textbf{Optimization:} A lineage allows Spark, at a later time in its execution plan, to rearrange certain transformations, coalesce
+        them, or optimize transformations into stages for more efficient execution.
+        \item \textbf{Resource Management:} Executes tasks efficiently, using fewer resources.
+        \item \textbf{Fault Tolerance:} Easier to recompute parts of the pipeline if a part fails.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Spark Transformations: Lazy Transformation}
-  \begin{itemize}
-    \item Consider a dataset with map and filter transformations.
-    \item Spark does not execute these transformations when they are defined.
-    \item Transformations are executed when an action (like \textbf{collect}, \textbf{count}) is called.
-  \end{itemize}
+    \frametitle{Spark Transformations: Lazy Transformation}
+    \begin{itemize}
+        \item Consider a dataset with map and filter transformations.
+        \item Spark does not execute these transformations when they are defined.
+        \item Transformations are executed when an action (like \textbf{collect}, \textbf{count}) is called.
+    \end{itemize}
 \end{frame}
 \begin{frame}
     \frametitle{Lazy Transformations Example}
@@ -991,31 +1001,33 @@ called immutable (unchangable).\footnote{Referenced from https://otfried.org/cou
 \end{frame}
 
 \begin{frame}
-  \frametitle{Examples of Spark Actions}
-  \begin{itemize}
-    \item \textbf{collect()}: Collects all elements from the Spark context to the driver program.
-    \item \textbf{count()}: Returns the number of elements in the dataset.
-    \item \textbf{saveAsTextFile(path)}: Saves the dataset to a text file at the specified path.
-    \item \textbf{take(n)}: Returns an array with the first n elements of the dataset.
-  \end{itemize}
+    \frametitle{Examples of Spark Actions}
+    \begin{itemize}
+        \item \textbf{collect()}: Collects all elements from the Spark context to the driver program.
+        \item \textbf{count()}: Returns the number of elements in the dataset.
+        \item \textbf{saveAsTextFile(path)}: Saves the dataset to a text file at the specified path.
+        \item \textbf{take(n)}: Returns an array with the first n elements of the dataset.
+    \end{itemize}
 \end{frame}
+
+% Ch.04-21   | Transformations Narrow Vs Wide
 
 \subsection{Narrow and Wide Transformations}\label{subsec:narrow-and-wide-transformations}
 \begin{frame}
-\frametitle{Introduction to Spark Transformations}
-\begin{itemize}
-    \item Transformations create new RDDs from existing ones.
-    \item Spark has two types of transformations: Narrow and Wide.
-\end{itemize}
+    \frametitle{Introduction to Spark Transformations}
+    \begin{itemize}
+        \item Transformations create new RDDs from existing ones.
+        \item Spark has two types of transformations: Narrow and Wide.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{What are Narrow Transformations?}
-\begin{itemize}
-    \item Transformations that do not require data shuffling between partitions.
-    \item Examples: \texttt{map()}, \texttt{filter()}.
-    \item Data processing is limited to a single partition.
-\end{itemize}
+    \frametitle{What are Narrow Transformations?}
+    \begin{itemize}
+        \item Transformations that do not require data shuffling between partitions.
+        \item Examples: \texttt{map()}, \texttt{filter()}.
+        \item Data processing is limited to a single partition.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -1027,19 +1039,19 @@ called immutable (unchangable).\footnote{Referenced from https://otfried.org/cou
 \end{frame}
 
 \begin{frame}
-\frametitle{Benefits of Narrow Transformations}
-\begin{itemize}
-    \item Efficient with minimal data movement.
-    \item Best for independent data processing tasks.
-\end{itemize}
+    \frametitle{Benefits of Narrow Transformations}
+    \begin{itemize}
+        \item Efficient with minimal data movement.
+        \item Best for independent data processing tasks.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{What are Wide Transformations?}
-\begin{itemize}
-    \item Transformations that involve shuffling data across partitions.
-    \item Examples: \texttt{groupBy()}, \texttt{reduceByKey()}.
-\end{itemize}
+    \frametitle{What are Wide Transformations?}
+    \begin{itemize}
+        \item Transformations that involve shuffling data across partitions.
+        \item Examples: \texttt{groupBy()}, \texttt{reduceByKey()}.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -1060,19 +1072,176 @@ called immutable (unchangable).\footnote{Referenced from https://otfried.org/cou
 \end{frame}
 
 \begin{frame}
-\frametitle{Implications of Wide Transformations}
-\begin{itemize}
-    \item Shuffling can be expensive in terms of time and network I/O.
-    \item Essential for aggregation and grouping operations.
-\end{itemize}
+    \frametitle{Implications of Wide Transformations}
+    \begin{itemize}
+        \item Shuffling can be expensive in terms of time and network I/O.
+        \item Essential for aggregation and grouping operations.
+    \end{itemize}
 \end{frame}
+
 \begin{frame}
-\frametitle{Narrow vs. Wide Dependencies}
-\begin{itemize}
-    \item \textbf{Narrow Dependencies}: A single output partition can be computed from a single input partition without data exchange.
-    \item \textbf{Examples}: \texttt{filter()}, \texttt{contains()} - operate independently on partitions.
-\end{itemize}
+    \frametitle{Narrow vs. Wide Dependencies}
+    \begin{itemize}
+        \item \textbf{Narrow Dependencies}: A single output partition can be computed from a single input partition without data exchange.
+        \item \textbf{Examples}: \texttt{filter()}, \texttt{contains()} - operate independently on partitions.
+    \end{itemize}
 \end{frame}
+
+\subsection{Repartition vs. Coalesce}\label{subsec:repartition-vs-coalesce}
+\begin{frame}
+    \frametitle{Repartition vs. Coalesce}
+    \begin{itemize}
+        \item In Apache Spark, repartition and coalesce are two methods used to change the number of partitions in an RDD (Resilient
+        Distributed Dataset).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Repartition vs. Coalesce}
+
+    \begin{table}[h!]
+        \centering
+        \resizebox{\textwidth}{!}{%
+            \begin{tabular}{|p{2cm} |p{6cm} |p{6cm} |}
+                \hline
+                \rowcolor{Gray}
+                \hline
+                \textbf{Aspect}    & \textbf{Repartition}                                                                                                & \textbf{Coalesce}                                                                                                         \\
+                \hline
+                \textbf{Purpose}   & \textcolor{blue}{Increases or decreases} the number of partitions. & \textcolor{blue}{Decreases} the number of partitions. \\
+                \hline
+                \textbf{Mechanism} & \textcolor{blue}{Shuffles all} the data across the network to create a new set of partitions. & \textcolor{blue}{Merges existing} partitions \textcolor{blue}{without} a full data shuffle. \\
+                \hline
+                \textbf{Use Case}  & Ideal for increasing the number of partitions or significantly \textcolor{blue}{changing the distribution} of data. & Efficient for \textcolor{blue}{reducing the number} of partitions when the target number is less than the current number. \\
+                \hline
+                \textbf{Cost}      & Expensive due to the \textcolor{blue}{full data shuffle}.                                                         & Less expensive than \texttt{repartition} as it \textcolor{blue}{minimizes data movement}.                               \\
+                \hline
+            \end{tabular}
+        }
+        \caption{Comparison of Repartition and Coalesce in Apache Spark}
+    \end{table}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{High-Level Code: Repartition}
+    \begin{lstlisting}[language=scala]
+def repartition(numPartitions: Int)(implicit ord: Ordering[T] = null): RDD[T] = withScope {
+  coalesce(numPartitions, shuffle = true)
+}
+    \end{lstlisting}
+    \begin{itemize}
+        \item \textbf{Key Points}:
+        \begin{itemize}
+            \item \textbf{Shuffle}: Always performs a shuffle by calling `coalesce` with `shuffle = true`.
+            \item \textbf{Usage}: Suitable for both increasing and decreasing the number of partitions with even data distribution.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{High-Level Code: Repartition}
+
+        \begin{itemize}
+            \item \textbf{Operation}: Calls `coalesce` with `shuffle = true`.
+            \item \textbf{Process}: Full data shuffle across the network to redistribute data evenly.
+            \item \textbf{Impact on Logs}:
+            \begin{itemize}
+                \item Increased log entries due to extensive shuffle operations.
+                \item Higher overhead and cost.
+                \item Useful for balancing load and increasing parallelism.
+            \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{High-Level Code: Repartition}
+    \begin{itemize}
+        \item Shuffling Logic (If shuffle is true):
+
+            \begin{itemize}
+                \item Data is shuffled to distribute it evenly across the new partitions.
+                \item Each item is assigned a new partition based on a random function.
+                \item A new RDD is created with the shuffled data and the specified number of partitions.
+            \end{itemize}
+        \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+    \frametitle{High-Level Code: Coalesce}
+
+    \begin{lstlisting}[language=scala,basicstyle=\tiny]
+def coalesce(numPartitions: Int, shuffle: Boolean = false,
+             partitionCoalescer: Option[PartitionCoalescer] = Option.empty)
+            (implicit ord: Ordering[T] = null): RDD[T] = withScope {
+  require(numPartitions > 0, s"Number of partitions ($numPartitions) must be positive.")
+  if (shuffle) {
+    // Shuffle logic
+    val distributePartition = (index: Int, items: Iterator[T]) => {
+      var position = new XORShiftRandom(index).nextInt(numPartitions)
+      items.map { t =>
+        position = position + 1
+        (position, t)
+      }
+    } : Iterator[(Int, T)]
+    new CoalescedRDD(new ShuffledRDD[Int, T, T](
+        mapPartitionsWithIndexInternal(distributePartition, isOrderSensitive = true),
+        new HashPartitioner(numPartitions)),
+      numPartitions,
+      partitionCoalescer).values
+  } else {
+    // No-shuffle logic
+    new CoalescedRDD(this, numPartitions, partitionCoalescer)
+  }
+}
+    \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{High-Level Code: Coalesce}
+    \begin{itemize}
+        \item \textbf{Key Points}:
+        \begin{itemize}
+            \item \textbf{Shuffle}: Optional; can perform a shuffle if `shuffle = true`.
+            \item \textbf{No Shuffle}: Default behavior (without shuffle) merges partitions locally.
+            \item \textbf{Usage}: Efficient for reducing the number of partitions without shuffling.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{High-Level Code: Coalesce}
+
+    \begin{itemize}
+        \begin{itemize}
+            \item \textbf{Operation}: Can operate with or without shuffle.
+            \item \textbf{Process}:
+            \begin{itemize}
+                \item \textbf{No Shuffle (default)}: Merges partitions locally.
+                \item \textbf{With Shuffle}: Performs a shuffle for even data distribution if specified.
+            \end{itemize}
+            \item \textbf{Impact on Logs}:
+            \begin{itemize}
+                \item Decreased log entries when merging locally without shuffle.
+                \item Lower overhead and cost.
+                \item Efficient for reducing partitions, especially useful for write operations.
+                \item Optional shuffle provides flexibility for balanced distribution.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+%
+%\begin{frame}
+%\frametitle{Conclusion}
+%
+%This comparison illustrates that `repartition` always performs a shuffle to ensure even data distribution, which can be beneficial for load balancing but is more costly in terms of log entries and network overhead. In contrast, `coalesce` is more flexible and efficient for reducing the number of partitions without a shuffle, making it suitable for write operations with lower cost, while also allowing an optional shuffle for cases where balanced distribution is necessary.
+%\end{frame}
 
 \subsection{Understanding Spark Application Concepts}\label{subsec:understanding-spark-application-concepts}
 
@@ -1117,8 +1286,6 @@ called immutable (unchangable).\footnote{Referenced from https://otfried.org/cou
 
 \subsection{Running Word Count \& Aggregation using Spark}\label{subsec:running-word-count-&-aggregation-using-spark}
 
-
-
 \subsection{Spark Application Life Cycle}\label{subsec:spark-application-life-cycle}
 %%%% Later
 \begin{frame}
@@ -1150,7 +1317,6 @@ called immutable (unchangable).\footnote{Referenced from https://otfried.org/cou
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Further Readings and Assignment}
-
 
 
 %%% Local Variables:
